@@ -22,15 +22,22 @@ var styleFunction = function(feature, resolution) {
   return styleArray;
 };
 
-var vectorSource = new ol.source.IGC({
-  projection: 'EPSG:3857',
-  urls: [
+var host = "http://openlayers.org/en/v3.1.1/examples/";
+var du = [
     'data/igc/Clement-Latour.igc',
     'data/igc/Damien-de-Baenst.igc',
     'data/igc/Sylvain-Dhonneur.igc',
     'data/igc/Tom-Payne.igc',
     'data/igc/Ulrich-Prinz.igc'
-  ]
+];
+var data_urls = [];
+for(var i in du) {
+    data_urls.push(host + du[i]);
+}
+
+var vectorSource = new ol.source.IGC({
+  projection: 'EPSG:3857',
+  urls: data_urls
 });
 
 var time = {
