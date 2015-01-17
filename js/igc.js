@@ -22,10 +22,8 @@ var styleFunction = function(feature, resolution) {
   return styleArray;
 };
 
-var host = "http://openlayers.org/en/v3.1.1/examples/";
-var host = "https://raw.githubusercontent.com/openlayers/ol3/master/examples/";
-var host = "http://rawgit.com/openlayers/ol3/master/examples/";
-var host = "https://raw.githubusercontent.com/openlayers/ol3/master/examples/";
+var host = "/map/";
+var host = "http://maps7.trimet.org/map/";
 var du = [
     'data/igc/Clement-Latour.igc',
     'data/igc/Damien-de-Baenst.igc',
