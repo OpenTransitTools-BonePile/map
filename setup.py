@@ -18,6 +18,7 @@ postgresql_extras = ['psycopg2>=2.4.2']
 extras_require = dict(
     dev=dev_extras,
     #postgresql=postgresql_extras,
+    #oracle=oracle_extras,
 )
 
 setup(
