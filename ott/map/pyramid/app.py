@@ -38,6 +38,16 @@ def do_static_config(config, path='ott.map', cache_age=3600):
     config.add_static_view('ws/images', path + ':static/images',   cache_max_age=cache_age)
     config.add_static_view('mock',      path + ':static/mock',     cache_max_age=cache_age)
 
+def XXX_do_static_config(config, path='ott.map', prefixes=['', 'm/', 'ws/'], cache_age=3600):
+    ''' config the static folders
+    '''
+    for p in prefixes:
+        config.add_static_view(p + '',          path + ':static/html',      cache_max_age=cache_age)
+        config.add_static_view(p + 'resources', path + ':static/resources', cache_max_age=cache_age)
+        config.add_static_view(p + 'js',        path + ':static/js',        cache_max_age=cache_age)
+        config.add_static_view(p + 'css',       path + ':static/css',       cache_max_age=cache_age)
+        config.add_static_view(p + 'images',    path + ':static/images',    cache_max_age=cache_age)
+
 
 def do_mako_config(config):
     # important ... allow .html extension on mako templates
