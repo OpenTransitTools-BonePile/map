@@ -6,14 +6,20 @@ here = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(here, 'README.md')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
+
 requires = [
     'ott.utils',
+]
+
+pyramid_extras = [
+    'pyramid',
+    'pyramid_mako',
     'waitress',
+    'mako',
 ]
 
 dev_extras = []
 oracle_extras = ['cx_oracle>=5.1']
-pyramid_extras = ['pyramid']
 postgresql_extras = ['psycopg2>=2.4.2']
 
 extras_require = dict(
@@ -50,5 +56,6 @@ setup(
     tests_require=requires,
     test_suite="ott.map.tests",
     entry_points="""\
+        [paste.app_factory]
     """,
 )

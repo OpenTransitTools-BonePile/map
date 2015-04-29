@@ -1,2 +1,2 @@
 <?xml version="1.0" ?><?eclipse-pydev version="1.0"?><pydev_project>
-<pydev_pathproperty name="org.python.pydev.PROJECT_EXTERNAL_SOURCE_PATH"><path>/java/DEV/map</path><path>/java/DEV/map/eggs/waitress-0.8.9-py2.7.egg</path><path>/java/DEV/utils</path><path>/Library/Python/2.7/site-packages/setuptools-1.1-py2.7.egg</path><path>/java/DEV/map/eggs/simplejson-3.6.5-py2.7-macosx-10.10-intel.egg</path></pydev_pathproperty></pydev_project>
+<pydev_pathproperty name="org.python.pydev.PROJECT_EXTERNAL_SOURCE_PATH"><path>/java/DEV/map</path><path>/java/DEV/utils</path><path>/java/DEV/map/eggs/simplejson-3.6.5-py2.7-macosx-10.10-intel.egg</path></pydev_pathproperty></pydev_project>
