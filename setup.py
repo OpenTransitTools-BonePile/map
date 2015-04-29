@@ -13,12 +13,14 @@ requires = [
 
 dev_extras = []
 oracle_extras = ['cx_oracle>=5.1']
+pyramid_extras = ['pyramid']
 postgresql_extras = ['psycopg2>=2.4.2']
 
 extras_require = dict(
     dev=dev_extras,
-    #postgresql=postgresql_extras,
-    #oracle=oracle_extras,
+    pyramid=pyramid_extras,
+    postgresql=postgresql_extras,
+    oracle=oracle_extras,
 )
 
 setup(
