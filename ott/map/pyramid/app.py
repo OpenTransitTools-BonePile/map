@@ -26,6 +26,7 @@ def do_static_config(config, path='ott.map', cache_age=3600):
     config.add_static_view('static',    path + ':static',          cache_max_age=cache_age)
     config.add_static_view('html',      path + ':static/html',     cache_max_age=cache_age)
     config.add_static_view('',          path + ':static/html',     cache_max_age=cache_age)
+    config.add_static_view('resources', path + ':static/resources', cache_max_age=cache_age)
     config.add_static_view('js',        path + ':static/js',       cache_max_age=cache_age)
     config.add_static_view('m/js',      path + ':static/js',       cache_max_age=cache_age)
     config.add_static_view('ws/js',     path + ':static/js',       cache_max_age=cache_age)
