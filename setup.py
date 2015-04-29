@@ -13,9 +13,7 @@ requires = [
 
 pyramid_extras = [
     'pyramid',
-    'pyramid_mako',
     'waitress',
-    'mako',
 ]
 
 dev_extras = []
