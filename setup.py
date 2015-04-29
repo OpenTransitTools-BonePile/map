@@ -11,14 +11,14 @@ requires = [
     'ott.utils',
 ]
 
-pyramid_extras = [
-    'pyramid',
-    'waitress',
-]
 
 dev_extras = []
 oracle_extras = ['cx_oracle>=5.1']
 postgresql_extras = ['psycopg2>=2.4.2']
+pyramid_extras = [
+    'pyramid',
+    'waitress',
+]
 
 extras_require = dict(
     dev=dev_extras,
@@ -55,5 +55,6 @@ setup(
     test_suite="ott.map.tests",
     entry_points="""\
         [paste.app_factory]
+        main = ott.map.pyramid.app:main
     """,
 )
