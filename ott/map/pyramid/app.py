@@ -19,11 +19,26 @@ def main(global_config, **settings):
     config.scan()
     return config.make_wsgi_app()
 
-
 def do_static_config(config, path='ott.map', cache_age=3600):
+    cache_age=3600
+    config.add_static_view('static',   'ott.map:static',          cache_max_age=cache_age)
+    config.add_static_view('html',     'ott.map:static',          cache_max_age=cache_age)
+    config.add_static_view('js',       'ott.map:static/js',       cache_max_age=cache_age)
+    config.add_static_view('m/js',     'ott.map:static/js',       cache_max_age=cache_age)
+    config.add_static_view('ws/js',    'ott.map:static/js',       cache_max_age=cache_age)
+    config.add_static_view('css',      'ott.map:static/css',      cache_max_age=cache_age)
+    config.add_static_view('m/css',    'ott.map:static/css',      cache_max_age=cache_age)
+    config.add_static_view('ws/css',   'ott.map:static/css',      cache_max_age=cache_age)
+    config.add_static_view('images',   'ott.map:static/images',   cache_max_age=cache_age)
+    config.add_static_view('m/images', 'ott.map:static/images',   cache_max_age=cache_age)
+    config.add_static_view('ws/images','ott.map:static/images',   cache_max_age=cache_age)
+    config.add_static_view('mock',     ' ott.map:static/mock',    cache_max_age=cache_age)
+
+
+def XXdo_static_config(config, path='ott.map', cache_age=3600):
     ''' config the static folders
     '''
-    config.add_static_view('static',    path + ':static',          cache_max_age=cache_age)
+    #config.add_static_view('static',    path + ':static',          cache_max_age=cache_age)
     config.add_static_view('html',      path + ':static/html',     cache_max_age=cache_age)
     config.add_static_view('',          path + ':static/html',     cache_max_age=cache_age)
     config.add_static_view('resources', path + ':static/resources', cache_max_age=cache_age)
