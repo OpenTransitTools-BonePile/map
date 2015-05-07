@@ -3,8 +3,18 @@
 body {
   padding-top: 60px;
 }
+body, h1, h2, h3, h4, p, li, td, th {
+  font-family: Quattrocento Sans;
+}
+.navbar-inverse .navbar-inner {
+  background: #1F6B75;
+}
+.navbar-inverse .brand {
+  color: white;
+  padding: 5px;
+}
 .map {
-  height: 90%;
+  height: 70%;
   width: 100%;
 }
 .ol-attribution {
@@ -17,14 +27,21 @@ body {
 #tags {
   display: none;
 }
-
-body, h1, h2, h3, h4, p, li, td, th {
-  font-family: Quattrocento Sans;
+#marker {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #088;
+    border-radius: 10px;
+    background-color: #0FF;
+    opacity: 0.5;
 }
-.navbar-inverse .navbar-inner {
-  background: #1F6B75;
+#vienna {
+    text-decoration: none;
+    color: white;
+    font-size: 11pt;
+    font-weight: bold;
+    text-shadow: black 0.1em 0.1em 0.2em;
 }
-.navbar-inverse .brand {
-  color: white;
-  padding: 5px;
+.popover-content {
+    min-width: 180px;
 }
