@@ -1,0 +1,5 @@
+License
+
+MIT (c) Matt Walker.
+
+https://github.com/walkermatt/ol3-layerswitcher

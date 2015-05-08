@@ -22,6 +22,38 @@ var tm_carto_layer = new ol.layer.Tile({
     })
 });
 
+
+var baseLayers = new ol.layer.Group({
+     'title': 'Base maps',
+     layers: [
+         new ol.layer.Tile({
+             title: 'Water color',
+             type: 'base',
+             visible: false,
+             source: new ol.source.Stamen({
+                 layer: 'watercolor'
+             })
+         }),
+         new ol.layer.Tile({
+             title: 'OSM',
+             type: 'base',
+             visible: true,
+             source: new ol.source.OSM()
+         }),
+         new ol.layer.Tile({
+             title: 'Satellite',
+             type: 'base',
+             visible: false,
+             source: new ol.source.MapQuest({layer: 'sat'})
+         })
+     ]
+ })
+
+
+var layers = [
+    baseLayers
+];
+
 /*
 var domain = "http://maps7.trimet.org"
 var tm_aerial_layer = new ol.layer.Tile({
@@ -47,9 +79,7 @@ var layers = [
 ];
 */
 
-var layers = [
-    tm_carto_layer,
-];
+
 var map = new ol.Map({
     layers: layers,
     target: 'map',
@@ -98,3 +128,8 @@ map.on('click', function(evt) {
     });
     $(element).popover('show');
 });
+
+var layerSwitcher = new ol.control.LayerSwitcher({
+    tipLabel: 'Légende' // Optional label for button
+});
+map.addControl(layerSwitcher);
