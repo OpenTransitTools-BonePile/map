@@ -13,7 +13,10 @@ var attributions = [
 ];
 
 // base layers
-var domain = "http://maps.trimet.org"
+var tileDomain = "http://maps.trimet.org";
+var tileDomain = "http://tile{a-d}.trimet.org";
+var tileAerialPath = '/tilecache/tilecache.py/1.0.0/hybridOSM/{z}/{x}/{y}';
+var tileMapPath = '/tilecache/tilecache.py/1.0.0/currentOSM/{z}/{x}/{y}';
 
 function makeBaseLayer(title, visible, attributions, url) {
     return new ol.layer.Tile({
@@ -29,21 +32,6 @@ function makeBaseLayer(title, visible, attributions, url) {
 
 
 /*
-var tm_carto_layer = new ol.layer.Tile({
-    source: new ol.source.XYZ({
-        attributions: attributions,
-        url: domain + '/tilecache/tilecache.py/1.0.0/currentOSM/{z}/{x}/{y}'
-    })
-});
-
-
-var domain = "http://maps7.trimet.org"
-var tm_aerial_layer = new ol.layer.Tile({
-    source: new ol.source.XYZ({
-        attributions: attributions,
-        url: domain + '/tilecache/tilecache.py/1.0.0/hybridOSM/{z}/{x}/{y}'
-    })
-});
 
 var taxlot_layer = new ol.layer.Tile({
     extent: bounds,
@@ -54,11 +42,6 @@ var taxlot_layer = new ol.layer.Tile({
     }))
 });
 
-var layers = [
-    tm_carto_layer,
-    taxlot_layer,
-    tm_aerial_layer
-];
 */
 
 
@@ -73,8 +56,8 @@ var baseLayers = new ol.layer.Group({
                  layer: 'watercolor'
              })
          }),
-         makeBaseLayer("Satellite", false, attributions, domain + '/tilecache/tilecache.py/1.0.0/hybridOSM/{z}/{x}/{y}'),
-         makeBaseLayer("Map", true, attributions, domain + '/tilecache/tilecache.py/1.0.0/currentOSM/{z}/{x}/{y}'),
+         makeBaseLayer("Satellite", false, attributions, tileDomain + tileAerialPath),
+         makeBaseLayer("Map", true, attributions, tileDomain + tileMapPath)
      ]
  })
 
