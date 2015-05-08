@@ -1,30 +1,35 @@
-@import url(http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,400italic,700);
-
 body {
-  padding-top: 60px;
+  padding-top: 81px;
+}
+.container-fluid {
+  padding: 0px;
 }
 .map {
-  height: 90%;
+  padding: 0px;
+  height: 80%;
   width: 100%;
 }
 .ol-attribution {
-  max-width: calc(100% - 5em);
+  max-width: calc(100% - 3em);
 }
 .ol-control button, .ol-attribution, .ol-scale-line-inner {
   font-family: 'Lucida Grande',Verdana,Geneva,Lucida,Arial,Helvetica,sans-serif;
 }
 
-#tags {
-  display: none;
+.navbar-inverse .navbar-inner {
+  background: #084c8d;
 }
 
-body, h1, h2, h3, h4, p, li, td, th {
-  font-family: Quattrocento Sans;
-}
-.navbar-inverse .navbar-inner {
-  background: #1F6B75;
-}
-.navbar-inverse .brand {
+.brand {
   color: white;
-  padding: 5px;
+  padding: 1px;
+}
+
+span.brand {
+  padding-left: 15px;
+}
+
+
+#tags {
+  display: none;
 }

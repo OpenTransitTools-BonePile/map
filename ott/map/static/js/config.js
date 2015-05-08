@@ -1,8 +1,8 @@
 // make sure we have otp and otp.config defined
 if(typeof(otp) == "undefined" || otp == null) otp = {};
-if(typeof(otp.config) == "undefined" || otp.config == null) otp.config = {};
 
-otp.params = {
+if(typeof(otp.params) == "undefined" || otp.params == null)
+  otp.params = {
     /**
      * The OTP web service locations
      */
@@ -19,7 +19,8 @@ otp.params = {
     fareDisplayOverride : "$2.50 (A), $1.00 (H), $1.25 (Y)"
 };
 
-otp.config = {
+if(typeof(otp.config) == "undefined" || otp.config == null)
+  otp.config = {
 
     restService    : otp.params.restService,
 
