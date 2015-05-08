@@ -22,37 +22,18 @@ var tm_carto_layer = new ol.layer.Tile({
     })
 });
 
-
-var baseLayers = new ol.layer.Group({
-     'title': 'Base maps',
-     layers: [
-         new ol.layer.Tile({
-             title: 'Water color',
+function makeBaseLayer(title, visible, attributions, url) {
+    return new ol.layer.Tile({
+             title: title,
              type: 'base',
-             visible: false,
-             source: new ol.source.Stamen({
-                 layer: 'watercolor'
+             visible: visible,
+             source: new ol.source.XYZ({
+                 attributions: attributions,
+                 url: url
              })
-         }),
-         new ol.layer.Tile({
-             title: 'OSM',
-             type: 'base',
-             visible: true,
-             source: new ol.source.OSM()
-         }),
-         new ol.layer.Tile({
-             title: 'Satellite',
-             type: 'base',
-             visible: false,
-             source: new ol.source.MapQuest({layer: 'sat'})
-         })
-     ]
- })
+         });
+}
 
-
-var layers = [
-    baseLayers
-];
 
 /*
 var domain = "http://maps7.trimet.org"
@@ -78,6 +59,39 @@ var layers = [
     tm_aerial_layer
 ];
 */
+
+
+var baseLayers = new ol.layer.Group({
+     'title': 'Base maps',
+     layers: [
+         new ol.layer.Tile({
+             title: 'Water color',
+             type: 'base',
+             visible: false,
+             source: new ol.source.Stamen({
+                 layer: 'watercolor'
+             })
+         }),
+         new ol.layer.Tile({
+             title: 'OSM',
+             type: 'base',
+             visible: false,
+             source: new ol.source.OSM()
+         }),
+         new ol.layer.Tile({
+             title: 'Satellite',
+             type: 'base',
+             visible: false,
+             source: new ol.source.MapQuest({layer: 'sat'})
+         }),
+         makeBaseLayer("tm", true, attributions, domain + '/tilecache/tilecache.py/1.0.0/currentOSM/{z}/{x}/{y}'),
+     ]
+ })
+
+
+var layers = [
+    baseLayers
+];
 
 
 var map = new ol.Map({
