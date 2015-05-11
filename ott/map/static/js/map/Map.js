@@ -1,3 +1,17 @@
+ott.namespace("ott.map");
+
+ott.map.Map = {
+
+    /**
+     * @consturctor
+     * @param {Object} config
+     */
+    initialize : function(config)
+    {
+        console.log("enter Map() constructor");
+    }
+};
+
 // bbox and center
 var center = ol.proj.transform([-122.55, 45.55], 'EPSG:4326', 'EPSG:3857');
 var bounds = ol.proj.transform([-123.8, 45.8, -121.5, 44.68], 'EPSG:4326', 'EPSG:3857');
@@ -62,20 +76,18 @@ var baseLayers = new ol.layer.Group({
  })
 
 
-var layers = [
-    baseLayers
-];
-
-
 var map = new ol.Map({
-    layers: layers,
     target: 'map',
     view: new ol.View({
         center: center,
         zoom: 11
     })
 });
+//map.addLayer(baseLayers);
 
+var b = new ott.map.BaseLayers();
+var l = b.getBaseLayersAsGroup();
+map.addLayer(l);
 
 // Vienna marker
 var marker = new ol.Overlay({
