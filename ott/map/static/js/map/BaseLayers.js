@@ -17,6 +17,8 @@ var tileMapPath = '/tilecache/tilecache.py/1.0.0/currentOSM/{z}/{x}/{y}';
 
 ott.map.BaseLayers = {
 
+    layers : [],
+
     /**
      * @consturctor
      * @param {Object} config
@@ -24,6 +26,11 @@ ott.map.BaseLayers = {
     initialize : function(config)
     {
         console.log("enter BaseLayers() constructor");
+        this.addStamanBaseLayer();
+        var l = this.makeBaseLayer("Satellite", false, attributions, tileDomain + tileAerialPath);
+        var m = this.makeBaseLayer("Map", true, attributions, tileDomain + tileMapPath);
+        this.layers.push(l);
+        this.layers.push(m);
     },
 
     makeBaseLayer : function(title, visible, attributions, url)
@@ -39,28 +46,30 @@ ott.map.BaseLayers = {
              });
     },
 
+    addStamanBaseLayer : function(title='Water color', layer='watercolor')
+    {
+        var l = new ol.layer.Tile({
+             title: title,
+             type: 'base',
+             visible: false,
+             source: new ol.source.Stamen({
+                 layer: layer
+             })
+         });
+         this.layers.push(l);
+         return l;
+    },
+
     getBaseLayers : function()
     {
-         return [
-             new ol.layer.Tile({
-                 title: 'Water color',
-                 type: 'base',
-                 visible: false,
-                 source: new ol.source.Stamen({
-                     layer: 'watercolor'
-                 })
-             }),
-             this.makeBaseLayer("Satellite", false, attributions, tileDomain + tileAerialPath),
-             this.makeBaseLayer("Map", true, attributions, tileDomain + tileMapPath)
-         ]
+        return layers;
     },
 
     getBaseLayersAsGroup : function(title='Base Layers')
     {
-        var layers = this.getBaseLayers();
         var baseLayers = new ol.layer.Group({
             'title': title,
-             layers: layers
+             layers: this.layers
         });
         return baseLayers;
     },
