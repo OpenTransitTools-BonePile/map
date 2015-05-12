@@ -1,36 +1,26 @@
 ott.namespace("ott.map");
 
-// data attributions
-var tm_attribution = new ol.Attribution({html: 'Tiles &copy; <a target="#" href="http://trimet.org/">TriMet</a>; map data'});
-var metro_attribution = new ol.Attribution({html: 'and &copy; <a target="#" href="http://oregonmetro.gov/rlis">Oregon Metro</a>'});
-var attributions = [
-    tm_attribution,
-    ol.source.OSM.ATTRIBUTION,
-    metro_attribution
-];
-
-// base layers
-var tileDomain = "http://maps.trimet.org";
-var tileDomain = "http://tile{a-d}.trimet.org";
-var tileAerialPath = '/tilecache/tilecache.py/1.0.0/hybridOSM/{z}/{x}/{y}';
-var tileMapPath = '/tilecache/tilecache.py/1.0.0/currentOSM/{z}/{x}/{y}';
-
 ott.map.BaseLayers = {
 
     layers : [],
 
     /**
+     * this constructor will read the ott.config.baseLayers array, and then create those base layers
+     *
      * @consturctor
      * @param {Object} config
      */
     initialize : function(config)
     {
         console.log("enter BaseLayers() constructor");
-        this.addStamanBaseLayer();
-        var l = this.makeBaseLayer("Satellite", false, attributions, tileDomain + tileAerialPath);
-        var m = this.makeBaseLayer("Map", true, attributions, tileDomain + tileMapPath);
-        this.layers.push(l);
-        this.layers.push(m);
+        if(config.doWatercolor)
+            this.addStamanBaseLayer();
+        for(var i in config.baseLayers)
+        {
+            var l  = config.baseLayers[i];
+            var bl = this.makeBaseLayer(l.name, l.isVisble, l.attribution, l.url);
+            this.layers.push(bl);
+        }
     },
 
     makeBaseLayer : function(title, visible, attributions, url)
@@ -43,17 +33,17 @@ ott.map.BaseLayers = {
                      attributions: attributions,
                      url: url
                  })
-             });
+        });
     },
 
-    addStamanBaseLayer : function(title='Water color', layer='watercolor')
+    addStamanBaseLayer : function(title, layer)
     {
         var l = new ol.layer.Tile({
-             title: title,
+             title: title || 'Water color',
              type: 'base',
              visible: false,
              source: new ol.source.Stamen({
-                 layer: layer
+                 layer: layer || 'watercolor'
              })
          });
          this.layers.push(l);
@@ -62,22 +52,26 @@ ott.map.BaseLayers = {
 
     getBaseLayers : function()
     {
-        return layers;
+        return this.layers;
     },
 
-    getBaseLayersAsGroup : function(title='Base Layers')
+    getBaseLayersAsGroup : function(title)
     {
         var baseLayers = new ol.layer.Group({
-            'title': title,
-             layers: this.layers
+            'title': title || 'Base Layers',
+             layers: this.getBaseLayers()
         });
         return baseLayers;
     },
 
-    makeLayerSwitcher : function(map, tipLabel='Map Layers')
+    /**
+     * make a layer switcher and add it to the supplied ol.map object
+     * @see: https://github.com/walkermatt/ol3-layerswitcher
+     */
+    makeLayerSwitcher : function(map, tipLabel)
     {
         var layerSwitcher = new ol.control.LayerSwitcher({
-            tipLabel: tipLabel
+            tipLabel: tipLabel || 'Map Layers'
         });
         map.addControl(layerSwitcher);
         return layerSwitcher;

@@ -26,9 +26,9 @@ var map = new ol.Map({
     })
 });
 
-var b = new ott.map.BaseLayers();
+var b = new ott.map.BaseLayers(ott.config);
 var l = b.getBaseLayersAsGroup();
 map.addLayer(l);
-b.makeLayerSwitcher(map);
+b.makeLayerSwitcher(map, 'Switch Layers');
 
 
