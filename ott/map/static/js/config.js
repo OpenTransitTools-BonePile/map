@@ -44,6 +44,7 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
          *       format 'http://{3-4 sub-domains}.yourdomain.com/.../tile-cache path/.../{z}/{x}/{y}')
          *   - attribution: ol.Attribution type for the given layer
          */
+        doWatercolor : true,
         baseLayers: [
             {
                 name : 'MapQuest OSM',
@@ -71,34 +72,32 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
             }
         ],
 
-        doWatercolor : true,
-
         /**
-         * Map start location and zoom settings: by default, the client uses the
-         * ott metadata API call to center and zoom the map. The following
-         * properties, when set, override that behavioir.
+         * map will config the initial parameters of this map:
+         *   - blah: <float>
          */
-        initLatLng : '',
-        initZoom : 11,
-        minZoom : 10,
-        maxZoom : 22,
+        map : {
+            initLatLng : '',
+            initZoom : 11,
+            minZoom : 10,
+            maxZoom : 22
+        },
 
 
         /**
-         * Geocoders: a list of supported geocoding services available for use in
-         * address resolution. Expressed as an array of objects, where each object
+         * Geocoders: geocoding services available for use in address resolution.
          * has the following fields:
          *   - name: <string> the name of the service to be displayed to the user
          *   - className: <string> the name of the class that implements this service
          *   - url: <string> the location of the service's API endpoint
          *   - addressParam: <string> the name of the API parameter used to pass in the user-specifed address string
          */
-        geocoders : [
-            {
-                name         : 'SOLR',
-                className    : 'ott.core.SOLRGeocoder',
-                url          : ott,
-                addressParam : 'q'
-            }
-        ]
+        geocoder : {
+            name         : 'SOLR',
+            className    : 'ott.core.SOLRGeocoder',
+            url          : ott,
+            addressParam : 'q'
+        },
+
+        CLASS_NAME: "ott.config"
     };
