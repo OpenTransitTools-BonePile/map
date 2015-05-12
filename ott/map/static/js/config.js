@@ -73,14 +73,16 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
         ],
 
         /**
-         * map will config the initial parameters of this map:
-         *   - blah: <float>
+         * map will config the initial map view of the OpenLayers 3.5 map
+         * @see: http://openlayers.org/en/v3.5.0/apidoc/ol.View.html
          */
-        map : {
-            initLatLng : '',
-            initZoom : 11,
+        olMap : {
+            center  : ol.proj.transform([-122.68, 45.48], 'EPSG:4326', 'EPSG:3857'),
+            zoom    : 11,
             minZoom : 10,
-            maxZoom : 22
+            maxZoom : 20,
+            enableRotation : true,
+            rotation : 50
         },
 
 

@@ -1,9 +1,5 @@
 ott.namespace("ott.map");
 
-// bbox and center
-var center = ol.proj.transform([-122.55, 45.55], 'EPSG:4326', 'EPSG:3857');
-//var bounds = ol.proj.transform([-123.8, 45.8, -121.5, 44.68], 'EPSG:4326', 'EPSG:3857');
-
 ott.map.Map = {
 
     map : null,
@@ -16,12 +12,10 @@ ott.map.Map = {
     {
         console.log("enter Map() constructor");
 
+        // step 1: create the map
         self.map = new ol.Map({
             target: targetDiv || 'map',
-            view: new ol.View({
-                center: center,
-                zoom: 11
-            })
+            view: new ol.View(config.olMap)
         });
 
         var b = new ott.map.BaseLayers(config);
