@@ -18,6 +18,7 @@ ott.map.Map = {
             view: new ol.View(config.olMap)
         });
 
+        // step 2: add the base layers to the map
         var b = new ott.map.BaseLayers(config);
         map.addLayer(b.getBaseLayersAsGroup());
         b.makeLayerSwitcher(map, 'Switch Layers');
