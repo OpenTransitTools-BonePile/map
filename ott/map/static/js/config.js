@@ -86,17 +86,11 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
         },
 
         /**
-         * map will config the initial map view of the OpenLayers 3.5 map
-         * @see: http://openlayers.org/en/v3.5.0/apidoc/ol.View.html
+         * google analytics params
+         * @see: ott.utils.Analytics
+         * @see: https://www.google.com/analytics
          */
         analytics : {
-            trinetDomain     : "trinet.trimet.org",
-            trinetGoogleId   : "UA-688646-4",
-
-            // OTP (and test) id & domain
-            testGoogleId     : "UA-688646-7",
-            otpGoogleId      : "UA-688646-7",
-
             domain  : "trimet.org",
             //id      : "UA-688646-3"
             id      : "UA-688646-4"

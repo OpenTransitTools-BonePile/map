@@ -1,9 +1,9 @@
-trimet.namespace("trimet.utils");
+ott.namespace("ott.utils");
 
 /**
  * Utility routines for Analytics
  */
-trimet.utils.AnalyticsUtils = {
+ott.utils.AnalyticsUtils = {
     TM_TRIP_SUBMIT       : ['_trackEvent', 'TripPlanner',     'Submit',           'Interactive Map submit'],
     TM_TRIP_PRINT        : ['_trackEvent', 'TripPlanner',     'PrintClickTo',     'Interactive Map print'],
 
@@ -65,33 +65,54 @@ trimet.utils.AnalyticsUtils = {
     DIALOG               : ['_trackEvent', 'Interactive Map', 'Tools',            'Dialog was displayed'],
     MOBILITY             : ['_trackEvent', 'Interactive Map', 'Mobility',         'MM panel active'],
     MOBILITY_LAYER       : ['_trackEvent', 'Interactive Map', 'Mobility',         'Map overlay added'],
+
     defaultEventName     : ['_trackEvent', 'Interactive Map', 'Unknown Event',    'Some event happened???'],
 
     // variables
-    id               : null,
-    domain           : null,
+    id     : null,
+    domain : null,
 
-   /** */
-   initGoogleAnalytics : function(id, domain)
-   {
-       console.log("enter AnalyticsUtils.initGoogleAnalytics");
+    initialize : function(id, domain)
+    {
+        this.loadGoogleAnalytics();
+
+        // set params
+        if(id) this.id = id;
+        if(domain) this.domain = domain;
+
+        // default params via config
+        if(this.id == null || this.domain == null)
+        {
+            if(otp.config && otp.config.analytics)
+            {
+                this.id = otp.config.analytics.id;
+                this.domain = otp.config.analytics.domain;
+            }
+        }
+    },
+
+    /** load ga.js into DOM */
+    loadGoogleAnalytics : function()
+    {
+        if(this._isLoaded) return;
+
+        console.log("enter AnalyticsUtils.loadGoogleAnalytics");
         try
         {
-            this.id = id;
-            this.domain = domain;
-
             // load GA.js
             (function() {
                 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
             })();
+
+            this._isLoaded = true;
         }
         catch(e)
         {
-            console.log("GA EXCEPTION: AnalyticsUtils.initGoogleAnalytics threw exception " + e);
+            console.log("GA EXCEPTION: AnalyticsUtils.loadGoogleAnalytics threw exception " + e);
         }
-        console.log("exit initGoogleAnalytics");
+        console.log("exit loadGoogleAnalytics");
    },
 
     /** sign into GA with account and domain */
@@ -102,6 +123,7 @@ trimet.utils.AnalyticsUtils = {
 
         try
         {
+            this.initialize();
             _gaq.push(['_setAccount', this.id]);
             _gaq.push(['_setDomainName', this.domain]);
             _gaq.push(['_trackPageview']);
@@ -160,11 +182,11 @@ trimet.utils.AnalyticsUtils = {
         if(event == null || optVal == null)
             return event;
 
-        var retVal = trimet.utils.ObjUtils.copyArray(event);
+        var retVal = ott.utils.ObjUtils.copyArray(event);
         retVal.push(optVal);
 
         return retVal;
     },
 
-    CLASS_NAME : "trimet.utls.AnalyticsUtils"
+    CLASS_NAME : "ott.utls.AnalyticsUtils"
 };
