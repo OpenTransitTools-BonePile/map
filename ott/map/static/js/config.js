@@ -82,7 +82,7 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
             minZoom : 10,
             maxZoom : 20,
             enableRotation : true,
-            rotation : 50
+            rotation : 0
         },
 
         /**

@@ -1,0 +1,91 @@
+#legend-btn-wrapper {
+    left: 16px;
+    top: 80px;
+}
+
+.legend-btn {
+	background-color: rgba(0, 60, 136, 0.5);
+    border: medium none white;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    font-size: 1.14em;
+    font-weight: 700;
+    height: 1.375em;
+    line-height: 0.4em;
+    margin: 1px;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
+    width: 1.375em;
+}
+
+#legend-wrapper {
+	top: 80px;
+	left: 16px;
+	padding: 4px;
+}
+
+.legend {
+	z-index: 2;
+	background-color: rgba(255, 255, 255, 0.6);
+	border-radius: 2px;
+	padding: 10px;
+}
+
+/* Much of what is below is derived from here:
+   https://www.mapbox.com/tilemill/docs/guides/advanced-legends/
+*/
+
+.legend .legend-title {
+    text-align: left;
+    margin-bottom: 12px;
+    font-weight: bold;
+    font-size: 85%;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+.legend .legend-scale ul {
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 0;
+    float: left;
+    list-style: none;
+}
+
+.legend .legend-scale ul li {
+    font-size: 85%;
+    list-style: none;
+    margin-left: 0;
+    line-height: 18px;
+    margin-bottom: 2px;
+    font-family: Calibri, Tahoma, Geneva, sans-serif;
+    vertical-align: bottom;
+}
+
+.legend-patch {
+    display: inline-block;
+    float: left;
+    height: 20px;
+    width: 35px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    opacity: 0.75;
+    border-radius: 2px;
+    opacity: 0.5;
+}
+
+.patch-text {
+	display: inline-block;
+	height: 20px;
+	margin-bottom: 5px;
+	vertical-align: middle;
+}
+
+.legend .legend-source {
+    font-size: 70%;
+    color: #999;
+    clear: both;
+    font-family: Calibri, Tahoma, Geneva, sans-serif;
+}
