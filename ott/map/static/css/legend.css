@@ -1,6 +1,9 @@
-#legend-btn-wrapper {
-    left: 16px;
-    top: 80px;
+.cntrl-wrapper {
+	position: absolute;
+	background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    padding: 2px;
+    z-index: 1;
 }
 
 .legend-btn {
@@ -20,9 +23,14 @@
     width: 1.375em;
 }
 
+#legend-btn-wrapper {
+    top: 150px;
+    left: 7px;
+}
+
 #legend-wrapper {
-	top: 80px;
-	left: 16px;
+	top:     150px;
+	left:    7px;
 	padding: 4px;
 }
 

@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="resources/ol-layerswitcher/layerswitcher.css" type="text/css">
         <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="css/map.css" type="text/css">
+        <link rel="stylesheet" href="css/legend.css" type="text/css">
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,9 +24,45 @@
         <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span12">
-                    <div id="map" class="map"></div>
-                    <button class='legend-btn'>L</button>
+                    <div id="map" class="map">
+                        <div class='cntrl-wrapper' id='legend-btn-wrapper'>
+                            <button class='legend-btn'>L</button>
+                        </div>
+                        <div class='cntrl-wrapper' id='legend-wrapper'>
+                            <div class='legend'>
+                                <div class='legend-title'>Tax Lot Classifications</div>
+                                <div class='legend-scale'>
+                                    <ul class='legend-labels'>
+                                        <li>
+                                            <span style='background:#dfc27d' class='legend-patch'></span>
+                                            <span class='patch-text'>Within walking distance of a MAX station</span>
+                                        </li>
+                                        <li>
+                                            <span style='background:#8c510a' class='legend-patch'></span>
+                                            <span class='patch-text'>Within walking distance of a MAX station and development since station built</span>
+                                        </li>
+                                        <li>
+                                            <span style='background:#80cdc1' class='legend-patch'></span>
+                                            <span class='patch-text'><b>Not</b> within walking distance of MAX station</span>
+                                        </li>
+                                        <li>
+                                            <span style='background:#01665e' class='legend-patch'></span>
+                                            <span class='patch-text'><b>Not</b> within walking distance of MAX station, but development since nearest MAX station built</span>
+                                        </li>
+                                        <li>
+                                            <span style='background:#9ef29e' class='legend-patch'></span>
+                                            <span class='patch-text'>Park or natural area</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class='legend-source'>Metadata: See <a href='https://github.com/grant-humphries/dev-near-lightrail'>this github repo</a> for information on sources and methodology</div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
+
+
             </div>
 
             <div class="row-fluid">
@@ -40,38 +77,6 @@
                 </div>
             </div>
         </div>
-
-        <div class='cntrl-wrapper' id='legend-wrapper'>
-            <div class='legend'>
-                <div class='legend-title'>Tax Lot Classifications</div>
-                <div class='legend-scale'>
-                    <ul class='legend-labels'>
-                        <li>
-                            <span style='background:#dfc27d' class='legend-patch'></span>
-                            <span class='patch-text'>Within walking distance of a MAX station</span>
-                        </li>
-                        <li>
-                            <span style='background:#8c510a' class='legend-patch'></span>
-                            <span class='patch-text'>Within walking distance of a MAX station and development since station built</span>
-                        </li>
-                        <li>
-                            <span style='background:#80cdc1' class='legend-patch'></span>
-                            <span class='patch-text'><b>Not</b> within walking distance of MAX station</span>
-                        </li>
-                        <li>
-                            <span style='background:#01665e' class='legend-patch'></span>
-                            <span class='patch-text'><b>Not</b> within walking distance of MAX station, but development since nearest MAX station built</span>
-                        </li>
-                        <li>
-                            <span style='background:#9ef29e' class='legend-patch'></span>
-                            <span class='patch-text'>Park or natural area</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class='legend-source'>Metadata: See <a href='https://github.com/grant-humphries/dev-near-lightrail'>this github repo</a> for information on sources and methodology</div>
-            </div>
-        </div>
-
 
         <script src="resources/openlayers/jquery.min.js" type="text/javascript"></script>
         <script src="resources/openlayers/ol.js" type="text/javascript"></script>
