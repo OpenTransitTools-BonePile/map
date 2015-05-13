@@ -15,6 +15,9 @@ ott.map.Map = {
         // step 1: create the map
         self.map = new ol.Map({
             target: targetDiv || 'map',
+            interactions: ol.interaction.defaults().extend([
+                new ol.interaction.DragRotateAndZoom()
+            ]),
             view: new ol.View(config.olMap)
         });
 

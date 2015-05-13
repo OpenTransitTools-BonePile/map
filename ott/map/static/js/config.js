@@ -91,9 +91,8 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
          * @see: https://www.google.com/analytics
          */
         analytics : {
-            domain  : "trimet.org",
-            //id      : "UA-688646-3"
-            id      : "UA-688646-4"
+            domain  : "maps.trimet.org",
+            id      : "UA-688646-7"
         },
 
         /**
