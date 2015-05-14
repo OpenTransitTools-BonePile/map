@@ -13,13 +13,14 @@ ott.map.Map = {
         console.log("enter Map() constructor");
 
         // step 1: create the map
-        self.map = new ol.Map({
+        var map = new ol.Map({
             target: targetDiv || 'map',
             interactions: ol.interaction.defaults().extend([
                 new ol.interaction.DragRotateAndZoom()
             ]),
             view: new ol.View(config.olMap)
         });
+        this.map = map;
 
         // step 2: add the base layers to the map
         var b = new ott.map.BaseLayers(config);
