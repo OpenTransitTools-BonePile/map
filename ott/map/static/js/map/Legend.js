@@ -5,12 +5,34 @@ ott.map.Legend = {
     legend : null,
 
     /**
+     * note: don't forget to include css/legend.css, else you might not get good stuff...
      * @consturctor
      * @param {Object} config
      */
-    initialize : function(config)
+    initialize : function(config, divName)
     {
-        this.showHideHover();
+        divName = divName || '.map';
+        config.legend = config.legend || {'button':'L', 'title':"Tax Lot Classifications", 'content':[{'color':'#dfc27d', 'text':"<b>Not</b> within walking distance of MAX station"}]}
+        if(config && config.legend && config.legend.content)
+        {
+
+			this.button(divName, config.legend.button);
+			//this.legend(divName, config.legend.title, config.legend.content, config.legend.note);
+			this.showHideHover();
+        }
+    },
+
+    /** add a button to the map */
+    button : function(divName, buttonName)
+    {
+        $(divName).append("<div id='legend-btn-wrapper' class='cntrl-wrapper'><button class='legend-btn'>" + buttonName + "</button></div>");
+    },
+
+    /** add a button to the map */
+    legend : function(divName, title, content, note)
+    {
+        divName = divName || 'Legend';
+        $(divName).append("");
     },
 
     /**
