@@ -12,7 +12,6 @@ ott.map.Legend = {
     initialize : function(config, divName)
     {
         divName = divName || '.map';
-        config.legend = config.legend || {'button':'L', 'title':"Tax Lot Classifications", 'content':[{'color':'#dfc27d', 'text':"<b>Not</b> within walking distance of MAX station"}], 'note':"Metadata: See <a href='https://github.com/grant-humphries/dev-near-lightrail'>this github repo</a> for information on sources and methodology"}
         if(config && config.legend && config.legend.content && config.legend.content.length > 0)
         {
 			this.button(divName, config.legend.button);
