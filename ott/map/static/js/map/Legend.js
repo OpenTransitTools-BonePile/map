@@ -12,27 +12,36 @@ ott.map.Legend = {
     initialize : function(config, divName)
     {
         divName = divName || '.map';
-        config.legend = config.legend || {'button':'L', 'title':"Tax Lot Classifications", 'content':[{'color':'#dfc27d', 'text':"<b>Not</b> within walking distance of MAX station"}]}
-        if(config && config.legend && config.legend.content)
+        config.legend = config.legend || {'button':'L', 'title':"Tax Lot Classifications", 'content':[{'color':'#dfc27d', 'text':"<b>Not</b> within walking distance of MAX station"}], 'note':"Metadata: See <a href='https://github.com/grant-humphries/dev-near-lightrail'>this github repo</a> for information on sources and methodology"}
+        if(config && config.legend && config.legend.content && config.legend.content.length > 0)
         {
-
 			this.button(divName, config.legend.button);
-			//this.legend(divName, config.legend.title, config.legend.content, config.legend.note);
+			this.legend(divName, config.legend.title, config.legend.content, config.legend.note);
 			this.showHideHover();
         }
     },
 
-    /** add a button to the map */
+    /** add legend button to the map */
     button : function(divName, buttonName)
     {
         $(divName).append("<div id='legend-btn-wrapper' class='cntrl-wrapper'><button class='legend-btn'>" + buttonName + "</button></div>");
     },
 
-    /** add a button to the map */
+    /** add legend's content dialog (should end up being a hidden <div> by default) */
     legend : function(divName, title, content, note)
     {
         divName = divName || 'Legend';
-        $(divName).append("");
+        $(divName).append("<div id='legend-wrapper' class='cntrl-wrapper'><div id='legend' class='legend'></div></div>");
+        $('.legend').append("<div class='legend-title'>" + title + "</div>");
+        $('.legend').append("<div id='legend-scale' class='legend-scale'><ul id='legend-labels' class='legend-labels'></ul></div>");
+        for(var i in content)
+        {
+            var c = content[i];
+            var mark = "<span style='background:" + c.color + "' class='legend-patch'></span>";
+            $('.legend-labels').append("<li>" + mark + "<span class='patch-text'>" + c.text + "</span></li>");
+        }
+        if(note)
+            $('.legend').append("<div class='legend-source'>" + note + "</div>");
     },
 
     /**
