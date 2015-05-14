@@ -14,9 +14,9 @@ ott.map.Legend = {
         divName = divName || '.map';
         if(config && config.legend && config.legend.content && config.legend.content.length > 0)
         {
-			this.button(divName, config.legend.button);
-			this.legend(divName, config.legend.title, config.legend.content, config.legend.note);
-			this.showHideHover();
+            this.button(divName, config.legend.button);
+            this.legend(divName, config.legend.title, config.legend.content, config.legend.note);
+            this.showHideHover();
         }
     },
 
@@ -38,7 +38,7 @@ ott.map.Legend = {
     legend : function(divName, title, content, note)
     {
         divName = divName || 'Legend';
-        $(divName).append("<div id='legend-wrapper' class='cntrl-wrapper'><div id='legend' class='legend'></div></div>");
+        $(divName).append("<div id='legend-wrapper' class='cntrl-wrapper'><div id='legend' class='legend'></div></div>");0
         $('.legend').append("<div class='legend-title'>" + title + "</div>");
         $('.legend').append("<div id='legend-scale' class='legend-scale'><ul id='legend-labels' class='legend-labels'></ul></div>");
         for(var i in content)
@@ -56,44 +56,42 @@ ott.map.Legend = {
      */
     showHideHover : function()
     {
-		// Legend functionality
-		$(document).ready(function(){
-			$('#legend-wrapper').hide();
+            // Legend functionality
+            $('#legend-wrapper').hide();
 
-			$('.legend-btn').click(function(){
-				$('#legend-wrapper').show();
-				$('#legend-btn-wrapper').hide();
-			});
+            $('.legend-btn').click(function(){
+                $('#legend-wrapper').show();
+                $('#legend-btn-wrapper').hide();
+            });
 
-			$('.legend').click(function(){
-				$('#legend-wrapper').hide();
-				$('#legend-btn-wrapper').show();
-			});
-		});
+            $('.legend').click(function(){
+                $('#legend-wrapper').hide();
+                $('#legend-btn-wrapper').show();
+            });
 
-		// Legend appearance
-		$(document).ready(function(){
-			$('.cntrl-wrapper').hover(function(){
-				$(this).css('background-color', 'rgba(255, 255, 255, 0.6)');
-			},
-			function(){
-				$(this).css('background-color', 'rgba(255, 255, 255, 0.4)');
-			});
 
-			$('.legend-btn').hover(function(){
-				$(this).css('background-color', 'rgba(0, 60, 136, 0.7)');
-			},
-			function(){
-				$(this).css('background-color', 'rgba(0, 60, 136, 0.5)');
-			});
+            // Legend appearance
+            $('.cntrl-wrapper').hover(function(){
+                $(this).css('background-color', 'rgba(255, 255, 255, 0.6)');
+            },
+            function(){
+                $(this).css('background-color', 'rgba(255, 255, 255, 0.4)');
+            });
 
-			$('.legend').hover(function(){
-				$(this).css('background-color', 'rgba(255, 255, 255, 0.8)');
-			},
-			function(){
-				$(this).css('background-color', 'rgba(255, 255, 255, 0.6)');
-			});
-		});
+            $('.legend-btn').hover(function(){
+                $(this).css('background-color', 'rgba(0, 60, 136, 0.7)');
+            },
+            function(){
+                $(this).css('background-color', 'rgba(0, 60, 136, 0.5)');
+            });
+
+            $('.legend').hover(function(){
+                $(this).css('background-color', 'rgba(255, 255, 255, 0.8)');
+            },
+            function(){
+                $(this).css('background-color', 'rgba(255, 255, 255, 0.6)');
+            });
+
     },
 
     CLASS_NAME: "ott.map.Legend"
