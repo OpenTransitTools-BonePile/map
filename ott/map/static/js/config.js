@@ -85,6 +85,13 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
             rotation : 0
         },
 
+        legend : {
+            button  : 'L',
+            title   : "I'm a Legend",
+            content : [{'color':'#FF0000', 'text':"<b>Bob</b> Marley"}, {'color':'#165E00', 'text':"<b>Jimmy</b> Cliff"}, {'color':'#FFDD00', 'text':"<b>Toots</b> Hibbert"}],
+            note    : "See more at <a href='http://bobmarley.com' target='#'>Yeah Man!</a>..."
+        },
+
         /**
          * google analytics params
          * @see: ott.utils.Analytics

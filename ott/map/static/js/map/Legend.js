@@ -26,7 +26,15 @@ ott.map.Legend = {
         $(divName).append("<div id='legend-btn-wrapper' class='cntrl-wrapper'><button class='legend-btn'>" + buttonName + "</button></div>");
     },
 
-    /** add legend's content dialog (should end up being a hidden <div> by default) */
+    /**
+     * add legend's content dialog (should end up being a hidden <div> by default)
+     * e.g., {
+     *          'button':'L',
+     *          'title':"I'm a Legend",
+     *          'content':[{'color':'#dfc27d', 'text':"<b>Bob</b> Marley"}, {'color':'#dfc27d', 'text':"<b>Bob</b> Marley"}],
+     *          'note':"See more at <a href='http://bobmarley.com' target='#'>Yeah Man!</a>..."
+     * }
+     */
     legend : function(divName, title, content, note)
     {
         divName = divName || 'Legend';
