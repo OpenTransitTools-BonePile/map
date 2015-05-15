@@ -3,27 +3,28 @@ ott.namespace("ott.map");
 ott.map.Legend = {
 
     legend : null,
+    mapDiv : null,
 
     /**
      * note: don't forget to include css/legend.css, else you might not get good stuff...
      * @consturctor
      * @param {Object} config
      */
-    initialize : function(config, divName)
+    initialize : function(config, mapDiv)
     {
-        divName = divName || '.map';
+        this.mapDiv = mapDiv || 'map';
         if(config && config.legend && config.legend.content && config.legend.content.length > 0)
         {
-            this.button(divName, config.legend.button);
-            this.legend(divName, config.legend.title, config.legend.content, config.legend.note);
+            this.button(this.mapDiv, config.legend.button);
+            this.legend(this.mapDiv, config.legend.title, config.legend.content, config.legend.note);
             this.showHideHover();
         }
     },
 
     /** add legend button to the map */
-    button : function(divName, buttonName)
+    button : function(mapDiv, buttonName)
     {
-        $(divName).append("<div id='legend-btn-wrapper' class='cntrl-wrapper'><button class='legend-btn'>" + buttonName + "</button></div>");
+        $("." + mapDiv).append("<div id='legend-btn-wrapper' class='cntrl-wrapper'><button class='legend-btn'>" + buttonName + "</button></div>");
     },
 
     /**
@@ -35,10 +36,9 @@ ott.map.Legend = {
      *          'note':"See more at <a href='http://bobmarley.com' target='#'>Yeah Man!</a>..."
      * }
      */
-    legend : function(divName, title, content, note)
+    legend : function(mapDiv, title, content, note)
     {
-        divName = divName || 'Legend';
-        $(divName).append("<div id='legend-wrapper' class='cntrl-wrapper'><div id='legend' class='legend'></div></div>");0
+        $("." + mapDiv).append("<div id='legend-wrapper' class='cntrl-wrapper'><div id='legend' class='legend'></div></div>");
         $('.legend').append("<div class='legend-title'>" + title + "</div>");
         $('.legend').append("<div id='legend-scale' class='legend-scale'><ul id='legend-labels' class='legend-labels'></ul></div>");
         for(var i in content)
