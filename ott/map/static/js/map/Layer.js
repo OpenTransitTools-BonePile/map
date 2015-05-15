@@ -2,29 +2,33 @@ ott.namespace("ott.map");
 
 ott.map.Layer = {
 
-    map : null,
-    layer : null,
+    map    : null,
+    mapDiv : null,
+    layer  : null,
+
 
     /**
      * @consturctor
      * @param {Object} config
      */
-    initialize : function(map)
+    initialize : function(map, mapDiv)
     {
         console.log("enter Layer() constructor");
+
+        this.map = map;
+        this.mapDiv = mapDiv || 'map';
+
         url = "http://maps.trimet.org/solr/select?q=type:16&sort=city%20asc,name%20asc&rows=400&wt=json"
 
     },
 
 
-    l : function(map, divName)
+    l : function()
     {
-        this.map = map;
-        var THIS = this;
-        divName = divName || '.map';
+        var map = this.map;
 
         var iconFeature = new ol.Feature({
-          geometry: new ol.geom.Point([-122.5, 45.5]),
+          geometry: ott.utils.GeoUtils.olPoint([-122.5, 45.5]),
           name: 'Null Island',
           population: 4000,
           rainfall: 500
@@ -50,7 +54,7 @@ ott.map.Layer = {
         });
 
 
-$(divName).append("<div id='popup'></div>");
+$('.' + this.mapDiv).append("<div id='popup'></div>");
 
 var element = document.getElementById('popup');
 

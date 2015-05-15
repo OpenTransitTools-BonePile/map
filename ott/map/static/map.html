@@ -23,8 +23,7 @@
         <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span12">
-                    <div id="map" class="map" style="">
-                    </div>
+                    <div id="map" class="map"></div>
                 </div>
             </div>
 
@@ -45,6 +44,7 @@
         <script src="resources/openlayers/ol.js" type="text/javascript"></script>
         <script src="resources/ol-layerswitcher/layerswitcher.js" type="text/javascript"></script>
         <script src="js/ott.js" type="text/javascript"></script>
+        <script src="js/utils/GeoUtils.js" type="text/javascript"></script>
         <script src="js/config.js" type="text/javascript"></script>
         <script src="js/map/BaseLayers.js" type="text/javascript"></script>
         <script src="js/map/Map.js" type="text/javascript"></script>
@@ -54,8 +54,8 @@
             $(document).ready(function(){
                 var map = new ott.map.Map(ott.config);
                 var legend = new ott.map.Legend(ott.config);
-                var layer  = new ott.map.Layer(ott.config);
-                layer.l(map.map);
+                var layer  = new ott.map.Layer(map.map);
+                layer.l();
             });
         </script>
     </body>
