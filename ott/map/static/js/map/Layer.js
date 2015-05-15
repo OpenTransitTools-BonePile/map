@@ -19,6 +19,7 @@ ott.map.Layer = {
 
     l : function(map, divName)
     {
+        this.map = map;
         divName = divName || '.map';
 
         var iconFeature = new ol.Feature({
