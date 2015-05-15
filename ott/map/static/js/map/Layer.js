@@ -23,6 +23,11 @@ ott.map.Layer = {
     },
 
 
+    geoJson : function()
+    {
+    },
+
+
     l : function()
     {
         var map = this.map;
