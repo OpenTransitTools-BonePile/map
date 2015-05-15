@@ -40,7 +40,8 @@ ott.map.Layer = {
             anchorXUnits: 'fraction',
             anchorYUnits: 'pixels',
             opacity: 0.75,
-            src: 'images/map/fare.png'
+            src: 'images/map/fare.png',
+
           }))
         });
 
