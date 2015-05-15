@@ -11,7 +11,7 @@ ott.utils.GeoUtils = {
 
     olPoint : function(coord, fromProj, toProj)
     {
-        return new ol.geom.Point(this.transform(coord, fromProj, toProj));
+        return new ol.geom.Point(ott.utils.GeoUtils.transform(coord, fromProj, toProj));
     },
 
     transform : function(coord, fromProj, toProj)

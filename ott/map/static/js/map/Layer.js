@@ -40,7 +40,8 @@ ott.map.Layer = {
             anchorXUnits: 'fraction',
             anchorYUnits: 'pixels',
             opacity: 0.75,
-            src: 'images/map/fare.png',
+            src: 'images/map/fare.png'
+
 
           }))
         });
@@ -54,6 +55,7 @@ ott.map.Layer = {
           source: vectorSource
         });
 
+this.map.addLayer(vectorLayer);
 
 $('.' + this.mapDiv).append("<div id='popup'></div>");
 
