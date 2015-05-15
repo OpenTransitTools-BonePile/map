@@ -20,6 +20,7 @@ ott.map.Layer = {
     l : function(map, divName)
     {
         this.map = map;
+        var THIS = this;
         divName = divName || '.map';
 
         var iconFeature = new ol.Feature({
@@ -89,7 +90,9 @@ map.on('pointermove', function(e) {
   }
   var pixel = map.getEventPixel(e.originalEvent);
   var hit = map.hasFeatureAtPixel(pixel);
-  map.getTarget().style.cursor = hit ? 'pointer' : '';
+  var t = map.getTarget();
+  if(t && t.style)
+      t.style.cursor = hit ? 'pointer' : '';
 });
     },
 

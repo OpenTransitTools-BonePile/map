@@ -3,6 +3,7 @@ ott.namespace("ott.map");
 ott.map.Map = {
 
     map : null,
+    targetDiv : null,
 
     /**
      * @consturctor
@@ -12,9 +13,12 @@ ott.map.Map = {
     {
         console.log("enter Map() constructor");
 
-        // step 1: create the map
+        // step 1: config...
+        this.targetDiv = targetDiv || 'map';
+
+        // step 2: create the map
         var map = new ol.Map({
-            target: targetDiv || 'map',
+            target: document.getElementById(this.targetDiv),
             interactions: ol.interaction.defaults().extend([
                 new ol.interaction.DragRotateAndZoom()
             ]),
