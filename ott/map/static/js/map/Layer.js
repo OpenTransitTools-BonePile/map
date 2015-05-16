@@ -22,9 +22,90 @@ ott.map.Layer = {
 
     },
 
-
+    /**
+    * http://openlayers.org/en/v3.5.0/examples/vector-labels.html?q=text
+    */
     geoJson : function()
     {
+        var getText = function(feature, resolution, dom) {
+              var type = dom.text.value;
+              var maxResolution = dom.maxreso.value;
+              var text = feature.get("name");
+
+              if (resolution > maxResolution) {
+                text = "";
+              } else if (type == "hide") {
+                text = "";
+              } else if (type == "shorten") {
+                text = text.trunc(12);
+              } else if (type == "wrap") {
+                text = stringDivider(text, 16, "\n");
+              }
+              return text;
+        };
+
+        var createTextStyle = function(feature, resolution, dom) {
+              var align = dom.align.value;
+              var baseline = dom.baseline.value;
+              var size = dom.size.value;
+              var offsetX = parseInt(dom.offsetX.value, 10);
+              var offsetY = parseInt(dom.offsetY.value, 10);
+              var weight = dom.weight.value;
+              var rotation = parseFloat(dom.rotation.value);
+              var font = weight + " " + size + " " + dom.font.value;
+              var fillColor = dom.color.value;
+              var outlineColor = dom.outline.value;
+              var outlineWidth = parseInt(dom.outlineWidth.value, 10);
+
+              return new ol.style.Text({
+                textAlign: align,
+                textBaseline: baseline,
+                font: font,
+                text: getText(feature, resolution, dom),
+                fill: new ol.style.Fill({color: fillColor}),
+                stroke: new ol.style.Stroke({color: outlineColor, width: outlineWidth}),
+                offsetX: offsetX,
+                offsetY: offsetY,
+                rotation: rotation
+              });
+        };
+
+        var createPolygonStyleFunction = function() {
+            style: new ol.style.Style({
+                fill: new ol.style.Fill({
+                    color: 'rgba(255, 255, 255, 0.6)'
+                }),
+                stroke: new ol.style.Stroke({
+                    color: '#686868',
+                    width: 2
+                }),
+                text: createTextStyle(feature, resolution, myDom.polygons)
+            })
+        };
+
+        var createPolygonStyleFunction = function() {
+             var style = new ol.style.Style({
+                 fill: new ol.style.Fill({
+                     color: 'rgba(255, 255, 255, 0.6)'
+                 }),
+                 stroke: new ol.style.Stroke({
+                     color: '#686868',
+                     width: 2
+                 })
+             });
+             return style;
+        };
+
+        var counties = new ol.layer.Vector({
+            title: "Counties",
+            source: new ol.source.Vector({
+                url: 'test/data/seven_counties.geojson',
+                format: new ol.format.GeoJSON(),
+                style: createPolygonStyleFunction()
+            }),
+        });
+
+        this.map.addLayer(counties);
     },
 
 
