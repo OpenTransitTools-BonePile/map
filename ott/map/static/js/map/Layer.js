@@ -28,8 +28,25 @@ ott.map.Layer = {
     */
     geoJson : function()
     {
+        var getText = function(feature) {
+            var text = feature.getProperties()['COUNTY'];
+            return text;
+        };
+
+        var createTextStyle = function(feature) {
+          return new ol.style.Text({
+            textAlign: 'center',
+            textBaseline: 'middle',
+            font: '24px Verdana',
+            text: getText(feature),
+            fill: new ol.style.Fill({color: 'black'}),
+            stroke: new ol.style.Stroke({color: 'white', width: 0.5})
+          });
+        };
+
         var createPolygonStyleFunction = function() {
             return function(feature) {
+                window.feature = feature;
                 var s = new ol.style.Style({
                     fill: new ol.style.Fill({
                         color: 'rgba(11, 55, 75, 0.3)'
@@ -38,7 +55,7 @@ ott.map.Layer = {
                         color: '#686868',
                         width: 3
                     }),
-                    //text: feature.get('COUNTY')
+                    text: createTextStyle(feature)
                 });
                 return [s];
             }
