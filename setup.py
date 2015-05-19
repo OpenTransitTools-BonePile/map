@@ -34,11 +34,12 @@ def compress(dir='ott/map/static/', fname='ott', ext='js'):
 
     for root, directories, filenames in os.walk(dir + ext):
         for filename in filenames:
-            f = os.path.join(root, filename)
-            fh = open(f)
-            data = fh.read() + '\n'
-            fh.close()
-            out_file.write(data)
+            if filename.endswith(ext):
+                f = os.path.join(root, filename)
+                fh = open(f)
+                data = fh.read() + '\n'
+                fh.close()
+                out_file.write(data)
 
     out_file.close()
 
@@ -76,3 +77,4 @@ setup(
 )
 
 compress()
+compress(ext='css')
