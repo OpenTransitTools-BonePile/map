@@ -27,6 +27,22 @@ extras_require = dict(
     oracle=oracle_extras,
 )
 
+
+def compress(dir='ott/map/static/', fname='ott', ext='js'):
+
+    out_file = open(dir + fname + '.' + ext, 'w')
+
+    for root, directories, filenames in os.walk(dir + ext):
+        for filename in filenames:
+            f = os.path.join(root, filename)
+            fh = open(f)
+            data = fh.read() + '\n'
+            fh.close()
+            out_file.write(data)
+
+    out_file.close()
+
+
 setup(
     name='ott.map',
     version='0.1.0',
@@ -58,3 +74,5 @@ setup(
         main = ott.map.pyramid.app:main
     """,
 )
+
+compress()
