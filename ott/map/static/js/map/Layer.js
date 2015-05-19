@@ -210,8 +210,8 @@ map.on('pointermove', function(e) {
           if (feature) {
             var geometry = feature.getGeometry();
             var coord = geometry.getCoordinates();
-            popup.setPosition(coord);
             $(element).popover('destroy');
+            popup.setPosition(coord);
             $(element).popover({
               'placement': 'top',
               'html': true,
