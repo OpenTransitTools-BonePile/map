@@ -28,7 +28,7 @@ extras_require = dict(
 )
 
 
-def compress(dir='ott/map/static/', fname='ott', ext='js'):
+def compress(dir='ott/map/static/', fname='ott.all', ext='js'):
 
     out_file = open(dir + fname + '.' + ext, 'w')
 
