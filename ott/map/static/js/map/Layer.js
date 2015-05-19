@@ -74,7 +74,7 @@ ott.map.Layer = {
     },
 
 
-    l : function()
+    lx : function()
     {
         var map = this.map;
 
@@ -106,11 +106,11 @@ ott.map.Layer = {
           source: vectorSource
         });
 
-this.map.addLayer(vectorLayer);
+        this.map.addLayer(vectorLayer);
 
-$('.' + this.mapDiv).append("<div id='popup'></div>");
+        $('.' + this.mapDiv).append("<div id='popup'> </div>");
 
-var element = document.getElementById('popup');
+        var element = document.getElementById('popup');
 
 var popup = new ol.Overlay({
   element: element,
@@ -129,10 +129,11 @@ map.on('click', function(evt) {
     var geometry = feature.getGeometry();
     var coord = geometry.getCoordinates();
     popup.setPosition(coord);
+    var n = feature.get('name');
     $(element).popover({
       'placement': 'top',
       'html': true,
-      'content': feature.get('name')
+      'content': n
     });
     $(element).popover('show');
   } else {
@@ -152,6 +153,87 @@ map.on('pointermove', function(e) {
   if(t && t.style)
       t.style.cursor = hit ? 'pointer' : '';
 });
+    },
+
+    l : function()
+    {
+        var map = this.map;
+
+        var iconFeature = new ol.Feature({
+          geometry: ott.utils.GeoUtils.olPoint([-122.5, 45.5]),
+          name: 'Null Island XxxxxxxX XXXXXXXXXXXXXXXXXXXX'
+        });
+
+        var iconFeature2 = new ol.Feature({
+          geometry: ott.utils.GeoUtils.olPoint([-122.51, 45.5]),
+          name: 'Null Island Zzzzzzz zzzzzzzzzzzz'
+        });
+
+        var iconStyle = new ol.style.Style({
+          image: new ol.style.Icon({
+            anchor: [0.5, 0],
+            anchorXUnits: 'fraction',
+            anchorYUnits: 'pixels',
+            opacity: 0.75,
+            src: 'images/map/fare.png'
+          })
+        });
+
+        iconFeature.setStyle(iconStyle);
+        iconFeature2.setStyle(iconStyle);
+
+        var vectorSource = new ol.source.Vector({
+          features: [iconFeature, iconFeature2]
+        });
+
+        var vectorLayer = new ol.layer.Vector({
+          source: vectorSource
+        });
+        map.addLayer(vectorLayer);
+
+        $('.' + this.mapDiv).append("<div id='popup'> </div>");
+        var element = document.getElementById('popup');
+
+        var popup = new ol.Overlay({
+          element: element,
+          positioning: 'bottom-center',
+          stopEvent: false
+        });
+        map.addOverlay(popup);
+
+        // display popup on click
+        map.on('click', function(evt) {
+          var feature = map.forEachFeatureAtPixel(evt.pixel,
+              function(feature, layer) {
+                return feature;
+              });
+          if (feature) {
+            var geometry = feature.getGeometry();
+            var coord = geometry.getCoordinates();
+            popup.setPosition(coord);
+            $(element).popover('destroy');
+            $(element).popover({
+              'placement': 'top',
+              'html': true,
+              'content': feature.get('name')
+            });
+            $(element).popover('show');
+          } else {
+            $(element).popover('destroy');
+          }
+        });
+
+        // change mouse cursor when over marker
+        map.on('pointermove', function(e) {
+          if (e.dragging) {
+            //$(element).popover('destroy');
+            return;
+          }
+          var pixel = map.getEventPixel(e.originalEvent);
+          var hit = map.hasFeatureAtPixel(pixel);
+            var m = map.getTarget();
+          m.style.cursor = hit ? 'pointer' : '';
+        });
     },
 
     CLASS_NAME: "ott.map.Layer"
