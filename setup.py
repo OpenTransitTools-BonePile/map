@@ -12,7 +12,8 @@ requires = [
 ]
 
 
-dev_extras = []
+dev_extras = [
+]
 oracle_extras = ['cx_oracle>=5.1']
 postgresql_extras = ['psycopg2>=2.4.2']
 pyramid_extras = [
