@@ -93,6 +93,8 @@ setup(
 
 compress()
 compress(dir='ott/map/static/css/', ext='css')
-compress(dir='ott/map/static/resources/', ext='js', filter=['jquery', 'ol.js'])
-compress(dir='ott/map/static/resources/', ext='js', filter=['jquery', 'ol.js'], filter_match=False, out_status='a')
-compress(dir='ott/map/static/resources/', ext='css')
+compress(dir='ott/map/static/resources/', ext='js',  filter=['jquery', 'ol.js'])
+compress(dir='ott/map/static/resources/', ext='js',  filter=['jquery', 'ol.js'], filter_match=False, out_status='a')
+compress(dir='ott/map/static/resources/', ext='css', filter=['jquery', 'ol.css'])
+compress(dir='ott/map/static/resources/', ext='css', filter=['jquery', 'ol.css'], filter_match=False, out_status='a')
+
