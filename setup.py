@@ -29,13 +29,28 @@ extras_require = dict(
 )
 
 
-def compress(dir='ott/map/static/', fname='ott.all', ext='js'):
+def compress(dir='ott/map/static/js/', fname='ott.all', ext='js', filter=[], filter_match=True, out_status='w'):
 
-    out_file = open(dir + fname + '.' + ext, 'w')
+    out_name = fname + '.' + ext
+    out_file = open(dir + out_name, out_status)
 
-    for root, directories, filenames in os.walk(dir + ext):
+    for root, directories, filenames in os.walk(dir):
         for filename in filenames:
-            if filename.endswith(ext):
+            if filename.endswith(ext) and out_name != filename:
+
+                # step 1: filter files
+                if len(filter) > 0:
+                    match = not filter_match
+                    for f in filter:
+                        if f in filename:
+                            match = filter_match
+                            print filename + " match " + f
+                            break
+                    if not match:
+                        continue
+
+                # step 2: we pass the filter, then append the file
+                print filename
                 f = os.path.join(root, filename)
                 fh = open(f)
                 data = fh.read() + '\n'
@@ -43,7 +58,6 @@ def compress(dir='ott/map/static/', fname='ott.all', ext='js'):
                 out_file.write(data)
 
     out_file.close()
-
 
 setup(
     name='ott.map',
@@ -78,4 +92,7 @@ setup(
 )
 
 compress()
-compress(ext='css')
+compress(dir='ott/map/static/css/', ext='css')
+compress(dir='ott/map/static/resources/', ext='js', filter=['jquery', 'ol.js'])
+compress(dir='ott/map/static/resources/', ext='js', filter=['jquery', 'ol.js'], filter_match=False, out_status='a')
+compress(dir='ott/map/static/resources/', ext='css')
