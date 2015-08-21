@@ -30,32 +30,33 @@ extras_require = dict(
 
 
 def filter(name, filters, filter_match, rev=False):
-    ret_val = False
+    match = not filter_match
     if len(filters) > 0:
         for f in filters:
-            check = not filter_match
-            if rev and name in f:
-                check = filter_match
-            elif f in name:
-                check = filter_match
-            if check == filter_match:
-                print "filtering: since {} does{} match filter {}".format(name, "n't" if filter_match else '', f)
-                ret_val = True
+            if f in name or (rev and name in f):
+                match = filter_match
+                print "{}: {} does match filter {}".format("pass" if filter_match else "filtering", name, f)
                 break
-    return ret_val
+    return match
 
-def compress(dir, fname='ott.all', ext='js', filters=[], filter_match=True, out_status='w'):
+def compress(dir, fname='ott.all', ext='js', filters=[], filter_match=True, filter_dirs=False, out_status='w'):
     out_name = fname + '.' + ext
     out_file = open(dir + out_name, out_status)
+    print "*** {} ***".format(out_name)
 
     for root, directories, filenames in os.walk(dir):
-        if filter(root, filters, filter_match):
-            continue
+        if filter_dirs:
+            match = filter(root, filters, filter_match, True)
+            if not match:
+                continue
+
         for filename in filenames:
             if filename.endswith(ext) and out_name != filename:
                 #import pdb; pdb.set_trace()
+
                 # step 1: filter files
-                if filter(filename, filters, filter_match):
+                match = filter(filename, filters, filter_match)
+                if not match:
                     continue
 
                 # step 2: we pass the filter, then append the file
@@ -101,8 +102,8 @@ setup(
 )
 
 #import pdb; pdb.set_trace()
-compress(dir='ott/map/static/js/', fname='ott.leaflet',    filters=['openlayers'], filter_match=False)
-compress(dir='ott/map/static/js/', fname='ott.openlayers', filters=['leaflet'],    filter_match=False)
+compress(dir='ott/map/static/js/', fname='ott.leaflet',    filters=['openlayers'], filter_match=False, filter_dirs=True)
+compress(dir='ott/map/static/js/', fname='ott.openlayers', filters=['leaflet'],    filter_match=False, filter_dirs=True)
 compress(dir='ott/map/static/css/', ext='css')
 compress(dir='ott/map/static/resources/', ext='js',  filters=['jquery', 'ol.js'])
 compress(dir='ott/map/static/resources/', ext='js',  filters=['jquery', 'ol.js'], filter_match=False, out_status='a')
