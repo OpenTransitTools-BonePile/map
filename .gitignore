@@ -1,3 +1,5 @@
+ott.leaflet.*
+ott.openlayers.*
 *~
 [a-z].py
 *.py[cod]
