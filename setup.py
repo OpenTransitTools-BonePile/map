@@ -47,7 +47,7 @@ def compress(dir, fname='ott.all', ext='js', filters=[], filter_match=True, filt
     for root, directories, filenames in os.walk(dir):
         if filter_dirs:
             match = filter(root, filters, filter_match, True)
-            if not match:
+            if len(filters) > 0 and not match:
                 continue
 
         for filename in filenames:
@@ -56,7 +56,7 @@ def compress(dir, fname='ott.all', ext='js', filters=[], filter_match=True, filt
 
                 # step 1: filter files
                 match = filter(filename, filters, filter_match)
-                if not match:
+                if len(filters) > 0 and not match:
                     continue
 
                 # step 2: we pass the filter, then append the file
@@ -101,10 +101,10 @@ setup(
     """,
 )
 
-#import pdb; pdb.set_trace()
+import pdb; pdb.set_trace()
+compress(dir='ott/map/static/css/', ext='css')
 compress(dir='ott/map/static/js/', fname='ott.leaflet',    filters=['openlayers'], filter_match=False, filter_dirs=True)
 compress(dir='ott/map/static/js/', fname='ott.openlayers', filters=['leaflet'],    filter_match=False, filter_dirs=True)
-compress(dir='ott/map/static/css/', ext='css')
 compress(dir='ott/map/static/resources/', ext='js',  filters=['jquery', 'ol.js'])
 compress(dir='ott/map/static/resources/', ext='js',  filters=['jquery', 'ol.js'], filter_match=False, out_status='a')
 compress(dir='ott/map/static/resources/', ext='css', filters=['jquery', 'ol.css'])
