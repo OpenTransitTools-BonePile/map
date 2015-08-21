@@ -29,25 +29,34 @@ extras_require = dict(
 )
 
 
-def compress(dir='ott/map/static/js/', fname='ott.all', ext='js', filter=[], filter_match=True, out_status='w'):
+def filter(name, filters, filter_match, rev=False):
+    ret_val = False
+    if len(filters) > 0:
+        for f in filters:
+            check = not filter_match
+            if rev and name in f:
+                check = filter_match
+            elif f in name:
+                check = filter_match
+            if check == filter_match:
+                print "filtering: since {} does{} match filter {}".format(name, "n't" if filter_match else '', f)
+                ret_val = True
+                break
+    return ret_val
 
+def compress(dir, fname='ott.all', ext='js', filters=[], filter_match=True, out_status='w'):
     out_name = fname + '.' + ext
     out_file = open(dir + out_name, out_status)
 
     for root, directories, filenames in os.walk(dir):
+        if filter(root, filters, filter_match):
+            continue
         for filename in filenames:
             if filename.endswith(ext) and out_name != filename:
-
+                #import pdb; pdb.set_trace()
                 # step 1: filter files
-                if len(filter) > 0:
-                    match = not filter_match
-                    for f in filter:
-                        if f in filename:
-                            match = filter_match
-                            print filename + " match " + f
-                            break
-                    if not match:
-                        continue
+                if filter(filename, filters, filter_match):
+                    continue
 
                 # step 2: we pass the filter, then append the file
                 print filename
@@ -91,10 +100,12 @@ setup(
     """,
 )
 
-compress()
+#import pdb; pdb.set_trace()
+compress(dir='ott/map/static/js/', fname='ott.leaflet',    filters=['openlayers'], filter_match=False)
+compress(dir='ott/map/static/js/', fname='ott.openlayers', filters=['leaflet'],    filter_match=False)
 compress(dir='ott/map/static/css/', ext='css')
-compress(dir='ott/map/static/resources/', ext='js',  filter=['jquery', 'ol.js'])
-compress(dir='ott/map/static/resources/', ext='js',  filter=['jquery', 'ol.js'], filter_match=False, out_status='a')
-compress(dir='ott/map/static/resources/', ext='css', filter=['jquery', 'ol.css'])
-compress(dir='ott/map/static/resources/', ext='css', filter=['jquery', 'ol.css'], filter_match=False, out_status='a')
+compress(dir='ott/map/static/resources/', ext='js',  filters=['jquery', 'ol.js'])
+compress(dir='ott/map/static/resources/', ext='js',  filters=['jquery', 'ol.js'], filter_match=False, out_status='a')
+compress(dir='ott/map/static/resources/', ext='css', filters=['jquery', 'ol.css'])
+compress(dir='ott/map/static/resources/', ext='css', filters=['jquery', 'ol.css'], filter_match=False, out_status='a')
 
