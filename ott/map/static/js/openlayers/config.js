@@ -30,7 +30,7 @@ if(typeof(ott.params) == "undefined" || ott.params == null)
         siteDescription     : "Call Taker Stuff",
         logoGraphic         : 'images/ott_logo_darkbg_40px.png',
         agencyStopLinkText  : "Real Time Arrivals",
-        fareDisplayOverride : "$2.50 (A), $1.00 (H), $1.25 (Y)"
+        fareDisplayOverride : "$2.50 (A), $1.25 (H), $1.25 (Y)"
     };
 
 if(typeof(ott.config) == "undefined" || ott.config == null)
@@ -58,6 +58,26 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
                 attribution : [ol.source.OSM.ATTRIBUTION],
                 isVisible   : false
             },
+
+            {
+                name : 'Portland Metro Aerials 2011',
+                url  : 'http://gistiles{1-4}.oregonmetro.gov/ArcGIS/rest/services/photo/2011aerialPhotoWebMerc/MapServer/tile/{z}/{y}/{x}',
+                attribution : [ol.source.OSM.ATTRIBUTION],
+                isVisible   : false
+            },
+            {
+                name : 'Portland Metro Aerials 2013',
+                url  : 'http://gistiles{1-4}.oregonmetro.gov/ArcGIS/rest/services/photo/2013aerialphoto/MapServer/tile/{z}/{y}/{x}',
+                attribution : [ol.source.OSM.ATTRIBUTION],
+                isVisible   : false
+            },
+            {
+                name : 'Portland Metro Map',
+                url  : 'http://gistiles{1-4}.oregonmetro.gov/ArcGIS/rest/services/metromap/baseSimple/MapServer/tile/{z}/{y}/{x}',
+                attribution : [ol.source.OSM.ATTRIBUTION],
+                isVisible   : false
+            },
+
             {
                 name : ott.params.aerialName || 'Satellite',
                 url  : ott.params.tileDomain + ott.params.tileAerialPath,
