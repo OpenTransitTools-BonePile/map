@@ -65,3 +65,4 @@ nohup.out
 .git/FETCH_HEAD
 gtfsdb.db.bkup
 x
+.pydevproject
