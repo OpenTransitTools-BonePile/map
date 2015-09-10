@@ -6,11 +6,9 @@ here = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(here, 'README.md')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
-
 requires = [
     'ott.utils',
 ]
-
 
 dev_extras = [
 ]
@@ -30,6 +28,8 @@ extras_require = dict(
 
 
 def filter(name, filters, filter_match, rev=False):
+    ''' used to filter certain files from the 'compress' method below
+    '''
     ret_val = False
     if len(filters) > 0:
         match = not filter_match
@@ -43,6 +43,8 @@ def filter(name, filters, filter_match, rev=False):
     return ret_val
 
 def compress(dir, fname='ott.all', ext='js', filters=[], filter_match=True, filter_dirs=False, out_status='w'):
+    ''' used to build a single file that includes other .js and .css files
+    '''
     out_name = fname + '.' + ext
     out_file = open(dir + out_name, out_status)
     print "*** {} ***".format(out_name)
@@ -70,44 +72,8 @@ def compress(dir, fname='ott.all', ext='js', filters=[], filter_match=True, filt
 
     out_file.close()
 
-setup(
-    name='ott.map',
-    version='0.1.0',
-    description='Open Transit Tools - Map Web Library/Services/App',
-    long_description=README + '\n\n' + CHANGES,
-    keywords='GTFS,GTFS-realtime,GTFSRT',
-    url='http://opentransittools.com',
-    license="Mozilla-derived (http://opentransittools.com)",
-    author="Open Transit Tools",
-    author_email="info@opentransittools.org",
-    classifiers=[
-        "Programming Language :: Python",
-        "Framework :: Pyramid",
-        "Topic :: Internet :: WWW/HTTP",
-        "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
-    ],
-    dependency_links=[
-        'git+https://github.com/OpenTransitTools/utils.git#egg=ott.utils-0.1.0',
-    ],
-    packages=find_packages(),
-    include_package_data=True,
-    zip_safe=False,
-    install_requires=requires,
-    extras_require=extras_require,
-    tests_require=requires,
-    test_suite="ott.map.tests",
-    entry_points="""\
-        [paste.app_factory]
-        main = ott.map.pyramid.app:main
-    """,
-)
-
 #import pdb; pdb.set_trace()
 compress(dir='ott/map/static/css/', ext='css')
 compress(dir='ott/map/static/js/', fname='ott.leaflet',    filters=['openlayers', 'config'], filter_match=False, filter_dirs=True)
 compress(dir='ott/map/static/js/', fname='ott.openlayers', filters=['leaflet', 'config'],    filter_match=False, filter_dirs=True)
-compress(dir='ott/map/static/resources/', ext='js',  filters=['jquery', 'ol.js'])
-compress(dir='ott/map/static/resources/', ext='js',  filters=['jquery', 'ol.js'], filter_match=False, out_status='a')
-compress(dir='ott/map/static/resources/', ext='css', filters=['jquery', 'ol.css'])
-compress(dir='ott/map/static/resources/', ext='css', filters=['jquery', 'ol.css'], filter_match=False, out_status='a')
 
