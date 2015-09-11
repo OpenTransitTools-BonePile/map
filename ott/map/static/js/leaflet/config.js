@@ -2,13 +2,17 @@
 if(typeof(ott) == "undefined" || ott == null) ott = {};
 
 // data attributions
-var tm_attribution = new ol.Attribution({html: 'Tiles &copy; <a target="#" href="http://trimet.org/">TriMet</a>; '});
-var metro_attribution = new ol.Attribution({html: 'map data &copy; <a target="#" href="http://oregonmetro.gov/rlis">Oregon Metro</a>'});
+var tm_attribution = 'Tiles &copy; <a target="#" href="http://trimet.org/">TriMet</a>; ';
+var metro_attribution = 'map data &copy; <a target="#" href="http://oregonmetro.gov/rlis">Oregon Metro</a>';
+var osm_attribution = 'OSM BLAH';
 var attributions = [
     tm_attribution,
-    ol.source.OSM.ATTRIBUTION,
+    osm_attribution,
     metro_attribution
 ];
+
+function transform() {
+}
 
 if(typeof(ott.params) == "undefined" || ott.params == null)
     ott.params = {
@@ -30,7 +34,7 @@ if(typeof(ott.params) == "undefined" || ott.params == null)
         siteDescription     : "Call Taker Stuff",
         logoGraphic         : 'images/ott_logo_darkbg_40px.png',
         agencyStopLinkText  : "Real Time Arrivals",
-        fareDisplayOverride : "$2.50 (A), $1.00 (H), $1.25 (Y)"
+        fareDisplayOverride : "$2.50 (A), $1.25 (H), $1.25 (Y)"
     };
 
 if(typeof(ott.config) == "undefined" || ott.config == null)
@@ -42,32 +46,51 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
          *   - name: <string> a unique name for this layer
          *   - url: <string> the map tile service address (typically of the
          *       format 'http://{3-4 sub-domains}.yourdomain.com/.../tile-cache path/.../{z}/{x}/{y}')
-         *   - attribution: ol.Attribution type for the given layer
          */
         doWatercolor : true,
         baseLayers: [
             {
                 name : 'MapQuest OSM',
                 url  : 'http://otile{1-4}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png',
-                attribution : [ol.source.OSM.ATTRIBUTION],
+                attribution : [osm_attribution],
                 isVisible   : false
             },
             {
                 name : 'MapQuest Aerial',
                 url  : 'http://otile{1-4}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png',
-                attribution : [ol.source.OSM.ATTRIBUTION],
+                attribution : [osm_attribution],
+                isVisible   : false
+            },
+
+            {
+                name : 'Portland Metro Aerials 2011',
+                url  : 'http://gistiles{1-4}.oregonmetro.gov/ArcGIS/rest/services/photo/2011aerialPhotoWebMerc/MapServer/tile/{z}/{y}/{x}',
+                attribution : [osm_attribution],
                 isVisible   : false
             },
             {
+                name : 'Portland Metro Aerials 2013',
+                url  : 'http://gistiles{1-4}.oregonmetro.gov/ArcGIS/rest/services/photo/2013aerialphoto/MapServer/tile/{z}/{y}/{x}',
+                attribution : [osm_attribution],
+                isVisible   : false
+            },
+            {
+                name : 'Portland Metro Map',
+                url  : 'http://gistiles{1-4}.oregonmetro.gov/ArcGIS/rest/services/metromap/baseSimple/MapServer/tile/{z}/{y}/{x}',
+                attribution : [osm_attribution],
+                isVisible   : false
+            },
+
+            {
                 name : ott.params.aerialName || 'Satellite',
                 url  : ott.params.tileDomain + ott.params.tileAerialPath,
-                attribution : ott.params.aerialAttribution || ol.source.OSM.ATTRIBUTION,
+                attribution : ott.params.aerialAttribution || osm_attribution,
                 isVisible   : false
             },
             {
                 name : ott.params.mapName || 'Map',
                 url  : ott.params.tileDomain + ott.params.tileMapPath,
-                attribution : ott.params.mapAttribution || ol.source.OSM.ATTRIBUTION,
+                attribution : ott.params.mapAttribution || osm_attribution,
                 isVisible   : true
             }
         ],
@@ -80,10 +103,9 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
 
         /**
          * map will config the initial map view of the OpenLayers 3.5 map
-         * @see: http://openlayers.org/en/v3.5.0/apidoc/ol.View.html
          */
         olMap : {
-            center  : ol.proj.transform([-122.68, 45.48], 'EPSG:4326', 'EPSG:3857'),
+            center  : transform([-122.68, 45.48], 'EPSG:4326', 'EPSG:3857'),
             zoom    : 11,
             minZoom : 10,
             maxZoom : 20,
