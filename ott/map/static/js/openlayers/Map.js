@@ -1,6 +1,6 @@
-ott.namespace("ott.map");
+ott.namespace("ott.openlayers");
 
-ott.map.Map = {
+ott.openlayers.Map = {
 
     map : null,
     targetDiv : null,
@@ -35,11 +35,11 @@ ott.map.Map = {
         this.map = map;
 
         // step 4: add the base layers to the map
-        var b = new ott.map.BaseLayers(config);
+        var b = new ott.openlayers.BaseLayers(config);
         map.addLayer(b.getBaseLayersAsGroup());
         b.makeLayerSwitcher(map, 'Switch Layers');
     },
 
-    CLASS_NAME: "ott.map.Map"
+    CLASS_NAME: "ott.openlayers.Map"
 };
-ott.map.Map = new ott.Class(ott.map.Map);
+ott.openlayers.Map = new ott.Class(ott.openlayers.Map);

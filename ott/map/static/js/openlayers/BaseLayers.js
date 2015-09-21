@@ -1,6 +1,6 @@
-ott.namespace("ott.map");
+ott.namespace("ott.openlayers");
 
-ott.map.BaseLayers = {
+ott.openlayers.BaseLayers = {
 
     layers : [],
 
@@ -65,7 +65,7 @@ ott.map.BaseLayers = {
     },
 
     /**
-     * make a layer switcher and add it to the supplied ol.map object
+     * make a layer switcher and add it to the supplied ol.openlayers object
      * @see: https://github.com/walkermatt/ol3-layerswitcher
      */
     makeLayerSwitcher : function(map, tipLabel)
@@ -77,7 +77,7 @@ ott.map.BaseLayers = {
         return layerSwitcher;
     },
 
-    CLASS_NAME: "ott.map.BaseLayers"
+    CLASS_NAME: "ott.openlayers.BaseLayers"
 };
 
-ott.map.BaseLayers = new ott.Class(ott.map.BaseLayers);
+ott.openlayers.BaseLayers = new ott.Class(ott.openlayers.BaseLayers);

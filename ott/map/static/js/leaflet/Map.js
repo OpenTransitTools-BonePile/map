@@ -1,6 +1,6 @@
-ott.namespace("ott.map");
+ott.namespace("ott.leaflet");
 
-ott.map.Map = {
+ott.leaflet.Map = {
 
     map : null,
     targetDiv : null,
@@ -11,7 +11,7 @@ ott.map.Map = {
      */
     initialize : function(config, targetDiv)
     {
-        console.log("enter Map() constructor");
+        console.log("enter leaflet Map() constructor");
 
         // step 1: map div
         this.targetDiv = targetDiv || 'map';
@@ -58,6 +58,6 @@ ott.map.Map = {
 		map.locate({setView: true, maxZoom: 16});
     },
 
-    CLASS_NAME: "ott.map.Map"
+    CLASS_NAME: "ott.leaflet.Map"
 };
-ott.map.Map = new ott.Class(ott.map.Map);
+ott.leaflet.Map = new ott.Class(ott.leaflet.Map);

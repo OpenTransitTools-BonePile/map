@@ -1,6 +1,6 @@
-ott.namespace("ott.map");
+ott.namespace("ott.openlayers");
 
-ott.map.Layer = {
+ott.openlayers.Layer = {
 
     map    : null,
     mapDiv : null,
@@ -142,12 +142,12 @@ map.on('click', function(evt) {
 });
 
 // change mouse cursor when over marker
-map.on('pointermove', function(e) {
+openlayers.on('pointermove', function(e) {
   if (e.dragging) {
     $(element).popover('destroy');
     return;
   }
-  var pixel = map.getEventPixel(e.originalEvent);
+  var pixel = openlayers.getEventPixel(e.originalEvent);
   var hit = map.hasFeatureAtPixel(pixel);
   var t = map.getTarget();
   if(t && t.style)
@@ -236,6 +236,6 @@ map.on('pointermove', function(e) {
         });
     },
 
-    CLASS_NAME: "ott.map.Layer"
+    CLASS_NAME: "ott.openlayers.Layer"
 };
-ott.map.Layer = new ott.Class(ott.map.Layer);
+ott.openlayers.Layer = new ott.Class(ott.openlayers.Layer);

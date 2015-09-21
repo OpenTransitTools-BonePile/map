@@ -1,6 +1,6 @@
-ott.namespace("ott.map");
+ott.namespace("ott.openlayers");
 
-ott.map.Legend = {
+ott.openlayers.Legend = {
 
     legend : null,
     mapDiv : null,
@@ -94,6 +94,6 @@ ott.map.Legend = {
 
     },
 
-    CLASS_NAME: "ott.map.Legend"
+    CLASS_NAME: "ott.openlayers.Legend"
 };
-ott.map.Legend = new ott.Class(ott.map.Legend);
+ott.openlayers.Legend = new ott.Class(ott.openlayers.Legend);

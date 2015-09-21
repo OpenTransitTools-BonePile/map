@@ -49,9 +49,9 @@
         <script src="js/openlayers/config.js"     type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function(){
-                var map = new ott.map.Map(ott.config);
-                var legend = new ott.map.Legend(ott.config);
-                var layer  = new ott.map.Layer(map.map);
+                var map = new ott.openlayers.Map(ott.config);
+                var legend = new ott.openlayers.Legend(ott.config);
+                var layer  = new ott.openlayers.Layer(map.map);
                 layer.l();
                 layer.geoJson();
             });
