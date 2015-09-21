@@ -38,6 +38,8 @@ ott.leaflet.Map = {
                 'Imagery © <a href="http://mapbox.com">Mapbox</a>',
             id: 'mapbox.streets'
         }).addTo(map);
+
+        map.setView([45.505, -122.65], 13);
     },
 
     CLASS_NAME: "ott.leaflet.Map"

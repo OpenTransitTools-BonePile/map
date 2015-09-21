@@ -2,27 +2,29 @@ ott.namespace("ott.leaflet");
 
 ott.leaflet.GeoLocation = {
 
-    map : null,
+    map  : null,
 
     initialize : function(map)
     {
         this.map = map;
-        this.map.on('locationfound', this.onLocationFound);
-        this.map.on('locationerror', this.onLocationError);
+
+        var THIS = this;
+        this.map.on('locationfound', function(e){ THIS.onLocationFound(e, THIS); });
+        this.map.on('locationerror', function(e){ THIS.onLocationError(e, THIS); });
         this.map.locate({setView: true, maxZoom: 16});
     },
 
-    onLocationFound : function(e)
+    onLocationFound : function(e, geo)
     {
         var radius = e.accuracy / 2;
 
-        L.marker(e.latlng).addTo(this.map)
+        L.marker(e.latlng).addTo(geo.map)
          .bindPopup("You are within " + radius + " meters from this point").openPopup();
 
-        L.circle(e.latlng, radius).addTo(this.map);
+        L.circle(e.latlng, radius).addTo(geo.map);
     },
 
-    onLocationError : function(e)
+    onLocationError : function(e, geo)
     {
         alert(e.message);
     },
