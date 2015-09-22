@@ -4,6 +4,13 @@ ott.leaflet.Map = {
 
     map : null,
     targetDiv : null,
+    baseLayers : {},
+
+    layerControl : null,
+
+    contextMenu             : null,
+    contextMenuModuleItems  : null,
+    contextMenuLatLng       : null,
 
     /**
      * @consturctor
@@ -26,6 +33,51 @@ ott.leaflet.Map = {
             ;
 
         // step 3: create the map
+        var THIS = this;
+        var defaultBaseLayer = null;
+
+        // step 4: make the base layers from config
+        for(var i = 0; i < config.baseLayers.length; i++)
+        {
+            // step a: make a base layer from config
+            var layerConfig = config.baseLayers[i];
+            var layerProps = { };
+            if(layerConfig.attribution) layerProps['attribution'] = layerConfig.attribution;
+            if(layerConfig.subdomains)  layerProps['subdomains']  = layerConfig.subdomains;
+            var layer = new L.TileLayer(layerConfig.tileUrl, layerProps);
+
+            // step b: add layer to cache
+            this.baseLayers[layerConfig.name] = layer;
+
+            // step c: set default base layer based on position
+            if(i == 0)
+                defaultBaseLayer = layer;
+
+            // step d: ....
+            if(typeof layerConfig.getTileUrl != 'undefined')
+            {
+                layer.getTileUrl = otp.config.getTileUrl;
+            }
+        }
+
+        // step 5: collect map config
+        var mapProps = {
+            layers  : [ defaultBaseLayer ],
+            center : (otp.config.initLatLng || new L.LatLng(0,0)),
+            zoom : (otp.config.initZoom || 2),
+            zoomControl : false
+        }
+        if(otp.config.minZoom) mapProps['minZoom'] = otp.config.minZoom;
+        if(otp.config.maxZoom) mapProps['maxZoom'] = otp.config.maxZoom;
+
+        // step 6: make map
+        this.map = new L.Map('map', mapProps);
+        this.layer_control = L.control.layers(this.baseLayers).addTo(this.map);
+        L.control.zoom({position : 'topright'}).addTo(this.map);
+    },
+
+    blah : function(webapp)
+    {
         var map = L.map('map');
         this.map = map;
 

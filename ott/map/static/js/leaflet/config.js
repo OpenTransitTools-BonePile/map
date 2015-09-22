@@ -2,17 +2,14 @@
 if(typeof(ott) == "undefined" || ott == null) ott = {};
 
 // data attributions
-var ott.tm_attribution = 'Tiles &copy; <a target="#" href="http://trimet.org/">TriMet</a>; ';
-var ott.metro_attribution = 'map data &copy; <a target="#" href="http://oregonmetro.gov/rlis">Oregon Metro</a>';
-var ott.osm_attribution = 'OSM BLAH';
-var ott.attributions = [
+ott.tm_attribution = 'Tiles &copy; <a target="#" href="http://trimet.org/">TriMet</a>; ';
+ott.metro_attribution = 'map data &copy; <a target="#" href="http://oregonmetro.gov/rlis">Oregon Metro</a>';
+ott.osm_attribution = 'OSM BLAH';
+ott.attributions = [
     ott.tm_attribution,
     ott.osm_attribution,
     ott.metro_attribution
 ];
-
-function ott.transform() {
-}
 
 if(typeof(ott.params) == "undefined" || ott.params == null)
     ott.params = {
@@ -52,49 +49,48 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
             {
                 name : 'MapQuest OSM',
                 url  : 'http://otile{1-4}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png',
-                attribution : [osm_attribution],
+                attribution : [ott.osm_attribution],
                 isVisible   : false
             },
             {
                 name : 'MapQuest Aerial',
                 url  : 'http://otile{1-4}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png',
-                attribution : [osm_attribution],
+                attribution : [ott.osm_attribution],
                 isVisible   : false
             },
 
             {
                 name : 'Portland Metro Aerials 2011',
                 url  : 'http://gistiles{1-4}.oregonmetro.gov/ArcGIS/rest/services/photo/2011aerialPhotoWebMerc/MapServer/tile/{z}/{y}/{x}',
-                attribution : [osm_attribution],
+                attribution : [ott.osm_attribution],
                 isVisible   : false
             },
             {
                 name : 'Portland Metro Aerials 2013',
                 url  : 'http://gistiles{1-4}.oregonmetro.gov/ArcGIS/rest/services/photo/2013aerialphoto/MapServer/tile/{z}/{y}/{x}',
-                attribution : [osm_attribution],
+                attribution : [ott.osm_attribution],
                 isVisible   : false
             },
             {
                 name : 'Portland Metro Map',
                 url  : 'http://gistiles{1-4}.oregonmetro.gov/ArcGIS/rest/services/metromap/baseSimple/MapServer/tile/{z}/{y}/{x}',
-                attribution : [osm_attribution],
+                attribution : [ott.osm_attribution],
                 isVisible   : false
             },
 
             {
                 name : ott.params.aerialName || 'Satellite',
                 url  : ott.params.tileDomain + ott.params.tileAerialPath,
-                attribution : ott.params.aerialAttribution || osm_attribution,
+                attribution : ott.params.aerialAttribution || ott.osm_attribution,
                 isVisible   : false
             },
             {
                 name : ott.params.mapName || 'Map',
                 url  : ott.params.tileDomain + ott.params.tileMapPath,
-                attribution : ott.params.mapAttribution || osm_attribution,
+                attribution : ott.params.mapAttribution || ott.osm_attribution,
                 isVisible   : true
             }
         ],
-
 
         // map controls
         doDragRotate : true,
@@ -105,7 +101,7 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
          * map will config the initial map view of the OpenLayers 3.5 map
          */
         olMap : {
-            center  : ott.transform([-122.68, 45.48], 'EPSG:4326', 'EPSG:3857'),
+            //center  : ott.transform([-122.68, 45.48], 'EPSG:4326', 'EPSG:3857'),
             zoom    : 11,
             minZoom : 10,
             maxZoom : 20,
