@@ -41,10 +41,10 @@ ott.leaflet.Map = {
         {
             // step a: make a base layer from config
             var layerConfig = config.baseLayers[i];
-            var layerProps = { };
+            var layerProps = {};
             if(layerConfig.attribution) layerProps['attribution'] = layerConfig.attribution;
             if(layerConfig.subdomains)  layerProps['subdomains']  = layerConfig.subdomains;
-            var layer = new L.TileLayer(layerConfig.tileUrl, layerProps);
+            var layer = new L.TileLayer(layerConfig.url, layerProps);
 
             // step b: add layer to cache
             this.baseLayers[layerConfig.name] = layer;
@@ -56,24 +56,26 @@ ott.leaflet.Map = {
             // step d: ....
             if(typeof layerConfig.getTileUrl != 'undefined')
             {
-                layer.getTileUrl = otp.config.getTileUrl;
+                layer.getTileUrl = config.getTileUrl;
             }
         }
 
         // step 5: collect map config
         var mapProps = {
             layers  : [ defaultBaseLayer ],
-            center : (otp.config.initLatLng || new L.LatLng(0,0)),
-            zoom : (otp.config.initZoom || 2),
+            center : (config.initLatLng || new L.LatLng(0,0)),
+            zoom : (config.initZoom || 2),
             zoomControl : false
         }
-        if(otp.config.minZoom) mapProps['minZoom'] = otp.config.minZoom;
-        if(otp.config.maxZoom) mapProps['maxZoom'] = otp.config.maxZoom;
+        if(config.minZoom) mapProps['minZoom'] = config.minZoom;
+        if(config.maxZoom) mapProps['maxZoom'] = config.maxZoom;
 
         // step 6: make map
         this.map = new L.Map('map', mapProps);
         this.layer_control = L.control.layers(this.baseLayers).addTo(this.map);
         L.control.zoom({position : 'topright'}).addTo(this.map);
+
+        console.log("exit leaflet Map() constructor");
     },
 
     blah : function(webapp)

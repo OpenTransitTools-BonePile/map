@@ -44,51 +44,48 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
          *   - url: <string> the map tile service address (typically of the
          *       format 'http://{3-4 sub-domains}.yourdomain.com/.../tile-cache path/.../{z}/{x}/{y}')
          */
-        doWatercolor : true,
         baseLayers: [
             {
-                name : 'MapQuest OSM',
-                url  : 'http://otile{1-4}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png',
-                attribution : [ott.osm_attribution],
-                isVisible   : false
+                name : ott.params.mapName || 'Map',
+                url  : 'http://{s}.trimet.org/tilecache/tilecache.py/1.0.0/currentOSM/{z}/{x}/{y}',
+                subdomains : ['tilea','tileb','tilec','tilec'],
+                attribution : ott.params.mapAttribution || ott.osm_attribution
             },
             {
-                name : 'MapQuest Aerial',
-                url  : 'http://otile{1-4}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png',
-                attribution : [ott.osm_attribution],
-                isVisible   : false
-            },
-
-            {
-                name : 'Portland Metro Aerials 2011',
-                url  : 'http://gistiles{1-4}.oregonmetro.gov/ArcGIS/rest/services/photo/2011aerialPhotoWebMerc/MapServer/tile/{z}/{y}/{x}',
-                attribution : [ott.osm_attribution],
-                isVisible   : false
-            },
-            {
-                name : 'Portland Metro Aerials 2013',
-                url  : 'http://gistiles{1-4}.oregonmetro.gov/ArcGIS/rest/services/photo/2013aerialphoto/MapServer/tile/{z}/{y}/{x}',
-                attribution : [ott.osm_attribution],
-                isVisible   : false
+                name : ott.params.aerialName || 'Satellite',
+                url  : 'http://{s}.trimet.org/tilecache/tilecache.py/1.0.0/hybridOSM/{z}/{x}/{y}',
+                subdomains : ['tilea','tileb','tilec','tilec'],
+                attribution : ott.params.aerialAttribution || ott.osm_attribution
             },
             {
                 name : 'Portland Metro Map',
-                url  : 'http://gistiles{1-4}.oregonmetro.gov/ArcGIS/rest/services/metromap/baseSimple/MapServer/tile/{z}/{y}/{x}',
-                attribution : [ott.osm_attribution],
-                isVisible   : false
-            },
-
-            {
-                name : ott.params.aerialName || 'Satellite',
-                url  : ott.params.tileDomain + ott.params.tileAerialPath,
-                attribution : ott.params.aerialAttribution || ott.osm_attribution,
-                isVisible   : false
+                url  : 'http://{s}.oregonmetro.gov/ArcGIS/rest/services/metromap/baseSimple/MapServer/tile/{z}/{y}/{x}',
+                subdomains : ['gistiles1','gistiles2','gistiles3','gistiles4'],
+                attribution : ott.osm_attribution
             },
             {
-                name : ott.params.mapName || 'Map',
-                url  : ott.params.tileDomain + ott.params.tileMapPath,
-                attribution : ott.params.mapAttribution || ott.osm_attribution,
-                isVisible   : true
+                name : 'Portland Metro Aerials 2013',
+                url  : 'http://{s}.oregonmetro.gov/ArcGIS/rest/services/photo/2013aerialphoto/MapServer/tile/{z}/{y}/{x}',
+                subdomains : ['gistiles1','gistiles2','gistiles3','gistiles4'],
+                attribution : ott.osm_attribution
+            },
+            {
+                name: 'Transport Tiles',
+                url: 'http://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png',
+                subdomains : ['a','b','c'],
+                attribution: 'Data from <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors. Tiles from <a href="http://www.thunderforest.com/transport/">Andy Allan</a>'
+            },
+            {
+                name: 'MapQuest OSM',
+                url: 'http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png',
+                subdomains : ['otile1','otile2','otile3','otile4'],
+                attribution : ott.osm_attribution
+            },
+            {
+                name : 'MapQuest Aerial',
+                url  : 'http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png',
+                subdomains : ['otile1','otile2','otile3','otile4'],
+                attribution : ott.osm_attribution
             }
         ],
 
