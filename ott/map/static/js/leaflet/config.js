@@ -2,16 +2,16 @@
 if(typeof(ott) == "undefined" || ott == null) ott = {};
 
 // data attributions
-var tm_attribution = 'Tiles &copy; <a target="#" href="http://trimet.org/">TriMet</a>; ';
-var metro_attribution = 'map data &copy; <a target="#" href="http://oregonmetro.gov/rlis">Oregon Metro</a>';
-var osm_attribution = 'OSM BLAH';
-var attributions = [
-    tm_attribution,
-    osm_attribution,
-    metro_attribution
+var ott.tm_attribution = 'Tiles &copy; <a target="#" href="http://trimet.org/">TriMet</a>; ';
+var ott.metro_attribution = 'map data &copy; <a target="#" href="http://oregonmetro.gov/rlis">Oregon Metro</a>';
+var ott.osm_attribution = 'OSM BLAH';
+var ott.attributions = [
+    ott.tm_attribution,
+    ott.osm_attribution,
+    ott.metro_attribution
 ];
 
-function transform() {
+function ott.transform() {
 }
 
 if(typeof(ott.params) == "undefined" || ott.params == null)
@@ -21,11 +21,11 @@ if(typeof(ott.params) == "undefined" || ott.params == null)
         tileDomain : "http://tile{a-d}.trimet.org",
 
         tileAerialPath : '/tilecache/tilecache.py/1.0.0/hybridOSM/{z}/{x}/{y}',
-        aerialAttribution : attributions,
+        aerialAttribution : ott.attributions,
         aerialName : 'TriMet Satellite',
 
         tileMapPath    : '/tilecache/tilecache.py/1.0.0/currentOSM/{z}/{x}/{y}',
-        mapAttribution    : attributions,
+        mapAttribution    : ott.attributions,
         mapName : 'TriMet Map',
 
         solrService    : "http://maps.trimet.org/solr/select",
@@ -105,7 +105,7 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
          * map will config the initial map view of the OpenLayers 3.5 map
          */
         olMap : {
-            center  : transform([-122.68, 45.48], 'EPSG:4326', 'EPSG:3857'),
+            center  : ott.transform([-122.68, 45.48], 'EPSG:4326', 'EPSG:3857'),
             zoom    : 11,
             minZoom : 10,
             maxZoom : 20,

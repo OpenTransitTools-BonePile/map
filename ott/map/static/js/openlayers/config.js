@@ -2,12 +2,10 @@
 if(typeof(ott) == "undefined" || ott == null) ott = {};
 
 // data attributions
-var tm_attribution = new ol.Attribution({html: 'Tiles &copy; <a target="#" href="http://trimet.org/">TriMet</a>; '});
-var metro_attribution = new ol.Attribution({html: 'map data &copy; <a target="#" href="http://oregonmetro.gov/rlis">Oregon Metro</a>'});
-var attributions = [
-    tm_attribution,
+ott.attributions = [
+    new ol.Attribution({html: 'Tiles &copy; <a target="#" href="http://trimet.org/">TriMet</a>; '}),
     ol.source.OSM.ATTRIBUTION,
-    metro_attribution
+    new ol.Attribution({html: 'map data &copy; <a target="#" href="http://oregonmetro.gov/rlis">Oregon Metro</a>'})
 ];
 
 if(typeof(ott.params) == "undefined" || ott.params == null)
@@ -17,11 +15,11 @@ if(typeof(ott.params) == "undefined" || ott.params == null)
         tileDomain : "http://tile{a-d}.trimet.org",
 
         tileAerialPath : '/tilecache/tilecache.py/1.0.0/hybridOSM/{z}/{x}/{y}',
-        aerialAttribution : attributions,
+        aerialAttribution : ott.attributions,
         aerialName : 'TriMet Satellite',
 
         tileMapPath    : '/tilecache/tilecache.py/1.0.0/currentOSM/{z}/{x}/{y}',
-        mapAttribution    : attributions,
+        mapAttribution    : ott.attributions,
         mapName : 'TriMet Map',
 
         solrService    : "http://maps.trimet.org/solr/select",
