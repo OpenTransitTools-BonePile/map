@@ -1,6 +1,6 @@
-ott.namespace("ott.leaflet");
+ott.namespace("ott.leaflet.map");
 
-ott.leaflet.Map = {
+ott.leaflet.map.Map = {
 
     map : null,
     targetDiv : null,
@@ -87,6 +87,6 @@ ott.leaflet.Map = {
         map.setView([45.505, -122.65], 13);
     },
 
-    CLASS_NAME: "ott.leaflet.Map"
+    CLASS_NAME: "ott.leaflet.map.Map"
 };
-ott.leaflet.Map = new ott.Class(ott.leaflet.Map);
+ott.leaflet.map.Map = new ott.Class(ott.leaflet.map.Map);

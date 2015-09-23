@@ -25,11 +25,11 @@
 
         <script src="js/ott.leaflet.js"     type="text/javascript"></script>
         <script src="js/leaflet/config.js"  type="text/javascript"></script>
-        <script src="js/leaflet/Map.js"  type="text/javascript"></script>
+        <script src="js/leaflet/map/Map.js" type="text/javascript"></script>
         <script type="text/javascript">
             //$(document).ready(function(){
-                var map = new ott.leaflet.Map(ott.config);
-                var geo = new ott.leaflet.GeoLocation(map.map);
+                var map = new ott.leaflet.map.Map(ott.config);
+                var geo = new ott.leaflet.utils.GeoLocation(map.map);
             //});
         </script>
 

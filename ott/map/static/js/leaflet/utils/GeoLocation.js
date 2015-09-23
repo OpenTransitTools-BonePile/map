@@ -1,6 +1,6 @@
-ott.namespace("ott.leaflet");
+ott.namespace("ott.leaflet.utils");
 
-ott.leaflet.GeoLocation = {
+ott.leaflet.utils.GeoLocation = {
 
     map  : null,
 
@@ -29,6 +29,6 @@ ott.leaflet.GeoLocation = {
         alert(e.message);
     },
 
-    CLASS_NAME: "ott.leaflet.GeoLocation"
+    CLASS_NAME: "ott.leaflet.utils.GeoLocation"
 };
-ott.leaflet.GeoLocation = new ott.Class(ott.leaflet.GeoLocation);
+ott.leaflet.utils.GeoLocation = new ott.Class(ott.leaflet.utils.GeoLocation);
