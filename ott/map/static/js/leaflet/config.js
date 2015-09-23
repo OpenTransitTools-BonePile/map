@@ -49,12 +49,18 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
                 name : ott.params.mapName || 'Map',
                 url  : 'http://{s}.trimet.org/tilecache/tilecache.py/1.0.0/currentOSM/{z}/{x}/{y}',
                 subdomains : ['tilea','tileb','tilec','tilec'],
+                minZoom : 10,
+                maxZoom : 21,
+                maxNativeZoom : 19,
                 attribution : ott.params.mapAttribution || ott.osm_attribution
             },
             {
                 name : ott.params.aerialName || 'Satellite',
                 url  : 'http://{s}.trimet.org/tilecache/tilecache.py/1.0.0/hybridOSM/{z}/{x}/{y}',
                 subdomains : ['tilea','tileb','tilec','tilec'],
+                minZoom : 10,
+                maxZoom : 21,
+                maxNativeZoom : 19,
                 attribution : ott.params.aerialAttribution || ott.osm_attribution
             },
             {

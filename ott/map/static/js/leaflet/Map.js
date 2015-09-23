@@ -41,10 +41,7 @@ ott.leaflet.Map = {
         {
             // step a: make a base layer from config
             var layerConfig = config.baseLayers[i];
-            var layerProps = {};
-            if(layerConfig.attribution) layerProps['attribution'] = layerConfig.attribution;
-            if(layerConfig.subdomains)  layerProps['subdomains']  = layerConfig.subdomains;
-            var layer = new L.TileLayer(layerConfig.url, layerProps);
+            var layer = new L.TileLayer(layerConfig.url, layerConfig);
 
             // step b: add layer to cache
             this.baseLayers[layerConfig.name] = layer;
@@ -52,18 +49,12 @@ ott.leaflet.Map = {
             // step c: set default base layer based on position
             if(i == 0)
                 defaultBaseLayer = layer;
-
-            // step d: ....
-            if(typeof layerConfig.getTileUrl != 'undefined')
-            {
-                layer.getTileUrl = config.getTileUrl;
-            }
         }
 
         // step 5: collect map config
         var mapProps = {
             layers  : [ defaultBaseLayer ],
-            center : (config.initLatLng || new L.LatLng(0,0)),
+            center : (config.initLatLng || new L.LatLng(45.5, -122.5)),
             zoom : (config.initZoom || 2),
             zoomControl : false
         }
