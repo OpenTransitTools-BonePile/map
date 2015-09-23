@@ -54,8 +54,8 @@ ott.leaflet.Map = {
         // step 5: collect map config
         var mapProps = {
             layers  : [ defaultBaseLayer ],
-            center : (config.initLatLng || new L.LatLng(45.5, -122.5)),
-            zoom : (config.initZoom || 2),
+            center : (config.initLatLng || new L.LatLng(45.5, -122.68)),
+            zoom : (config.initZoom || 12),
             zoomControl : false
         }
         if(config.minZoom) mapProps['minZoom'] = config.minZoom;
