@@ -1,6 +1,35 @@
 ott.namespace("ott.leaflet.map");
 
 
+var busIcon = L.icon({
+    iconUrl     : '/images/map/stop/bus20.png',
+	iconSize    : [20, 20],
+	iconAnchor  : [0,  0],
+	popupAnchor : [0,  0]
+});
+
+var stopIcon20 = L.Icon.extend({
+    options: {
+        iconUrl: '/images/map/stop/bus20.png',
+        shadowUrl: null,
+        iconSize: new L.Point(20, 20),
+        iconAnchor: new L.Point(10, 10),
+        popupAnchor: new L.Point(0, -5)
+    }
+});
+
+var geojsonMarkerOptions = {
+    radius: 8,
+    fillColor: "#ff7800",
+    color: "#000",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.8
+};
+
+ott.leaflet.map.StopStyles = {
+};
+
 ott.leaflet.map.Stops = {
 
     map : null,
@@ -16,14 +45,34 @@ ott.leaflet.map.Stops = {
     {
         console.log("enter leaflet Stops() constructor");
 
+        // step 1: style
+
         // step 1: map.Map controller
         this.map = map;
+        var THIS = this;
+        //this.layer = new L.GeoJSON(null, {pointToLayer: function(feature, ll){ THIS.baseStyle(feature, ll); }});
         this.layer = new L.GeoJSON();
 
-        var THIS = this;
         this.map.on('moveend', function() { THIS.doStops(); });
 
         console.log("exit leaflet Stops() constructor");
+    },
+
+    baseStyle : function(feature, ll)
+    {
+        var retVal = null;
+        switch (feature.properties.type)
+        {
+            case 1:
+                //retVal = L.marker(ll, {icon:busIcon});
+                break;
+            case 2:
+                retVal = L.marker(ll, {icon:busIcon});
+                break;
+        }
+        //retVal = L.marker(ll);
+        retVal = L.circleMarker(ll, geojsonMarkerOptions);
+        return retVal;
     },
 
     loadGeoJson : function(data)
@@ -31,6 +80,7 @@ ott.leaflet.map.Stops = {
         console.log("num stops: ");
         console.log(data && data.features ? data.features.length : "empty");
         this.data = data;
+        this.layer.clearLayers();
         this.layer.addData(data);
         this.map.addLayer(this.layer);
     },
@@ -39,6 +89,7 @@ ott.leaflet.map.Stops = {
     {
         if(this.map.getZoom() > this.maxZoom)
         {
+            // TODO: move this to the config (or default config)
             var geoJsonUrl ='http://maps7.trimet.org/wfs';
             var defaultParameters = {
                 service: 'WFS',
