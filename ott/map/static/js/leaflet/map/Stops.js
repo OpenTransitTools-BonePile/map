@@ -1,56 +1,12 @@
 ott.namespace("ott.leaflet.map");
 
-var wellmaxzoom = 13;
-var geojsonLayerWells = new L.GeoJSON();
-var mmap = null;
-
-function loadGeoJson(data) {
-    console.log(data);
-    geojsonLayerWells.addData(data);
-    mmap.addLayer(geojsonLayerWells);
-};
-
-function m(map) {
-
-mmap = map;
-map.on('moveend', function(){
-if(map.getZoom() > wellmaxzoom)
-{
-    var geoJsonUrl ='http://maps7.trimet.org/wfs';
-    var defaultParameters = {
-        service: 'WFS',
-        version: '1.1.0',
-        request: 'getFeature',
-        typeName: 'current:t',
-        maxFeatures: 500,
-        srsName: "EPSG:4326",
-        outputFormat: 'application/json'
-    };
-    var customParams = {
-        bbox: map.getBounds().toBBoxString() + ",EPSG:4326"
-    };
-    var parameters = L.Util.extend(defaultParameters, customParams);
-    console.log(geoJsonUrl + L.Util.getParamString(parameters));
-
-    $.ajax({
-        url: geoJsonUrl + L.Util.getParamString(parameters),
-        datatype: 'json',
-        jsonCallback: 'getJson',
-        success: loadGeoJson
-    });
-}
-else
-{
-    map.removeLayer(geojsonLayerWells);
-}
-});
-
-}
-
 
 ott.leaflet.map.Stops = {
 
     map : null,
+    layer : null,
+    data : null,
+    maxZoom : 14,
 
     /**
      * @consturctor
@@ -62,8 +18,55 @@ ott.leaflet.map.Stops = {
 
         // step 1: map.Map controller
         this.map = map;
+        this.layer = new L.GeoJSON();
+
+        var THIS = this;
+        this.map.map.on('moveend', function() { THIS.doStops(); });
 
         console.log("exit leaflet Stops() constructor");
+    },
+
+    loadGeoJson : function(data)
+    {
+        //console.log(data);
+        this.data = data;
+        this.layer.addData(data);
+        this.map.map.addLayer(this.layer);
+    },
+
+    doStops : function()
+    {
+        if(this.map.map.getZoom() > this.maxZoom)
+        {
+            var geoJsonUrl ='http://maps7.trimet.org/wfs';
+            var defaultParameters = {
+                service: 'WFS',
+                version: '1.1.0',
+                request: 'getFeature',
+                typeName: 'current:t',
+                maxFeatures: 500,
+                srsName: "EPSG:4326",
+                outputFormat: 'application/json'
+            };
+            var customParams = {
+                bbox: this.map.map.getBounds().toBBoxString() + ",EPSG:4326"
+            };
+            var parameters = L.Util.extend(defaultParameters, customParams);
+            console.log(geoJsonUrl + L.Util.getParamString(parameters));
+
+            var THIS = this;
+            $.ajax({
+                url: geoJsonUrl + L.Util.getParamString(parameters),
+                datatype: 'json',
+                jsonCallback: 'getJson',
+                success: function(data) { THIS.loadGeoJson(data); }
+            });
+        }
+        else
+        {
+            this.map.map.removeLayer(this.layer);
+            this.data = null;
+        }
     },
 
     CLASS_NAME: "ott.leaflet.map.Stops"

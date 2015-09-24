@@ -32,8 +32,8 @@
         <script type="text/javascript">
             //$(document).ready(function(){
                 var map = new ott.leaflet.map.Map(ott.config);
+                this.stops = new ott.leaflet.map.Stops(ott.config, map);
                 var geo = new ott.leaflet.utils.GeoLocation(map.map);
-                m(map.map);
             //});
         </script>
 

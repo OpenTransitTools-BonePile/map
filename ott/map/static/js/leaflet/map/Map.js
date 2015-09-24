@@ -32,6 +32,7 @@ ott.leaflet.map.Map = {
         if(config.doFullScreen)
             ;
 
+
         // step 3: create the map
         var THIS = this;
         var defaultBaseLayer = null;
