@@ -87,6 +87,6 @@ ott.leaflet.map.Map = {
         map.setView([45.505, -122.65], 13);
     },
 
-    CLASS_NAME: "ott.leaflet.map.Map"
-};
-ott.leaflet.map.Map = new ott.Class(ott.leaflet.map.Map);
+         CLASS_NAME: "ott.leaflet.map.Map"
+     };
+     ott.leaflet.map.Map = new ott.Class(ott.leaflet.map.Map);
