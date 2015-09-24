@@ -21,22 +21,23 @@ ott.leaflet.map.Stops = {
         this.layer = new L.GeoJSON();
 
         var THIS = this;
-        this.map.map.on('moveend', function() { THIS.doStops(); });
+        this.map.on('moveend', function() { THIS.doStops(); });
 
         console.log("exit leaflet Stops() constructor");
     },
 
     loadGeoJson : function(data)
     {
-        //console.log(data);
+        console.log("num stops: ");
+        console.log(data && data.features ? data.features.length : "empty");
         this.data = data;
         this.layer.addData(data);
-        this.map.map.addLayer(this.layer);
+        this.map.addLayer(this.layer);
     },
 
     doStops : function()
     {
-        if(this.map.map.getZoom() > this.maxZoom)
+        if(this.map.getZoom() > this.maxZoom)
         {
             var geoJsonUrl ='http://maps7.trimet.org/wfs';
             var defaultParameters = {
@@ -49,7 +50,7 @@ ott.leaflet.map.Stops = {
                 outputFormat: 'application/json'
             };
             var customParams = {
-                bbox: this.map.map.getBounds().toBBoxString() + ",EPSG:4326"
+                bbox: this.map.getBounds().toBBoxString() + ",EPSG:4326"
             };
             var parameters = L.Util.extend(defaultParameters, customParams);
             console.log(geoJsonUrl + L.Util.getParamString(parameters));
@@ -64,7 +65,7 @@ ott.leaflet.map.Stops = {
         }
         else
         {
-            this.map.map.removeLayer(this.layer);
+            this.map.removeLayer(this.layer);
             this.data = null;
         }
     },
