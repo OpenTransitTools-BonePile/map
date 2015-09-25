@@ -1,14 +1,72 @@
 ott.namespace("ott.leaflet.map");
 
 
-var busIcon = L.icon({
+var busStopIcon = L.icon({
     iconUrl     : '/images/map/stop/bus20.png',
 	iconSize    : [20, 20],
-	iconAnchor  : [0,  0],
-	popupAnchor : [0,  0]
+	iconAnchor  : [10, 10],
+	popupAnchor : [0,  -5]
 });
 
-var stopIcon20 = L.Icon.extend({
+var lightRailStopIcon = L.icon({
+    iconUrl     : '/images/map/stop/rail20.png',
+	iconSize    : [20, 20],
+	iconAnchor  : [10, 10],
+	popupAnchor : [0,  -5]
+});
+
+var heavyRailStopIcon = L.icon({
+    iconUrl     : '/images/map/stop/cr20.png',
+	iconSize    : [20, 20],
+	iconAnchor  : [10, 10],
+	popupAnchor : [0,  -5]
+});
+
+var streetCarStopIcon = L.icon({
+    iconUrl     : '/images/map/stop/streetcar20.png',
+	iconSize    : [20, 20],
+	iconAnchor  : [10, 10],
+	popupAnchor : [0,  -5]
+});
+
+var aerialTramStopIcon = L.icon({
+    iconUrl     : '/images/map/stop/tram20.png',
+	iconSize    : [20, 20],
+	iconAnchor  : [10, 10],
+	popupAnchor : [0,  -5]
+});
+
+var subwayStopIcon = L.icon({
+    iconUrl     : '/images/map/stop/subway20.png',
+	iconSize    : [20, 20],
+	iconAnchor  : [10, 10],
+	popupAnchor : [0,  -5]
+});
+
+var parkAndRideIcon = L.icon({
+    iconUrl     : '/images/map/stop/pr20.png',
+	iconSize    : [20, 20],
+	iconAnchor  : [10, 10],
+	popupAnchor : [0,  -5]
+});
+
+var bikeAndRideIcon = L.icon({
+    iconUrl     : '/images/map/stop/bike20.png',
+	iconSize    : [20, 20],
+	iconAnchor  : [10, 10],
+	popupAnchor : [0,  -5]
+});
+
+var transitCenterRideIcon = L.icon({
+    iconUrl     : '/images/map/stop/tc20.png',
+	iconSize    : [20, 20],
+	iconAnchor  : [10, 10],
+	popupAnchor : [0,  -5]
+});
+
+
+
+var StopIcon20Type = L.Icon.extend({
     options: {
         iconUrl: '/images/map/stop/bus20.png',
         shadowUrl: null,
@@ -50,8 +108,8 @@ ott.leaflet.map.Stops = {
         // step 1: map.Map controller
         this.map = map;
         var THIS = this;
-        //this.layer = new L.GeoJSON(null, {pointToLayer: function(feature, ll){ THIS.baseStyle(feature, ll); }});
-        this.layer = new L.GeoJSON();
+        this.layer = new L.GeoJSON(null, {pointToLayer: function(feature, ll){ THIS.baseStyle(feature, ll); }});
+        //this.layer = new L.GeoJSON();
 
         this.map.on('moveend', function() { THIS.doStops(); });
 
@@ -64,14 +122,27 @@ ott.leaflet.map.Stops = {
         switch (feature.properties.type)
         {
             case 1:
-                //retVal = L.marker(ll, {icon:busIcon});
+                retVal = L.marker(ll, {icon:busStopIcon});
                 break;
             case 2:
-                retVal = L.marker(ll, {icon:busIcon});
+                retVal = L.marker(ll, {icon:streetCarStopIcon});
+                break;
+            case 3:
+                retVal = L.marker(ll, {icon:aerialTramStopIcon});
+                break;
+            case 4:
+                retVal = L.marker(ll, {icon:heavyRailStopIcon});
+                break;
+            case 5:
+                retVal = L.marker(ll, {icon:lightRailStopIcon});
+                break;
+            default:
+                retVal = L.circleMarker(ll, geojsonMarkerOptions);
                 break;
         }
-        //retVal = L.marker(ll);
-        retVal = L.circleMarker(ll, geojsonMarkerOptions);
+
+        // TODO: we really have to add to layer here????  future versions of code
+        retVal.addTo(this.layer);
         return retVal;
     },
 
