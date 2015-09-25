@@ -18,38 +18,32 @@ ott.leaflet.map.Stops = {
     {
         console.log("enter leaflet Stops() constructor");
 
+        // step 0: vars
+        this.map = map;
+        var THIS = this;
+
         // step 1: style
         this.style = new ott.leaflet.map.TransitIcons();
 
-        // step 1: map.Map controller
-        this.map = map;
-        var THIS = this;
-        this.layer = new L.GeoJSON(null, {pointToLayer: function(feature, ll){ THIS.baseStyle(feature, ll); }});
-        //this.layer = new L.GeoJSON();
+        // step 2: callback load data from server
+        this.map.on('moveend', function() { THIS.queryServer(); });
 
-        this.map.on('moveend', function() { THIS.doStops(); });
+        // step 3: create new json layer w/out any initial points
+        this.layer = new L.GeoJSON(null, {pointToLayer: function(feature, ll){ THIS.styleFeature(feature, ll); }});
 
         console.log("exit leaflet Stops() constructor");
     },
 
-    baseStyle : function(feature, ll)
+    /** process each feature ... styling happens here */
+    styleFeature : function(feature, ll)
     {
         var retVal = this.style.makeMarkerByTypeId(feature.properties.type, ll);
         retVal.addTo(this.layer); // TODO: we really have to add to layer here????  future versions of code
         return retVal;
     },
 
-    loadGeoJson : function(data)
-    {
-        console.log("num stops: ");
-        console.log(data && data.features ? data.features.length : "empty");
-        this.data = data;
-        this.layer.clearLayers();
-        this.layer.addData(data);
-        this.map.addLayer(this.layer);
-    },
-
-    doStops : function()
+    /** ajax query of the server ... filter data based on current map BBOX */
+    queryServer : function()
     {
         if(this.map.getZoom() > this.maxZoom)
         {
@@ -75,7 +69,7 @@ ott.leaflet.map.Stops = {
                 url: geoJsonUrl + L.Util.getParamString(parameters),
                 datatype: 'json',
                 jsonCallback: 'getJson',
-                success: function(data) { THIS.loadGeoJson(data); }
+                success: function(data) { THIS.processServerResponse(data); }
             });
         }
         else
@@ -83,6 +77,17 @@ ott.leaflet.map.Stops = {
             this.map.removeLayer(this.layer);
             this.data = null;
         }
+    },
+
+    /** ajax callback to process response */
+    processServerResponse : function(data)
+    {
+        console.log("num stops: ");
+        console.log(data && data.features ? data.features.length : "empty");
+        this.data = data;
+        this.layer.clearLayers();
+        this.layer.addData(data);
+        this.map.addLayer(this.layer);
     },
 
     CLASS_NAME: "ott.leaflet.map.Stops"
