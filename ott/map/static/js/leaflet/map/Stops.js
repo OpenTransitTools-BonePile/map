@@ -7,7 +7,9 @@ ott.leaflet.map.Stops = {
     layer : null,
     data  : null,
     style : null,
-    maxZoom     : 14,
+    mapCenter   : null,
+    mapZoom     : null,
+    maxZoom     : 15,
     maxFeatures : 500,
 
     /**
@@ -32,6 +34,8 @@ ott.leaflet.map.Stops = {
         this.layer = new L.GeoJSON(null, {
                 pointToLayer : function(feature, ll){ THIS.makeMarker(feature, ll); }
         });
+
+        this.mapZoom = this.maxZoom;
 
         console.log("exit leaflet Stops() constructor");
     },
@@ -74,10 +78,38 @@ ott.leaflet.map.Stops = {
         return popupContent;
     },
 
+    /** check as to whether we should reload the map */
+    refreshData : function()
+    {
+        var retVal = false;
+        if(this.map.getZoom() >= this.maxZoom)
+        {
+            retVal = true;
+
+            // check 2: make sure map center moved significantly
+            if(this.mapCenter == 'xxx')
+                retVal = false;
+
+            // check 3: make sure map center moved significantly
+            else if(this.map.getZoom() > this.mapZoom)
+                retVal = false;
+
+            this.mapCenter = this.map.getCenter();
+            this.mapZoom = this.map.getZoom()
+        }
+        else
+        {
+            this.map.removeLayer(this.layer);
+            this.data = null;
+        }
+
+        return retVal;
+    },
+
     /** ajax query of the server ... filter data based on current map BBOX */
     queryServer : function()
     {
-        if(this.map.getZoom() > this.maxZoom)
+        if(this.refreshData())
         {
             // TODO: move this to the config (or default config)
             var geoJsonUrl ='http://maps7.trimet.org/wfs';
@@ -103,11 +135,6 @@ ott.leaflet.map.Stops = {
                 jsonCallback: 'getJson',
                 success: function(data) { THIS.processServerResponse(data); }
             });
-        }
-        else
-        {
-            this.map.removeLayer(this.layer);
-            this.data = null;
         }
     },
 
