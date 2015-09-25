@@ -40,9 +40,23 @@ ott.leaflet.map.Stops = {
     makeMarker : function(feature, ll)
     {
         var marker = this.style.makeMarkerByTypeId(feature.properties.type, ll);
+        marker.on('mouseover', this.mouseOverMarker);
+        marker.on('mouseout',  this.mouseOutMarker);
         var popupContent = this.getPopupContent(feature);
         marker.addTo(this.layer).bindPopup(popupContent);
         return marker;
+    },
+
+    /** mouse event on marker .. can be used to highlight the marker */
+    mouseOverMarker : function(feature, ll)
+    {
+        return true;
+    },
+
+    /** mouse event on marker .. can be used to reset any highlights on the marker */
+    mouseOutMarker : function(feature, ll)
+    {
+        return true;
     },
 
     getPopupContent : function(feature)
