@@ -93,7 +93,8 @@ ott.leaflet.map.Stops = {
     map : null,
     layer : null,
     data : null,
-    maxZoom : 14,
+    //maxZoom : 14,
+    maxZoom : 10,
 
     /**
      * @consturctor
@@ -135,6 +136,15 @@ ott.leaflet.map.Stops = {
                 break;
             case 5:
                 retVal = L.marker(ll, {icon:lightRailStopIcon});
+                break;
+            case 10:
+                retVal = L.marker(ll, {icon:parkAndRideIcon});
+                break;
+            case 14:
+                retVal = L.marker(ll, {icon:transitCenterRideIcon});
+                break;
+            case 17:
+                retVal = L.marker(ll, {icon:bikeAndRideIcon});
                 break;
             default:
                 retVal = L.circleMarker(ll, geojsonMarkerOptions);
