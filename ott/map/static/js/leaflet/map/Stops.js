@@ -90,11 +90,11 @@ ott.leaflet.map.StopStyles = {
 
 ott.leaflet.map.Stops = {
 
-    map : null,
+    map   : null,
     layer : null,
-    data : null,
-    //maxZoom : 14,
-    maxZoom : 10,
+    data  : null,
+    maxZoom     : 14,
+    maxFeatures : 500,
 
     /**
      * @consturctor
@@ -177,7 +177,7 @@ ott.leaflet.map.Stops = {
                 version: '1.1.0',
                 request: 'getFeature',
                 typeName: 'current:t',
-                maxFeatures: 500,
+                maxFeatures: this.maxFeatures,
                 srsName: "EPSG:4326",
                 outputFormat: 'application/json'
             };
