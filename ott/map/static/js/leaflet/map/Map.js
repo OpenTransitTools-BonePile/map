@@ -14,7 +14,6 @@ ott.leaflet.map.Map = {
 
     /**
      * @consturctor
-     * @param {Object} config
      */
     initialize : function(config, targetDiv)
     {

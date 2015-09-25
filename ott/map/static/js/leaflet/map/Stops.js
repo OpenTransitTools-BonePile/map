@@ -34,7 +34,7 @@ ott.leaflet.map.Stops = {
 
     baseStyle : function(feature, ll)
     {
-        var retVal = this.style.getStyleByTypeId(feature.properties.type);
+        var retVal = this.style.makeMarkerByTypeId(feature.properties.type, ll);
         retVal.addTo(this.layer); // TODO: we really have to add to layer here????  future versions of code
         return retVal;
     },

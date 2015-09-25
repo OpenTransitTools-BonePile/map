@@ -75,9 +75,16 @@ ott.leaflet.map.TransitIcons = {
     },
 
     /**
-     * these are how trimet orders our styles
+     * @consturctor
      */
-    triMetPOIStyles : function(id, ll)
+    initialize : function(config, targetDiv)
+    {
+    },
+
+    /**
+     * these are how trimet orders our styles based on mode type
+     */
+    makeMarkerByTypeId : function(id, ll)
     {
         var retVal = null;
 
@@ -105,7 +112,7 @@ ott.leaflet.map.TransitIcons = {
                 retVal = L.marker(ll, {icon: this.transitCenterRideIcon});
                 break;
             case 17:
-                retVal = L.marker(ll, {icon: this.bikeAndRideIcon}),
+                retVal = L.marker(ll, {icon: this.bikeAndRideIcon});
                 break;
             default:
                 retVal = L.circleMarker(ll, geojsonMarkerOptions);
@@ -114,8 +121,6 @@ ott.leaflet.map.TransitIcons = {
         return retVal;
     },
 
-    getStyleByTypeId : triMetPOIStyles,
-
-    CLASS_NAME: "ott.leaflet.map.TransitIcons"
+    CLASS_NAME : "ott.leaflet.map.TransitIcons"
 };
 ott.leaflet.map.TransitIcons = new ott.Class(ott.leaflet.map.TransitIcons);
