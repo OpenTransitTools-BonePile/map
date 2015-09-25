@@ -24,62 +24,14 @@ ott.leaflet.map.IconUtils = {
 ott.leaflet.map.TransitIcons = {
 
     busStopIcon : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/bus20.png'),
-
-    lightRailStopIcon : L.icon({
-        iconUrl     : '/images/map/stop/rail20.png',
-        iconSize    : [20, 20],
-        iconAnchor  : [10, 10],
-        popupAnchor : [0,  -5]
-    }),
-
-    heavyRailStopIcon : L.icon({
-        iconUrl     : '/images/map/stop/cr20.png',
-        iconSize    : [20, 20],
-        iconAnchor  : [10, 10],
-        popupAnchor : [0,  -5]
-    }),
-
-    streetCarStopIcon : L.icon({
-        iconUrl     : '/images/map/stop/streetcar20.png',
-        iconSize    : [20, 20],
-        iconAnchor  : [10, 10],
-        popupAnchor : [0,  -5]
-    }),
-
-    aerialTramStopIcon : L.icon({
-        iconUrl     : '/images/map/stop/tram20.png',
-        iconSize    : [20, 20],
-        iconAnchor  : [10, 10],
-        popupAnchor : [0,  -5]
-    }),
-
-    subwayStopIcon : L.icon({
-        iconUrl     : '/images/map/stop/subway20.png',
-        iconSize    : [20, 20],
-        iconAnchor  : [10, 10],
-        popupAnchor : [0,  -5]
-    }),
-
-    parkAndRideIcon : L.icon({
-        iconUrl     : '/images/map/stop/pr20.png',
-        iconSize    : [20, 20],
-        iconAnchor  : [10, 10],
-        popupAnchor : [0,  -5]
-    }),
-
-    bikeAndRideIcon : L.icon({
-        iconUrl     : '/images/map/stop/bike20.png',
-        iconSize    : [20, 20],
-        iconAnchor  : [10, 10],
-        popupAnchor : [0,  -5]
-    }),
-
-    transitCenterRideIcon : L.icon({
-        iconUrl     : '/images/map/stop/tc20.png',
-        iconSize    : [20, 20],
-        iconAnchor  : [10, 10],
-        popupAnchor : [0,  -5]
-    }),
+    subwayStopIcon  : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/subway20.png'),
+    lightRailStopIcon  : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/rail20.png'),
+    heavyRailStopIcon  : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/cr20.png'),
+    streetCarStopIcon  : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/streetcar20.png'),
+    aerialTramStopIcon : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/tram20.png'),
+    parkAndRideIcon : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/pr20.png'),
+    bikeAndRideIcon : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/bike20.png'),
+    transitCenterRideIcon : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/tc20.png'),
 
     geojsonMarkerOptions : {
         radius: 6,
