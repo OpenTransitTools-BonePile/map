@@ -1,13 +1,29 @@
 ott.namespace("ott.leaflet.map");
 
+ott.leaflet.map.IconUtils = {
+
+    icon : function(url, sx, sy, ax, ay, px, py)
+    {
+        var retVal = L.icon({
+            iconUrl     : url,
+            iconSize    : [sx, sy],
+            iconAnchor  : [ax, ay],
+            popupAnchor : [px,  py]
+        });
+        return retVal;
+    },
+
+    icon20x20 : function(url)
+    {
+        return this.icon(url, 20, 20, 10, 10, 0, -5);
+    },
+
+    CLASS_NAME : "ott.leaflet.map.IconUtils"
+};
+
 ott.leaflet.map.TransitIcons = {
 
-    busStopIcon : L.icon({
-        iconUrl     : '/images/map/stop/bus20.png',
-        iconSize    : [20, 20],
-        iconAnchor  : [10, 10],
-        popupAnchor : [0,  -5]
-    }),
+    busStopIcon : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/bus20.png'),
 
     lightRailStopIcon : L.icon({
         iconUrl     : '/images/map/stop/rail20.png',
