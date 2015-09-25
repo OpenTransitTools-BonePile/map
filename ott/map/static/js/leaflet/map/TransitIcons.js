@@ -94,13 +94,13 @@ ott.leaflet.map.TransitIcons = {
                 retVal = L.marker(ll, {icon: this.busStopIcon});
                 break;
             case 2:
-                retVal = L.marker(ll, {icon: this.streetCarStopIcon});
-                break;
-            case 3:
                 retVal = L.marker(ll, {icon: this.aerialTramStopIcon});
                 break;
-            case 4:
+            case 3:
                 retVal = L.marker(ll, {icon: this.heavyRailStopIcon});
+                break;
+            case 4:
+                retVal = L.marker(ll, {icon: this.streetCarStopIcon});
                 break;
             case 5:
                 retVal = L.marker(ll, {icon: this.lightRailStopIcon});
