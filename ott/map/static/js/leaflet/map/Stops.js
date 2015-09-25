@@ -29,17 +29,35 @@ ott.leaflet.map.Stops = {
         this.map.on('moveend', function() { THIS.queryServer(); });
 
         // step 3: create new json layer w/out any initial points
-        this.layer = new L.GeoJSON(null, {pointToLayer: function(feature, ll){ THIS.styleFeature(feature, ll); }});
+        this.layer = new L.GeoJSON(null, {
+                pointToLayer : function(feature, ll){ THIS.makeMarker(feature, ll); }
+        });
 
         console.log("exit leaflet Stops() constructor");
     },
 
-    /** process each feature ... styling happens here */
-    styleFeature : function(feature, ll)
+    /** process each feature, making a marker w/ styling and popup, etc... */
+    makeMarker : function(feature, ll)
     {
-        var retVal = this.style.makeMarkerByTypeId(feature.properties.type, ll);
-        retVal.addTo(this.layer); // TODO: we really have to add to layer here????  future versions of code
-        return retVal;
+        var marker = this.style.makeMarkerByTypeId(feature.properties.type, ll);
+        var popupContent = this.getPopupContent(feature);
+        marker.addTo(this.layer).bindPopup(popupContent);
+        return marker;
+    },
+
+    getPopupContent : function(feature)
+    {
+        var popupContent = "<p>GeoJSON</p>"
+        if (feature.properties && feature.properties.popupContent)
+        {
+            popupContent = feature.properties.popupContent;
+        }
+        else if (feature.properties && feature.properties.id)
+        {
+            popupContent = "Stop ID " + feature.properties.id +
+                           " type "   + feature.properties.type;
+        }
+        return popupContent;
     },
 
     /** ajax query of the server ... filter data based on current map BBOX */
