@@ -9,6 +9,7 @@ ott.leaflet.map.Stops = {
     style : null,
     mapCenter   : null,
     mapZoom     : null,
+    popupOpened : null,
     maxZoom     : 15,
     maxFeatures : 500,
 
@@ -20,9 +21,10 @@ ott.leaflet.map.Stops = {
     {
         console.log("enter leaflet Stops() constructor");
 
-        // step 0: vars
+        // step 0: vars set (from config?)
         this.map = map;
         var THIS = this;
+        this.mapZoom = this.maxZoom;
 
         // step 1: style
         this.style = new ott.leaflet.map.TransitIcons();
@@ -35,7 +37,8 @@ ott.leaflet.map.Stops = {
                 pointToLayer : function(feature, ll){ THIS.makeMarker(feature, ll); }
         });
 
-        this.mapZoom = this.maxZoom;
+        // step 4: add callback for opening popups
+        map.on('popupopen', function(e) { THIS.popupOpenCB(e); });
 
         console.log("exit leaflet Stops() constructor");
     },
@@ -44,21 +47,30 @@ ott.leaflet.map.Stops = {
     makeMarker : function(feature, ll)
     {
         var marker = this.style.makeMarkerByTypeId(feature.properties.type, ll);
-        marker.on('mouseover', this.mouseOverMarker);
-        marker.on('mouseout',  this.mouseOutMarker);
+        marker.on('mouseover', this.mouseOverMarkerCB);
+        marker.on('mouseout',  this.mouseOutMarkerCB);
         var popupContent = this.getPopupContent(feature);
         marker.addTo(this.layer).bindPopup(popupContent);
         return marker;
     },
 
-    /** mouse event on marker .. can be used to highlight the marker */
-    mouseOverMarker : function(feature, ll)
+
+    /** map event calls this when a popup is opened */
+    popupOpenCB : function(e)
     {
+        //var marker = e.popup._source;
+        this.popupOpened = new Date().getTime();
+    },
+
+    /** mouse event on marker .. can be used to highlight the marker */
+    mouseOverMarkerCB : function(feature, ll)
+    {
+        //feature.change
         return true;
     },
 
     /** mouse event on marker .. can be used to reset any highlights on the marker */
-    mouseOutMarker : function(feature, ll)
+    mouseOutMarkerCB : function(feature, ll)
     {
         return true;
     },
@@ -92,6 +104,10 @@ ott.leaflet.map.Stops = {
 
             // check 3: make sure map center moved significantly
             else if(this.map.getZoom() > this.mapZoom)
+                retVal = false;
+
+            // check 4: if a popup was just opened, don't refresh the data
+            else if(this.popupOpened + 1000 > new Date().getTime())
                 retVal = false;
 
             this.mapCenter = this.map.getCenter();
