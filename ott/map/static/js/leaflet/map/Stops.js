@@ -37,23 +37,27 @@ ott.leaflet.map.Stops = {
                 pointToLayer : function(feature, ll){ THIS.makeMarker(feature, ll); }
         });
 
-        // step 4: add callback for opening popups
-        map.on('popupopen', function(e) { THIS.popupOpenCB(e); });
-
         console.log("exit leaflet Stops() constructor");
     },
 
     /** process each feature, making a marker w/ styling and popup, etc... */
     makeMarker : function(feature, ll)
     {
+        var THIS = this;
         var marker = this.style.makeMarkerByTypeId(feature.properties.type, ll);
         marker.on('mouseover', this.mouseOverMarkerCB);
         marker.on('mouseout',  this.mouseOutMarkerCB);
+        marker.on('popupopen', function(e) { THIS.popupOpenCB(e);   });
+        marker.on('click',     function(e) { THIS.markerClickCB(e); });
         var popupContent = this.getPopupContent(feature);
         marker.addTo(this.layer).bindPopup(popupContent);
         return marker;
     },
 
+
+    markerClickCB : function(e)
+    {
+    },
 
     /** map event calls this when a popup is opened */
     popupOpenCB : function(e)
@@ -65,6 +69,7 @@ ott.leaflet.map.Stops = {
     /** mouse event on marker .. can be used to highlight the marker */
     mouseOverMarkerCB : function(feature, ll)
     {
+        //this.openPopup();
         //feature.change
         return true;
     },
@@ -72,6 +77,7 @@ ott.leaflet.map.Stops = {
     /** mouse event on marker .. can be used to reset any highlights on the marker */
     mouseOutMarkerCB : function(feature, ll)
     {
+        //this.closePopup();
         return true;
     },
 
