@@ -45,39 +45,49 @@ ott.leaflet.map.Stops = {
     {
         var THIS = this;
         var marker = this.style.makeMarkerByTypeId(feature.properties.type, ll);
-        marker.on('mouseover', this.mouseOverMarkerCB);
-        marker.on('mouseout',  this.mouseOutMarkerCB);
-        marker.on('popupopen', function(e) { THIS.popupOpenCB(e);   });
-        marker.on('click',     function(e) { THIS.markerClickCB(e); });
+        marker.on('mouseover', function(e) { THIS.mouseOverMarkerCB(e, this); });
+        marker.on('mouseout',  function(e) { THIS.mouseOutMarkerCB(e, this);  });
+        marker.on('popupopen', function(e) { THIS.popupOpenCB(e, this);       });
+        marker.on('click',     function(e) { THIS.markerClickCB(e, this);     });
         var popupContent = this.getPopupContent(feature);
         marker.addTo(this.layer).bindPopup(popupContent);
         return marker;
     },
 
 
-    markerClickCB : function(e)
+    markerClickCB : function(e, marker)
     {
     },
 
     /** map event calls this when a popup is opened */
-    popupOpenCB : function(e)
+    popupOpenCB : function(e, marker)
     {
         //var marker = e.popup._source;
         this.popupOpened = new Date().getTime();
     },
 
     /** mouse event on marker .. can be used to highlight the marker */
-    mouseOverMarkerCB : function(feature, ll)
+    mouseOverMarkerCB : function(e, marker)
     {
-        //this.openPopup();
-        //feature.change
+        //marker.openPopup();
+
+        // setIcon WORKS to change marker style ... but marker popup moves upwards
+        //marker.setIcon(this.style.busStopIconON);
         return true;
     },
 
     /** mouse event on marker .. can be used to reset any highlights on the marker */
-    mouseOutMarkerCB : function(feature, ll)
+    mouseOutMarkerCB : function(e, marker)
     {
-        //this.closePopup();
+        // THIS WORKS ... but marker popup moves upwards
+        // marker.setIcon(this.style.busStopIcon);
+        //
+
+        var THIS = this;
+        setTimeout(function () {
+            THIS.closePopup();
+        }, 5000);
+
         return true;
     },
 
