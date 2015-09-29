@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Interactive Map</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="/resources/leaflet/leaflet.css" />
+        <script src="/resources/leaflet/leaflet.js"></script>
+
+        <link rel="stylesheet" href="/resources/leaflet/plugins/measure/leaflet.measure.css" />
+        <script src="/resources/leaflet/plugins/measure/leaflet.measure.js"></script>
+
+        <script src="/resources/leaflet/plugins/print/leaflet-image.js"></script>
+
+        <script src="/resources/jquery/jquery.min.js" type="text/javascript"></script>
+
+        <style>
+            body {
+            padding: 0;
+            margin: 0;
+            }
+            html, body, #map {
+            height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+
+        <script src="js/ott.leaflet.js"     type="text/javascript"></script>
+        <script src="js/leaflet/config.js"  type="text/javascript"></script>
+        <script src="js/leaflet/map/Map.js"  type="text/javascript"></script>
+        <script src="js/leaflet/map/Stops.js"  type="text/javascript"></script>
+        <script type="text/javascript">
+            //$(document).ready(function(){
+                var map = new ott.leaflet.map.Map(ott.config);
+                var stops = new ott.leaflet.map.Stops(ott.config, map.map);
+                var geo = new ott.leaflet.utils.GeoLocation(map.map);
+            //});
+        </script>
+
+
+        <style>
+            .ui-button {
+            position:absolute;
+            top:10px;
+            right:10px;
+            z-index:1000;
+            }
+            #map {
+            width:50%;
+            }
+            #snapshot {
+            position:absolute;
+            top:0;bottom:0;right:0;
+            width:50%;
+            }
+        </style>
+        <button id='snap' class='ui-button'>Take a snapshot</button>
+        <div id='snapshot'></div>
+
+        <script>
+            document.getElementById('snap').addEventListener('click', function() {
+                leafletImage(map.map, doImage);
+            });
+
+            function doImage(err, canvas) {
+                var img = document.createElement('img');
+                var dimensions = map.getSize();
+                img.width = dimensions.x;
+                img.height = dimensions.y;
+                img.src = canvas.toDataURL();
+                snapshot.innerHTML = '';
+                snapshot.appendChild(img);
+            }
+        </script>
+
+    </body>
+</html>
