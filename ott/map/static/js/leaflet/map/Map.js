@@ -67,6 +67,12 @@ ott.leaflet.map.Map = {
         this.layer_control = L.control.layers(this.baseLayers).addTo(this.map);
         L.control.zoom({position : 'topright'}).addTo(this.map);
 
+        if(config.addWeather)
+            L.control.weather({
+                lang: "en",
+                units: "english"
+            }).addTo(this.map);
+
         console.log("exit leaflet Map() constructor");
     },
 
