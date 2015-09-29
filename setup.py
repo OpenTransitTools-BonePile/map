@@ -111,6 +111,8 @@ def compress(dir, fname='ott.all', ext='js', filters=[], filter_match=True, filt
 
 #import pdb; pdb.set_trace()
 compress(dir='ott/map/static/css/', ext='css')
-compress(dir='ott/map/static/js/', fname='ott.leaflet',    filters=['openlayers', 'config'], filter_match=False, filter_dirs=True)
-compress(dir='ott/map/static/js/', fname='ott.openlayers', filters=['leaflet', 'config'],    filter_match=False, filter_dirs=True)
+compress(dir='ott/map/static/js/',  ext='js', fname='ott.leaflet',    filters=['openlayers', 'config'],  filter_match=False, filter_dirs=True)
+compress(dir='ott/map/static/js/',  ext='js', fname='ott.openlayers', filters=['leaflet', 'config'],     filter_match=False, filter_dirs=True)
+compress(dir='ott/map/static/resources/leaflet/', ext='js',  fname='ott.leaflet', filters=['leaflet-src'], filter_match=False, filter_dirs=True)
+compress(dir='ott/map/static/resources/leaflet/', ext='css', fname='ott.leaflet', filters=['leaflet-src'], filter_match=False, filter_dirs=True)
 
