@@ -82,10 +82,8 @@ ott.leaflet.map.Stops = {
         // THIS WORKS ... but marker popup moves upwards
         // marker.setIcon(this.style.busStopIcon);
         //
-
-        var THIS = this;
         setTimeout(function () {
-            THIS.closePopup();
+            marker.closePopup();
         }, 5000);
 
         return true;
