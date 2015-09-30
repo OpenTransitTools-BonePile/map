@@ -65,7 +65,10 @@ ott.leaflet.map.Map = {
         // step 6: make map
         this.map = new L.Map('map', mapProps);
         this.layer_control = L.control.layers(this.baseLayers).addTo(this.map);
-        L.control.zoom({position : 'topright'}).addTo(this.map);
+
+        // if zoom && home elif zoom
+        //L.control.zoom({position : 'topright'}).addTo(this.map);
+        L.Control.zoomHome({position : 'topright'}).addTo(this.map);
 
         if(config.addWeather)
             L.control.weather({
