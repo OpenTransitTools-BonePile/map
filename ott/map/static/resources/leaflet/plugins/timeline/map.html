@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Interactive Map</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="/resources/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="/resources/leaflet/ott.leaflet.css" />
+        <script src="/resources/leaflet/ott.leaflet.js"></script>
+        <script src="/resources/jquery/jquery.min.js" type="text/javascript"></script>
+
+        <style>
+            body {
+            padding: 0;
+            margin: 0;
+            }
+            html, body, #map {
+            height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+
+
+        <script src="/js/ott.leaflet.js"     type="text/javascript"></script>
+        <script src="/js/leaflet/config.js"  type="text/javascript"></script>
+        <script type="text/javascript">
+            //$(document).ready(function(){
+                this.map = new ott.leaflet.map.Map(ott.config);
+                this.stops = new ott.leaflet.map.Stops(ott.config, this.map.map);
+                this.geo = new ott.leaflet.utils.GeoLocation(this.map.map);
+            //});
+        </script>
+
+    </body>
+</html>
