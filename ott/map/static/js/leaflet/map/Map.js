@@ -19,6 +19,9 @@ ott.leaflet.map.Map = {
     {
         console.log("enter leaflet Map() constructor");
 
+        // step 0: fix up some basics (default image needed for some marker layers, ala timeline)
+        L.Icon.Default.imagePath = '/resources/leaflet/images/';
+
         // step 1: map div
         this.targetDiv = targetDiv || 'map';
 
@@ -53,11 +56,12 @@ ott.leaflet.map.Map = {
 
         // step 5: collect map config
         var mapProps = {
-            measureControl: true,
             layers  : [ defaultBaseLayer ],
             center : (config.initLatLng || new L.LatLng(45.5, -122.68)),
             zoom : (config.initZoom || 12),
-            zoomControl : false
+            zoomControl : false,
+            measureControl : true
+
         }
         if(config.minZoom) mapProps['minZoom'] = config.minZoom;
         if(config.maxZoom) mapProps['maxZoom'] = config.maxZoom;
@@ -68,7 +72,7 @@ ott.leaflet.map.Map = {
 
         // if zoom && home elif zoom
         //L.control.zoom({position : 'topright'}).addTo(this.map);
-        L.Control.zoomHome({position : 'topright'}).addTo(this.map);
+        L.Control.zoomHome({position : 'topleft'}).addTo(this.map);
 
         if(config.addWeather)
             L.control.weather({

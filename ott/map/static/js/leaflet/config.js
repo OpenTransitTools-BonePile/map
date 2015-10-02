@@ -49,7 +49,7 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
                 name : ott.params.mapName || 'Map',
                 url  : 'http://{s}.trimet.org/tilecache/tilecache.py/1.0.0/currentOSM/{z}/{x}/{y}',
                 subdomains : ['tilea','tileb','tilec','tilec'],
-                minZoom : 11,
+                minZoom : 10,
                 maxZoom : 21,
                 maxNativeZoom : 20,
                 attribution : ott.params.mapAttribution || ott.osm_attribution
@@ -58,7 +58,7 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
                 name : ott.params.aerialName || 'Satellite',
                 url  : 'http://{s}.trimet.org/tilecache/tilecache.py/1.0.0/hybridOSM/{z}/{x}/{y}',
                 subdomains : ['tilea','tileb','tilec','tilec'],
-                minZoom : 11,
+                minZoom : 10,
                 maxZoom : 21,
                 maxNativeZoom : 20,
                 attribution : ott.params.aerialAttribution || ott.osm_attribution
@@ -67,7 +67,7 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
                 name : 'Portland Metro Map',
                 url  : 'http://{s}.oregonmetro.gov/ArcGIS/rest/services/metromap/baseSimple/MapServer/tile/{z}/{y}/{x}',
                 subdomains : ['gistiles1','gistiles2','gistiles3','gistiles4'],
-                minZoom : 11,
+                minZoom : 10,
                 maxZoom : 21,
                 maxNativeZoom : 20,
                 attribution : ott.osm_attribution
@@ -76,7 +76,7 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
                 name : 'Portland Metro Aerials 2013',
                 url  : 'http://{s}.oregonmetro.gov/ArcGIS/rest/services/photo/2013aerialphoto/MapServer/tile/{z}/{y}/{x}',
                 subdomains : ['gistiles1','gistiles2','gistiles3','gistiles4'],
-                minZoom : 11,
+                minZoom : 10,
                 maxZoom : 21,
                 maxNativeZoom : 20,
                 attribution : ott.osm_attribution
