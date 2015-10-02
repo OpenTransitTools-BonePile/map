@@ -7,10 +7,7 @@ ott.leaflet.map.Map = {
     baseLayers : {},
 
     layerControl : null,
-
-    contextMenu             : null,
-    contextMenuModuleItems  : null,
-    contextMenuLatLng       : null,
+    contextMenu  : null,
 
     /**
      * @consturctor
@@ -54,6 +51,7 @@ ott.leaflet.map.Map = {
                 defaultBaseLayer = layer;
         }
 
+
         // step 5: collect map config
         var mapProps = {
             layers  : [ defaultBaseLayer ],
@@ -66,13 +64,22 @@ ott.leaflet.map.Map = {
         if(config.minZoom) mapProps['minZoom'] = config.minZoom;
         if(config.maxZoom) mapProps['maxZoom'] = config.maxZoom;
 
+        // step 5b : config menu (part 1 of 2 ... have to add map)
+        this.contextMenu = new ott.leaflet.map.ContextMenu();
+        var cmMapCfg = this.contextMenu.getMapConfig();
+        mapProps = L.Util.extend(mapProps, cmMapCfg);
+        //this.contextMenu.addTo(this.map);
+
         // step 6: make map
         this.map = new L.Map('map', mapProps);
         this.layer_control = L.control.layers(this.baseLayers).addTo(this.map);
 
+        if(this.contextMenu)
+            this.contextMenu.setMap(this.map);
+
         // if zoom && home elif zoom
         //L.control.zoom({position : 'topright'}).addTo(this.map);
-        L.Control.zoomHome({position : 'topleft'}).addTo(this.map);
+        var zh = L.Control.zoomHome({position : 'topleft'}).addTo(this.map);
 
         if(config.addWeather)
             L.control.weather({
@@ -101,6 +108,6 @@ ott.leaflet.map.Map = {
         map.setView([45.505, -122.65], 13);
     },
 
-         CLASS_NAME: "ott.leaflet.map.Map"
-     };
-     ott.leaflet.map.Map = new ott.Class(ott.leaflet.map.Map);
+    CLASS_NAME: "ott.leaflet.map.Map"
+};
+ott.leaflet.map.Map = new ott.Class(ott.leaflet.map.Map);
