@@ -136,7 +136,9 @@ ott.leaflet.map.Stops = {
         return retVal;
     },
 
-    /** ajax query of the server ... filter data based on current map BBOX */
+    /** ajax query of the server ... filter data based on current map BBOX
+     *  NOTE: relies on jQuery
+     */
     queryServer : function()
     {
         if(this.refreshData())
