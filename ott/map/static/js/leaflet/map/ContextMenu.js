@@ -25,24 +25,28 @@ ott.leaflet.map.ContextMenu = {
             contextmenuItems: [{
                 text: 'Show coordinates',
                 callback: THIS.showCoordinates
-            }, {
+            },
+            {
                 text: 'Center map here',
-                callback: THIS.centerMap
-            }, '-', {
+                callback: function(e){ THIS.centerMap(e); }
+            },
+            '-',
+            {
                 text: 'Zoom in',
-                icon: 'images/zoom-in.png',
-                callback: THIS.zoomIn
-            }, {
+                icon: 'images/ui/zoom-in.png',
+                callback: function(e){ THIS.zoomIn(e); }
+            },
+            {
                 text: 'Zoom out',
-                icon: 'images/zoom-out.png',
-                callback: THIS.zoomOut
+                icon: 'images/ui/zoom-out.png',
+                callback: function(e){ THIS.zoomOut(e); }
             }]
-	    }
-	    return retVal;
+        }
+        return retVal;
     },
 
     showCoordinates : function(e) {
-	    alert(e.latlng);
+        alert(e.latlng);
     },
 
     centerMap : function(e) {
@@ -50,11 +54,11 @@ ott.leaflet.map.ContextMenu = {
     },
 
     zoomIn : function(e) {
-	    this.map.zoomIn();
+        this.map.zoomIn();
     },
 
     zoomOut : function(e) {
-	    this.map.zoomOut();
+        this.map.zoomOut();
     },
 
     CLASS_NAME: "ott.leaflet.map.ContextMenu"

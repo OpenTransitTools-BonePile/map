@@ -68,7 +68,6 @@ ott.leaflet.map.Map = {
         this.contextMenu = new ott.leaflet.map.ContextMenu();
         var cmMapCfg = this.contextMenu.getMapConfig();
         mapProps = L.Util.extend(mapProps, cmMapCfg);
-        //this.contextMenu.addTo(this.map);
 
         // step 6: make map
         this.map = new L.Map('map', mapProps);
