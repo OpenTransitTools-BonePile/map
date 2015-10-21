@@ -1,14 +1,10 @@
-ott.namespace("ott.leaflet.utils");
+ott.namespace("ott.utils");
 
 /**
- * Parses the URL parameters, and if there's an X & Y, we put that point up (along with a popup)
- *
- * contact: labs AT trimet DOT org
- * Copyright 2008 (c) TriMet
- *
+ * Parses the URL parameters, and if there's an X & Y, we put that point up on the map (along with a popup)
  * @class
  */
-vc = {
+ott.utils.ParseUrlParams = {
 
     staticControl : null,
     m_params      : null,
@@ -19,7 +15,6 @@ vc = {
     // known URL parameters to maps
     MOBILITY    : "mobility",   // if this string is in the domain that the page is on, give a Barrier() profile experience
     HIDE_STOPS  : "hideStops",  // flag to initially hide the stops WFS layer
-    MAP_IT      : "mapit",      // flag sent from ott.leaflet.org and the advanced trip planner
 
     /**
      *
@@ -253,7 +248,7 @@ vc = {
             }
             else if(map)
             {
-                ott.leaflet.utils.OpenLayersUtils.setCenter(map, h.x, h.y, h.z);
+                ott.leaflet.utils.map.setCenter(map, h.x, h.y, h.z);
             }
         }
         catch(e)
@@ -274,7 +269,7 @@ vc = {
     parseQueryStrToStrings: function(q)
     {
         var obj = this.parseQueryStrToArrays(q);
-        return ott.leaflet.utils.StringUtils.arraysToStrings(obj);
+        return ott.utils.StringUtils.arraysToStrings(obj);
     },
 
     /**
@@ -325,8 +320,6 @@ vc = {
         return null;
     },
 
-
-    CLASS_NAME: "ott.leaflet.utils.ParseUrlParams"
+    CLASS_NAME: "ott.utils.ParseUrlParams"
 };
-
-  = new ott.Class(ott.leaflet.utils.ParseUrlParams);
+ott.utils.ParseUrlParams = new ott.Class(ott.utils.ParseUrlParams);
