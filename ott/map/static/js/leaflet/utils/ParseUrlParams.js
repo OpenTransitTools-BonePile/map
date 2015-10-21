@@ -8,7 +8,7 @@ ott.namespace("ott.leaflet.utils");
  *
  * @class
  */
-ott.leaflet.utils.ParseUrlParams = {
+vc = {
 
     staticControl : null,
     m_params      : null,
@@ -28,11 +28,11 @@ ott.leaflet.utils.ParseUrlParams = {
     {
         try
         {
-            ott.leaflet.configure(this, config);
+            ott.configure(this, config);
 
             var url       = this.getUrl();
             this.m_arrays = this.parseQueryStrToArrays(url);
-            this.m_params = ott.leaflet.utils.StringUtils.arraysToStrings(this.m_arrays, null, true);
+            this.m_params = ott.utils.StringUtils.arraysToStrings(this.m_arrays, null, true);
         }
         catch(e)
         {
@@ -329,4 +329,4 @@ ott.leaflet.utils.ParseUrlParams = {
     CLASS_NAME: "ott.leaflet.utils.ParseUrlParams"
 };
 
-ott.leaflet.utils.ParseUrlParams = new ott.leaflet.Class(ott.leaflet.utils.ParseUrlParams);
+  = new ott.Class(ott.leaflet.utils.ParseUrlParams);
