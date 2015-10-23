@@ -304,9 +304,6 @@ ott.utils.ParseUrlParams = {
         return q;
     },
 
-    /**
-     *
-     */
     getUrl : function()
     {
         try
