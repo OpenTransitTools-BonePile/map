@@ -1,11 +1,11 @@
 /** @namespace */
-trimet.namespace("trimet.utils");
+ott.namespace("ott.utils");
 
 
 /**
  * @class 
  */
-trimet.utils.SolrUtils = {
+ott.utils.SolrUtils = {
 
     id:    'id',
     total: 'response.numFound',
@@ -37,7 +37,7 @@ trimet.utils.SolrUtils = {
             {name: 'street_direction'},
             {name: 'providers'},
             {name: 'ada_boundary'},
-            {name: 'trimet_boundary'},
+            {name: 'ott_boundary'},
 
             {name: 'spaces'},
             {name: 'routes'},
@@ -61,7 +61,7 @@ trimet.utils.SolrUtils = {
                 y = d.lat;
             }
 
-            var p = trimet.utils.OpenLayersUtils.makePoint(x, y, isMercator);
+            var p = ott.utils.OpenLayersUtils.makePoint(x, y, isMercator);
             var v = new OpenLayers.Feature.Vector(p, d);
             d.feature = v;
             retVal.push(v);
@@ -85,18 +85,5 @@ trimet.utils.SolrUtils = {
         return data;
     },
 
-    /** @param layer is an OpenLayer Vector layer, to be used with a Grid Select plugin */
-    makeSolrStore : function(url, config)
-    {
-        if(url == null)
-        {
-            if(trimet.isLocalHost())
-                url = '/js/trimet/widget/search/test.json';
-            else
-                url = trimet.utils.URL.solrSelect
-        }
-        return trimet.utils.ExtUtils.makeJsonStore(url, this.id, this.total, this.root, this.fields, config);
-    },
-
-    CLASS_NAME: "trimet.utils.SolrUtils"
+    CLASS_NAME: "ott.utils.SolrUtils"
 };
