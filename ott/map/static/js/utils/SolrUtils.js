@@ -84,7 +84,7 @@ ott.utils.SolrUtils = {
         return data;
     },
 
-    defaultParameters : function(sort="sort_order%20asc", rows=200, outputFormat="json")
+    defaultParameters : function(sort="sort_order asc", rows=200, outputFormat="json")
     {
         var parameters = {
             sort : sort,
@@ -94,10 +94,16 @@ ott.utils.SolrUtils = {
         return parameters;
     },
 
+    processServerResponse : function(data)
+    {
+        console.log("SOLR num records: ");
+        console.log(data && data.features ? data.features.length : "empty");
+    },
+
     /** ajax query of the server ... filter data based on current map BBOX
      *  NOTE: relies on jQuery
      */
-    queryServer : function(solrUrl="http://maps7.trimet.org/solr/select", solrParams=null)
+    queryServer : function(solrParams=null, solrUrl="http://maps7.trimet.org/solr/select", outputFormat="json")
     {
         // TODO: move this to the config (or default config)
         if(solrParams == null || solrUrl == null)
@@ -109,9 +115,9 @@ ott.utils.SolrUtils = {
 
         var THIS = this;
         $.ajax({
-            url: solrUrl + solrParams
-            datatype: 'json',
-            jsonCallback: 'getJson',
+            url: solrUrl + solrParams,
+            async: false,
+            datatype: outputFormat,
             success: function(data) { THIS.processServerResponse(data); }
         });
     },
