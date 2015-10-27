@@ -164,7 +164,6 @@ ott.leaflet.map.Stops = {
             $.ajax({
                 url: geoJsonUrl + L.Util.getParamString(parameters),
                 datatype: 'json',
-                jsonCallback: 'getJson',
                 success: function(data) { THIS.processServerResponse(data); }
             });
         }
