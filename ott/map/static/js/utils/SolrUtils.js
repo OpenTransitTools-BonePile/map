@@ -81,37 +81,35 @@ ott.utils.SolrUtils = {
             if(n != null && r != null)
                 data[n] = r;
         }
-
         return data;
     },
 
-
+    defaultParameters : function(sort="sort_order%20asc", rows=200, outputFormat="json")
+    {
+        var parameters = {
+            sort : sort,
+            rows : rows,
+            wt   : outputFormat
+        }
+        return parameters;
+    },
 
     /** ajax query of the server ... filter data based on current map BBOX
      *  NOTE: relies on jQuery
      */
-    queryServer : function()
+    queryServer : function(solrUrl="http://maps7.trimet.org/solr/select", solrParams=null)
     {
         // TODO: move this to the config (or default config)
-        var solrUrl = "http://maps7.trimet.org/solr/select?q=type:route&sort=sort_order%20asc&rows=200&wt=json";
-        var parameters = {
-            q: 'WFS',
-            version: '1.1.0',
-            request: 'getFeature',
-            typeName: 'current:t',
-            maxFeatures: this.maxFeatures,
-            srsName: "EPSG:4326",
-            outputFormat: 'application/json'
-        };
-        var customParams = {
-            q:
-        };
-        var parameters = L.Util.extend(defaultParameters, customParams);
-        console.log(geoJsonUrl + L.Util.getParamString(parameters));
+        if(solrParams == null || solrUrl == null)
+        {
+            console.log("ERROR: SolrUtils.queryServer() has null solrParams or url.");
+            return;
+        }
+        console.log(solrUrl + solrParams);
 
         var THIS = this;
         $.ajax({
-            url: geoJsonUrl + L.Util.getParamString(parameters),
+            url: solrUrl + solrParams
             datatype: 'json',
             jsonCallback: 'getJson',
             success: function(data) { THIS.processServerResponse(data); }

@@ -35,6 +35,8 @@
                 this.map = new ott.leaflet.map.Map(ott.config);
                 this.stops = new ott.leaflet.map.Stops(ott.config, this.map.map);
                 this.geo = new ott.leaflet.utils.GeoLocation(this.map.map);
+
+                params = L.Util.extend(this.defaultParameters(), {q:""});
             //});
         </script>
 
