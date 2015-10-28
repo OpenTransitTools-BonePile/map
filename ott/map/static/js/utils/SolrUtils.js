@@ -61,10 +61,11 @@ ott.utils.SolrUtils = {
                 y = d.lat;
             }
 
-            var p = ott.utils.OpenLayersUtils.makePoint(x, y, isMercator);
-            var v = new OpenLayers.Feature.Vector(p, d);
-            d.feature = v;
-            retVal.push(v);
+            //var p = ott.utils.OpenLayersUtils.makePoint(x, y, isMercator);
+            //var v = new OpenLayers.Feature.Vector(p, d);
+            //d.feature = v;
+            //retVal.push(v);
+            retVal.push(d);
         }
         return retVal;
     },
@@ -97,6 +98,7 @@ ott.utils.SolrUtils = {
     processServerResponse : function(data)
     {
         console.log("SOLR num records: ");
+        data = this.solrRecordToObject(data);
         console.log(data && data.features ? data.features.length : "empty");
     },
 
