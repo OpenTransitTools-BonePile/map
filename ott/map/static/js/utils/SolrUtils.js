@@ -1,11 +1,11 @@
 /** @namespace */
-trimet.namespace("trimet.utils");
+ott.namespace("ott.utils");
 
 
 /**
  * @class 
  */
-trimet.utils.SolrUtils = {
+ott.utils.SolrUtils = {
 
     id:    'id',
     total: 'response.numFound',
@@ -37,7 +37,7 @@ trimet.utils.SolrUtils = {
             {name: 'street_direction'},
             {name: 'providers'},
             {name: 'ada_boundary'},
-            {name: 'trimet_boundary'},
+            {name: 'ott_boundary'},
 
             {name: 'spaces'},
             {name: 'routes'},
@@ -61,10 +61,11 @@ trimet.utils.SolrUtils = {
                 y = d.lat;
             }
 
-            var p = trimet.utils.OpenLayersUtils.makePoint(x, y, isMercator);
-            var v = new OpenLayers.Feature.Vector(p, d);
-            d.feature = v;
-            retVal.push(v);
+            //var p = ott.utils.OpenLayersUtils.makePoint(x, y, isMercator);
+            //var v = new OpenLayers.Feature.Vector(p, d);
+            //d.feature = v;
+            //retVal.push(v);
+            retVal.push(d);
         }
         return retVal;
     },
@@ -81,22 +82,47 @@ trimet.utils.SolrUtils = {
             if(n != null && r != null)
                 data[n] = r;
         }
-
         return data;
     },
 
-    /** @param layer is an OpenLayer Vector layer, to be used with a Grid Select plugin */
-    makeSolrStore : function(url, config)
+    defaultParameters : function(sort="sort_order asc", rows=200, outputFormat="json")
     {
-        if(url == null)
-        {
-            if(trimet.isLocalHost())
-                url = '/js/trimet/widget/search/test.json';
-            else
-                url = trimet.utils.URL.solrSelect
+        var parameters = {
+            sort : sort,
+            rows : rows,
+            wt   : outputFormat
         }
-        return trimet.utils.ExtUtils.makeJsonStore(url, this.id, this.total, this.root, this.fields, config);
+        return parameters;
     },
 
-    CLASS_NAME: "trimet.utils.SolrUtils"
+    processServerResponse : function(data)
+    {
+        console.log("SOLR num records: ");
+        data = this.solrRecordToObject(data);
+        console.log(data && data.features ? data.features.length : "empty");
+    },
+
+    /** ajax query of the server ... filter data based on current map BBOX
+     *  NOTE: relies on jQuery
+     */
+    queryServer : function(solrParams=null, solrUrl="http://maps7.trimet.org/solr/select", outputFormat="json")
+    {
+        // TODO: move this to the config (or default config)
+        if(solrParams == null || solrUrl == null)
+        {
+            console.log("ERROR: SolrUtils.queryServer() has null solrParams or url.");
+            return;
+        }
+        console.log(solrUrl + solrParams);
+
+        var THIS = this;
+        $.ajax({
+            url: solrUrl + solrParams,
+            async: false,
+            datatype: outputFormat,
+            success: function(data) { THIS.processServerResponse(data); }
+        });
+    },
+
+    CLASS_NAME: "ott.utils.SolrUtils"
 };
