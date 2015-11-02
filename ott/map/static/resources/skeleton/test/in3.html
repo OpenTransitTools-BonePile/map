@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    Header & Footer 100% (as opposed to fixed at 960px max)
+    from http://stackoverflow.com/questions/10380351/skeleton-css-how-to-span-the-width-of-the-screen
+    -->
+
+
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Skeleton: Responsive CSS Boilerplate</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/resources/skeleton/normalize.css">
+    <link rel="stylesheet" href="/resources/skeleton/skeleton.css">
+    <link rel="stylesheet" href="/resources/skeleton/test/custom.css">
+
+    <!-- Scripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="css/github-prettify-theme.css">
+    <script src="/resources/skeleton/test/site.js"></script>
+
+    <!-- Favicon
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="dist/images/favicon.png">
+    <style>
+        * {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        }
+
+        body    {
+        color: #333333;
+        padding: 0px;
+        }
+
+        img {
+        max-width: 100%;
+        }
+
+
+        #top    {
+        width: 100%;
+        background: #069;
+        border-bottom: 3px solid #FC6;
+        padding: 8px;
+        margin: 0px;
+        }
+
+        nav.main-nav    {
+        text-align: right;
+        font-size: 12px;
+        padding: 110px 0px 0px 0px;
+        color: #666666;
+        }
+
+        nav.top-subnav  {
+        font-size: 11px;
+        color: #f6f6f6;
+        text-align: center;
+        }
+
+        nav.main-nav ul li {
+        display: inline;
+        list-style-type: none;
+        padding-left: 20px;
+        }
+
+        #Feature-Banner {
+        width: 100%;
+        margin: 0px 0px 20px 0px;
+        }
+
+        .footer {
+        width: 100%;
+        background-color: #063;
+        color: #f6f6f6;
+        margin: 20px auto 0px auto;
+        padding: 20px 0px;
+        font-size: 10px;
+        line-height: 18px;
+        }
+
+        .footer ul li   {
+        margin: 0px 0px 0px 15px;
+        line-height: 16px;
+        font-size: 10px;
+        }
+
+        .footer h6 {
+        color: #CCC;
+        margin: 0px 0px 5px 0px;
+        }
+
+        .textRight  {
+        text-align: right;
+        }
+
+        .contactTitle   {
+        font-weight: bold;
+        font-size: 11px;
+        }
+
+        #Credits    {
+        width: 100%;
+        font-size: 11px;
+        background-color: #033;
+        color: #cccccc;
+        text-align: center;
+        padding: 20px 10px;
+        letter-spacing: 0.09em;
+        border-top: 1px solid #444444;
+        }
+    </style>
+</head>
+<body class="code-snippets-visible">
+<div id="top">
+    <div id="top-nav">
+        <nav class="top-subnav">
+            BUTTON · BUTTON · BUTTON · BUTTON · BUTTON · BUTTON · BUTTON · BUTTON
+        </nav>
+    </div>
+</div>
+
+<div class="container">
+
+    <header>
+        <div class="three columns">
+            <!-- LOGO --><img src="#" alt="Logo">
+        </div>
+        <div class="nine columns">
+            <nav class="main-nav">
+                <ul class="main-nav">
+                    <li>BUTTON</li>
+                    <li>BUTTON</li>
+                    <li>BUTTON</li>
+                    <li>BUTTON</li>
+                    <li>BUTTON</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <div class="twelve columns">
+        <!-- Feature Banner image -->
+    </div>
+
+    <!-- ===== MAIN BODY ====== -->
+
+    <!-- LEFT COLUMN ---------- -->
+    <div class="three columns">
+        <!-- Left column content goes here -->
+        <ul>
+            <li>BUTTON</li>
+            <li>BUTTON</li>
+            <li>BUTTON</li>
+            <li>BUTTON</li>
+            <li>BUTTON</li>
+        </ul>
+    </div>
+
+
+    <!-- CENTER COLUMN ---------- -->
+    <div class="six columns">
+        <!-- Center column content goes here -->
+        <h3>Main Title</h3>
+        <h5 class="eventTitle">Article Title</h5><br />
+        <p class="eventDetail">October 8, 2012 · 5pm - 8pm</p>
+        <p class="eventDescrip">Skeleton is a small collection of well-organized CSS files that can help you rapidly develop sites that look beautiful at any size, be it a 17" laptop screen or an iPhone.
+        </p>
+    </div>
+
+
+    <!-- RIGHT COLUMN ---------- -->
+    <div class="three columns">
+        <!-- Right column content goes here -->
+        <form class="search clearfix">
+            <input type="search" placeholder="eg: Website Design" value="">
+            <button type="submit">Search</button>
+        </form>
+
+        <form class="search clearfix">
+            <input type="search" placeholder="you@email.com" value="">
+            <button type="submit">Sign-up</button>
+        </form>
+    </div>
+</div>
+
+
+<!-- ===== FOOTER ====== -->
+
+<div class="footer">
+    <footer class="container">
+        <div class="three columns">
+            <header><h6>Sample Title</h6></header>
+            <ul>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+            </ul>
+        </div>
+        <div class="three columns">
+            <header><h6>Sample Title</h6></header>
+            <ul>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+            </ul>
+        </div>
+        <div class="three columns">
+            <header><h6>Sample Title</h6></header>
+            <ul>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+            </ul>
+        </div>
+        <div class="three columns textRight">
+            <span class="contactTitle">Business Name</span> <br />
+            12345 Main Road<br />
+            City, CO 80334<br />
+            (505) 555-5555<br />
+            Contact Us
+        </div>
+    </footer>
+</div>
+
+<div id="Credits">
+    Website Design by Dominical Design & Development · www.dominicaldesign.com · Indian Hills, Colorado
+</div>
+
+
+</body>
+</html>
