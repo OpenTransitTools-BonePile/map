@@ -13,6 +13,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/autocomplete.css" rel="stylesheet">
 
     <style>
         /* Move down content because we have a fixed navbar that is 50px tall */
@@ -54,56 +55,53 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
         <div class="navbar-form navbar-right">
-
-            <input type="text" placeholder="search" class="form-control">
-            <div class="form-group">
-                <button type="submit" ><img src="/images/favicon.png"></button>
-                <button type="submit" ><img src="/images/favicon.png"></button>
-                <button type="submit" ><img src="/images/favicon.png"></button>
-            </div>
+            <input type="text" id="place" placeholder="search" class="form-control">
         </div>
     </div><!--/.navbar-collapse -->
 </nav>
 
+
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
-    <h2>Trip Planner</h2>
+    <h2>SOLR SEARCHY</h2>
 </div>
 
-<div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-    </div>
-
-    <hr>
-
-    <footer>
-        <p>&copy; OpenTransitTools 2016</p>
-    </footer>
 </div> <!-- /container -->
 
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script src="/resources/jquery/jquery.min.js"></script>
+<script src="/resources/jquery/jquery-ui-autocomplete.js"></script>
+<script src="/js/ott.js"></script>
+<script src="/js/utils/Autocomplete.js"></script>
+
+<script type="text/javascript">
+    // main entry
+    $(function(){
+        var remove_title = "remove";
+        var cache = new PlaceCache(remove_title, true);
+        var stop = new SOLRAutoComplete('#place', 'http://maps6.trimet.org/solr/select', cache);
+        stop.enable_ajax();
+        stop.geo_div = "#place_coord";
+
+        function localized_place_name_format(name, city, type, id)
+        {
+            var ret_val = name;
+            try {
+                var stop = ''
+                if(type == 'stop')
+                    stop = " (Stop ID " + id + ")";
+                ret_val = name + city + stop;
+            }
+            catch(e) {
+            }
+            return ret_val;
+        }
+        stop.place_name_format = localized_place_name_format;
+
+    });
+</script>
+
 <script src="../js/bootstrap.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
