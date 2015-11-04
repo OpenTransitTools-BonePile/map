@@ -6,7 +6,6 @@ ott.utils.Autocomplete = {
 };
 ott.utils.Autocomplete = new ott.Class(ott.utils.Autocomplete);
 
-
 /**
  * data structs for storing place data... 
  */
