@@ -5,7 +5,7 @@
 
 /* bootstrap navbar form size */
 .navbar-form .form-control {
-    min-width: 285px;
+    min-width: 280px;
 }
 
 /* styles from jquery-ui-autocomplete.css */
