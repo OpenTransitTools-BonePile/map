@@ -55,10 +55,9 @@
 
     <script src="js/ott.leaflet.js"></script>
     <script src="js/leaflet/config.js"></script>
-    <script src="js/utils/ParseUrlParams.js"></script>
-    <script src="js/utils/SolrUtils.js"></script>
     <script src="js/leaflet/map/Map.js"></script>
     <script src="js/utils/Autocomplete.js"></script>
+    <script src="js/leaflet/map/Search.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -88,37 +87,13 @@
         this.map = new ott.leaflet.map.Map(ott.config);
         this.stops = new ott.leaflet.map.Stops(ott.config, this.map.map);
         this.geo = new ott.leaflet.utils.GeoLocation(this.map.map);
+        this.search = new ott.leaflet.map.Search(this.map.map);
 
-
-        var params = L.Util.extend(ott.utils.SolrUtils.defaultParameters(), {q:"type:route"});
-        params = L.Util.getParamString(params);
-
+        //var params = L.Util.extend(ott.utils.SolrUtils.defaultParameters(), {q:"type:route"});
+        //params = L.Util.getParamString(params);
         // ott.utils.SolrUtils.queryServer has both errors and casues problems with auto complete
         // ott.utils.SolrUtils.queryServer(params);
 
-        // auto complete
-        $(function(){
-            var remove_title = "remove";
-            var cache = new PlaceCache(remove_title, true);
-            var stop = new SOLRAutoComplete('#place', 'http://maps7.trimet.org/solr/select', cache);
-            stop.enable_ajax();
-            stop.geo_div = "#place_coord";
-
-            function localized_place_name_format(name, city, type, id)
-            {
-                var ret_val = name;
-                try {
-                    var stop = ''
-                    if(type == 'stop')
-                        stop = " (Stop ID " + id + ")";
-                    ret_val = name + city + stop;
-                }
-                catch(e) {
-                }
-                return ret_val;
-            }
-            stop.place_name_format = localized_place_name_format;
-        });
     });
 </script>
 </body>
