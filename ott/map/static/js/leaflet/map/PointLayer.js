@@ -4,8 +4,9 @@ ott.leaflet.map.PointLayer = {
 
     map : null,
     url : null,
-    data : null,
     layer : null,
+    markers : [],
+    isVisible : false,
     buttonDiv : null,
 
     /**
@@ -18,7 +19,7 @@ ott.leaflet.map.PointLayer = {
         this.layerId = layerId
         this.buttonDiv = "#" + layerId;
         this.url = url;
-        this.makeSolr();
+        this.callSolr();
 
         console.log("exit leaflet PointLayer() constructor");
     },
@@ -27,7 +28,8 @@ ott.leaflet.map.PointLayer = {
     {
         console.log("PointLayer: " + rec.label + '::'  + rec.lat + ',' + rec.lon + this.url);
         var pt = {lat:rec.lat, lng:rec.lon};
-        L.marker(pt).addTo(this.map).bindPopup(this.makePopupLabel(rec)).openPopup();
+        var marker = L.marker(pt).addTo(this.map).bindPopup(this.makePopupLabel(rec));
+        this.data.push(marker);
         return true;
     },
 
@@ -40,9 +42,27 @@ ott.leaflet.map.PointLayer = {
         return retVal;
     },
 
-    makeSolr : function(removeTitle="remove")
+    callSolr : function()
     {
         var THIS = this;
+    },
+
+    show : function()
+    {
+        this.isVisible = true;
+    },
+
+    hide : function()
+    {
+        this.isVisible = false;
+    },
+
+    toggle : function()
+    {
+        if(this.isVisible)
+            this.hide();
+        else
+            this.show();
     },
 
     CLASS_NAME: "ott.leaflet.map.PointLayer"
