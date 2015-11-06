@@ -32,9 +32,9 @@ ott.leaflet.map.Search = {
         // auto complete
         $(function(){
             var cache = new PlaceCache(removeTitle, true);
-            var stop = new SOLRAutoComplete(THIS.targetDiv, THIS.url, cache);
-            stop.enable_ajax();
-            stop.geo_div = THIS.targetDiv + "_coord";
+            var solr = new SOLRAutoComplete(THIS.targetDiv, THIS.url, cache);
+            solr.enable_ajax();
+            solr.geo_div = THIS.targetDiv + "_coord";
 
             function localized_place_name_format(name, city, type, id)
             {
@@ -49,8 +49,8 @@ ott.leaflet.map.Search = {
                 }
                 return ret_val;
             }
-            stop.place_name_format = localized_place_name_format;
-            stop.select_callback = function(rec) { THIS.selectCallback(rec); };
+            solr.place_name_format = localized_place_name_format;
+            solr.select_callback = function(rec) { THIS.selectCallback(rec); };
         });
     },
 
