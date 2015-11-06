@@ -4,6 +4,7 @@ ott.leaflet.map.Search = {
 
     map : null,
     url : null,
+    layer : null,
     targetDiv : null,
 
     /**
@@ -16,13 +17,25 @@ ott.leaflet.map.Search = {
         this.targetDiv = targetDiv;
         this.url = url;
         this.makeSolr();
+
         console.log("exit leaflet Search() constructor");
     },
 
     selectCallback : function(rec)
     {
-        console.log("Search: " + rec.label + '::'  + rec.lat + ',' + rec.lon);
+        console.log("Search: " + rec.label + '::'  + rec.lat + ',' + rec.lon + this.url);
+        var pt = {lat:rec.lat, lng:rec.lon};
+        L.marker(pt).addTo(this.map).bindPopup(this.makePopupLabel(rec)).openPopup();
         return true;
+    },
+
+    makePopupLabel : function(rec)
+    {
+        var retVal = rec.label;
+        // TODO add from & to
+        // if type == 'stop' ... arrivals/etc...
+        /// blah
+        return retVal;
     },
 
     makeSolr : function(removeTitle="remove")
