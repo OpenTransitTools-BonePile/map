@@ -43,10 +43,10 @@ ott.leaflet.map.TransitIcons = {
     transitCenterRideIcon   : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/tc20.png'),
     transitCenterRideIconON : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/tc20ON.png'),
 
-    fareOutletIcon    : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/fare20.png'),
-    fareOutletIconON  : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/fare20ON.png'),
-    tvmOutletIcon     : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/tvm20.png'),
-    tvmOutletIconON   : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/tvm20ON.png'),
+    fareOutletIcon   : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/fare20.png'),
+    fareOutletIconON : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/fare20ON.png'),
+    tvmOutletIcon    : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/tvm20.png'),
+    tvmOutletIconON  : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/tvm20ON.png'),
 
     geojsonMarkerOptions : {
         radius: 6,
@@ -67,10 +67,9 @@ ott.leaflet.map.TransitIcons = {
     /**
      * these are how trimet orders our styles based on mode type
      */
-    iconByType : function(id, on=False)
+    iconByType : function(id, on=false)
     {
         var retVal = null;
-
         switch(id)
         {
             case 1:
