@@ -42,6 +42,8 @@ ott.leaflet.map.TransitIcons = {
     bikeAndRideIconON       : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/bike20ON.png'),
     transitCenterRideIcon   : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/tc20.png'),
     transitCenterRideIconON : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/tc20ON.png'),
+    fareOutletIcon          : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/tc20.png'),
+    fareOutletIconON        : ott.leaflet.map.IconUtils.icon20x20('/images/map/stop/tc20ON.png'),
 
     geojsonMarkerOptions : {
         radius: 6,
@@ -92,8 +94,51 @@ ott.leaflet.map.TransitIcons = {
             case 17:
                 retVal = L.marker(ll, {icon: this.bikeAndRideIcon});
                 break;
+            case 111:
+                retVal = L.marker(ll, {icon: this.fareOutletIcon});
+                break;
             default:
-                retVal = L.circleMarker(ll, geojsonMarkerOptions);
+                retVal = L.circleMarker(ll, this.geojsonMarkerOptions);
+                break;
+        };
+        return retVal;
+    },
+
+    iconByType : function(id)
+    {
+        var retVal = null;
+
+        switch(id)
+        {
+            case 1:
+                retVal = this.busStopIcon;
+                break;
+            case 2:
+                retVal = this.aerialTramStopIcon;
+                break;
+            case 3:
+                retVal = this.heavyRailStopIcon;
+                break;
+            case 4:
+                retVal = this.streetCarStopIcon;
+                break;
+            case 5:
+                retVal = this.lightRailStopIcon;
+                break;
+            case 10:
+                retVal = this.parkAndRideIcon;
+                break;
+            case 14:
+                retVal = this.transitCenterRideIcon;
+                break;
+            case 17:
+                retVal = this.bikeAndRideIcon;
+                break;
+            case 111:
+                retVal = this.fareOutletIcon;
+                break;
+            default:
+                retVal = this.geojsonMarkerOptions;
                 break;
         };
         return retVal;

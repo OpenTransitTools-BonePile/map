@@ -4,7 +4,7 @@ ott.leaflet.map.PointLayer = {
 
     map : null,
     url : null,
-    layer : null,
+    icon : null,
     markers : [],
     isVisible : false,
     buttonDiv : null,
@@ -19,18 +19,20 @@ ott.leaflet.map.PointLayer = {
         this.layerId = layerId
         this.buttonDiv = "#" + layerId;
         this.url = url;
+        this.icon = ott.leaflet.map.TransitIcons.
         this.callSolr();
+        if(this.markers.length > 0)
+            this.layer = L.layerGroup(this.markers);
 
         console.log("exit leaflet PointLayer() constructor");
     },
 
-    selectCallback : function(rec)
+    makeMarker : function(rec)
     {
         console.log("PointLayer: " + rec.label + '::'  + rec.lat + ',' + rec.lon + this.url);
         var pt = {lat:rec.lat, lng:rec.lon};
-        var marker = L.marker(pt).addTo(this.map).bindPopup(this.makePopupLabel(rec));
+        var marker = L.marker(pt, this.image).addTo(this.map).bindPopup(this.makePopupLabel(rec));
         this.data.push(marker);
-        return true;
     },
 
     makePopupLabel : function(rec)
