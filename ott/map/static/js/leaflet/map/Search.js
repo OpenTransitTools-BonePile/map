@@ -3,25 +3,32 @@ ott.namespace("ott.leaflet.map");
 ott.leaflet.map.Search = {
 
     map : null,
+    url : null,
+    targetDiv : null,
 
     /**
      * @consturctor
      */
-    initialize : function(config, targetDiv)
+    initialize : function(map, targetDiv='#place', url='http://maps7.trimet.org/solr/select')
     {
-        console.log("enter leaflet Map() constructor");
+        console.log("enter leaflet Search() constructor");
+        this.map = map;
+        this.targetDiv = targetDiv;
+        this.url = url;
         this.makeSolr();
-        console.log("exit leaflet Map() constructor");
+        console.log("exit leaflet Search() constructor");
     },
 
-    makeSolr : function(formId='#place', url='http://maps7.trimet.org/solr/select', removeTitle="remove")
+    makeSolr : function(removeTitle="remove")
     {
+        var THIS = this;
+
         // auto complete
         $(function(){
             var cache = new PlaceCache(removeTitle, true);
-            var stop = new SOLRAutoComplete(formId, url, cache);
+            var stop = new SOLRAutoComplete(THIS.targetDiv, THIS.url, cache);
             stop.enable_ajax();
-            stop.geo_div = formId + "_coord";
+            stop.geo_div = THIS.targetDiv + "_coord";
 
             function localized_place_name_format(name, city, type, id)
             {
