@@ -107,14 +107,14 @@ ott.leaflet.map.TransitIcons = {
         return retVal;
     },
 
-    makeMarkerByTypeId : function(id, ll, on=False)
+    makeMarkerByTypeId : function(id, ll, on=false)
     {
         var retVal = null;
         var icon = this.iconByType(id, on);
         if(icon)
             retVal = L.marker(ll, {icon:icon});
         else
-            retVal = this.makeDefaultMarker(ll)
+            retVal = this.makeDefaultMarker(ll);
         return retVal;
     },
 
