@@ -19,6 +19,12 @@ ott.leaflet.map.Search = {
         console.log("exit leaflet Search() constructor");
     },
 
+    selectCallback : function(rec)
+    {
+        console.log("Search: " + rec.label + '::'  + rec.lat + ',' + rec.lon);
+        return true;
+    },
+
     makeSolr : function(removeTitle="remove")
     {
         var THIS = this;
@@ -44,6 +50,7 @@ ott.leaflet.map.Search = {
                 return ret_val;
             }
             stop.place_name_format = localized_place_name_format;
+            stop.select_callback = function(rec) { THIS.selectCallback(rec); };
         });
     },
 
