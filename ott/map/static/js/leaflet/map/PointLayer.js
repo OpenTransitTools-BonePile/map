@@ -27,9 +27,25 @@ ott.leaflet.map.PointLayer = {
 
     processServerResponse : function(data)
     {
-        console.log(data);
-        if(this.markers.length > 0)
-            this.layer = L.layerGroup(this.markers);
+        try
+        {
+            var markerArray = [];
+            var docs = data.response.docs;
+            for(var i in docs)
+            {
+                var rec = docs[i];
+                var marker = this.makeMarker(rec);
+                markerArray.push(marker);
+            }
+            if(markerArray.length > 0)
+            {
+                this.markers = markerArray;
+                this.layer = L.layerGroup(this.markers);
+            }
+        }
+        catch(e)
+        {
+        }
     },
 
     makeMarker : function(rec)
@@ -37,7 +53,7 @@ ott.leaflet.map.PointLayer = {
         console.log("PointLayer: " + rec.label + '::'  + rec.lat + ',' + rec.lon + this.url);
         var pt = {lat:rec.lat, lng:rec.lon};
         var marker = L.marker(pt, this.icon).addTo(this.map).bindPopup(this.makePopupLabel(rec));
-        this.data.push(marker);
+        return marker;
     },
 
     makePopupLabel : function(rec)
