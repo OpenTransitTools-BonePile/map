@@ -19,19 +19,24 @@ ott.leaflet.map.PointLayer = {
         this.layerId = layerId
         this.buttonDiv = "#" + layerId;
         this.url = url;
-        this.icon = ott.leaflet.map.TransitIcons.
-        this.callSolr();
+        var i = new ott.leaflet.map.TransitIcons();
+        this.icon = i.iconByType(10);
+        this.queryServer();
+        console.log("exit leaflet PointLayer() constructor");
+    },
+
+    processServerResponse : function(data)
+    {
+        console.log(data);
         if(this.markers.length > 0)
             this.layer = L.layerGroup(this.markers);
-
-        console.log("exit leaflet PointLayer() constructor");
     },
 
     makeMarker : function(rec)
     {
         console.log("PointLayer: " + rec.label + '::'  + rec.lat + ',' + rec.lon + this.url);
         var pt = {lat:rec.lat, lng:rec.lon};
-        var marker = L.marker(pt, this.image).addTo(this.map).bindPopup(this.makePopupLabel(rec));
+        var marker = L.marker(pt, this.icon).addTo(this.map).bindPopup(this.makePopupLabel(rec));
         this.data.push(marker);
     },
 
@@ -42,17 +47,6 @@ ott.leaflet.map.PointLayer = {
         // if type == 'stop' ... arrivals/etc...
         /// blah
         return retVal;
-    },
-
-    callSolr : function()
-    {
-        var THIS = this;
-    },
-
-    makeSolr : function(removeTitle="remove")
-    {
-        var THIS = this;
-
     },
 
     refreshData : function()
