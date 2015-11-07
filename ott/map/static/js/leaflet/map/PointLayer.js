@@ -49,6 +49,51 @@ ott.leaflet.map.PointLayer = {
         var THIS = this;
     },
 
+    makeSolr : function(removeTitle="remove")
+    {
+        var THIS = this;
+
+    },
+
+    refreshData : function()
+    {
+        var retVal = true;
+        // TODO lenght of results and time determine re-query of SOLR data...
+        return retVal;
+    },
+
+    /**
+     * P&R : http://maps.trimet.org/solr/select?q=type:10%20OR%20type:17&sort=city%20asc,name%20asc&rows=400&wt=json&_dc=1446874305965
+     */
+    queryServer : function()
+    {
+        if(this.refreshData())
+        {
+            var THIS = this;
+
+            // TODO: move this to the config (or default config)
+            var defaultParameters = {
+                wt   : "json",
+                qt   : "dismax",
+                sort : "city asc,name asc",
+                fq   : "(-type:26 AND -type:route)",
+                rows : 400
+            };
+            var customParams = {
+                q  : 'q=type:10 OR type:17'
+            };
+            var parameters = L.Util.extend(defaultParameters, customParams);
+            var solrUrl = this.url + L.Util.getParamString(parameters)
+            console.log(solrUrl);
+
+            $.ajax({
+                url: solrUrl,
+                datatype: 'json',
+                success: function(data) { THIS.processServerResponse(data); }
+            });
+        }
+    },
+
     show : function()
     {
         this.isVisible = true;
