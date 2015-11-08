@@ -73,33 +73,43 @@ ott.leaflet.map.TransitIcons = {
         switch(id)
         {
             case 1:
+            case "1":
                 retVal = on ? this.busStopIconON : this.busStopIcon;
                 break;
             case 2:
+            case "2":
                 retVal = on ? this.aerialTramStopIconON : this.aerialTramStopIcon;
                 break;
             case 3:
+            case "3":
                 retVal = on ? this.heavyRailStopIconON : this.heavyRailStopIcon;
                 break;
             case 4:
+            case "4":
                 retVal = on ? this.streetCarStopIconON : this.streetCarStopIcon;
                 break;
             case 5:
+            case "5":
                 retVal = on ? this.lightRailStopIconON : this.lightRailStopIcon;
                 break;
             case 10:
+            case "10":
                 retVal = on ? this.parkAndRideIconON : this.parkAndRideIcon;
                 break;
             case 14:
+            case "14":
                 retVal = on ? this.transitCenterRideIconON : this.transitCenterRideIcon;
                 break;
             case 17:
+            case "17":
                 retVal = on ? this.bikeAndRideIconON : this.bikeAndRideIcon;
                 break;
             case 111:
+            case "":
                 retVal = on ? this.fareOutletIconON : this.fareOutletIcon;
                 break;
             case 111:
+            case "":
                 retVal = on ? this.tvmOutletIconON : this.tvmOutletIcon;
                 break;
         };

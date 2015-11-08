@@ -4,7 +4,7 @@ ott.leaflet.map.PointLayer = {
 
     map : null,
     url : null,
-    icon : null,
+    icons : null,
     markers : [],
     isVisible : false,
     buttonDiv : null,
@@ -19,8 +19,7 @@ ott.leaflet.map.PointLayer = {
         this.layerId = layerId
         this.buttonDiv = "#" + layerId;
         this.url = url;
-        var i = new ott.leaflet.map.TransitIcons();
-        this.icon = i.iconByType(10);
+        this.icons = new ott.leaflet.map.TransitIcons();
         this.queryServer();
         console.log("exit leaflet PointLayer() constructor");
     },
@@ -50,9 +49,10 @@ ott.leaflet.map.PointLayer = {
 
     makeMarker : function(rec)
     {
-        console.log("PointLayer: " + rec.label + '::'  + rec.lat + ',' + rec.lon + this.url);
+        console.log("PointLayer: " + rec.name + '::'  + rec.lat + ',' + rec.lon + this.url);
         var pt = {lat:rec.lat, lng:rec.lon};
-        var marker = L.marker(pt, this.icon).addTo(this.map).bindPopup(this.makePopupLabel(rec));
+        var icon = this.icons.iconByType(rec.type);
+        var marker = L.marker(pt, {icon:icon}).addTo(this.map).bindPopup(this.makePopupLabel(rec));
         return marker;
     },
 
@@ -60,6 +60,7 @@ ott.leaflet.map.PointLayer = {
     {
         var retVal = rec.label;
         retVal = rec.lat + ',' + rec.lon;
+        retVal = rec.name;
         // TODO add from & to
         // if type == 'stop' ... arrivals/etc...
         /// blah
