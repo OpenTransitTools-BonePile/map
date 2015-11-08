@@ -40,8 +40,8 @@ ott.leaflet.map.PointLayer = {
             {
                 this.markers = markerArray;
                 this.layer = L.layerGroup(this.markers);
-                if(!this.isVisible)
-                    this.map.addLayer(this.layer);
+                if(this.isVisible)
+                    this.show();
             }
         }
         catch(e)
