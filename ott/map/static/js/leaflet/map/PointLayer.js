@@ -40,6 +40,8 @@ ott.leaflet.map.PointLayer = {
             {
                 this.markers = markerArray;
                 this.layer = L.layerGroup(this.markers);
+                if(!this.isVisible)
+                    this.map.addLayer(this.layer);
             }
         }
         catch(e)
@@ -52,7 +54,7 @@ ott.leaflet.map.PointLayer = {
         console.log("PointLayer: " + rec.name + '::'  + rec.lat + ',' + rec.lon + this.url);
         var pt = {lat:rec.lat, lng:rec.lon};
         var icon = this.icons.iconByType(rec.type);
-        var marker = L.marker(pt, {icon:icon}).addTo(this.map).bindPopup(this.makePopupLabel(rec));
+        var marker = L.marker(pt, {icon:icon}).bindPopup(this.makePopupLabel(rec));
         return marker;
     },
 
@@ -70,7 +72,7 @@ ott.leaflet.map.PointLayer = {
     refreshData : function()
     {
         var retVal = true;
-        // TODO lenght of results and time determine re-query of SOLR data...
+        // TODO length of results and time determine re-query of SOLR data...
         return retVal;
     },
 
@@ -109,11 +111,13 @@ ott.leaflet.map.PointLayer = {
     show : function()
     {
         this.isVisible = true;
+        this.map.addLayer(this.layer);
     },
 
     hide : function()
     {
         this.isVisible = false;
+        this.map.removeLayer(this.layer);
     },
 
     toggle : function()
