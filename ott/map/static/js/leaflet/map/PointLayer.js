@@ -59,6 +59,7 @@ ott.leaflet.map.PointLayer = {
     makePopupLabel : function(rec)
     {
         var retVal = rec.label;
+        retVal = rec.lat + ',' + rec.lon;
         // TODO add from & to
         // if type == 'stop' ... arrivals/etc...
         /// blah
@@ -90,7 +91,7 @@ ott.leaflet.map.PointLayer = {
                 rows : 400
             };
             var customParams = {
-                q  : 'q=type:10 OR type:17'
+                q  : 'type:10 OR type:17'
             };
             var parameters = L.Util.extend(defaultParameters, customParams);
             var solrUrl = this.url + L.Util.getParamString(parameters)
