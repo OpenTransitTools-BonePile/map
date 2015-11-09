@@ -57,6 +57,22 @@
     <script src="js/leaflet/config.js"></script>
     <script src="js/leaflet/map/TransitIcons.js"></script>
     <script src="js/leaflet/map/PointLayer.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        this.map = new ott.leaflet.map.Map(ott.config);
+        this.stops = new ott.leaflet.map.Stops(ott.config, this.map.map);
+        this.geo = new ott.leaflet.utils.GeoLocation(this.map.map);
+        this.search = new ott.leaflet.map.Search(this.map.map);
+        this.pr = new ott.leaflet.map.PointLayer(this.map.map);
+
+        //this.params = L.Util.extend(ott.utils.SolrUtils.defaultParameters(), {q:"type:route"});
+        //params = L.Util.getParamString(params);
+        // ott.utils.SolrUtils.queryServer has both errors and casues problems with auto complete
+        // ott.utils.SolrUtils.queryServer(params);
+
+    });
+    </script>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -73,9 +89,9 @@
             <div class="navbar-form navbar-right">
                 <div class="form-group">
                 <input type="text" id="place" placeholder="search" class="form-control">
-                    <button type="submit" ><img src="/images/favicon.png"></button>
-                    <button type="submit" ><img src="/images/favicon.png"></button>
-                    <button type="submit" ><img src="/images/favicon.png"></button>
+                    <button type="submit" onclick="pr.toggle();"><img src="/images/map/stop/fare20.png"></button>
+                    <button type="submit" onclick="pr.toggle();"><img src="/images/map/stop/tc20.png"></button>
+                    <button type="submit" onclick="pr.toggle();"><img src="/images/map/stop/pr20.png"></button>
                 </div>
             </div>
         </div><!--/.navbar-collapse -->
@@ -86,21 +102,6 @@
         <h2>Trip Planner</h2>
     </div>
     <div id="map"></div>
-<script type="text/javascript">
-    $(document).ready(function(){
-        this.map = new ott.leaflet.map.Map(ott.config);
-        this.stops = new ott.leaflet.map.Stops(ott.config, this.map.map);
-        this.geo = new ott.leaflet.utils.GeoLocation(this.map.map);
-        this.search = new ott.leaflet.map.Search(this.map.map);
-        this.pr = new ott.leaflet.map.PointLayer(this.map.map);
-
-        //var params = L.Util.extend(ott.utils.SolrUtils.defaultParameters(), {q:"type:route"});
-        //params = L.Util.getParamString(params);
-        // ott.utils.SolrUtils.queryServer has both errors and casues problems with auto complete
-        // ott.utils.SolrUtils.queryServer(params);
-
-    });
-</script>
 </body>
 </html>
 
