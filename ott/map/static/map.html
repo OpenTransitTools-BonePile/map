@@ -64,7 +64,11 @@
         this.stops = new ott.leaflet.map.Stops(ott.config, this.map.map);
         this.geo = new ott.leaflet.utils.GeoLocation(this.map.map);
         this.search = new ott.leaflet.map.Search(this.map.map);
-        this.pr = new ott.leaflet.map.PointLayer(this.map.map);
+
+
+        this.pr = new ott.leaflet.map.PointLayer(this.map.map,   'type:10 OR type:17', 'pr');
+        this.tc = new ott.leaflet.map.PointLayer(this.map.map,   'type:14', 'tc');
+        this.fare = new ott.leaflet.map.PointLayer(this.map.map, 'type:16', 'fare');
 
         //this.params = L.Util.extend(ott.utils.SolrUtils.defaultParameters(), {q:"type:route"});
         //params = L.Util.getParamString(params);
@@ -89,8 +93,8 @@
             <div class="navbar-form navbar-right">
                 <div class="form-group">
                 <input type="text" id="place" placeholder="search" class="form-control">
-                    <button type="submit" onclick="pr.toggle();"><img src="/images/map/stop/fare20.png"></button>
-                    <button type="submit" onclick="pr.toggle();"><img src="/images/map/stop/tc20.png"></button>
+                    <button type="submit" onclick="fare.toggle();"><img src="/images/map/stop/fare20.png"></button>
+                    <button type="submit" onclick="tc.toggle();"><img src="/images/map/stop/tc20.png"></button>
                     <button type="submit" onclick="pr.toggle();"><img src="/images/map/stop/pr20.png"></button>
                 </div>
             </div>

@@ -9,13 +9,18 @@ ott.leaflet.map.PointLayer = {
     isVisible : false,
     buttonDiv : null,
 
+    query : null,
+    maxResults : 200,
+
     /**
      * @consturctor
      */
-    initialize : function(map, layerId='pr', url='http://maps7.trimet.org/solr/select')
+    initialize : function(map, query, layerId, maxResults=200, url='http://maps7.trimet.org/solr/select')
     {
         console.log("enter leaflet PointLayer() constructor");
         this.map = map;
+        this.query = query;
+        this.maxResults = maxResults;
         this.layerId = layerId
         this.buttonDiv = "#" + layerId;
         this.url = url;
@@ -91,10 +96,10 @@ ott.leaflet.map.PointLayer = {
                 qt   : "dismax",
                 sort : "city asc,name asc",
                 fq   : "(-type:26 AND -type:route)",
-                rows : 400
+                rows : THIS.maxResults
             };
             var customParams = {
-                q  : 'type:10 OR type:17'
+                q  : THIS.query
             };
             var parameters = L.Util.extend(defaultParameters, customParams);
             var solrUrl = this.url + L.Util.getParamString(parameters)
