@@ -104,12 +104,12 @@ ott.leaflet.map.TransitIcons = {
             case "17":
                 retVal = on ? this.bikeAndRideIconON : this.bikeAndRideIcon;
                 break;
-            case 111:
-            case "":
+            case 16:
+            case "16":
                 retVal = on ? this.fareOutletIconON : this.fareOutletIcon;
                 break;
-            case 111:
-            case "":
+            case 26:
+            case "26":
                 retVal = on ? this.tvmOutletIconON : this.tvmOutletIcon;
                 break;
         };
