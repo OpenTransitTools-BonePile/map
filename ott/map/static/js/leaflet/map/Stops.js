@@ -145,6 +145,11 @@ ott.leaflet.map.Stops = {
         {
             // TODO: move this to the config (or default config)
             var geoJsonUrl ='http://maps7.trimet.org/wfs';
+
+            // increase the map bbox a bit so we get stops that might show due to map scroll...
+            var bbox = this.map.getBounds();
+            bbox = bbox.pad(0.1);
+
             var defaultParameters = {
                 service: 'WFS',
                 version: '1.1.0',
@@ -154,8 +159,9 @@ ott.leaflet.map.Stops = {
                 srsName: "EPSG:4326",
                 outputFormat: 'application/json'
             };
+
             var customParams = {
-                bbox: this.map.getBounds().toBBoxString() + ",EPSG:4326"
+                bbox: bbox.toBBoxString() + ",EPSG:4326"
             };
             var parameters = L.Util.extend(defaultParameters, customParams);
             console.log(geoJsonUrl + L.Util.getParamString(parameters));
