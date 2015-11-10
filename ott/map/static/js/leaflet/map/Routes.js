@@ -7,6 +7,7 @@ ott.leaflet.map.Routes = {
     routes : null,
     layer : null,
     targetDiv : null,
+    selectedRoutes : [],
 
     /**
      * @consturctor
@@ -26,6 +27,17 @@ ott.leaflet.map.Routes = {
      */
     selectRoute : function(routeId)
     {
+    },
+
+    /**
+     * real-time vehicles for selected routes
+     */
+    showVehicles : function()
+    {
+        for(var i in this.selectedRoutes)
+        {
+        // DO SOMETHING
+        }
     },
 
     /**
