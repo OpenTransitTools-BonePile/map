@@ -41,6 +41,23 @@ ott.leaflet.map.Routes = {
     },
 
     /**
+     * real-time vehicles for selected routes
+     */
+    show : function()
+    {
+            var defaultParameters = {
+            };
+            var customParams = {
+            };
+            var parameters = L.Util.extend(defaultParameters, customParams);
+
+        for(var i in this.selectedRoutes)
+        {
+        // DO SOMETHING
+        }
+    },
+
+    /**
      * ...
      * NOTE: might look at this solution - http://silviomoreto.github.io/bootstrap-select/
      */
@@ -80,20 +97,16 @@ ott.leaflet.map.Routes = {
         return retVal;
     },
 
-    queryServer : function()
+    queryServer : function(parameters)
     {
         if(this.refreshData())
         {
-            var THIS = this;
-
-            var defaultParameters = {
-            };
-            var customParams = {
-            };
-            var parameters = L.Util.extend(defaultParameters, customParams);
-            var url = this.url + L.Util.getParamString(parameters)
+            var url = this.url;
+            if(parameters)
+                url = url + L.Util.getParamString(parameters)
             console.log(url);
 
+            var THIS = this;
             $.ajax({
                 url: url,
                 datatype: 'json',
