@@ -22,6 +22,13 @@ ott.leaflet.map.Routes = {
     },
 
     /**
+     * used by route select via url param
+     */
+    selectRoute : function(routeId)
+    {
+    },
+
+    /**
      * ...
      * NOTE: might look at this solution - http://silviomoreto.github.io/bootstrap-select/
      */
