@@ -8,72 +8,25 @@ ott.leaflet.map.PolygonLayer = {
     markers : [],
     isVisible : false,
     buttonDiv : null,
-
-    query : null,
-    maxResults : 400,
-    sort : "city asc,name asc",
-    fq   : "", // exclude filter
+    maxResults : 500,
 
     /**
      * @consturctor
      */
-    initialize : function(map, query, layerId, maxResults=400, url='http://maps7.trimet.org/solr/select')
+    initialize : function(map, query, layerId, maxResults, url='http://maps7.trimet.org/solr/select')
     {
         console.log("enter leaflet PolygonLayer() constructor");
         this.map = map;
-        this.query = query;
-        this.maxResults = maxResults;
         this.layerId = layerId
+        this.maxResults = maxResults;
         this.buttonDiv = "#" + layerId;
         this.url = url;
-        this.icons = new ott.leaflet.map.TransitIcons();
         this.queryServer();
         console.log("exit leaflet PolygonLayer() constructor");
     },
 
     processServerResponse : function(data)
     {
-        try
-        {
-            var markerArray = [];
-            var docs = data.response.docs;
-            for(var i in docs)
-            {
-                var rec = docs[i];
-                var marker = this.makeMarker(rec);
-                markerArray.push(marker);
-            }
-            if(markerArray.length > 0)
-            {
-                this.markers = markerArray;
-                this.layer = L.layerGroup(this.markers);
-                if(this.isVisible)
-                    this.show();
-            }
-        }
-        catch(e)
-        {
-        }
-    },
-
-    makeMarker : function(rec)
-    {
-        console.log("PolygonLayer: " + rec.name + '::'  + rec.lat + ',' + rec.lon + this.url);
-        var pt = {lat:rec.lat, lng:rec.lon};
-        var icon = this.icons.iconByType(rec.type);
-        var marker = L.marker(pt, {icon:icon}).bindPopup(this.makePopupLabel(rec));
-        return marker;
-    },
-
-    makePopupLabel : function(rec)
-    {
-        var retVal = rec.label;
-        retVal = rec.lat + ',' + rec.lon;
-        retVal = rec.name;
-        // TODO add from & to
-        // if type == 'stop' ... arrivals/etc...
-        /// blah
-        return retVal;
     },
 
     refreshData : function()
@@ -104,11 +57,11 @@ ott.leaflet.map.PolygonLayer = {
                 q  : this.query
             };
             var parameters = L.Util.extend(defaultParameters, customParams);
-            var solrUrl = this.url + L.Util.getParamString(parameters)
-            console.log(solrUrl);
+            var url = this.url + L.Util.getParamString(parameters)
+            console.log(url);
 
             $.ajax({
-                url: solrUrl,
+                url: url,
                 datatype: 'json',
                 success: function(data) { THIS.processServerResponse(data); }
             });
