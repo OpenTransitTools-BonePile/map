@@ -11,7 +11,7 @@ ott.leaflet.map.Routes = {
     /**
      * @consturctor
      */
-    initialize : function(map, targetDiv='#routes', url='http://maps8.trimet.org/ride_ws/routes')
+    initialize : function(map, targetDiv='#routes', url='http://maps7.trimet.org/ride_ws/routes')
     {
         console.log("enter leaflet Routes() constructor");
         this.map = map;
