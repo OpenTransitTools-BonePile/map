@@ -1,6 +1,6 @@
 ott.namespace("ott.leaflet.map");
 
-ott.leaflet.map.Search = {
+ott.leaflet.map.Routes = {
 
     map : null,
     url : null,
@@ -10,20 +10,20 @@ ott.leaflet.map.Search = {
     /**
      * @consturctor
      */
-    initialize : function(map, targetDiv='#search', url='http://maps7.trimet.org/solr/select')
+    initialize : function(map, targetDiv='#routes', url='http://maps7.trimet.org/solr/select')
     {
-        console.log("enter leaflet Search() constructor");
+        console.log("enter leaflet Routes() constructor");
         this.map = map;
         this.targetDiv = targetDiv;
         this.url = url;
         this.makeSolr();
 
-        console.log("exit leaflet Search() constructor");
+        console.log("exit leaflet Routes() constructor");
     },
 
     selectCallback : function(rec)
     {
-        console.log("Search: " + rec.label + '::'  + rec.lat + ',' + rec.lon + this.url);
+        console.log("Routes: " + rec.label + '::'  + rec.lat + ',' + rec.lon + this.url);
         var pt = {lat:rec.lat, lng:rec.lon};
         L.marker(pt).addTo(this.map).bindPopup(this.makePopupLabel(rec)).openPopup();
         return true;
@@ -67,6 +67,6 @@ ott.leaflet.map.Search = {
         });
     },
 
-    CLASS_NAME: "ott.leaflet.map.Search"
+    CLASS_NAME: "ott.leaflet.map.Routes"
 };
-ott.leaflet.map.Search = new ott.Class(ott.leaflet.map.Search);
+ott.leaflet.map.Routes = new ott.Class(ott.leaflet.map.Routes);

@@ -55,9 +55,7 @@
 
     <script src="js/ott.leaflet.js"></script>
     <script src="js/leaflet/config.js"></script>
-    <script src="js/leaflet/map/TransitIcons.js"></script>
-    <script src="js/leaflet/map/PointLayer.js"></script>
-    <script src="js/leaflet/map/Stops.js"></script>
+    <script src="js/leaflet/map/Routes.js"></script>
 
     <script type="text/javascript">
     $(document).ready(function(){
@@ -65,6 +63,7 @@
         this.stops = new ott.leaflet.map.Stops(ott.config, this.map.map);
         this.geo = new ott.leaflet.utils.GeoLocation(this.map.map);
         this.search = new ott.leaflet.map.Search(this.map.map);
+        this.routes = new ott.leaflet.map.Routes(this.map.map);
 
 
         this.pr = new ott.leaflet.map.PointLayer(this.map.map,   'type:10 OR type:17', 'pr');
@@ -94,7 +93,8 @@
         <div id="navbar" class="navbar-collapse collapse">
             <div class="navbar-form navbar-right">
                 <div class="form-group">
-                <input type="text" id="place" placeholder="search" class="form-control">
+                    <input type="text" id="search" placeholder="search" class="form-control">
+                    <input type="text" id="routes" placeholder="routes" class="form-control">
                     <button type="submit" onclick="tc.toggle();"><img src="/images/map/stop/tc20.png"></button>
                     <button type="submit" onclick="pr.toggle();"><img src="/images/map/stop/pr20.png"></button>
                     <button type="submit" onclick="fare.toggle();"><img src="/images/map/stop/fare20.png"></button>
