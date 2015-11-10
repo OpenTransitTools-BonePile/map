@@ -18,7 +18,7 @@ ott.leaflet.map.Routes = {
         this.map = map;
         this.targetDiv = targetDiv;
         this.url = url;
-        this.queryServer();
+        this.queryServer(this.routeListAjaxHandler);
         console.log("exit leaflet Routes() constructor");
     },
 
@@ -61,7 +61,7 @@ ott.leaflet.map.Routes = {
      * ...
      * NOTE: might look at this solution - http://silviomoreto.github.io/bootstrap-select/
      */
-    processServerResponse : function(data)
+    routeListAjaxHandler : function(data)
     {
         try
         {
@@ -97,7 +97,7 @@ ott.leaflet.map.Routes = {
         return retVal;
     },
 
-    queryServer : function(parameters)
+    queryServer : function(responseMethod, parameters)
     {
         if(this.refreshData())
         {
@@ -106,11 +106,11 @@ ott.leaflet.map.Routes = {
                 url = url + L.Util.getParamString(parameters)
             console.log(url);
 
-            var THIS = this;
+            responseMethod = responseMethod.bind(this);
             $.ajax({
                 url: url,
                 datatype: 'json',
-                success: function(data) { THIS.processServerResponse(data); }
+                success: function(data) { responseMethod(data); }
             });
         }
     },
