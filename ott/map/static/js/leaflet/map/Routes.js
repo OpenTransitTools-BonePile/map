@@ -4,67 +4,83 @@ ott.leaflet.map.Routes = {
 
     map : null,
     url : null,
+    routes : null,
     layer : null,
     targetDiv : null,
 
     /**
      * @consturctor
      */
-    initialize : function(map, targetDiv='#routes', url='http://maps7.trimet.org/solr/select')
+    initialize : function(map, targetDiv='#routes', url='http://maps8.trimet.org/ride_ws/routes')
     {
         console.log("enter leaflet Routes() constructor");
         this.map = map;
         this.targetDiv = targetDiv;
         this.url = url;
-        this.makeSolr();
-
+        this.queryServer();
         console.log("exit leaflet Routes() constructor");
     },
 
-    selectCallback : function(rec)
+    /**
+     * ...
+     * NOTE: might look at this solution - http://silviomoreto.github.io/bootstrap-select/
+     */
+    processServerResponse : function(data)
     {
-        console.log("Routes: " + rec.label + '::'  + rec.lat + ',' + rec.lon + this.url);
-        var pt = {lat:rec.lat, lng:rec.lon};
-        L.marker(pt).addTo(this.map).bindPopup(this.makePopupLabel(rec)).openPopup();
-        return true;
+        try
+        {
+            var routes = data.routes;
+            if(routes.length > 0)
+            {
+                this.routes = [];
+
+                // clear out the drop down
+                var $dropDown = $(this.targetDiv);
+                $dropDown.empty();
+
+                for(var i in data.routes)
+                {
+                    var item = data.routes[i];
+                    //console.log(item.name);
+
+                    $dropDown.append('<option value="' + item.route_id +  '">' + item.name + '</option>');
+
+                    this.routes.push(item);
+                }
+            }
+        }
+        catch(e)
+        {
+        }
     },
 
-    makePopupLabel : function(rec)
+    refreshData : function()
     {
-        var retVal = rec.label;
-        // TODO add from & to
-        // if type == 'stop' ... arrivals/etc...
-        /// blah
+        var retVal = true;
+        // TODO length of results and time determine re-query of SOLR data...
         return retVal;
     },
 
-    makeSolr : function(removeTitle="remove")
+    queryServer : function()
     {
-        var THIS = this;
+        if(this.refreshData())
+        {
+            var THIS = this;
 
-        // auto complete
-        $(function(){
-            var cache = new PlaceCache(removeTitle, true);
-            var solr = new SOLRAutoComplete(THIS.targetDiv, THIS.url, cache);
-            solr.enable_ajax();
-            solr.geo_div = THIS.targetDiv + "_coord";
+            var defaultParameters = {
+            };
+            var customParams = {
+            };
+            var parameters = L.Util.extend(defaultParameters, customParams);
+            var url = this.url + L.Util.getParamString(parameters)
+            console.log(url);
 
-            function localized_place_name_format(name, city, type, id)
-            {
-                var ret_val = name;
-                try {
-                    var stop = ''
-                    if(type == 'stop')
-                        stop = " (Stop ID " + id + ")";
-                    ret_val = name + city + stop;
-                }
-                catch(e) {
-                }
-                return ret_val;
-            }
-            solr.place_name_format = localized_place_name_format;
-            solr.select_callback = function(rec) { THIS.selectCallback(rec); };
-        });
+            $.ajax({
+                url: url,
+                datatype: 'json',
+                success: function(data) { THIS.processServerResponse(data); }
+            });
+        }
     },
 
     CLASS_NAME: "ott.leaflet.map.Routes"
