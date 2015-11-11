@@ -27,7 +27,13 @@ ott.leaflet.map.PointLayer = {
         this.buttonDiv = "#" + layerId;
         this.url = url;
         this.icons = new ott.leaflet.map.TransitIcons();
+
         this.queryServer();
+
+        // bind a button to this.toggle() ... assumes you have an html element id="layerId" for a button
+        var toggle = this.toggle.bind(this);
+        $(this.buttonDiv).click(toggle);
+
         console.log("exit leaflet PointLayer() constructor");
     },
 
@@ -58,7 +64,7 @@ ott.leaflet.map.PointLayer = {
 
     makeMarker : function(rec)
     {
-        console.log("PointLayer: " + rec.name + '::'  + rec.lat + ',' + rec.lon + this.url);
+        //console.log("PointLayer: " + rec.name + '::'  + rec.lat + ',' + rec.lon + this.url);
         var pt = {lat:rec.lat, lng:rec.lon};
         var icon = this.icons.iconByType(rec.type);
         var marker = L.marker(pt, {icon:icon}).bindPopup(this.makePopupLabel(rec));
