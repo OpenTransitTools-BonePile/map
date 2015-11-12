@@ -3,9 +3,7 @@ ott.namespace("ott.leaflet.map");
 ott.leaflet.map.WmsLayer = {
 
     map : null,
-    url : null,
-    icons : null,
-    markers : [],
+    isVisible : false,
     isVisible : false,
     buttonDiv : null,
     maxResults : 500,
@@ -32,9 +30,40 @@ ott.leaflet.map.WmsLayer = {
             transparent: transparent,
             layers: order
         });
-        if(map)
-            layer.addTo(map);
         return layer;
+    },
+
+    /**
+     * ui layer controls
+     * from https://www.mapbox.com/mapbox.js/example/v1.0.0/layers/
+     */
+    addLayer : function(layer, name, zIndex)
+    {
+        layer
+            .setZIndex(zIndex)
+            .addTo(map);
+
+        // Create a simple layer switcher that
+        // toggles layers on and off.
+        var link = document.createElement('a');
+            link.href = '#';
+            link.className = 'active';
+            link.innerHTML = name;
+
+        link.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (map.hasLayer(layer)) {
+                map.removeLayer(layer);
+                this.className = '';
+            } else {
+                map.addLayer(layer);
+                this.className = 'active';
+            }
+        };
+
+        layers.appendChild(link);
     },
 
     makeWeatherLayer : function(
