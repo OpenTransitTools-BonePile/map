@@ -66,7 +66,7 @@ ott.leaflet.map.WmsLayer = {
         layers.appendChild(link);
     },
 
-    makeWeatherLayer : function(
+    makeWeatherLayer : function()
     {
         var url='http://nowcoast.noaa.gov/arcgis/services/nowcoast/analysis_meteohydro_sfc_qpe_time/MapServer/WmsServer';
 
