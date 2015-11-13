@@ -73,9 +73,7 @@
         this.fare = new ott.leaflet.map.PointLayer(this.map.map, 'type:16', 'fare');
         this.tvm  = new ott.leaflet.map.PointLayer(this.map.map, 'type:26', 'tvm');
 
-        //var x = ott.leaflet.map.WmsLayerStatic;
-        ott.leaflet.map.WmsLayerStatic.makeWeatherLayer();
-        //this.weather = ott.leaflet.map.WmsLayerStatic.makeWeatherLayer(this.map.map);
+        this.weather = ott.leaflet.map.WmsLayerStatic.makeWeatherLayer(this.map.map);
 
         //this.params = L.Util.extend(ott.utils.SolrUtils.defaultParameters(), {q:"type:route"});
         //params = L.Util.getParamString(params);

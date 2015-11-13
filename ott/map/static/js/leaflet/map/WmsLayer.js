@@ -21,6 +21,7 @@ ott.leaflet.map.WmsLayerStatic = {
         this.buttonDiv = "#" + layerId;
         this.url = url;
         this.layer = this.makeLayer(url);
+        this.layer.addTo(this.map);
 
         this.opacity = opacity;
         this.defaultOpacity = opacity;
@@ -84,10 +85,9 @@ ott.leaflet.map.WmsLayerStatic = {
     },
 
     /** TODO maybe make this a factory */
-    makeWeatherLayer : function(map) {
+    makeWeatherLayer : function(map, layerId='weather') {
         var url='http://nowcoast.noaa.gov/arcgis/services/nowcoast/analysis_meteohydro_sfc_qpe_time/MapServer/WmsServer';
-        var layer = new ott.leaflet.map.WmsLayer(url, map);
-        layer.addTo(map);
+        var layer = new ott.leaflet.map.WmsLayer(map, layerId, url);
         return layer;
     },
 
