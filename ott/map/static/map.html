@@ -98,14 +98,30 @@
             <div class="navbar-form navbar-right">
                 <div class="form-group">
                     <input type="text" id="search" placeholder="search" class="form-control"/>
-                    <select    id="routes" placeholder="routes" class="form-control"></select>
-                    <button type="submit" id="tc"><img src="/images/map/stop/tc20.png"></button>
+                    <select            id="routes" placeholder="routes" class="form-control"></select>
+                </div>
+                <div class="form-group">
                     <button type="submit" id="pr"><img src="/images/map/stop/pr20.png"></button>
+                    <button type="submit" id="tc"><img src="/images/map/stop/tc20.png"></button>
                     <button type="submit" id="fare"><img src="/images/map/stop/fare20.png"></button>
                     <button type="submit" id="tvm"><img  src="/images/map/stop/tvm20.png"></button>
+
+                    <div class="nav pull-left">
+                        <div class="dropdown" id="menuLogin">
+                            <button type="submit" id="trip" class="dropdown-toggle" href="#" data-toggle="dropdown"><img  src="/images/map/stop/subway20.png"></button>
+                            <div class="dropdown-menu" style="padding:17px;">
+                                <form class="form" id="formLogin">
+                                    <input name="username" id="username" type="text" placeholder="From">
+                                    <input name="password" id="password" type="text" placeholder="To">
+                                    <br>
+                                    <button type="button"  id="btnLogin" class="btn">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div><!--/.navbar-collapse -->
+        </div>
     </nav>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
