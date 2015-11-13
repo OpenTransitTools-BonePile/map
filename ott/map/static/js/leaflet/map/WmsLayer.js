@@ -3,23 +3,32 @@ ott.namespace("ott.leaflet.map");
 ott.leaflet.map.WmsLayer = {
 
     map : null,
-    isVisible : false,
-    isVisible : false,
+    url : null,
+    layer : null,
+    layerId : null,
     buttonDiv : null,
-    maxResults : 500,
+    opacity : 0,
+    defaultOpacity : DEFAULT_OPACITY
+    isVisible : false,
 
     /**
      * @consturctor
      */
-    initialize : function(map, query, layerId, maxResults, url='http://maps7.trimet.org/solr/select')
+    initialize : function(map, layerId, url, isVisible=true, opacity=80)
     {
         console.log("enter leaflet WmsLayer() constructor");
         this.map = map;
-        this.layerId = layerId
-        this.maxResults = maxResults;
+        this.layerId = layerId;
         this.buttonDiv = "#" + layerId;
         this.url = url;
-        this.queryServer();
+        this.layer = this.makeLayer(url);
+
+        this.opacity = opacity;
+        this.defaultOpacity = opacity;
+        this.isVisible = isVisible;
+        this.setVisibility(isVisible);
+        this.setOpacity(opacity);
+
         console.log("exit leaflet WmsLayer() constructor");
     },
 
@@ -33,11 +42,24 @@ ott.leaflet.map.WmsLayer = {
         return layer;
     },
 
+    /** TODO maybe make this a factory */
+    makeWeatherLayer : function(map)
+    {
+        var url='http://nowcoast.noaa.gov/arcgis/services/nowcoast/analysis_meteohydro_sfc_qpe_time/MapServer/WmsServer';
+
+        layer.addTo(this.map);
+
+        this.url = url;
+        this.layer = layer;
+        return layer;
+    },
+
+
     /**
      * ui layer controls
      * from https://www.mapbox.com/mapbox.js/example/v1.0.0/layers/
      */
-    addLayer : function(layer, name, zIndex)
+    addLayerControl : function(layer, name, zIndex)
     {
         layer
             .setZIndex(zIndex)
@@ -66,10 +88,26 @@ ott.leaflet.map.WmsLayer = {
         layers.appendChild(link);
     },
 
-    makeWeatherLayer : function()
+    setVisibility : function(isVisible, opacity)
     {
-        var url='http://nowcoast.noaa.gov/arcgis/services/nowcoast/analysis_meteohydro_sfc_qpe_time/MapServer/WmsServer';
+        if(!this.isVisible && isVisible)
+        {
+            this.opacity = opacity | this.defaultOpacity;
+            this.isVisible = true;
+            this.setOpacity(opacity)
+        }
+        else if(!isVisible)
+        {
+            this.opacity = 0;
+            this.isVisible = false;
+            this.setOpacity(opacity)
+        }
+    },
 
+    setOpacity : function(opacity)
+    {
+        this.opacity = opacity;
+        this.layer.setOpacity(this.opacity);
     },
 
     show : function()
