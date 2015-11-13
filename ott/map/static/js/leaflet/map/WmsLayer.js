@@ -1,14 +1,13 @@
 ott.namespace("ott.leaflet.map");
 
-ott.leaflet.map.WmsLayer = {
-
+ott.leaflet.map.WmsLayerStatic = {
     map : null,
     url : null,
     layer : null,
     layerId : null,
     buttonDiv : null,
     opacity : 0,
-    defaultOpacity : DEFAULT_OPACITY
+    defaultOpacity : 0,
     isVisible : false,
 
     /**
@@ -30,62 +29,6 @@ ott.leaflet.map.WmsLayer = {
         this.setOpacity(opacity);
 
         console.log("exit leaflet WmsLayer() constructor");
-    },
-
-    makeLayer : function(url, map=null, format='image/png', transparent=true, order='1')
-    {
-        var layer = L.tileLayer.wms(url, {
-            format: format,
-            transparent: transparent,
-            layers: order
-        });
-        return layer;
-    },
-
-    /** TODO maybe make this a factory */
-    makeWeatherLayer : function(map)
-    {
-        var url='http://nowcoast.noaa.gov/arcgis/services/nowcoast/analysis_meteohydro_sfc_qpe_time/MapServer/WmsServer';
-
-        layer.addTo(this.map);
-
-        this.url = url;
-        this.layer = layer;
-        return layer;
-    },
-
-
-    /**
-     * ui layer controls
-     * from https://www.mapbox.com/mapbox.js/example/v1.0.0/layers/
-     */
-    addLayerControl : function(layer, name, zIndex)
-    {
-        layer
-            .setZIndex(zIndex)
-            .addTo(map);
-
-        // Create a simple layer switcher that
-        // toggles layers on and off.
-        var link = document.createElement('a');
-            link.href = '#';
-            link.className = 'active';
-            link.innerHTML = name;
-
-        link.onclick = function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            if (map.hasLayer(layer)) {
-                map.removeLayer(layer);
-                this.className = '';
-            } else {
-                map.addLayer(layer);
-                this.className = 'active';
-            }
-        };
-
-        layers.appendChild(link);
     },
 
     setVisibility : function(isVisible, opacity)
@@ -130,6 +73,63 @@ ott.leaflet.map.WmsLayer = {
             this.show();
     },
 
+    makeLayer : function(url, map=null, format='image/png', transparent=true, order='1')
+    {
+        var layer = L.tileLayer.wms(url, {
+            format: format,
+            transparent: transparent,
+            layers: order
+        });
+        return layer;
+    },
+
+    /** TODO maybe make this a factory */
+    makeWeatherLayer : function(map) {
+        var url='http://nowcoast.noaa.gov/arcgis/services/nowcoast/analysis_meteohydro_sfc_qpe_time/MapServer/WmsServer';
+        var layer = new ott.leaflet.map.WmsLayer(url, map);
+        layer.addTo(map);
+        return layer;
+    },
+
     CLASS_NAME: "ott.leaflet.map.WmsLayer"
 };
-ott.leaflet.map.WmsLayer = new ott.Class(ott.leaflet.map.WmsLayer);
+ott.leaflet.map.WmsLayer = new ott.Class(ott.leaflet.map.WmsLayerStatic);
+
+x = {
+    /**
+     * ui layer controls
+     * from https://www.mapbox.com/mapbox.js/example/v1.0.0/layers/
+     */
+    addLayerControl : function(layer, name, zIndex)
+    {
+        layer
+            .setZIndex(zIndex)
+            .addTo(map);
+
+        // Create a simple layer switcher that
+        // toggles layers on and off.
+        var link = document.createElement('a');
+            link.href = '#';
+            link.className = 'active';
+            link.innerHTML = name;
+
+        link.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (map.hasLayer(layer)) {
+                map.removeLayer(layer);
+                this.className = '';
+            } else {
+                map.addLayer(layer);
+                this.className = 'active';
+            }
+        };
+
+        layers.appendChild(link);
+    },
+
+
+    CLASS_NAME: "ott.leaflet.map.WmsLayer"
+};
+//ott.leaflet.map.WmsLayer = new ott.Class(ott.leaflet.map.WmsLayerStatic);

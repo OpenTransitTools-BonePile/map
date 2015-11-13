@@ -57,6 +57,7 @@
     <script src="js/leaflet/config.js"></script>
     <script src="js/leaflet/map/Routes.js"></script>
     <script src="js/leaflet/map/PointLayer.js"></script>
+    <script src="js/leaflet/map/WmsLayer.js"></script>
 
     <script type="text/javascript">
     $(document).ready(function(){
@@ -71,6 +72,10 @@
         this.tc = new ott.leaflet.map.PointLayer(this.map.map,   'type:14', 'tc');
         this.fare = new ott.leaflet.map.PointLayer(this.map.map, 'type:16', 'fare');
         this.tvm  = new ott.leaflet.map.PointLayer(this.map.map, 'type:26', 'tvm');
+
+        //var x = ott.leaflet.map.WmsLayerStatic;
+        ott.leaflet.map.WmsLayerStatic.makeWeatherLayer();
+        //this.weather = ott.leaflet.map.WmsLayerStatic.makeWeatherLayer(this.map.map);
 
         //this.params = L.Util.extend(ott.utils.SolrUtils.defaultParameters(), {q:"type:route"});
         //params = L.Util.getParamString(params);
