@@ -101,14 +101,15 @@
                     <select            id="routes" placeholder="routes" class="form-control"></select>
                 </div>
                 <div class="form-group">
-                    <button type="submit" id="pr"><img src="/images/map/stop/pr20.png"></button>
-                    <button type="submit" id="tc"><img src="/images/map/stop/tc20.png"></button>
-                    <button type="submit" id="fare"><img src="/images/map/stop/fare20.png"></button>
-                    <button type="submit" id="tvm"><img  src="/images/map/stop/tvm20.png"></button>
+                    <button type="submit" id="pr"><img src="/images/ui/pr.png"></button>
+                    <button type="submit" id="tc"><img src="/images/ui/tc.png"></button>
+                    <button type="submit" id="fare"><img src="/images/ui/ticket.png"></button>
+                    <button type="submit" id="tvm"><img  src="/images/ui/tvm.png"></button>
+                    <button type="submit" id="tvm"><img  src="/images/ui/clear.png"></button>
 
                     <div class="nav pull-left">
                         <div class="dropdown" id="menuLayers">
-                            <button type="submit" id="trip" class="dropdown-toggle" href="#" data-toggle="dropdown"><img  src="/images/ui/layers.png"></button>
+                            <button type="submit" id="routes" class="dropdown-toggle" href="#" data-toggle="dropdown"><img  src="/images/ui/routes.png"></button>
                             <div class="dropdown-menu" style="padding:17px;">
                                 <form class="form" id="formLayers">
                                     <input name="username" id="username" type="text" placeholder="From">
@@ -122,7 +123,7 @@
 
                     <div class="nav pull-left">
                         <div class="dropdown" id="menuLogin">
-                            <button type="submit" id="trip" class="dropdown-toggle" href="#" data-toggle="dropdown"><img  src="/images/map/stop/subway20.png"></button>
+                            <button type="submit" id="trip" class="dropdown-toggle" href="#" data-toggle="dropdown"><img  src="/images/ui/planner.png"></button>
                             <div class="dropdown-menu" style="padding:17px;">
                                 <form class="form" id="formLogin">
                                     <input name="username" id="username" type="text" placeholder="From">
@@ -134,6 +135,21 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="nav pull-left">
+                    <div class="dropdown" id="menuLayers">
+                        <button type="submit" id="layers" class="dropdown-toggle" href="#" data-toggle="dropdown"><img  src="/images/ui/layers.png"></button>
+                        <div class="dropdown-menu" style="padding:17px;">
+                            <form class="form" id="formLayers">
+                                <input name="username" id="username" type="text" placeholder="From">
+                                <input name="password" id="password" type="text" placeholder="To">
+                                <br>
+                                <button type="button"  id="btnLogin" class="btn">SLIDER</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </nav>
