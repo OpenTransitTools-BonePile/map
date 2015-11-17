@@ -72,18 +72,12 @@
         this.fare = new ott.leaflet.map.PointLayer(this.map.map, 'type:16', 'fare');
         this.tvm  = new ott.leaflet.map.PointLayer(this.map.map, 'type:26', 'tvm');
 
-        this.weather = ott.leaflet.map.WmsLayerStatic.makeNoaaWeatherLayer(this.map.map);
+        this.weather = ott.leaflet.map.WmsLayerStatic.makeWeatherLayer(this.map.map);
         this.lc = new ott.leaflet.map.LayerController();
         this.lc.addLayer(this.weather);
         $(function() {
            $('#layerButtons').sortable();
         });
-
-        //this.params = L.Util.extend(ott.utils.SolrUtils.defaultParameters(), {q:"type:route"});
-        //params = L.Util.getParamString(params);
-        // ott.utils.SolrUtils.queryServer has both errors and casues problems with auto complete
-        // ott.utils.SolrUtils.queryServer(params);
-
     });
     </script>
 </head>

@@ -102,6 +102,14 @@ ott.utils.SolrUtils = {
         console.log(data && data.features ? data.features.length : "empty");
     },
 
+
+// TODO:
+        //this.params = L.Util.extend(ott.utils.SolrUtils.defaultParameters(), {q:"type:route"});
+        //params = L.Util.getParamString(params);
+        // ott.utils.SolrUtils.queryServer has both errors and casues problems with auto complete
+        // ott.utils.SolrUtils.queryServer(params);
+
+
     /** ajax query of the server ... filter data based on current map BBOX
      *  NOTE: relies on jQuery
      */

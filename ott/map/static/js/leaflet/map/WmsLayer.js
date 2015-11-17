@@ -111,7 +111,6 @@ ott.leaflet.map.WmsLayerStatic = {
         return layer;
     },
 
-    //makeWeatherLayer : function(map, layerId)
     makeNexradWeatherLayer : function(map, layerId)
     {
         layerId = layerId || 'weather';
@@ -128,45 +127,11 @@ ott.leaflet.map.WmsLayerStatic = {
         return layer;
     },
 
+    makeWeatherLayer : function(map, layerId)
+    {
+        return this.makeNoaaWeatherLayer(map, layerId);
+    },
+
     CLASS_NAME: "ott.leaflet.map.WmsLayer"
 };
 ott.leaflet.map.WmsLayer = new ott.Class(ott.leaflet.map.WmsLayerStatic);
-
-x = {
-    /**
-     * ui layer controls
-     * from https://www.mapbox.com/mapbox.js/example/v1.0.0/layers/
-     */
-    addLayerControl : function(layer, name, zIndex)
-    {
-        layer
-            .setZIndex(zIndex)
-            .addTo(map);
-
-        // Create a simple layer switcher that
-        // toggles layers on and off.
-        var link = document.createElement('a');
-            link.href = '#';
-            link.className = 'active';
-            link.innerHTML = name;
-
-        link.onclick = function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            if (map.hasLayer(layer)) {
-                map.removeLayer(layer);
-                this.className = '';
-            } else {
-                map.addLayer(layer);
-                this.className = 'active';
-            }
-        };
-
-        layers.appendChild(link);
-    },
-
-
-    CLASS_NAME: "ott.leaflet.map.WmsLayer"
-};
-//ott.leaflet.map.WmsLayer = new ott.Class(ott.leaflet.map.WmsLayerStatic);
