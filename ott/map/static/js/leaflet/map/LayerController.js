@@ -2,7 +2,6 @@ ott.namespace("ott.leaflet.map");
 
 ott.leaflet.map.LayerController = {
 
-    map : null,
     layers : [],
 
     /**
