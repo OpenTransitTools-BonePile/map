@@ -1,17 +1,19 @@
 ott.namespace("ott.leaflet.map");
 
-ott.leaflet.map.LayerController = {
+ott.leaflet.map.LayerControllerStatic = {
 
+
+    map : null,
+    buttonDiv : null,
     layers : [],
 
     /**
      * @consturctor
      */
-    initialize : function(layers)
+    initialize : function(map, buttonDiv)
     {
-        console.log("enter leaflet LayerController() constructor");
-        if(layers)
-            this.layers.concat(layers);
+        this.map = map;
+        this.buttonDiv = buttonDiv;
     },
 
     addLayer : function(layer)
@@ -20,9 +22,20 @@ ott.leaflet.map.LayerController = {
             this.layers.push(layer);
     },
 
+    /**
+     * read in .json file of
+     */
+    parseLayersSpec : function(json)
+    {
+        console.log("enter LayerController.parseLayersSpec()");
+        
+
+        console.log("exit LayerController.parseLayersSpec()");
+    },
+
     CLASS_NAME: "ott.leaflet.map.LayerController"
 };
-ott.leaflet.map.LayerController = new ott.Class(ott.leaflet.map.LayerController);
+ott.leaflet.map.LayerController = new ott.Class(ott.leaflet.map.LayerControllerStatic);
 
 x = {
     /**
