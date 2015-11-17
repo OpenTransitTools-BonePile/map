@@ -14,7 +14,7 @@ ott.leaflet.map.Search = {
     {
         console.log("enter leaflet Search() constructor");
 
-        targetDiv = targetDiv || '#routes';
+        targetDiv = targetDiv || '#search';
         url = url || 'http://maps7.trimet.org/solr/select';
 
         this.map = map;

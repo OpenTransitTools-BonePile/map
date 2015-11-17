@@ -17,7 +17,7 @@ ott.leaflet.map.Routes = {
         console.log("enter leaflet Routes() constructor");
 
         targetDiv = targetDiv || '#routes';
-        url = url || 'http://maps7.trimet.org/solr/select';
+        url = url || 'http://maps7.trimet.org/ride_ws/routes';
 
         this.map = map;
         this.targetDiv = targetDiv;
