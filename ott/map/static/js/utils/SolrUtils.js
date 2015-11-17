@@ -85,12 +85,12 @@ ott.utils.SolrUtils = {
         return data;
     },
 
-    defaultParameters : function(sort="sort_order asc", rows=200, outputFormat="json")
+    defaultParameters : function(sort, rowsd, outputFormat)
     {
         var parameters = {
-            sort : sort,
-            rows : rows,
-            wt   : outputFormat
+            sort : sort | "sort_order asc",
+            rows : rows | 200,
+            wt   : outputFormat | "json"
         }
         return parameters;
     },
@@ -105,7 +105,7 @@ ott.utils.SolrUtils = {
     /** ajax query of the server ... filter data based on current map BBOX
      *  NOTE: relies on jQuery
      */
-    queryServer : function(solrParams=null, solrUrl="http://maps7.trimet.org/solr/select", outputFormat="json")
+    queryServer : function(solrParams, solrUrl, outputFormat)
     {
         // TODO: move this to the config (or default config)
         if(solrParams == null || solrUrl == null)
@@ -113,6 +113,10 @@ ott.utils.SolrUtils = {
             console.log("ERROR: SolrUtils.queryServer() has null solrParams or url.");
             return;
         }
+
+        solrUrl = solrUrl | "http://maps7.trimet.org/solr/select";
+        outputFormat = outputFormat | "json";
+
         console.log(solrUrl + solrParams);
 
         var THIS = this;
