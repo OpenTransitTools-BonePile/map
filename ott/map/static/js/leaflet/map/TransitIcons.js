@@ -67,9 +67,12 @@ ott.leaflet.map.TransitIcons = {
     /**
      * these are how trimet orders our styles based on mode type
      */
-    iconByType : function(id, on=false)
+    iconByType : function(id, on)
     {
         var retVal = null;
+
+        on = on || false;
+
         switch(id)
         {
             case 1:
@@ -116,9 +119,12 @@ ott.leaflet.map.TransitIcons = {
         return retVal;
     },
 
-    makeMarkerByTypeId : function(id, ll, on=false)
+    makeMarkerByTypeId : function(id, ll, on)
     {
         var retVal = null;
+
+        on = on || false;
+
         var icon = this.iconByType(id, on);
         if(icon)
             retVal = L.marker(ll, {icon:icon});
@@ -127,7 +133,7 @@ ott.leaflet.map.TransitIcons = {
         return retVal;
     },
 
-    makeDefaultMarker : function(id, on=False)
+    makeDefaultMarker : function(id)
     {
         var retVal = L.circleMarker(ll, this.geojsonMarkerOptions);
         return retVal;
