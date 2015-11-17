@@ -10,9 +10,13 @@ ott.leaflet.map.Search = {
     /**
      * @consturctor
      */
-    initialize : function(map, targetDiv='#search', url='http://maps7.trimet.org/solr/select')
+    initialize : function(map, targetDiv, url)
     {
         console.log("enter leaflet Search() constructor");
+
+        targetDiv = targetDiv || '#routes';
+        url = url || 'http://maps7.trimet.org/solr/select';
+
         this.map = map;
         this.targetDiv = targetDiv;
         this.url = url;
@@ -38,9 +42,10 @@ ott.leaflet.map.Search = {
         return retVal;
     },
 
-    makeSolr : function(removeTitle="remove")
+    makeSolr : function(removeTitle)
     {
         var THIS = this;
+        removeTitle = removeTitle || "remove";
 
         // auto complete
         $(function(){

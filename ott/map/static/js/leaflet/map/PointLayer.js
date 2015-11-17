@@ -17,9 +17,13 @@ ott.leaflet.map.PointLayer = {
     /**
      * @consturctor
      */
-    initialize : function(map, query, layerId, maxResults=400, url='http://maps7.trimet.org/solr/select')
+    initialize : function(map, query, layerId, maxResults, url)
     {
         console.log("enter leaflet PointLayer() constructor");
+
+        maxResults = maxResults || 400;
+        url = url || 'http://maps7.trimet.org/solr/select';
+
         this.map = map;
         this.query = query;
         this.maxResults = maxResults;

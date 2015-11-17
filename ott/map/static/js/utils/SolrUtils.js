@@ -85,12 +85,12 @@ ott.utils.SolrUtils = {
         return data;
     },
 
-    defaultParameters : function(sort, rowsd, outputFormat)
+    defaultParameters : function(sort, rows, outputFormat)
     {
         var parameters = {
-            sort : sort | "sort_order asc",
-            rows : rows | 200,
-            wt   : outputFormat | "json"
+            sort : sort || "sort_order asc",
+            rows : rows || 200,
+            wt   : outputFormat || "json"
         }
         return parameters;
     },
@@ -114,8 +114,8 @@ ott.utils.SolrUtils = {
             return;
         }
 
-        solrUrl = solrUrl | "http://maps7.trimet.org/solr/select";
-        outputFormat = outputFormat | "json";
+        solrUrl = solrUrl || "http://maps7.trimet.org/solr/select";
+        outputFormat = outputFormat || "json";
 
         console.log(solrUrl + solrParams);
 

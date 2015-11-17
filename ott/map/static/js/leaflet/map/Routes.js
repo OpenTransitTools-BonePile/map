@@ -12,9 +12,13 @@ ott.leaflet.map.Routes = {
     /**
      * @consturctor
      */
-    initialize : function(map, targetDiv='#routes', url='http://maps7.trimet.org/ride_ws/routes')
+    initialize : function(map, targetDiv, url)
     {
         console.log("enter leaflet Routes() constructor");
+
+        targetDiv = targetDiv || '#routes';
+        url = url || 'http://maps7.trimet.org/solr/select';
+
         this.map = map;
         this.targetDiv = targetDiv;
         this.url = url;

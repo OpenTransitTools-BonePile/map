@@ -13,9 +13,13 @@ ott.leaflet.map.WmsLayerStatic = {
     /**
      * @consturctor
      */
-    initialize : function(map, layerId, url, wmsCfg, isVisible=true, opacity=0.50)
+    initialize : function(map, layerId, url, wmsCfg, isVisible, opacity)
     {
         console.log("enter leaflet WmsLayer() constructor");
+
+        isVisible = isVisible || true;
+        opacity = opacity || 0.50;
+
         this.map = map;
         this.layerId = layerId;
         this.buttonDiv = "#" + layerId;
@@ -83,27 +87,35 @@ ott.leaflet.map.WmsLayerStatic = {
         return layer;
     },
 
-    makeLayer : function(url, layers, format='image/png', transparent=true, attribution=null)
+    makeLayer : function(url, layers, format, transparent, attribution)
     {
+        format = format || 'image/png';
+        transparent = transparent || true;
+        attribution = attribution || true;
+
         var wmsCfg = {
             layers: layers,
             format: format,
             transparent: transparent
         };
-        //if(attribution)
         return this.makeLayerCfg(url, wmsCfg);
     },
 
-    makeNoaaWeatherLayer : function(map, layerId='weather')
+    makeNoaaWeatherLayer : function(map, layerId)
     {
+        layerId = layerId || 'weather';
+
         var url="http://nowcoast.noaa.gov/arcgis/services/nowcoast/analysis_meteohydro_sfc_qpe_time/MapServer/WmsServer";
         var layer = new ott.leaflet.map.WmsLayer(map, layerId, url, '5');
+
         return layer;
     },
 
-    //makeWeatherLayer : function(map, layerId='weather')
-    makeNexradWeatherLayer : function(map, layerId='weather')
+    //makeWeatherLayer : function(map, layerId)
+    makeNexradWeatherLayer : function(map, layerId)
     {
+        layerId = layerId || 'weather';
+
         var url = "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi";
         var wmsCfg = {
             layers: 'nexrad-n0r-900913',
