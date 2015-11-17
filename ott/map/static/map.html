@@ -55,6 +55,7 @@
 
     <script src="js/ott.leaflet.js"></script>
     <script src="js/leaflet/config.js"></script>
+    <script src="js/leaflet/map/LayerController.js"></script>
 
     <script type="text/javascript">
     $(document).ready(function(){
@@ -71,6 +72,11 @@
         this.tvm  = new ott.leaflet.map.PointLayer(this.map.map, 'type:26', 'tvm');
 
         this.weather = ott.leaflet.map.WmsLayerStatic.makeNoaaWeatherLayer(this.map.map);
+        this.lc = new ott.leaflet.map.LayerController();
+        this.lc.addLayer(this.weather);
+        $(function() {
+           $('#layerButtons').sortable();
+        });
 
         //this.params = L.Util.extend(ott.utils.SolrUtils.defaultParameters(), {q:"type:route"});
         //params = L.Util.getParamString(params);
@@ -133,16 +139,12 @@
                             <button type="submit" id="layers" class="dropdown-toggle" href="#" data-toggle="dropdown"><img  src="/images/ui/layers.png"></button>
                             <div class="dropdown-menu" style="padding:17px;">
                                 <form class="form" id="formLayers">
-                                    <div class="form-group">
-                                    <button type="button" id="r"><img src="/images/ui/pr.png"></button>
-                                    <button type="button" id="c"><img src="/images/ui/tc.png"></button>
-                                    <button type="button" id="e"><img src="/images/ui/ticket.png"></button>
-                                    <button type="button" id="r"><img src="/images/ui/pr.png"></button>
-                                    <button type="button" id="c"><img src="/images/ui/tc.png"></button>
-                                    <button type="button" id="e"><img src="/images/ui/ticket.png"></button>
+                                    <div class="form-group" id="layerButtons">
+                                        <button type="button" id="weatherButton"><img src="/images/ui/pr.png"></button>
+                                        <button type="button" id="xxxButton"><img src="/images/ui/tc.png"></button>
                                     </div>
                                     <br>
-                                    <input type="range" name="points" min="0" max="10">
+                                    <input type="range" id="layerOpacityFader" name="Layer Opacity" min="0" max="10">
                                 </form>
                             </div>
                         </div>
