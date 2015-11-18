@@ -13,6 +13,7 @@ ott.leaflet.layer.BaseStatic = {
      */
     initialize : function(map, url)
     {
+        console.log("enter BaseStatic constructor");
         this.map = map;
         this.url = url;
     },
@@ -36,15 +37,20 @@ ott.leaflet.layer.BaseStatic = {
         if(this.refreshData())
         {
             var url = this.url;
+
             if(parameters)
-                url = url + L.Util.getParamString(parameters)
-            console.log(url);
+                url = url + L.Util.getParamString(parameters);
 
             responseMethod = responseMethod.bind(this);
             $.ajax({
                 url: url,
                 datatype: 'json',
-                success: function(data) { responseMethod(data); }
+                success: function(data, textStatus, jqXHR) {
+                    responseMethod(data);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log('ajax error: ' + errorThrown);
+                }
             });
         }
     },

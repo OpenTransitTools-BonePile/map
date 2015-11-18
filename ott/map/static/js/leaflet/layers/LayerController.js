@@ -2,19 +2,20 @@ ott.namespace("ott.leaflet.layer");
 
 ott.leaflet.layer.LayerControllerStatic = {
 
-    buttonDiv : null,
+    wmsServer : null,
     layers : [],
+
 
     /**
      * @consturctor
      */
-    initialize : function(map, url, buttonDiv)
+    initialize : function(map, url, wmsServer)
     {
-        ott.extend(this, ott.leaflet.layer.BaseStatic);
+        ott.inherit(this, ott.leaflet.layer.BaseStatic);
 
         this.map = map;
         this.url = url || '/js/leaflet/layers/layers.json';
-        this.buttonDiv = buttonDiv || 'layer';
+        this.wmsServer = wmsServer || '/js/leaflet/layers/layers.json';
         this.queryServer(this.parseLayersSpec);
     },
 
@@ -30,8 +31,6 @@ ott.leaflet.layer.LayerControllerStatic = {
     parseLayersSpec : function(json)
     {
         console.log("enter LayerController.parseLayersSpec()");
-        
-
         console.log("exit LayerController.parseLayersSpec()");
     },
 
