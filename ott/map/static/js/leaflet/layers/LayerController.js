@@ -4,20 +4,34 @@ ott.leaflet.layer.LayerControllerStatic = {
 
     layers : [],
     layerButtonsDiv : null,
+    layerOpacityDiv : null,
     activeLayer : null,
     wmsServer : null,
 
     /**
      * @consturctor
      */
-    initialize : function(map, url, wmsServer, layerButtonsDiv)
+    initialize : function(map, url, wmsServer, layerButtonsDiv, layerOpacityDiv)
     {
+        // step 0: a bit of inheritance
         ott.inherit(this, ott.leaflet.layer.BaseStatic);
 
+        // step 1: set object variables
         this.map = map;
         this.url = url || '/js/leaflet/layers/layers.json';
         this.wmsServer = wmsServer || 'http://maps7.trimet.org/wms';
         this.layerButtonsDiv = layerButtonsDiv || '#layerButtons';
+        this.layerOpacityDiv = layerOpacityDiv || this.layerButtonsDiv + "Opacity";
+
+        // step 2: set fader function scope, then assign events from opacity slider
+        var THIS = this;
+        $(this.layerOpacityDiv).on("input", function(){
+            //console.log(this.value);
+            THIS.setLayerOpacity(this.value);
+        });
+
+
+        // step 3: get list of layer overlays from server and go to work adding those layers to ui & map
         this.queryServer(this.parseLayersSpec);
     },
 
@@ -31,7 +45,7 @@ ott.leaflet.layer.LayerControllerStatic = {
     {
         layer = layer || this.activeLayer;
         if(layer)
-            this.layers.setOpacity(value);
+            layer.setOpacity(value);
     },
 
     /**
