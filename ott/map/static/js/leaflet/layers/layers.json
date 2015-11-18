@@ -1,194 +1,118 @@
 [
 {
-    "text"      : 'City Boundaries',
-    "id"        : 'trimet:city',
-    "pk"        : 'name',
+    "text"      : "City Boundaries",
+    "id"        : "trimet:city",
+    "pk"        : "name",
     "leaf"      : true,
     "checked"   : false,
-    "class"     : 'polygon',
-    "template"  : 'Wikipedia city page for <a href="http://en.wikipedia.org/wiki/${name}, $[trimet.utils.StringFormattingUtils.getState(\'${name}\')]" target="_blank">${name}</a><br/><br/>City Data info for <a href="http://www.city-data.com/city/%[${name};; ;;-]-$[trimet.utils.StringFormattingUtils.getState(\'${name}\')].html" target="_blank">${name}</a><br/>(Note: City Data is quite cool...lots of facts and stats)<br/><br/>NOAA weather forcast for <a href="http://forecast.weather.gov/MapClick.php?site=PQR&CityName=${name}&state=$[trimet.utils.StringFormattingUtils.getState(\'${name}\')]" target="_blank">${name}</a>',
+    "class"     : "polygon",
     "opacity"   : 0.35
 }
 ,
 {
-    "text"      : 'County Boundaries',
-    "id"        : 'trimet:county',
-    "pk"        : 'name',
+    "text"      : "County Boundaries",
+    "id"        : "trimet:county",
+    "pk"        : "name",
     "leaf"      : true,
     "checked"   : false,
-    "class"     : 'polygon',
-    "template"  : 'Wikipedia page for <a href="http://en.wikipedia.org/wiki/${name} County, $[trimet.utils.StringFormattingUtils.getState(\'${name}\')]" target="_blank">${name} County</a>',
+    "class"     : "polygon",
     "opacity"   : 0.3
 }
 ,
 {
-    "text"      : 'Zipcodes', 
-    "id"        : 'trimet:zip_code', 
-    "pk"        : 'zip_code',
-    "template"  : 'US Census <a href="http://factfinder.census.gov/servlet/SAFFFacts?_zip=${zip_code}" target="_blank">Fast Facts</a><br/>City Data info for zipcode <a href="http://www.city-data.com/zips/${zip_code}.html" target="_blank">${zip_code}</a><br/><br/>Ride Connection service in zipcode <a href="http://rideconnection.org/services/zipcodes/${zip_code}.pdf" target="_blank">${zip_code} (PDF)</a> (see <a href="http://rideconnection.org/services/serviceoptions.htm" target="_blank">Ride Connection</a> for more information).',
+    "text"      : "Zipcodes", 
+    "id"        : "trimet:zip_code", 
+    "pk"        : "zip_code",
     "leaf"      : true,
     "checked"   : false,
-    "class"     : 'polygon',
+    "class"     : "polygon",
     "opacity"   : 0.4
 } 
 ,
 {
-    "text"      : 'Taxlots',
-    "defName"   : 'Taxlot (no site address)',
-    "id"        : 'trimet:taxlot',
-    "pk"        : 'site_address',
-    "template"  : '<a href="http://www4.multco.us/surveyimages/dist/assr/out/$[trimet.utils.StringUtils.getSubString(\'${taxlot_id}\')].pdf" target="_blank">${taxlot_id}</a>',
+    "text"      : "Taxlots",
+    "defName"   : "Taxlot (no site address)",
+    "id"        : "trimet:taxlot",
+    "pk"        : "site_address",
     "leaf"      : true,
     "checked"   : false,
-    "class"     : 'polygon',
+    "class"     : "polygon",
     "opacity"   : 0.4
 }
 ,
 {
-    "text"      : 'Contour Elevation Lines',
-    "defName"   : 'Contour Lines',
-    "id"        : 'trimet:contour',
-    "pk"        : 'elevation',
+    "text"      : "Contour Elevation Lines",
+    "defName"   : "Contour Lines",
+    "id"        : "trimet:contour",
+    "pk"        : "elevation",
     "leaf"      : true,
     "checked"   : false,
-    "class"     : 'line',
+    "class"     : "line",
     "opacity"   : 1.00
 }
 ,
 {
-    "text"      : 'TriMet Service District',
-    "defName"   : 'Service District',
-    "id"        : 'current:service_district',
-    "template"  : 'Legal description of the <a href="http://trimet.org/pdfs/code/TriMet_Code_Chapter_3.pdf" target="_blank">TriMet Service District (PDF)</a><br/><a href="http://trimet.org/about/code/index.htm" target="_blank">TriMet Code and Administrative Rules</a><br/><br/>List of cities within <a href="http://en.wikipedia.org/wiki/TriMet#TriMet_service_district" target="_blank">TriMet Service District</a>.',
+    "text"      : "TriMet Service District",
+    "defName"   : "Service District",
+    "id"        : "current:service_district",
     "leaf"      : true,
     "checked"   : false,
-    "class"     : 'polygon',
+    "class"     : "polygon",
     "opacity"   : 0.35
 }
 ,
 {
-    "text"      : 'TriMet Board Districts',
-    "id"        : 'trimet:board_district',
-    "pk"        : 'member',
-    "template"  : '<h3>${member}</h3><br/><b>District #${code}</b> (${description})<br/><br/><a href="http://trimet.org/about/board\
-.htm" target="_blank">board member info page</a><br/><a href="http://trimet.org/meetings/board/index.htm" target="_blank">board mee\
-tings page</a>',
+    "text"      : "TriMet Board Districts",
+    "id"        : "trimet:board_district",
+    "pk"        : "member",
     "leaf"      : true,
     "checked"   : false,
-    "class"     : 'polygon',
+    "class"     : "polygon",
     "opacity"   : 0.65
 }
 ,
 {
-    "text"      : 'TriMet Bus & Rail Routes',
-    "id"        : 'current:route',
-    "pk"        : 'name',
-    "styles"    : 'linRouteHighLight',
-    "template"  : '$[trimet.utils.TrimetUtils.getRouteURL(\'${id}\', \'${public_id}\',  \'${name}\', \'${begin_date}\', \'${end_date}\')].',
+    "text"      : "TriMet Bus & Rail Routes",
+    "id"        : "current:route",
+    "pk"        : "name",
+    "styles"    : "linRouteHighLight",
     "leaf"      : true,
     "checked"   : false,
-    "class"     : 'line',
+    "class"     : "line",
     "opacity"   : 1.00
 }
 ,
 {
-    "text"      : 'TriMet Rail Lines',
-    "id"        : 'current:rail',
+    "text"      : "TriMet Rail Lines",
+    "id"        : "current:rail",
     "leaf"      : true,
     "checked"   : false,
-    "class"     : 'line',
-    "pk"        : 'name',
+    "class"     : "line",
+    "pk"        : "name",
     "minZoom"   : 0,
-    "template"  : '$[trimet.utils.TrimetUtils.parseRailCodes(\'${type}\')]',
+    "template"  : "$[trimet.utils.TrimetUtils.parseRailCodes('${type}')]",
     "opacity"   : 1.00,
-    "cls"       : 'boundary'
+    "cls"       : "boundary"
 }
 ,
 {
-    "text"      : 'RideConnection - RideShare Partners (2009)',
-    "id"        : 'trimet:provider',
-    "pk"        : 'name',
-    "template"  : 'Selected Partner: <b>${name}</b><br/>See more: <a href="http://rideconnection.org/aboutUs/providers.htm" target="_blank">Ride Connection Service Partners</a>',
+    "text"      : "RideConnection - RideShare Partners (2009)",
+    "id"        : "trimet:provider",
+    "pk"        : "name",
     "leaf"      : true,
     "checked"   : false,
-    "class"     : 'polygon',
+    "class"     : "polygon",
     "opacity"   : 0.35
 }
 ,
 { 
-    "text"      : 'TriMet ADA Boundary (*Generated each crunch)',
-    "defName"   : 'ADA Boundary',
-    "id"        : 'current:ada',
-    "template"  : '<a href="http://trimet.org/lift/index.htm" target="_blank">Lift Service</a>',
+    "text"      : "TriMet ADA Boundary (*Generated each crunch)",
+    "defName"   : "ADA Boundary",
+    "id"        : "current:ada",
+    "template"  : "<a href='http://trimet.org/lift/index.htm' target='_blank'>Lift Service</a>",
     "leaf"      : true,
     "checked"   : false,
-    "class"     : 'polygon',
-    "opacity"   : 0.35
-}
-,
-{ 
-    "text"      : 'TriMet Sunday Evening (after 7:30pm) ADA Boundary',
-    "defName"   : 'Sunday Evening ADA Boundary',
-    "id"        : 'current:AdaSundayNight',
-    "template"  : '<a href="http://trimet.org/lift/index.htm" target="_blank">Lift Service</a>',
-    "leaf"      : true,
-    "checked"   : false,
-    "class"     : 'polygon',
-    "opacity"   : 0.35
-}
-,
-{ 
-    "text"      : 'TriMet Sunday ADA Boundary',
-    "defName"   : 'Sunday ADA Boundary',
-    "id"        : 'current:AdaSunday',
-    "template"  : '<a href="http://trimet.org/lift/index.htm" target="_blank">Lift Service</a>',
-    "leaf"      : true,
-    "checked"   : false,
-    "class"     : 'polygon',
-    "opacity"   : 0.35
-}
-,
-{
-    "text"      : 'TriMet Saturday Evening (after 7:30pm) ADA Boundary',
-    "defName"   : 'Saturday Evening ADA Boundary',
-    "id"        : 'current:AdaSaturdayNight',
-    "template"  : '<a href="http://trimet.org/lift/index.htm" target="_blank">Lift Service</a>',
-    "leaf"      : true,
-    "checked"   : false,
-    "class"     : 'polygon',
-    "opacity"   : 0.35
-}
-,
-{ 
-    "text"      : 'TriMet Saturday ADA Boundary',
-    "defName"   : 'Saturday ADA Boundary',
-    "id"        : 'current:AdaSaturday',
-    "template"  : '<a href="http://trimet.org/lift/index.htm" target="_blank">Lift Service</a>',
-    "leaf"      : true,
-    "checked"   : false,
-    "class"     : 'polygon',
-    "opacity"   : 0.35
-}
-,
-{ 
-    "text"      : 'TriMet Weekday Evening (after 7:30pm) ADA Boundary',
-    "defName"   : 'Weekday Evening ADA Boundary',
-    "id"        : 'current:AdaWeekdayNight',
-    "template"  : '<a href="http://trimet.org/lift/index.htm" target="_blank">Lift Service</a>',
-    "leaf"      : true,
-    "checked"   : false,
-    "class"     : 'polygon',
-    "opacity"   : 0.35
-}
-,
-{ 
-    "text"      : 'TriMet Weekday ADA Boundary',
-    "defName"   : 'Weekday ADA Boundary',
-    "id"        : 'current:AdaWeekday',
-    "template"  : '<a href="http://trimet.org/lift/index.htm" target="_blank">Lift Service</a>',
-    "leaf"      : true,
-    "checked"   : false,
-    "class"     : 'polygon',
+    "class"     : "polygon",
     "opacity"   : 0.35
 }
 ]
