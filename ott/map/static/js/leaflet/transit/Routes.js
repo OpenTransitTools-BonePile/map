@@ -1,6 +1,6 @@
-ott.namespace("ott.leaflet.map");
+ott.namespace("ott.leaflet.transit");
 
-ott.leaflet.map.Routes = {
+ott.leaflet.transit.Routes = {
 
     map : null,
     url : null,
@@ -119,6 +119,6 @@ ott.leaflet.map.Routes = {
         }
     },
 
-    CLASS_NAME: "ott.leaflet.map.Routes"
+    CLASS_NAME: "ott.leaflet.transit.Routes"
 };
-ott.leaflet.map.Routes = new ott.Class(ott.leaflet.map.Routes);
+ott.leaflet.transit.Routes = new ott.Class(ott.leaflet.transit.Routes);

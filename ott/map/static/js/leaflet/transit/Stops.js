@@ -1,7 +1,7 @@
-ott.namespace("ott.leaflet.map");
+ott.namespace("ott.leaflet.transit");
 
 
-ott.leaflet.map.Stops = {
+ott.leaflet.transit.Stops = {
 
     map   : null,
     layer : null,
@@ -27,7 +27,7 @@ ott.leaflet.map.Stops = {
         this.mapZoom = this.maxZoom;
 
         // step 1: style
-        this.style = new ott.leaflet.map.TransitIcons();
+        this.style = new ott.leaflet.transit.TransitIcons();
 
         // step 2: callback load data from server
         this.map.on('moveend', function() { THIS.queryServer(); });
@@ -186,6 +186,6 @@ ott.leaflet.map.Stops = {
         this.map.addLayer(this.layer);
     },
 
-    CLASS_NAME: "ott.leaflet.map.Stops"
+    CLASS_NAME: "ott.leaflet.transit.Stops"
 };
-ott.leaflet.map.Stops = new ott.Class(ott.leaflet.map.Stops);
+ott.leaflet.transit.Stops = new ott.Class(ott.leaflet.transit.Stops);

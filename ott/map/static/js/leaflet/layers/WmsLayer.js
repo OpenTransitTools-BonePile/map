@@ -1,6 +1,6 @@
-ott.namespace("ott.leaflet.map");
+ott.namespace("ott.leaflet.layer");
 
-ott.leaflet.map.WmsLayerStatic = {
+ott.leaflet.layer.WmsLayerStatic = {
     map : null,
     url : null,
     layer : null,
@@ -106,7 +106,7 @@ ott.leaflet.map.WmsLayerStatic = {
         layerId = layerId || 'weather';
 
         var url="http://nowcoast.noaa.gov/arcgis/services/nowcoast/analysis_meteohydro_sfc_qpe_time/MapServer/WmsServer";
-        var layer = new ott.leaflet.map.WmsLayer(map, layerId, url, '5');
+        var layer = new ott.leaflet.layer.WmsLayer(map, layerId, url, '5');
 
         return layer;
     },
@@ -123,7 +123,7 @@ ott.leaflet.map.WmsLayerStatic = {
             attribution: "Weather data © 2015 IEM Nexrad"
         }
 
-        var layer = new ott.leaflet.map.WmsLayer(map, layerId, url, wmsCfg);
+        var layer = new ott.leaflet.layer.WmsLayer(map, layerId, url, wmsCfg);
         return layer;
     },
 
@@ -132,6 +132,6 @@ ott.leaflet.map.WmsLayerStatic = {
         return this.makeNoaaWeatherLayer(map, layerId);
     },
 
-    CLASS_NAME: "ott.leaflet.map.WmsLayer"
+    CLASS_NAME: "ott.leaflet.layer.WmsLayer"
 };
-ott.leaflet.map.WmsLayer = new ott.Class(ott.leaflet.map.WmsLayerStatic);
+ott.leaflet.layer.WmsLayer = new ott.Class(ott.leaflet.layer.WmsLayerStatic);

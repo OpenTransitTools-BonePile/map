@@ -56,24 +56,23 @@
 
     <script src="js/ott.leaflet.js"></script>
     <script src="js/leaflet/config.js"></script>
-    <script src="js/leaflet/map/LayerController.js"></script>
 
     <script type="text/javascript">
     $(document).ready(function(){
         this.map = new ott.leaflet.map.Map(ott.config);
-        this.stops = new ott.leaflet.map.Stops(ott.config, this.map.map);
-        this.geo = new ott.leaflet.utils.GeoLocation(this.map.map);
         this.search = new ott.leaflet.map.Search(this.map.map);
-        this.routes = new ott.leaflet.map.Routes(this.map.map);
+        this.geo = new ott.leaflet.utils.GeoLocation(this.map.map);
 
+        this.stops = new ott.leaflet.transit.Stops(ott.config, this.map.map);
+        this.routes = new ott.leaflet.transit.Routes(this.map.map);
 
-        this.pr = new ott.leaflet.map.PointLayer(this.map.map,   'type:10 OR type:17', 'pr');
-        this.tc = new ott.leaflet.map.PointLayer(this.map.map,   'type:14', 'tc');
-        this.fare = new ott.leaflet.map.PointLayer(this.map.map, 'type:16', 'fare');
-        this.tvm  = new ott.leaflet.map.PointLayer(this.map.map, 'type:26', 'tvm');
+        this.pr = new ott.leaflet.layer.PointLayer(this.map.map,   'type:10 OR type:17', 'pr');
+        this.tc = new ott.leaflet.layer.PointLayer(this.map.map,   'type:14', 'tc');
+        this.fare = new ott.leaflet.layer.PointLayer(this.map.map, 'type:16', 'fare');
+        this.tvm  = new ott.leaflet.layer.PointLayer(this.map.map, 'type:26', 'tvm');
 
-        this.weather = ott.leaflet.map.WmsLayerStatic.makeWeatherLayer(this.map.map);
-        this.lc = new ott.leaflet.map.LayerController();
+        this.weather = ott.leaflet.layer.WmsLayerStatic.makeWeatherLayer(this.map.map);
+        this.lc = new ott.leaflet.layer.LayerController();
         this.lc.addLayer(this.weather);
         $(function() {
            $('#layerButtons').sortable();

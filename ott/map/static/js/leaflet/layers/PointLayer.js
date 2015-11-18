@@ -1,6 +1,6 @@
-ott.namespace("ott.leaflet.map");
+ott.namespace("ott.leaflet.layer");
 
-ott.leaflet.map.PointLayer = {
+ott.leaflet.layer.PointLayer = {
 
     map : null,
     url : null,
@@ -30,7 +30,7 @@ ott.leaflet.map.PointLayer = {
         this.layerId = layerId
         this.buttonDiv = "#" + layerId;
         this.url = url;
-        this.icons = new ott.leaflet.map.TransitIcons();
+        this.icons = new ott.leaflet.transit.TransitIcons();
 
         this.queryServer();
 
@@ -145,6 +145,6 @@ ott.leaflet.map.PointLayer = {
             this.show();
     },
 
-    CLASS_NAME: "ott.leaflet.map.PointLayer"
+    CLASS_NAME: "ott.leaflet.layer.PointLayer"
 };
-ott.leaflet.map.PointLayer = new ott.Class(ott.leaflet.map.PointLayer);
+ott.leaflet.layer.PointLayer = new ott.Class(ott.leaflet.layer.PointLayer);

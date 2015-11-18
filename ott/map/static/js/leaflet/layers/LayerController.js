@@ -1,6 +1,6 @@
-ott.namespace("ott.leaflet.map");
+ott.namespace("ott.leaflet.layer");
 
-ott.leaflet.map.LayerControllerStatic = {
+ott.leaflet.layer.LayerControllerStatic = {
 
 
     map : null,
@@ -33,9 +33,9 @@ ott.leaflet.map.LayerControllerStatic = {
         console.log("exit LayerController.parseLayersSpec()");
     },
 
-    CLASS_NAME: "ott.leaflet.map.LayerController"
+    CLASS_NAME: "ott.leaflet.layer.LayerController"
 };
-ott.leaflet.map.LayerController = new ott.Class(ott.leaflet.map.LayerControllerStatic);
+ott.leaflet.layer.LayerController = new ott.Class(ott.leaflet.layer.LayerControllerStatic);
 
 x = {
     /**
