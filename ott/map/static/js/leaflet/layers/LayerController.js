@@ -2,18 +2,20 @@ ott.namespace("ott.leaflet.layer");
 
 ott.leaflet.layer.LayerControllerStatic = {
 
-
-    map : null,
     buttonDiv : null,
     layers : [],
 
     /**
      * @consturctor
      */
-    initialize : function(map, buttonDiv)
+    initialize : function(map, url, buttonDiv)
     {
+        ott.extend(this, ott.leaflet.layer.BaseStatic);
+
         this.map = map;
-        this.buttonDiv = buttonDiv;
+        this.url = url || '/js/leaflet/layers/layers.json';
+        this.buttonDiv = buttonDiv || 'layer';
+        this.queryServer(this.parseLayersSpec);
     },
 
     addLayer : function(layer)
