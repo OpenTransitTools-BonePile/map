@@ -74,11 +74,8 @@
         this.tvm  = new ott.leaflet.layer.PointLayer(this.map.map, 'type:26', 'tvm');
 
         this.weather = ott.leaflet.layer.WmsLayerStatic.makeWeatherLayer(this.map.map);
-        this.lc = new ott.leaflet.layer.LayerController();
-        this.lc.addLayer(this.weather);
-        $(function() {
-           $('#layerButtons').sortable();
-        });
+        this.lc = new ott.leaflet.layer.LayerController(this.map.map);
+        //this.lc.addLayer(this.weather);
     });
     </script>
 </head>

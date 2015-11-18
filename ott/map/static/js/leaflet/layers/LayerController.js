@@ -15,7 +15,7 @@ ott.leaflet.layer.LayerControllerStatic = {
 
         this.map = map;
         this.url = url || '/js/leaflet/layers/layers.json';
-        this.wmsServer = wmsServer || '/js/leaflet/layers/layers.json';
+        this.wmsServer = wmsServer || 'http://maps7.trimet.org/wms';
         this.queryServer(this.parseLayersSpec);
     },
 
@@ -31,6 +31,12 @@ ott.leaflet.layer.LayerControllerStatic = {
     parseLayersSpec : function(json)
     {
         console.log("enter LayerController.parseLayersSpec()");
+        for(var i in json)
+        {
+            var layerId = json[i].id;
+            var layer = new ott.leaflet.layer.WmsLayer(this.map, layerId, this.wmsServer, layerId);
+            this.layers.push(layer);
+        }
         console.log("exit LayerController.parseLayersSpec()");
     },
 
