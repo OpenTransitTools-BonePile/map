@@ -17,7 +17,6 @@ ott.leaflet.layer.WmsLayerStatic = {
     {
         console.log("enter leaflet WmsLayer() constructor");
 
-        isVisible = isVisible || true;
         opacity = opacity || 0.50;
 
         this.map = map;
@@ -28,12 +27,12 @@ ott.leaflet.layer.WmsLayerStatic = {
             this.layer = this.makeLayer(url, wmsCfg);
         else
             this.layer = this.makeLayerCfg(url, wmsCfg);
-        this.layer.addTo(this.map);
+
+        if(isVisible)
+            this.layer.addTo(this.map);
 
         this.opacity = opacity;
         this.defaultOpacity = opacity;
-        this.isVisible = isVisible;
-        this.setVisibility(isVisible);
         this.setOpacity(opacity);
 
         console.log("exit leaflet WmsLayer() constructor");
@@ -49,7 +48,7 @@ ott.leaflet.layer.WmsLayerStatic = {
         }
         else if(!isVisible)
         {
-            this.opacity = 0;
+            this.opacity = 0.0;
             this.isVisible = false;
             this.setOpacity(opacity)
         }
@@ -57,6 +56,15 @@ ott.leaflet.layer.WmsLayerStatic = {
 
     setOpacity : function(opacity)
     {
+        if(opacity)
+        {
+            if(opacity >= 1.0 && opacity <= 10.0)
+                opacity = opacity * 0.1;
+            else if(opacity > 10.0)
+                opacity = opacity * 0.01;
+        }
+        else
+            opacity = 0.0;
         this.opacity = opacity;
         this.layer.setOpacity(this.opacity);
     },

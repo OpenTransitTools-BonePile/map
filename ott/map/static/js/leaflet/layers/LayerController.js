@@ -2,20 +2,22 @@ ott.namespace("ott.leaflet.layer");
 
 ott.leaflet.layer.LayerControllerStatic = {
 
-    wmsServer : null,
     layers : [],
-
+    layerButtonsDiv : null,
+    activeLayer : null,
+    wmsServer : null,
 
     /**
      * @consturctor
      */
-    initialize : function(map, url, wmsServer)
+    initialize : function(map, url, wmsServer, layerButtonsDiv)
     {
         ott.inherit(this, ott.leaflet.layer.BaseStatic);
 
         this.map = map;
         this.url = url || '/js/leaflet/layers/layers.json';
         this.wmsServer = wmsServer || 'http://maps7.trimet.org/wms';
+        this.layerButtonsDiv = layerButtonsDiv || '#layerButtons';
         this.queryServer(this.parseLayersSpec);
     },
 
@@ -23,6 +25,35 @@ ott.leaflet.layer.LayerControllerStatic = {
     {
         if(layer)
             this.layers.push(layer);
+    },
+
+    setLayerOpacity : function(value, layer)
+    {
+        layer = layer || this.activeLayer;
+        if(layer)
+            this.layers.setOpacity(value);
+    },
+
+    /**
+     * ui layer controls
+     * from https://www.mapbox.com/mapbox.js/example/v1.0.0/layers/
+     * 'layerButtons'
+     * <button type="button" id="xxxButton">xxx</button>
+     */
+    addUiLayerButton : function(id, layer, name)
+    {
+        var button = document.createElement('button');
+            button.type = 'button';
+            button.id   = id;
+            button.className = 'layerButtons';
+            button.innerHTML = name;
+
+        var THIS = this;
+        button.onclick = function(e) {
+            THIS.activeLayer = layer;
+            layer.toggle();
+        };
+        $(this.layerButtonsDiv).append(button);
     },
 
     /**
@@ -34,7 +65,10 @@ ott.leaflet.layer.LayerControllerStatic = {
         for(var i in json)
         {
             var layerId = json[i].id;
-            var layer = new ott.leaflet.layer.WmsLayer(this.map, layerId, this.wmsServer, layerId);
+            var name = json[i].id;
+
+            var layer = new ott.leaflet.layer.WmsLayer(this.map, layerId, this.wmsServer, layerId, false);
+            this.addUiLayerButton(layerId, layer, name);
             this.layers.push(layer);
         }
         console.log("exit LayerController.parseLayersSpec()");
@@ -45,36 +79,4 @@ ott.leaflet.layer.LayerControllerStatic = {
 ott.leaflet.layer.LayerController = new ott.Class(ott.leaflet.layer.LayerControllerStatic);
 
 x = {
-    /**
-     * ui layer controls
-     * from https://www.mapbox.com/mapbox.js/example/v1.0.0/layers/
-     */
-    addLayerControl : function(layer, name, zIndex)
-    {
-        layer
-            .setZIndex(zIndex)
-            .addTo(map);
-
-        // Create a simple layer switcher that
-        // toggles layers on and off.
-        var link = document.createElement('a');
-            link.href = '#';
-            link.className = 'active';
-            link.innerHTML = name;
-
-        link.onclick = function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            if (map.hasLayer(layer)) {
-                map.removeLayer(layer);
-                this.className = '';
-            } else {
-                map.addLayer(layer);
-                this.className = 'active';
-            }
-        };
-
-        layers.appendChild(link);
-    }
 };
