@@ -23,7 +23,7 @@ ott.leaflet.layer.WmsLayerStatic = {
         this.layerId = layerId;
         this.buttonDiv = "#" + layerId;
         this.url = url;
-        if(typeof wmsCfg === "string" || wmsCfg instanceof String)
+        if(ott.utils.StringUtils.isString(wmsCfg))
             this.layer = this.makeLayer(url, wmsCfg);
         else
             this.layer = this.makeLayerCfg(url, wmsCfg);

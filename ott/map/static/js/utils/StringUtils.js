@@ -260,7 +260,7 @@ ott.utils.StringUtils = {
 
     maxLen : function(inStr, maxSize)
     {
-        if (!maxSize) maxSize = 100; 
+        if (!maxSize) maxSize = 100;
             
         if (!inStr.length > maxSize) 
             inStr = inStr.substr(0, maxSize);
@@ -268,6 +268,13 @@ ott.utils.StringUtils = {
         return inStr;
     },
 
+    isString : function(str)
+    {
+        var retVal = false;
+        if(typeof str === "string" || str instanceof String)
+            retVal = true;
+        return retVal;
+    },
 
     /** */    
     clean : function(inStr, defStr, maxSize)

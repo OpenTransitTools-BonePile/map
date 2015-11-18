@@ -59,11 +59,11 @@ ott.leaflet.layer.LayerControllerStatic = {
         var button = document.createElement('button');
         button.type = 'button';
         button.id   = id;
-        button.className = 'layerButtons';
         button.innerHTML = name;
-        button.data-toggle="tooltip";
-        button.data-placement="bottom";
-        button.title=name;
+        button.title = name;
+        button['data-toggle'] = "tooltip";
+        button['data-placement'] = "bottom";
+        button.className = 'layerButtons';
 
         var THIS = this;
         button.onclick = function(e) {
@@ -79,15 +79,26 @@ ott.leaflet.layer.LayerControllerStatic = {
     parseLayersSpec : function(data)
     {
         console.log("enter LayerController.parseLayersSpec()");
+
+        if(ott.utils.StringUtils.isString(data))
+            data = jQuery.parseJSON(data);
+
         for(var i in data)
         {
             var json = data[i];
             var layerId = json.id;
             var name = json.id;
 
-            var layer = new ott.leaflet.layer.WmsLayer(this.map, layerId, this.wmsServer, layerId, false);
-            this.addUiLayerButton(layerId, layer, name);
-            this.layers.push(layer);
+            if(layerId && name)
+            {
+                var layer = new ott.leaflet.layer.WmsLayer(this.map, layerId, this.wmsServer, layerId, false);
+                this.addUiLayerButton(layerId, layer, name);
+                this.layers.push(layer);
+            }
+            else
+            {
+                console.log("WARN: parseLayersSpec() -- json missing elements " + json);
+            }
         }
         console.log("exit LayerController.parseLayersSpec()");
     },
