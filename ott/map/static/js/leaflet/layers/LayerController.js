@@ -57,10 +57,13 @@ ott.leaflet.layer.LayerControllerStatic = {
     addUiLayerButton : function(id, layer, name)
     {
         var button = document.createElement('button');
-            button.type = 'button';
-            button.id   = id;
-            button.className = 'layerButtons';
-            button.innerHTML = name;
+        button.type = 'button';
+        button.id   = id;
+        button.className = 'layerButtons';
+        button.innerHTML = name;
+        button.data-toggle="tooltip";
+        button.data-placement="bottom";
+        button.title=name;
 
         var THIS = this;
         button.onclick = function(e) {
@@ -73,13 +76,14 @@ ott.leaflet.layer.LayerControllerStatic = {
     /**
      * read in .json file of
      */
-    parseLayersSpec : function(json)
+    parseLayersSpec : function(data)
     {
         console.log("enter LayerController.parseLayersSpec()");
-        for(var i in json)
+        for(var i in data)
         {
-            var layerId = json[i].id;
-            var name = json[i].id;
+            var json = data[i];
+            var layerId = json.id;
+            var name = json.id;
 
             var layer = new ott.leaflet.layer.WmsLayer(this.map, layerId, this.wmsServer, layerId, false);
             this.addUiLayerButton(layerId, layer, name);

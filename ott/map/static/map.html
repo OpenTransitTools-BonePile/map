@@ -62,6 +62,10 @@
 
     <script type="text/javascript">
     $(document).ready(function(){
+        // do bootstrap stuff...f
+        $('[data-toggle="tooltip"]').tooltip();
+
+
         this.map = new ott.leaflet.map.Map(ott.config);
         this.search = new ott.leaflet.map.Search(this.map.map);
         this.geo = new ott.leaflet.utils.GeoLocation(this.map.map);
@@ -97,7 +101,7 @@
                     <input type="text" id="search" placeholder="search" class="form-control"/>
                 </div>
                 <div class="form-group">
-                    <button type="submit" id="pr"><img src="/images/ui/pr.png"></button>
+                    <button type="submit" id="pr" data-toggle="tooltip" data-placement="bottom" title="Park & Ride"><img src="/images/ui/pr.png"></button>
                     <button type="submit" id="tc"><img src="/images/ui/tc.png"></button>
                     <button type="submit" id="fare"><img src="/images/ui/ticket.png"></button>
                     <button type="submit" id="tvm"><img  src="/images/ui/tvm.png"></button>
