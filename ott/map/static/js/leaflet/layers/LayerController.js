@@ -95,6 +95,3 @@ ott.leaflet.layer.LayerControllerStatic = {
     CLASS_NAME: "ott.leaflet.layer.LayerController"
 };
 ott.leaflet.layer.LayerController = new ott.Class(ott.leaflet.layer.LayerControllerStatic);
-
-x = {
-};
