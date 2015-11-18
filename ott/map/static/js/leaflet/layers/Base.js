@@ -5,6 +5,9 @@ ott.leaflet.layer.BaseStatic = {
     map : null,
     url : null,
 
+    update : null,
+    offset : 60000,
+
     /**
      * @consturctor
      */
@@ -17,6 +20,14 @@ ott.leaflet.layer.BaseStatic = {
     refreshData : function()
     {
         var retVal = true;
+
+        var up = new Date().getTime();
+        if(this.update && this.update < (up - this.offset))
+        {
+            retVal = false;
+            this.update = up;
+        }
+
         return retVal;
     },
 
