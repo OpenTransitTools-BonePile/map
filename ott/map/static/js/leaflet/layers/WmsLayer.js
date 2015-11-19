@@ -72,6 +72,8 @@ ott.leaflet.layer.WmsLayerStatic = {
     show : function()
     {
         this.isVisible = true;
+        if(this.opacity == 0.0)
+            this.setOpacity(this.defaultOpacity);
         this.map.addLayer(this.layer);
     },
 
