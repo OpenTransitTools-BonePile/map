@@ -65,12 +65,20 @@ ott.leaflet.layer.LayerControllerStatic = {
         button['data-placement'] = "bottom";
         button.className = 'layerButtons';
 
+        this.addLayerButtonCallback(button, layer);
+        $(this.layerButtonsDiv).append(button);
+    },
+
+    addLayerButtonCallback : function(button, layer)
+    {
+        if(ott.utils.StringUtils.isString(button))
+            button = document.getElementById(button);
+
         var THIS = this;
         button.onclick = function(e) {
             THIS.activeLayer = layer;
             layer.toggle();
         };
-        $(this.layerButtonsDiv).append(button);
     },
 
     /**

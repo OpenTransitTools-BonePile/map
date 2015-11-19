@@ -56,6 +56,9 @@
 
     <script src="js/ott.leaflet.js"></script>
     <script src="js/leaflet/config.js"></script>
+    <script src="js/leaflet/layers/Base.js"></script>
+    <script src="js/leaflet/layers/WmsLayer.js"></script>
+    <script src="js/leaflet/layers/LayerController.js"></script>
 
     <script type="text/javascript">
     $(document).ready(function(){
@@ -74,9 +77,11 @@
         this.fare = new ott.leaflet.layer.PointLayer(this.map.map, 'type:16', 'fare');
         this.tvm  = new ott.leaflet.layer.PointLayer(this.map.map, 'type:26', 'tvm');
 
-        this.weather = ott.leaflet.layer.WmsLayerStatic.makeWeatherLayer(this.map.map);
         this.lc = new ott.leaflet.layer.LayerController(this.map.map);
-        //this.lc.addLayer(this.weather);
+
+        this.weather = ott.leaflet.layer.WmsLayerStatic.makeWeatherLayer(this.map.map);
+        this.lc.addLayer(this.weather);
+        this.lc.addLayerButtonCallback('weatherButton', this.weather);
     });
     </script>
 </head>
