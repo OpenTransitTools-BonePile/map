@@ -23,8 +23,8 @@ ott.leaflet.transit.Stops = {
 
         // step 0: vars set (from config?)
         this.map = map;
-        var THIS = this;
         this.mapZoom = this.maxZoom;
+        var THIS = this;
 
         // step 1: style
         this.style = new ott.leaflet.transit.TransitIcons();
@@ -34,7 +34,7 @@ ott.leaflet.transit.Stops = {
 
         // step 3: create new json layer w/out any initial points
         this.layer = new L.GeoJSON(null, {
-                pointToLayer : function(feature, ll){ THIS.makeMarker(feature, ll); }
+            pointToLayer : function(feature, ll){ THIS.makeMarker(feature, ll); }
         });
 
         console.log("exit leaflet Stops() constructor");
@@ -53,7 +53,6 @@ ott.leaflet.transit.Stops = {
         marker.addTo(this.layer).bindPopup(popupContent);
         return marker;
     },
-
 
     markerClickCB : function(e, marker)
     {
@@ -178,8 +177,7 @@ ott.leaflet.transit.Stops = {
     /** ajax callback to process response */
     processServerResponse : function(data)
     {
-        console.log("num stops: ");
-        console.log(data && data.features ? data.features.length : "empty");
+        console.log("num stops: " + (data && data.features) ? data.features.length : "empty");
         this.data = data;
         this.layer.clearLayers();
         this.layer.addData(data);
