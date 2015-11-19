@@ -64,6 +64,7 @@
     $(document).ready(function(){
         // do bootstrap stuff...
         $('[data-toggle="tooltip"]').tooltip();
+        $('.layerButton').draggable({cancel:false});  // drag n drop
 
         this.map = new ott.leaflet.map.Map(ott.config);
         this.search = new ott.leaflet.map.Search(this.map.map);
@@ -139,7 +140,7 @@
                             <div class="dropdown-menu" style="padding:17px;">
                                 <form class="form" id="formLayers">
                                     <div class="form-group" id="layerButtons">
-                                        <button type="button" id="weatherButton"><img src="/images/ui/weather.png"></button>
+                                        <div class="layerButton"><button type="button" id="weatherButton"><img src="/images/ui/weather.png"></button></div>
                                     </div>
                                     <br>
                                     <input type="range" id="layerButtonsOpacity" name="Layer Opacity" min="0" max="10">
