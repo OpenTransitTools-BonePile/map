@@ -26,16 +26,19 @@ ott.leaflet.transit.TripPlan = {
         this.url = url;
         this.formDiv = formDiv;
         this.outputDiv = outputDiv;
+        this.addSubmitPlanCallback(this.formDiv);
 
-        var THIS = this;
-        // ueryServer(THIS.plannerHandler ); } );
-        $(this.formDiv).click( function(e) { THIS.queryServer(THIS.plannerHandler ); } );
 
         ott.log.debug("exit leaflet TripPlan() constructor");
     },
 
-    addSubmitPlanCallback : function()
+    addSubmitPlanCallback : function(formDiv)
     {
+        var THIS = this;
+        //$(formDiv).click( function(e) { THIS.queryServer(THIS.plannerHandler ); } );
+                $(formDiv).ajaxForm(function() {
+                                                      alert("Thank you for your comment!");
+                                                  });
 
     },
 
@@ -88,6 +91,11 @@ ott.leaflet.transit.TripPlan = {
         {
         }
     },
+
+    queryServer : function(responseMethod)
+    {
+    },
+
 
 
     CLASS_NAME: "ott.leaflet.transit.TripPlan"
