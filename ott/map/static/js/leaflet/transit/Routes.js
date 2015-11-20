@@ -14,7 +14,7 @@ ott.leaflet.transit.Routes = {
      */
     initialize : function(map, targetDiv, url)
     {
-        console.log("enter leaflet Routes() constructor");
+        ott.log.debug("enter leaflet Routes() constructor");
 
         targetDiv = targetDiv || '#routes';
         url = url || 'http://maps7.trimet.org/ride_ws/routes';
@@ -23,7 +23,7 @@ ott.leaflet.transit.Routes = {
         this.targetDiv = targetDiv;
         this.url = url;
         this.queryServer(this.routeListAjaxHandler);
-        console.log("exit leaflet Routes() constructor");
+        ott.log.debug("exit leaflet Routes() constructor");
     },
 
     /**
@@ -108,7 +108,7 @@ ott.leaflet.transit.Routes = {
             var url = this.url;
             if(parameters)
                 url = url + L.Util.getParamString(parameters)
-            console.log(url);
+            ott.log.debug(url);
 
             responseMethod = responseMethod.bind(this);
             $.ajax({

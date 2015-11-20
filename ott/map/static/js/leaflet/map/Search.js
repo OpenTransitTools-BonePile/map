@@ -12,7 +12,7 @@ ott.leaflet.map.Search = {
      */
     initialize : function(map, targetDiv, url)
     {
-        console.log("enter leaflet Search() constructor");
+        ott.log.debug("enter leaflet Search() constructor");
 
         targetDiv = targetDiv || '#search';
         url = url || 'http://maps7.trimet.org/solr/select';
@@ -22,12 +22,12 @@ ott.leaflet.map.Search = {
         this.url = url;
         this.makeSolr();
 
-        console.log("exit leaflet Search() constructor");
+        ott.log.debug("exit leaflet Search() constructor");
     },
 
     selectCallback : function(rec)
     {
-        console.log("Search: " + rec.label + '::'  + rec.lat + ',' + rec.lon + this.url);
+        ott.log.debug("Search: " + rec.label + '::'  + rec.lat + ',' + rec.lon + this.url);
         var pt = {lat:rec.lat, lng:rec.lon};
         L.marker(pt).addTo(this.map).bindPopup(this.makePopupLabel(rec)).openPopup();
         return true;

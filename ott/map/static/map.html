@@ -57,11 +57,12 @@
     <script src="js/ott.leaflet.js"></script>
     <script src="js/leaflet/config.js"></script>
     <script src="js/leaflet/layers/Base.js"></script>
-    <script src="js/leaflet/layers/WmsLayer.js"></script>
-    <script src="js/leaflet/layers/LayerController.js"></script>
+    <script src="js/leaflet/transit/TripPlan.js"></script>
 
     <script type="text/javascript">
     $(document).ready(function(){
+        ott.debug = true;
+
         // do bootstrap stuff...
         $('[data-toggle="tooltip"]').tooltip();
         $('.layerButton').draggable({cancel:false});  // drag n drop

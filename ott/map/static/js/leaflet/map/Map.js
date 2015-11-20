@@ -14,7 +14,7 @@ ott.leaflet.map.Map = {
      */
     initialize : function(config, targetDiv)
     {
-        console.log("enter leaflet Map() constructor");
+        ott.log.debug("enter leaflet Map() constructor");
 
         // step 0: fix up some basics (default image needed for some marker layers, ala timeline)
         L.Icon.Default.imagePath = '/resources/leaflet/images/';
@@ -86,7 +86,7 @@ ott.leaflet.map.Map = {
                 units: "english"
             }).addTo(this.map);
 
-        console.log("exit leaflet Map() constructor");
+        ott.log.debug("exit leaflet Map() constructor");
     },
 
     blah : function(webapp)

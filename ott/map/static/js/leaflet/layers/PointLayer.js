@@ -19,7 +19,7 @@ ott.leaflet.layer.PointLayer = {
      */
     initialize : function(map, query, layerId, maxResults, url)
     {
-        console.log("enter leaflet PointLayer() constructor");
+        ott.log.debug("enter leaflet PointLayer() constructor");
 
         maxResults = maxResults || 400;
         url = url || 'http://maps7.trimet.org/solr/select';
@@ -38,7 +38,7 @@ ott.leaflet.layer.PointLayer = {
         var toggle = this.toggle.bind(this);
         $(this.buttonDiv).click(toggle);
 
-        console.log("exit leaflet PointLayer() constructor");
+        ott.log.debug("exit leaflet PointLayer() constructor");
     },
 
     processServerResponse : function(data)

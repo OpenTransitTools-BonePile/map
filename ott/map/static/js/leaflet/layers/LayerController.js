@@ -13,6 +13,8 @@ ott.leaflet.layer.LayerControllerStatic = {
      */
     initialize : function(map, url, wmsServer, layerButtonsDiv, layerOpacityDiv)
     {
+        ott.log.debug("enter LayerController constructor");
+
         // step 0: a bit of inheritance
         ott.inherit(this, ott.leaflet.layer.BaseStatic);
 
@@ -33,6 +35,8 @@ ott.leaflet.layer.LayerControllerStatic = {
 
         // step 3: get list of layer overlays from server and go to work adding those layers to ui & map
         this.queryServer(this.parseLayersSpec);
+
+        ott.log.debug("exit LayerController constructor");
     },
 
     addLayer : function(layer)
@@ -86,7 +90,7 @@ ott.leaflet.layer.LayerControllerStatic = {
      */
     parseLayersSpec : function(data)
     {
-        console.log("enter LayerController.parseLayersSpec()");
+        ott.log.debug("enter LayerController.parseLayersSpec()");
 
         if(ott.utils.StringUtils.isString(data))
             data = jQuery.parseJSON(data);
@@ -108,7 +112,8 @@ ott.leaflet.layer.LayerControllerStatic = {
                 console.log("WARN: parseLayersSpec() -- json missing elements " + json);
             }
         }
-        console.log("exit LayerController.parseLayersSpec()");
+
+        ott.log.debug("exit LayerController.parseLayersSpec()");
     },
 
     CLASS_NAME: "ott.leaflet.layer.LayerController"

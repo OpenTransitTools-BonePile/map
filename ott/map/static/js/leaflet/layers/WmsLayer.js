@@ -15,7 +15,7 @@ ott.leaflet.layer.WmsLayerStatic = {
      */
     initialize : function(map, layerId, url, wmsCfg, isVisible, opacity)
     {
-        console.log("enter leaflet WmsLayer() constructor");
+        ott.log.debug("enter leaflet WmsLayer() constructor");
 
         opacity = opacity || 0.50;
 
@@ -35,7 +35,7 @@ ott.leaflet.layer.WmsLayerStatic = {
         this.defaultOpacity = opacity;
         this.setOpacity(opacity);
 
-        console.log("exit leaflet WmsLayer() constructor");
+        ott.log.debug("exit leaflet WmsLayer() constructor");
     },
 
     setVisibility : function(isVisible, opacity)

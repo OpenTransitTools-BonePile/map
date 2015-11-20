@@ -14,8 +14,9 @@ ott.leaflet.transit.TripPlan = {
      */
     initialize : function(map, url, formDiv, outputDiv)
     {
-        console.log("enter leaflet TripPlan() constructor");
+        ott.log.debug("enter leaflet TripPlan() constructor");
 
+        ott.inherit(this, ott.leaflet.layer.BaseStatic);
         //ott.inherit(this, ott.planner.TripPlanStatic);
 
         formDiv = formDiv || '#tripPlan';
@@ -24,26 +25,12 @@ ott.leaflet.transit.TripPlan = {
         this.map = map;
         this.formDiv = formDiv;
         this.url = url;
-        this.queryServer(this.routeListAjaxHandler);
-        console.log("exit leaflet TripPlan() constructor");
+
+        ott.log.debug("exit leaflet TripPlan() constructor");
     },
 
-    /**
-     * used by route select via url param
-     */
-    selectRoute : function(routeId)
+    addLayerButtonCallback : function()
     {
-    },
-
-    /**
-     * real-time vehicles for selected routes
-     */
-    showVehicles : function()
-    {
-        for(var i in this.selectedTripPlan)
-        {
-        // DO SOMETHING
-        }
     },
 
     /**
@@ -96,30 +83,6 @@ ott.leaflet.transit.TripPlan = {
         }
     },
 
-    refreshData : function()
-    {
-        var retVal = true;
-        // TODO length of results and time determine re-query of SOLR data...
-        return retVal;
-    },
-
-    queryServer : function(responseMethod, parameters)
-    {
-        if(this.refreshData())
-        {
-            var url = this.url;
-            if(parameters)
-                url = url + L.Util.getParamString(parameters)
-            console.log(url);
-
-            responseMethod = responseMethod.bind(this);
-            $.ajax({
-                url: url,
-                datatype: 'json',
-                success: function(data) { responseMethod(data); }
-            });
-        }
-    },
 
     CLASS_NAME: "ott.leaflet.transit.TripPlan"
 };

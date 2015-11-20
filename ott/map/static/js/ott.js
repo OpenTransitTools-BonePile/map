@@ -47,7 +47,19 @@ var ott = {
         }
     },
 
-    /** 
+    debug : false,
+
+    log :
+    {
+        debug : function(msg)
+        {
+            if(ott.debug)
+                console.log(msg);
+        }
+    },
+
+
+    /**
      * a blank method (with a log warning).
      * 
      * idea is to use in classes where you intend to override a class...use defaultMethod as the initializer

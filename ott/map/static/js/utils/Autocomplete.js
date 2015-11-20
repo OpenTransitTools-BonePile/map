@@ -203,7 +203,7 @@ function PlaceCache(removeTitle, saveOnClick)
             span.onclick = function(e) {
                 THIS.remove(item.label);  // step 1: remove the cached item from our drop down
                 e.stopPropagation();      // step 2: prevent the deleted item from selection (and keep drop down open)
-                console.log("NOTE: stop propogation of select event...");
+                ott.log.debug("NOTE: stop propogation of select event...");
                 return true;
             };
             span.innerHTML = this.removeTitle;
@@ -270,7 +270,7 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
                     var form_value = get_el_val(this.input_div);
                     if(form_value != this.last_value)
                     {
-                        console.log("NOTE: clearing value of " + this.geo_div + "(" + form_value + ") from " + geo_value + " to '" + c + "'");
+                        ott.log.debug("NOTE: clearing value of " + this.geo_div + "(" + form_value + ") from " + geo_value + " to '" + c + "'");
                         $(this.geo_div).val(c);
                     }
                 }
@@ -298,7 +298,7 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
 
         if(this.geo_div)
         {
-            console.log("AutoComplete select_callback() for item " + rec.label + " -- setting geo_div to " + rec.lat + ',' + rec.lon);
+            ott.log.debug("AutoComplete select_callback() for item " + rec.label + " -- setting geo_div to " + rec.lat + ',' + rec.lon);
             $(this.geo_div).val(rec.lat + ',' + rec.lon);
             THIS.last_value = rec.label.trim();
         }

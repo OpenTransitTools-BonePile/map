@@ -19,7 +19,7 @@ ott.leaflet.transit.Stops = {
      */
     initialize : function(config, map)
     {
-        console.log("enter leaflet Stops() constructor");
+        ott.log.debug("enter leaflet Stops() constructor");
 
         // step 0: vars set (from config?)
         this.map = map;
@@ -37,7 +37,7 @@ ott.leaflet.transit.Stops = {
             pointToLayer : function(feature, ll){ THIS.makeMarker(feature, ll); }
         });
 
-        console.log("exit leaflet Stops() constructor");
+        ott.log.debug("exit leaflet Stops() constructor");
     },
 
     /** process each feature, making a marker w/ styling and popup, etc... */
@@ -163,7 +163,7 @@ ott.leaflet.transit.Stops = {
                 bbox: bbox.toBBoxString() + ",EPSG:4326"
             };
             var parameters = L.Util.extend(defaultParameters, customParams);
-            console.log(geoJsonUrl + L.Util.getParamString(parameters));
+            ott.log.debug(geoJsonUrl + L.Util.getParamString(parameters));
 
             var THIS = this;
             $.ajax({
@@ -177,7 +177,8 @@ ott.leaflet.transit.Stops = {
     /** ajax callback to process response */
     processServerResponse : function(data)
     {
-        console.log("num stops: " + (data && data.features) ? data.features.length : "empty");
+        ott.log.debug("num stops: ");
+        ott.log.debug(data && data.features ? data.features.length : "empty");
         this.data = data;
         this.layer.clearLayers();
         this.layer.addData(data);
