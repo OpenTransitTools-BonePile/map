@@ -61,7 +61,7 @@
 
     <script type="text/javascript">
     $(document).ready(function(){
-        ott.debug = true;
+        //ott.debug = true;
 
         // do bootstrap stuff...
         $('[data-toggle="tooltip"]').tooltip();
@@ -116,11 +116,11 @@
                         <div class="dropdown" id="menuLogin">
                             <button type="submit" id="trip" class="dropdown-toggle" href="#" data-toggle="dropdown"><img  src="/images/ui/planner.png"></button>
                             <div class="dropdown-menu" style="padding:17px;">
-                                <form class="form" id="formLogin">
+                                <form class="form" role="form" id="tripForm">
                                     <input name="from" id="from" type="text" placeholder="From">
                                     <input name="from" id="to"   type="text" placeholder="To">
                                     <br>
-                                    <button type="button" class="btn"  id="tripplan">Submit</button>
+                                    <button type="button" class="btn"  id="submit">Submit</button>
                                 </form>
                             </div>
                         </div>

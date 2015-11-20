@@ -19,18 +19,24 @@ ott.leaflet.transit.TripPlan = {
         ott.inherit(this, ott.leaflet.layer.BaseStatic);
         //ott.inherit(this, ott.planner.TripPlanStatic);
 
-        formDiv = formDiv || '#tripPlan';
+        formDiv = formDiv || '#tripForm';
         url = url || 'http://maps7.trimet.org/ride_ws/plan_trip';
 
         this.map = map;
-        this.formDiv = formDiv;
         this.url = url;
+        this.formDiv = formDiv;
+        this.outputDiv = outputDiv;
+
+        var THIS = this;
+        // ueryServer(THIS.plannerHandler ); } );
+        $(this.formDiv).click( function(e) { THIS.queryServer(THIS.plannerHandler ); } );
 
         ott.log.debug("exit leaflet TripPlan() constructor");
     },
 
-    addLayerButtonCallback : function()
+    addSubmitPlanCallback : function()
     {
+
     },
 
     /**
