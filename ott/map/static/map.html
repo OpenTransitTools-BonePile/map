@@ -83,6 +83,8 @@
         this.weather = ott.leaflet.layer.WmsLayerStatic.makeWeatherLayer(this.map.map);
         this.lc.addLayer(this.weather);
         this.lc.addLayerButtonCallback('weatherButton', this.weather);
+
+        this.tripplan = new ott.leaflet.transit.TripPlan(this.map.map);
     });
     </script>
 </head>
@@ -114,10 +116,10 @@
                             <button type="submit" id="trip" class="dropdown-toggle" href="#" data-toggle="dropdown"><img  src="/images/ui/planner.png"></button>
                             <div class="dropdown-menu" style="padding:17px;">
                                 <form class="form" id="formLogin">
-                                    <input name="username" id="username" type="text" placeholder="From">
-                                    <input name="password" id="password" type="text" placeholder="To">
+                                    <input name="from" id="from" type="text" placeholder="From">
+                                    <input name="from" id="to"   type="text" placeholder="To">
                                     <br>
-                                    <button type="button"  id="btnLogin" class="btn">Submit</button>
+                                    <button type="button" class="btn"  id="tripplan">Submit</button>
                                 </form>
                             </div>
                         </div>
