@@ -43,23 +43,6 @@ ott.leaflet.transit.TripPlan = {
     },
 
     /**
-     * real-time vehicles for selected routes
-     */
-    show : function()
-    {
-            var defaultParameters = {
-            };
-            var customParams = {
-            };
-            var parameters = L.Util.extend(defaultParameters, customParams);
-
-        for(var i in this.selectedTripPlan)
-        {
-        // DO SOMETHING
-        }
-    },
-
-    /**
      * ...
      * NOTE: might look at this solution - http://silviomoreto.github.io/bootstrap-select/
      */
@@ -96,6 +79,33 @@ ott.leaflet.transit.TripPlan = {
     {
     },
 
+
+    // TODO: OTP code...
+
+
+    addMapContextMenuItems : function()
+    {
+        var this_ = this;
+        //TRANSLATORS: Context menu
+        this.webapp.map.addContextMenuItem(_tr("Set as Start Location"), function(latlng) {
+            this_.setStartPoint(latlng, true);
+        });
+        //TRANSLATORS: Context menu
+        this.webapp.map.addContextMenuItem(_tr("Set as End Location"), function(latlng) {
+            this_.setEndPoint(latlng, true);
+        });
+    },
+
+    handleClick : function(event)
+    {
+        if(this.startLatLng == null) {
+        	this.setStartPoint(new L.LatLng(event.latlng.lat, event.latlng.lng), true);
+        }
+
+        else if(this.endLatLng == null) {
+        	this.setEndPoint(new L.LatLng(event.latlng.lat, event.latlng.lng), true);
+        }
+    },
 
 
     CLASS_NAME: "ott.leaflet.transit.TripPlan"
