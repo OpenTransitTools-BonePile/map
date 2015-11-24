@@ -6,7 +6,7 @@
 <form name="ajaxform" id="ajaxform" action="test.json" method="POST">
     First Name: <input type="text" name="fname" value ="Frank"/> <br/>
     Last Name: <input type="text" name="lname" value ="Black" /> <br/>
-    Email : <input type="text" name="email" value="pixies@xtc.com"/> <br/>
+    Email : <input type="text" name="email" value="pixies@xtc.com"/><br/>
 </form>
 <input type="button"  id="simple-post" value="Run Code" />
 <div id="simple-msg"></div>
@@ -15,42 +15,52 @@
 $(document).ready(function()
 {
 
-    
+// Delay Plugin for jQuery
+// - http://www.evanbot.com
+// - © 2008 Evan Byrne
+jQuery.fn.delay = function(time,func){
+    this.each(function(){
+        setTimeout(func,time);
+    });
+
+    return this;
+};
+
+
+$("#ajaxform").submit(function(e)
+{
+    $("#simple-msg").html("<img src='/images/busy.gif'/>");
+    var paramData = $(this).serializeArray();
+    var url = $(this).attr("action");
+    $.ajax(
+    {
+        url : url,
+        type: "GET",
+        data : paramData,
+        success:function(data, textStatus, jqXHR)
+        {
+            $("#simple-msg").html('<pre><code class="prettyprint">'+data+'</code></pre>');
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            $("#simple-msg").html('<pre><code class="prettyprint">AJAX Request Failed<br/> textStatus='+textStatus+', errorThrown='+errorThrown+'</code></pre>');
+        }
+    });
+    e.preventDefault();
+});
+
+
 $("#simple-post").click(function()
 {
-    $("#ajaxform").submit(function(e)
+    $("#ajaxform").submit();
+});
+
+$("#ajaxform").keypress(function(event)
+{
+    if (event.which == 13)
     {
-        $("#simple-msg").html("<img src='loading.gif'/>");
-        var paramData = $(this).serializeArray();
-        var url = $(this).attr("action");
-        $.ajax(
-        {
-            url : url,
-            type: "GET",
-            data : paramData,
-            success:function(data, textStatus, jqXHR) 
-            {
-                $("#simple-msg").html('<pre><code class="prettyprint">'+data+'</code></pre>');
-
-            },
-            error: function(jqXHR, textStatus, errorThrown) 
-            {
-                $("#simple-msg").html('<pre><code class="prettyprint">AJAX Request Failed<br/> textStatus='+textStatus+', errorThrown='+errorThrown+'</code></pre>');
-            }
-        });
-        e.preventDefault();    //STOP default action
-        e.unbind();
-    });
-
-    // set callbacks
-    $("#ajaxform").submit(); //SUBMIT FORM
-
-    $("input").keypress(function(event) {
-    if (event.which == 13) {
-        event.preventDefault();
-        $("form").submit();
+        $("#ajaxform").submit();
     }
-    });
 });
 
 });

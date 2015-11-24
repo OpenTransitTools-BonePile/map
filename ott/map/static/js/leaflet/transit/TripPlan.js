@@ -34,12 +34,8 @@ ott.leaflet.transit.TripPlan = {
 
     addSubmitPlanCallback : function(formDiv)
     {
-        var THIS = this;
-        //$(formDiv).click( function(e) { THIS.queryServer(THIS.plannerHandler ); } );
-                $(formDiv).ajaxForm(function() {
-                                                      alert("Thank you for your comment!");
-                                                  });
-
+        var this_ = this;
+        $(formDiv).click( function(e) { this_.queryServer(this_.plannerHandler ); } );
     },
 
     /**
@@ -99,11 +95,10 @@ ott.leaflet.transit.TripPlan = {
     handleClick : function(event)
     {
         if(this.startLatLng == null) {
-        	this.setStartPoint(new L.LatLng(event.latlng.lat, event.latlng.lng), true);
+            this.setStartPoint(new L.LatLng(event.latlng.lat, event.latlng.lng), true);
         }
-
         else if(this.endLatLng == null) {
-        	this.setEndPoint(new L.LatLng(event.latlng.lat, event.latlng.lng), true);
+            this.setEndPoint(new L.LatLng(event.latlng.lat, event.latlng.lng), true);
         }
     },
 
