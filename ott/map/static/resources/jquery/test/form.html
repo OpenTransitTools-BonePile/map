@@ -41,10 +41,10 @@ $("#simple-post").click(function()
         e.preventDefault();    //STOP default action
         e.unbind();
     });
-        
+
+    // set callbacks
     $("#ajaxform").submit(); //SUBMIT FORM
 
-    // enter submit
     $("input").keypress(function(event) {
     if (event.which == 13) {
         event.preventDefault();
