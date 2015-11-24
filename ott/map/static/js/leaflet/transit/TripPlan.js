@@ -27,7 +27,9 @@ ott.leaflet.transit.TripPlan = {
         this.map = map;
         this.url = url;
         this.formDiv = formDiv;
+        this.buttonDiv = buttonDiv;
         this.outputDiv = outputDiv;
+
         this.addSubmitPlanCallback(this.formDiv, this.buttonDiv);
 
 
@@ -41,7 +43,7 @@ ott.leaflet.transit.TripPlan = {
         {
             $("#simple-msg").html("<img src='/images/busy.gif'/>");
             var paramData = $(this).serializeArray();
-            var url = $(this).attr("action");
+            var url = this_.url;  // another way to specify url: $(this).attr("action");
             $.ajax(
             {
                 url : url,
