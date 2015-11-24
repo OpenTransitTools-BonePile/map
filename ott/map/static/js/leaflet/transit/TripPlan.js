@@ -7,35 +7,72 @@ ott.leaflet.transit.TripPlan = {
     plan  : null,
     layer : null,
     formDiv : null,
+    buttonDiv : null,
 
     /**
      * @consturctor
      * http://maps7.trimet.org/ride_ws/plan_trip?from=pdx&to=zoo
      */
-    initialize : function(map, url, formDiv, outputDiv)
+    initialize : function(map, url, formDiv, buttonDiv, outputDiv)
     {
         ott.log.debug("enter leaflet TripPlan() constructor");
 
         ott.inherit(this, ott.leaflet.layer.BaseStatic);
         //ott.inherit(this, ott.planner.TripPlanStatic);
 
-        formDiv = formDiv || '#tripForm';
         url = url || 'http://maps7.trimet.org/ride_ws/plan_trip';
+        formDiv = formDiv || '#tripForm';
+        buttonDiv = buttonDiv || '#tripSubmit';
 
         this.map = map;
         this.url = url;
         this.formDiv = formDiv;
         this.outputDiv = outputDiv;
-        this.addSubmitPlanCallback(this.formDiv);
+        this.addSubmitPlanCallback(this.formDiv, this.buttonDiv);
 
 
         ott.log.debug("exit leaflet TripPlan() constructor");
     },
 
-    addSubmitPlanCallback : function(formDiv)
+    addSubmitPlanCallback : function(formDiv, buttonDiv)
     {
         var this_ = this;
-        $(formDiv).click( function(e) { this_.queryServer(this_.plannerHandler ); } );
+        $(formDiv).submit(function(e)
+        {
+            $("#simple-msg").html("<img src='/images/busy.gif'/>");
+            var paramData = $(this).serializeArray();
+            var url = $(this).attr("action");
+            $.ajax(
+            {
+                url : url,
+                type: "GET",
+                data : paramData,
+                success:function(data, textStatus, jqXHR)
+                {
+                    $("#simple-msg").html('<pre><code class="prettyprint">'+data+'</code></pre>');
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    $("#simple-msg").html('<pre><code class="prettyprint">AJAX Request Failed<br/> textStatus='+textStatus+', errorThrown='+errorThrown+'</code></pre>');
+                }
+            });
+            e.preventDefault();
+        });
+
+
+        $(buttonDiv).click(function()
+        {
+            $(formDiv).submit();
+        });
+
+        $(formDiv).keypress(function(e)
+        {
+            if (e.which == 13)
+            {
+                $(formDiv).submit();
+            }
+        });
+
     },
 
     /**
