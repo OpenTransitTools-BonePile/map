@@ -23,14 +23,14 @@ ott.leaflet.map.ContextMenu = {
             contextmenu: true,
             contextmenuWidth: width | 140,
             contextmenuItems: [{
-                text: 'Show coordinates',
+                text: 'Show StreetView',
                 callback: THIS.showCoordinates
             },
+            '-',
             {
                 text: 'Center map here',
                 callback: function(e){ THIS.centerMap(e); }
             },
-            '-',
             {
                 text: 'Zoom in',
                 icon: 'images/ui/zoom-in.png',
@@ -46,7 +46,24 @@ ott.leaflet.map.ContextMenu = {
     },
 
     showCoordinates : function(e) {
-        alert(e.latlng);
+        var url = "http://maps.google.com/maps?output=svembed&layer=c&cbp=13,,,&z=17&cbll=" + e.latlng + "&ll=" + e.latlng;
+        var html = "<iframe width='100%' height='100%' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='" + url + "'></iframe>"
+
+
+        var dialog = $("<div></div>").append(html).appendTo("body").dialog({
+                autoOpen: false,
+                modal: true,
+                resizable: false,
+                width: "auto",
+                height: "auto",
+                open: function () {
+                },
+                close: function () {
+                    iframe.attr("src", "");
+                },
+                buttons: { "Ok": function() { $(this).dialog("close"); } }
+        });
+
     },
 
     centerMap : function(e) {
