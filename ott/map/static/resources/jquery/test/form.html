@@ -1,6 +1,7 @@
 <html>
 <head>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/resources/jquery/jquery.min.js"></script>
+    <script src="/resources/jquery/jquery-ui.js"></script>
 </head>
 <body>
 <form name="ajaxform" id="ajaxform" action="test.json" method="POST">
@@ -23,7 +24,6 @@ jQuery.fn.delay = function(time,func){
     this.each(function(){
         setTimeout(func,time);
     });
-
     return this;
 };
 
@@ -73,10 +73,18 @@ $("#open-dialog").click(
         var height = $(this).attr('data-height') || 300;
         var width  = $(this).attr('data-width')  || 400;
 
-        $("#sv iframe").attr({'src':    url,
-                              'height': height,
-                              'width':  width});
-
+        e.preventDefault();
+        $("#sv").dialog({
+            autoOpen: true,
+            modal: true,
+            height: 600,
+            open: function(ev, ui){
+                     $("#sv iframe").attr({
+                                  'src':    url,
+                                  'height': height,
+                                  'width':  width});
+                  }
+        });
 });
 
 });
