@@ -5,20 +5,26 @@
 </head>
 <body onload="loadUser">
 <div id="target">Loading...</div>
-<script id="template" type="x-tmpl-mustache">
-Hello {{ name }}!
-XX {{>partial}}
-</script>
 </body>
 </html>
 <script>
-function loadUser()
+function processTemplate(json, template_url)
 {
-    var template = $('#template').html();
-    Mustache.parse(template);   // optional, speeds up future uses
-    var rendered = Mustache.render(template, {name: "Frank"});
-    $('#target').html(rendered);
+    template_url || 'demo.mustache';
+    $.get(template_url, function(template)
+    {
+        var rendered = Mustache.render(template, json);
+        $('#target').html(rendered);
+    });
 }
 
-loadUser();
+function getJson(json_url, template_url)
+{
+    $.get(json_url, function(json)
+    {
+        processTemplate(json, template_url);
+    });
+}
+
+getJson('demo.json');
 </script>
