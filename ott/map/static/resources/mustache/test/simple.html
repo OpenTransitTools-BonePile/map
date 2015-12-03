@@ -7,6 +7,7 @@
 <div id="target">Loading...</div>
 <script id="template" type="x-tmpl-mustache">
 Hello {{ name }}!
+{{>partial}}
 </script>
 </body>
 </html>
@@ -15,7 +16,7 @@ function loadUser()
 {
     var template = $('#template').html();
     Mustache.parse(template);   // optional, speeds up future uses
-    var rendered = Mustache.render(template, {name: "Luke"});
+    var rendered = Mustache.render(template, {name: "Frank"});
     $('#target').html(rendered);
 }
 
