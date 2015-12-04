@@ -1,0 +1,30 @@
+<html>
+<head>
+    <script src="/resources/jquery/jquery.min.js"></script>
+    <script src="/resources/mustache/mustache.min.js"></script>
+</head>
+<body onload="loadUser">
+<div id="target">Loading...</div>
+</body>
+</html>
+<script>
+function processTemplate(json, template_url)
+{
+    template_url = template_url || 'demo.mustache';
+    $.get(template_url, function(template)
+    {
+        var rendered = Mustache.render(template, json);
+        $('#target').html(rendered);
+    });
+}
+
+function getJson(json_url, template_url)
+{
+    $.get(json_url, function(json)
+    {
+        processTemplate(json, template_url);
+    });
+}
+
+getJson('demo.json');
+</script>
