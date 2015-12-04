@@ -22,6 +22,9 @@ function getJson(json_url, template_url)
 {
     $.get(json_url, function(json)
     {
+        if(typeof json === "string" || json instanceof String)
+            json = jQuery.parseJSON(json);
+
         processTemplate(json, template_url);
     });
 }
