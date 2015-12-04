@@ -10,7 +10,7 @@
 <script>
 function processTemplate(json, template_url)
 {
-    template_url = template_url || 'demo.mustache';
+    template_url = template_url || 'trip.mustache';
     $.get(template_url, function(template)
     {
         var rendered = Mustache.render(template, json);
@@ -26,5 +26,5 @@ function getJson(json_url, template_url)
     });
 }
 
-getJson('demo.json');
+getJson('trip.json');
 </script>
