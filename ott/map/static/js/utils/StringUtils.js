@@ -297,7 +297,5 @@ ott.utils.StringUtils = {
         return retVal;
     },
 
-
-
     CLASS_NAME: "ott.utils.StringUtils"
 };
