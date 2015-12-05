@@ -2,12 +2,16 @@
 <head>
     <script src="/resources/jquery/jquery.min.js"></script>
     <script src="/resources/mustache/mustache.min.js"></script>
+    <script src="/resources/mustache/test/trip.mustache" id="trip.mustache" type="text/plain"></script>
 </head>
 <body>
 <div id="target">Loading...</div>
 </body>
 </html>
 <script>
+var d = document.getElementById('trip.mustache');
+console.log(d);
+
 function processTemplate(json, template_url)
 {
     template_url = template_url || 'trip.mustache';
