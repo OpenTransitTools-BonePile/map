@@ -1,4 +1,4 @@
-ott.namespace("ott.leaflet.map");
+ott.namespace("ott.utils);
 
 ott.utils.TransitUtils = {
 
