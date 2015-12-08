@@ -188,5 +188,5 @@ ott.utils.AnalyticsUtils = {
         return retVal;
     },
 
-    CLASS_NAME : "ott.utls.AnalyticsUtils"
+    CLASS_NAME : "ott.utils.AnalyticsUtils"
 };

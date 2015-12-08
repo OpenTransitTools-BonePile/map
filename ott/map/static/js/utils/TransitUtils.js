@@ -31,7 +31,7 @@ ott.utils.TransitUtils = {
             t = t + '</a><br/><br/>';
             t = t + '#[${bdate};; <b>Route Begin Date: </b>${bdate}<br/>]';
             t = t + '#[${edate};; <b>Route End Date: </b>${edate}<br/>]';
-            retVal = trimet.utils.StringUtils.format(t, {id:this.padRouteID(id), public_id:pid, name:name, bdate:bdate, edate:edate});
+            retVal = ott.utils.StringUtils.format(t, {id:this.padRouteID(id), public_id:pid, name:name, bdate:bdate, edate:edate});
         }
         return retVal;
     },
@@ -69,6 +69,6 @@ ott.utils.TransitUtils = {
         return retVal;
     },
 
-    CLASS_NAME: "trimet.utils.TrimetUtils"
+    CLASS_NAME: "ott.utils.TransitUtils"
 }
 
