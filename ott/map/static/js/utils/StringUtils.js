@@ -148,7 +148,10 @@ ott.utils.StringUtils = {
                 end = end - 1;
                 start = url.lastIndexOf('/', end - 1) + 1;
             }
-            if(start > 0 && start < end)
+
+            if(start <= 0)
+                retVal = url;        // no forward slash in the url, so assume the url is the service name
+            else if(start < end)
                 retVal = url.substring(start, end);
         }
         catch(e)
