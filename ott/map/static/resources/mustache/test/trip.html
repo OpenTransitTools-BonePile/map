@@ -14,7 +14,7 @@
 var x = new ott.utils.MultiAjax(['trip.mustache', 'fare.mustache']);
 console.log(x);
 
-function processTemplate(json, template_url)
+function processTemplateZ(json, template_url)
 {
     template_url = template_url || 'trip.mustache';
     $.get(template_url, function(template)
@@ -24,9 +24,9 @@ function processTemplate(json, template_url)
     });
 }
 
-function processTemplateX(json, template_url)
+function processTemplate(json, templates)
 {
-        var rendered = Mustache.render(template, json);
+        var rendered = Mustache.render(x.findData('trip.mustache'), json);
         $('#target').html(rendered);
 }
 

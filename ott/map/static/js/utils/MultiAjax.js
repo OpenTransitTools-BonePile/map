@@ -22,6 +22,36 @@ ott.utils.MultiAjax = {
         this.callUrls()
     },
 
+    findRecord : function(name)
+    {
+        var retVal = null;
+        try
+        {
+            for(var i = 0; i < this.data.length; i++)
+            {
+                if(this.data[i].name === name)
+                {
+                    retVal = this.data[i];
+                    break;
+                }
+            }
+        }
+        catch(e)
+        {
+            console.log("MultiAjax: couldn't find item: " + name);
+        }
+        return retVal;
+    },
+
+    findData : function(name, defVal)
+    {
+        var retVal = defVal;
+        var rec = this.findRecord(name);
+        if(rec && rec.data)
+            retVal = rec.data;
+        return retVal;
+    },
+
     callUrls : function()
     {
         var this_  = this;
