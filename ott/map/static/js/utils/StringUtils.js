@@ -146,7 +146,7 @@ ott.utils.StringUtils = {
             if(start >= end)
             {
                 end = end - 1;
-                start = url.lastIndexOf('/', end);
+                start = url.lastIndexOf('/', end - 1) + 1;
             }
             if(start > 0 && start < end)
                 retVal = url.substring(start, end);

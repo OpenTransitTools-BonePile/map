@@ -10,7 +10,7 @@ ott.utils.MultiAjax = {
     {
        var retVal = [];
 
-        for(var i = 0; i < arguments.length; i++)
+        for(var i = 0; i < urls.length; i++)
         {
             var u = urls[i];
             var n = ott.utils.StringUtils.serviceNameFromURL(u);
