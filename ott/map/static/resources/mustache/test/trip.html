@@ -11,7 +11,7 @@
 </body>
 </html>
 <script>
-var x = new ott.utils.MultiAjax(['/js/', '/js', '/js/ott.js', '/js/ott.leaflet.js', '/js/ott.js']);
+var x = new ott.utils.MultiAjax(['trip.mustache', 'fare.mustache']);
 console.log(x);
 
 function processTemplate(json, template_url)
