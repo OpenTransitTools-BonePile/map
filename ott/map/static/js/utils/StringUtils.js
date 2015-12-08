@@ -140,16 +140,16 @@ ott.utils.StringUtils = {
         var retVal = defVal || 'index.html';
         try
         {
-            var start = end = url.length;
-            var len = url.lastIndexOf('/');
+            var start = url.lastIndexOf('/') + 1;
+            var end   = url.length;
 
-            if(len == url.length)
+            if(start >= end)
             {
                 end = end - 1;
-                start url.lastIndexOf('/', end);
+                start = url.lastIndexOf('/', end);
             }
-
-            retVal = url.substring(start, end);
+            if(start > 0 && start < end)
+                retVal = url.substring(start, end);
         }
         catch(e)
         {}
