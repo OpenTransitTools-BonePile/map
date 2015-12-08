@@ -10,10 +10,9 @@
 </body>
 </html>
 <script>
-var d = document.getElementById('trip.mustache');
-console.log(d);
+var x = ott.utils.MultiAjax.callUrls(['/js/ott.js', '/js/ott.leaflet.js']);
 
-function processTemplateX(json, template_url)
+function processTemplate(json, template_url)
 {
     template_url = template_url || 'trip.mustache';
     $.get(template_url, function(template)
@@ -23,7 +22,7 @@ function processTemplateX(json, template_url)
     });
 }
 
-function processTemplate(json, template_url)
+function processTemplateX(json, template_url)
 {
         var rendered = Mustache.render(template, json);
         $('#target').html(rendered);

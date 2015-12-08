@@ -2,28 +2,32 @@ ott.namespace("ott.utils");
 
 ott.utils.MultiAjax = {
 
+    callz : function(urls)
+    {
+    },
+
     callUrls : function(urls)
     {
-/*
+        var call = function(url){
+            return $.get(url, {count:5}, null, 'text');
+        };
+
         $.when(
-            call('')
-        ).done(function(ajaxData)
+            call('/js/ott.js')
+            ,
+            call('/js/ott.leaflet.js')
+        ).done(function()
         {
-             for(var i = 0; i < ajaxData.length; i++)
-                 console.log(urls[i]);
+            console.log('hhhh');
+            if(arguments)
+                for(var i = 0; i < arguments.length; i++)
+                    console.log(urls[i]);
         });
-}
+
 /*for(var i = 0; i < urls; i++)
             {
                 call(urls[i]);
             }*/
-    },
-
-    call : function(urls)
-    {
-        var call = function(url){
-            return $.get(url, {count:5}, null, 'jsonp');
-        };
     },
 
     CLASS_NAME: "trimet.utils.MultiAjax"
