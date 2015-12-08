@@ -8,8 +8,19 @@ ott.utils.MultiAjax = {
 
     callUrls : function(urls)
     {
+       var retVal = [];
+
+        for(var i = 0; i < arguments.length; i++)
+        {
+            var u = urls[i];
+            var n = ott.utils.serviceNameFromURL(u);
+            var d = {'url':u, 'name':n, 'data':null}
+            retVal.push(d);
+            console.log(d);
+        }
+
         var call = function(url){
-            return $.get(url, {count:5}, null, 'text');
+            return $.get(url, null, 'text');
         };
 
         $.when(

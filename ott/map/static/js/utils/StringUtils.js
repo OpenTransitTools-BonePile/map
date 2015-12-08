@@ -134,6 +134,29 @@ ott.utils.StringUtils = {
         return retVal;
     },
 
+    /** grab the name of the url target, or last part of url path as name */
+    serviceNameFromURL : function(url, defVal)
+    {
+        var retVal = defVal || 'index.html';
+        try
+        {
+            var start = end = url.length;
+            var len = url.lastIndexOf('/');
+
+            if(len == url.length)
+            {
+                end = end - 1;
+                start url.lastIndexOf('/', end);
+            }
+
+            retVal = url.substring(start, end);
+        }
+        catch(e)
+        {}
+
+        return retVal;
+    },
+
     /** */
     startsWith : function(str, match)
     {
@@ -145,7 +168,6 @@ ott.utils.StringUtils = {
     {
         return ((str.substring(str.length - match.length) == match) ? true : false);
     },
-
 
     /** 
       * this method will test for existance of the first parameter.  
@@ -248,8 +270,8 @@ ott.utils.StringUtils = {
     {
         return inStr;
 
-        // TODO: the method below doesn't work with César Chávez like strings, so it's currently removed 
-        //return inStr.replace(/[^a-zA-Z0-9ÑÈÉËÃÀÁÕÓÒÍÌØÚÙÛÜİàáãäåçèéêëìíøõôıæúùûü«»?¿&@()*_\-\', ]/g,"");
+        // TODO: the method below doesn't work with Cï¿½sar Chï¿½vez like strings, so it's currently removed 
+        //return inStr.replace(/[^a-zA-Z0-9ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½&@()*_\-\', ]/g,"");
     },
     
     stripCurseWords : function(inStr)
