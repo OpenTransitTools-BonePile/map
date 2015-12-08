@@ -17,16 +17,23 @@ ott.utils.MultiAjax = {
             var d = {'url':u, 'name':n, 'data':null}
             retVal.push(d);
             console.log(d);
+
         }
 
         var call = function(url){
             return $.get(url, null, 'text');
         };
 
+        var call = function(url){
+            return $.get(url, null, 'text');
+        };
+
         $.when(
-            call('/js/ott.js')
-            ,
-            call('/js/ott.leaflet.js')
+
+            for(var i = 0; i < urls; i++)
+            {
+                call(urls[i]);
+            }
         ).done(function()
         {
             console.log('hhhh');
@@ -35,7 +42,12 @@ ott.utils.MultiAjax = {
                     console.log(urls[i]);
         });
 
-/*for(var i = 0; i < urls; i++)
+/*
+            call('/js/ott.js')
+            ,
+            call('/js/ott.leaflet.js')
+
+for(var i = 0; i < urls; i++)
             {
                 call(urls[i]);
             }*/
