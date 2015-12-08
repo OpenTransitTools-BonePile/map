@@ -11,7 +11,8 @@
 </body>
 </html>
 <script>
-var x = ott.utils.MultiAjax.callUrls(['/js/', '/js', '/js/ott.js', '/js/ott.leaflet.js']);
+var x = new ott.utils.MultiAjax(['/js/', '/js', '/js/ott.js', '/js/ott.leaflet.js', '/js/ott.js']);
+console.log(x);
 
 function processTemplate(json, template_url)
 {
