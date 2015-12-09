@@ -1,11 +1,11 @@
 import os
 
 ###
-### file compress routines below...
+### file combine routines below...
 ###
 
 def filter(name, filters, filter_match, rev=False):
-    ''' used to filter certain files from the 'compress' method below
+    ''' used to filter certain files from the 'combine' method below
     '''
     ret_val = False
     if len(filters) > 0:
@@ -19,7 +19,7 @@ def filter(name, filters, filter_match, rev=False):
             ret_val = True
     return ret_val
 
-def compress(dir, fname='ott.all', ext='js', filters=[], filter_match=True, filter_dirs=False, out_status='w'):
+def combine(dir, fname='ott.all', ext='js', filters=[], filter_match=True, filter_dirs=False, out_status='w'):
     ''' used to build a single file that includes other .js and .css files
     '''
     out_name = fname + '.' + ext
@@ -51,9 +51,9 @@ def compress(dir, fname='ott.all', ext='js', filters=[], filter_match=True, filt
 
 
 #import pdb; pdb.set_trace()
-compress(dir='ott/map/static/css/', ext='css')
-compress(dir='ott/map/static/js/',  ext='js', fname='ott.leaflet',    filters=['openlayers', 'config'],  filter_match=False, filter_dirs=True)
-compress(dir='ott/map/static/js/',  ext='js', fname='ott.openlayers', filters=['leaflet', 'config'],     filter_match=False, filter_dirs=True)
-compress(dir='ott/map/static/resources/leaflet/', ext='js',  fname='ott.leaflet', filters=['leaflet-src'], filter_match=False, filter_dirs=True)
-compress(dir='ott/map/static/resources/leaflet/', ext='css', fname='ott.leaflet', filters=['leaflet-src'], filter_match=False, filter_dirs=True)
+combine(dir='ott/map/static/css/', ext='css')
+combine(dir='ott/map/static/js/',  ext='js', fname='ott.leaflet',    filters=['openlayers', 'config'],  filter_match=False, filter_dirs=True)
+combine(dir='ott/map/static/js/',  ext='js', fname='ott.openlayers', filters=['leaflet', 'config'],     filter_match=False, filter_dirs=True)
+combine(dir='ott/map/static/resources/leaflet/', ext='js',  fname='ott.leaflet', filters=['leaflet-src'], filter_match=False, filter_dirs=True)
+combine(dir='ott/map/static/resources/leaflet/', ext='css', fname='ott.leaflet', filters=['leaflet-src'], filter_match=False, filter_dirs=True)
 
