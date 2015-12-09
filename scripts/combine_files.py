@@ -50,11 +50,20 @@ def combine(dir, fname='ott.all', ext='js', filters=[], filter_match=True, filte
 
     out_file.close()
 
-
-def templates_to_js(dir, fname='ott.mustache-templates', ext="mustache", filters=[], filter_match=True, filter_dirs=False):
-    ''' combine all templates (.mustache) into a single .js file (so it can be loaded
+def open_templates_output(dir, fname='ott.mustache-templates', ext="js", first_line="ott.templates = {\n", out_status='w', ln=None):
+    ''' step 1 of 3: open a new file ott.mustache-templates.js
     '''
+    if ln: ln = "-{0}".format(ln)
+    else:  ln = ""
+    out_name = "{0}{1}.{2}".format(fname, ln, ext)
+    out_file = open(dir + out_name, out_status)
+    out_file.write(first_line)
+    return out_name, out_file
 
+def templates_to_js(dir, out_name, out_file, ext="mustache", filters=[], filter_match=True, filter_dirs=False):
+    ''' step 2 of 3: add each of our templates (.mustache) into ott.mustache-templates.js
+                     each template is an entry (string) in the ott.templates {} hash
+    '''
     for root, directories, filenames in os.walk(dir):
         if filter_dirs:
             if filter(root, filters, filter_match, True):
@@ -70,20 +79,19 @@ def templates_to_js(dir, fname='ott.mustache-templates', ext="mustache", filters
 
                 # step 2: we pass the filter, then append the file
                 print filename
+                f = os.path.join(root, filename)
+                fh = open(f)
+                data = fh.read() + '\n'
+                fh.close()
+                encoded_data = data.strip().replace('\n', '\\n').replace("'", "\'")
+                comma = ","
+                attribute = "    '{0}': '{1}'{2}\n\n".format(filename, encoded_data, comma)
+                out_file.write(attribute)
 
-
-def open_templates_output(dir, fname='ott.mustache-templates', ext="js", first_line="ott.templates = {\n", out_status='w', ln=None):
-    if ln:
-        ln = "-{0}".format(ln)
-    else:
-        ln = ""
-    out_name = "{0}{1}.{2}".format(fname, ln, ext)
-
-    out_file = open(dir + out_name, out_status)
-    out_file.write(first_line)
-    return out_name, out_file
 
 def close_templates_output(out_file, last_line="\n};\n"):
+    ''' step 3 of 3: close the ott.mustache-templates.js file
+    '''
     out_file.write(last_line)
     out_file.close()
 
@@ -97,8 +105,9 @@ def main(argv=None):
         combine(dir='ott/map/static/resources/leaflet/', ext='css', fname='ott.leaflet', filters=['leaflet-src'], filter_match=False, filter_dirs=True)
 
     if "templates" in argv or "t" in argv or "all" in argv:
-        out_name, out_file = open_templates_output(dir='ott/map/static/resources/mustache/test/')
-        #templates_to_js(dir='ott/map/static/resources/mustache/test/')
+        dir='ott/map/static/resources/mustache/test/'
+        out_name, out_file = open_templates_output(dir)
+        templates_to_js(dir, out_name, out_file)
         close_templates_output(out_file)
 
 if __name__ == "__main__":
