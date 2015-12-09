@@ -19,37 +19,8 @@ ott.utils.MultiAjax = {
             this.data.push(d);
         }
 
+        this.isBusy = true;
         this.callUrls()
-    },
-
-    findRecord : function(name)
-    {
-        var retVal = null;
-        try
-        {
-            for(var i = 0; i < this.data.length; i++)
-            {
-                if(this.data[i].name === name)
-                {
-                    retVal = this.data[i];
-                    break;
-                }
-            }
-        }
-        catch(e)
-        {
-            console.log("MultiAjax: couldn't find item: " + name);
-        }
-        return retVal;
-    },
-
-    findData : function(name, defVal)
-    {
-        var retVal = defVal;
-        var rec = this.findRecord(name);
-        if(rec && rec.data)
-            retVal = rec.data;
-        return retVal;
     },
 
     callUrls : function()
@@ -60,8 +31,6 @@ ott.utils.MultiAjax = {
         var error = false;
         var execute_queue = function(index)
         {
-            this_.isBusy = true;
-
             $.ajax({
                 url: this_.data[index].url,
                 success: function(resp)
@@ -94,9 +63,67 @@ ott.utils.MultiAjax = {
                     }
                 }
             });
-            this_.isBusy = false;
         };
         execute_queue(index);
+    },
+
+    isReady : function()
+    {
+        console.log('is ready?');
+        var this_ = this;
+        if(this.isBusy)
+        {
+            var busy = false;
+            for(var i = 0; i < this.data.length; i++)
+            {
+                if(this.data[i].data == null)
+                {
+                    console.log('busy busy');
+                    busy = true;
+                }
+            }
+
+            if(busy)
+            {
+                console.log('MultiAjax: busy...');
+                setTimeout(function(){this_.isReady()}, 100);
+            }
+            else
+            {
+                this.isBusy = false;
+            }
+        }
+        return !this.isBusy;
+    },
+
+    findRecord : function(name)
+    {
+        var retVal = null;
+        try
+        {
+            for(var i = 0; i < this.data.length; i++)
+            {
+                if(this.data[i].name === name)
+                {
+                    retVal = this.data[i];
+                    break;
+                }
+            }
+        }
+        catch(e)
+        {
+            console.log("MultiAjax: couldn't find item: " + name);
+        }
+        return retVal;
+    },
+
+    findData : function(name, defVal)
+    {
+        var retVal = defVal;
+        var rec = this.findRecord(name);
+        if(rec && rec.data)
+            retVal = rec.data;
+        return retVal;
     },
 
     CLASS_NAME: "ott.utils.MultiAjax"
