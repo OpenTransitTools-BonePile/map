@@ -1,0 +1,46 @@
+<html>
+<head>
+    <script src="/resources/jquery/jquery.min.js"></script>
+    <script src="/resources/mustache/mustache.min.js"></script>
+    <script src="/js/ott.js"></script>
+    <script src="/js/utils/StringUtils.js"></script>
+    <script src="/js/utils/MultiAjax.js"></script>
+</head>
+<body>
+<div id="target">Loading...</div>
+</body>
+</html>
+<script>
+var x = new ott.utils.MultiAjax(['fare.mustache', 'trip.mustache']);
+x.isReady();
+console.log(x);
+
+function processTemplateZ(json, template_url)
+{
+    template_url = template_url || 'trip.mustache';
+    $.get(template_url, function(template)
+    {
+        var rendered = Mustache.render(template, json);
+        $('#target').html(rendered);
+    });
+}
+
+function processTemplate(json, templates)
+{
+        var rendered = Mustache.render(x.findData('trip.mustache'), json, {'fare':x.findData('fare.mustache')});
+        $('#target').html(rendered);
+}
+
+function getJson(json_url, template_url)
+{
+    $.get(json_url, function(json)
+    {
+        if(typeof json === "string" || json instanceof String)
+            json = jQuery.parseJSON(json);
+
+        processTemplate(json, template_url);
+    });
+}
+
+getJson('trip.json');
+</script>
