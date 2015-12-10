@@ -59,7 +59,9 @@ setup(
 )
 
 ###
-### file combine routines below...
+### file combine routines -- runs on each buildout
+###  - concat .js files into an ott.all.js file
+###  - create an ott.templates.js file for mustache template files
 ###
 from scripts.combine_files import main
-main("all")
+main()

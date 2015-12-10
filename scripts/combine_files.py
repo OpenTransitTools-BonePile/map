@@ -97,14 +97,15 @@ def close_templates_output(out_name, out_file, last_line="\n    'CLASS_NAME' : '
 
 def main(argv=None):
     #import pdb; pdb.set_trace()
-    if "combo" in argv or "c" in argv or "all" in argv:
+    all = (argv == None or len(argv) == 1 or "all" in argv)
+    if all or "combo" in argv or "c" in argv:
         combine(dir='ott/map/static/css/', ext='css')
         combine(dir='ott/map/static/js/',  ext='js', fname='ott.leaflet',    filters=['openlayers', 'config'],  filter_match=False, filter_dirs=True)
         combine(dir='ott/map/static/js/',  ext='js', fname='ott.openlayers', filters=['leaflet', 'config'],     filter_match=False, filter_dirs=True)
         combine(dir='ott/map/static/resources/leaflet/', ext='js',  fname='ott.leaflet', filters=['leaflet-src'], filter_match=False, filter_dirs=True)
         combine(dir='ott/map/static/resources/leaflet/', ext='css', fname='ott.leaflet', filters=['leaflet-src'], filter_match=False, filter_dirs=True)
 
-    if "templates" in argv or "t" in argv or "all" in argv:
+    if all or "templates" in argv or "t" in argv:
         dir='ott/map/static/resources/mustache/test/'
         out_name, out_file = open_templates_output(dir)
         templates_to_js(dir, out_name, out_file)
