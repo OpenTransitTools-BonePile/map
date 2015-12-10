@@ -85,7 +85,8 @@ def templates_to_js(dir, out_name, out_file, ext="mustache", filters=[], filter_
                 fh.close()
                 encoded_data = data.strip().replace('\n', '\\n').replace("'", "\'")
                 comma = ","
-                attribute = "    '{0}' : '{1}'{2}\n\n".format(filename, encoded_data, comma)
+                name = os.path.splitext(filename)[0]
+                attribute = "    '{0}' : '{1}'{2}\n\n".format(name, encoded_data, comma)
                 out_file.write(attribute)
 
 def close_templates_output(out_name, out_file, last_line="\n    'CLASS_NAME' : '{0}'\n}}\n"):

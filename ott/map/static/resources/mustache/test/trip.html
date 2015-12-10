@@ -13,8 +13,7 @@
 
 function processTemplate(json, templates)
 {
-        var t = ott.templates;
-        var rendered = Mustache.render(t['trip.mustache'], json, {'fare':t['fare.mustache']});
+        var rendered = Mustache.render(ott.templates.trip, json, {'fare':ott.templates.fare});
         $('#target').html(rendered);
 }
 
