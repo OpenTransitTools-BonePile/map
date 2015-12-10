@@ -85,14 +85,15 @@ def templates_to_js(dir, out_name, out_file, ext="mustache", filters=[], filter_
                 fh.close()
                 encoded_data = data.strip().replace('\n', '\\n').replace("'", "\'")
                 comma = ","
-                attribute = "    '{0}': '{1}'{2}\n\n".format(filename, encoded_data, comma)
+                attribute = "    '{0}' : '{1}'{2}\n\n".format(filename, encoded_data, comma)
                 out_file.write(attribute)
 
 
-def close_templates_output(out_file, last_line="\n};\n"):
+def close_templates_output(out_name, out_file, last_line="\n    'CLASS_NAME' : '{0}'\n}}\n"):
     ''' step 3 of 3: close the ott.mustache-templates.js file
     '''
-    out_file.write(last_line)
+    ll = last_line.format(out_name)
+    out_file.write(ll)
     out_file.close()
 
 def main(argv=None):
@@ -108,7 +109,7 @@ def main(argv=None):
         dir='ott/map/static/resources/mustache/test/'
         out_name, out_file = open_templates_output(dir)
         templates_to_js(dir, out_name, out_file)
-        close_templates_output(out_file)
+        close_templates_output(out_name, out_file)
 
 if __name__ == "__main__":
     main(sys.argv)
