@@ -88,7 +88,6 @@ def templates_to_js(dir, out_name, out_file, ext="mustache", filters=[], filter_
                 attribute = "    '{0}' : '{1}'{2}\n\n".format(filename, encoded_data, comma)
                 out_file.write(attribute)
 
-
 def close_templates_output(out_name, out_file, last_line="\n    'CLASS_NAME' : '{0}'\n}}\n"):
     ''' step 3 of 3: close the ott.mustache-templates.js file
     '''
