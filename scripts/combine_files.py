@@ -107,8 +107,15 @@ def main(argv=None):
         combine(dir='ott/map/static/resources/leaflet/', ext='css', fname='ott.leaflet', filters=['leaflet-src'], filter_match=False, filter_dirs=True)
 
     if all or "templates" in argv or "t" in argv:
+        # planner
         dir='ott/map/static/resources/mustache/test/'
-        out_name, out_file = open_templates_output(dir)
+        out_name, out_file = open_templates_output(dir, "ott.planner.templates")
+        templates_to_js(dir, out_name, out_file)
+        close_templates_output(out_name, out_file)
+
+        # test
+        dir='ott/map/static/resources/mustache/test/'
+        out_name, out_file = open_templates_output(dir, "test.templates")
         templates_to_js(dir, out_name, out_file)
         close_templates_output(out_name, out_file)
 

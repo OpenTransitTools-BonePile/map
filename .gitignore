@@ -1,6 +1,6 @@
 ott.leaflet.*
 ott.openlayers.*
-ott.mustache*
+*[-.]templates.js
 *~
 [a-z].py
 *.py[cod]
