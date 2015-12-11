@@ -2,8 +2,23 @@
 <p class="details-trip"><span><strong>From</strong> {{plan.from.name}}</span></p>
 <p class="details-trip"><span><strong>To</strong> {{plan.to.name}}</span></p>
 
+{{!
+NOTE: we loop thru the plan.itineraries loop, but we're really only selecting one itinerary
+      should probably filter the .json, and just send the selected itinerary
+      (that said, we need all itins for the tabs)
+}}
+{{#plan.itineraries}}
+{{#selected}}
+ <p class="details-trip"><span><strong>When</strong> {{plan.pretty_date}}</span></p>
+{{/selected}}
+{{/plan.itineraries}}
+
+
 {{>tabs}}
 
+{{!
+NOTE: our second (third) loop thru the plan.itineraries data ...
+}}
 {{#plan.itineraries}}
     {{#selected}}
         {{>fare}}
