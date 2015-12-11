@@ -6,13 +6,15 @@
     {{/selected}}
     {{^selected}}
     <li class="normal">
-        <a href="planner.html?itin_num=1&amp;from=PDX::45.587647,-122.593173&amp;to=ZOO::45.5097,-122.71629&amp;Hour=4&amp;Minute=49&amp;AmPm=pm&amp;maxHours=6&amp;month=12&amp;day=10&amp;year=2015&amp;Walk=1609&amp;Arr=D&amp;min=QUICK&amp;mode=TRANSIT,WALK">
+        <a href="{{url}}}">
         <span>
     {{/selected}}
-            <b>{{title}}}</b>
-            <br>{{time}}}
-            <span class="nobreak">{{transfers}}}</span>
+            <b>{{title}}</b>
+            <br>{{date_info.duration_min}} mins, <span class="nobreak">{{transfers_text}}</span>
         </span>
+    {{^selected}}
+        </a>
+    {{/selected}}
     </li>
 {{/plan.itineraries}}
 </ol>

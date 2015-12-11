@@ -74,6 +74,7 @@
           "youth_day": "$2.50"
         },
         "has_alerts": true,
+        "title":"Best bet",
         "itin_num": 1,
         "legs": [
           {
@@ -451,8 +452,9 @@
             "transfer": null
           }
         ],
-        "selected": true,
+        "selected": false,
         "transfers": 0,
+        "transfers_text": "1 transfer",
         "url": "planner.html?itin_num=1&from=PDX::45.58918,-122.59346&to=Zoo::45.510242,-122.715904&Hour=02&Minute=31&AmPm=pm&maxHours=6&month=12&day=4&year=2015&Walk=1260&Arr=None&min=QUICK&mode=TRANSIT,WALK"
       },
       {
@@ -510,6 +512,7 @@
           "youth_day": "$2.50"
         },
         "has_alerts": true,
+        "title":"Option 2",
         "itin_num": 2,
         "legs": [
           {
@@ -887,8 +890,9 @@
             "transfer": null
           }
         ],
-        "selected": false,
+        "selected": true,
         "transfers": 0,
+        "transfers_text": "2 transfers",
         "url": "planner.html?itin_num=2&from=PDX::45.58918,-122.59346&to=Zoo::45.510242,-122.715904&Hour=02&Minute=31&AmPm=pm&maxHours=6&month=12&day=4&year=2015&Walk=1260&Arr=None&min=QUICK&mode=TRANSIT,WALK"
       },
       {
@@ -946,6 +950,7 @@
           "youth_day": "$2.50"
         },
         "has_alerts": true,
+        "title":"Option 3",
         "itin_num": 3,
         "legs": [
           {
@@ -1325,6 +1330,7 @@
         ],
         "selected": false,
         "transfers": 0,
+        "transfers_text": "0 transfers",
         "url": "planner.html?itin_num=3&from=PDX::45.58918,-122.59346&to=Zoo::45.510242,-122.715904&Hour=02&Minute=31&AmPm=pm&maxHours=6&month=12&day=4&year=2015&Walk=1260&Arr=None&min=QUICK&mode=TRANSIT,WALK"
       }
     ],
