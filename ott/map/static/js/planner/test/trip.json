@@ -20,6 +20,7 @@
     },
     "itineraries": [
       {
+        "leg_num" : 1,
         "alerts": [
           {
             "future": false,
@@ -78,6 +79,7 @@
         "itin_num": 1,
         "legs": [
           {
+            "leg_num" : 1,
             "alerts": null,
             "compass_direction": "southwest",
             "date_info": {
@@ -220,6 +222,7 @@
             "transfer": null
           },
           {
+            "leg_num" : 2,
             "alerts": [
               {
                 "future": false,
@@ -297,6 +300,7 @@
             "transfer": null
           },
           {
+            "leg_num" : 3,
             "alerts": null,
             "compass_direction": "east",
             "date_info": {
@@ -519,6 +523,7 @@
         "itin_num": 2,
         "legs": [
           {
+            "leg_num" : 1,
             "alerts": null,
             "compass_direction": "southwest",
             "date_info": {
@@ -661,6 +666,7 @@
             "transfer": null
           },
           {
+            "leg_num" : 2,
             "alerts": [
               {
                 "future": false,
@@ -738,6 +744,7 @@
             "transfer": null
           },
           {
+            "leg_num" : 3,
             "alerts": null,
             "compass_direction": "east",
             "date_info": {
@@ -960,6 +967,7 @@
         "itin_num": 3,
         "legs": [
           {
+            "leg_num" : 1,
             "alerts": null,
             "compass_direction": "southwest",
             "date_info": {
@@ -1102,6 +1110,7 @@
             "transfer": null
           },
           {
+            "leg_num" : 2,
             "alerts": [
               {
                 "future": false,
@@ -1179,6 +1188,7 @@
             "transfer": null
           },
           {
+            "leg_num" : 3,
             "alerts": null,
             "compass_direction": "east",
             "date_info": {

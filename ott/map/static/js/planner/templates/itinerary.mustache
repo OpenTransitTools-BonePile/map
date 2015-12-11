@@ -1,11 +1,13 @@
 <ol class="transit" id="itinerary">
 {{#legs}}
     {{#is_transit}}
-        TRANSIT {{mode}}
+        <div class="step-number"><span>{{leg_num}}</span></div>
+        {{mode}}
     {{/is_transit}}
 
     {{#is_walk}}
-        WALK {{mode}}
+        <div class="step-number"><span>{{leg_num}}</span></div>
+        {{mode}}
     {{/is_walk}}
 {{/legs}}
 </ol>
