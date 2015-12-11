@@ -108,7 +108,7 @@ def main(argv=None):
 
     if all or "templates" in argv or "t" in argv:
         # planner
-        dir='ott/map/static/resources/mustache/test/'
+        dir='ott/map/static/js/planner/templates/'
         out_name, out_file = open_templates_output(dir, "ott.planner.templates")
         templates_to_js(dir, out_name, out_file)
         close_templates_output(out_name, out_file)
