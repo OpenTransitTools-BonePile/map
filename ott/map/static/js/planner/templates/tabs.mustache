@@ -1,0 +1,18 @@
+<ol id="plannertabs" class="group">
+{{#plan.itineraries}}
+    {{#selected}}
+    <li class="selected">
+        <span class="selectedpadding">
+    {{/selected}}
+    {{^selected}}
+    <li class="normal">
+        <a href="planner.html?itin_num=1&amp;from=PDX::45.587647,-122.593173&amp;to=ZOO::45.5097,-122.71629&amp;Hour=4&amp;Minute=49&amp;AmPm=pm&amp;maxHours=6&amp;month=12&amp;day=10&amp;year=2015&amp;Walk=1609&amp;Arr=D&amp;min=QUICK&amp;mode=TRANSIT,WALK">
+        <span>
+    {{/selected}}
+            <b>{{title}}}</b>
+            <br>{{time}}}
+            <span class="nobreak">{{transfers}}}</span>
+        </span>
+    </li>
+{{/plan.itineraries}}
+</ol>
