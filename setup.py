@@ -8,6 +8,9 @@ CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = [
     'ott.utils',
+    'pyramid',
+    'waitress',
+    'pystache',
 ]
 
 dev_extras = [
@@ -15,8 +18,6 @@ dev_extras = [
 oracle_extras = ['cx_oracle>=5.1']
 postgresql_extras = ['psycopg2>=2.4.2']
 pyramid_extras = [
-    'pyramid',
-    'waitress',
 ]
 
 extras_require = dict(
