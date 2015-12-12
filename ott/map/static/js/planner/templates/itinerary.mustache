@@ -1,13 +1,23 @@
 <ol class="transit" id="itinerary">
 {{#legs}}
     {{#is_transit}}
-        <div class="step-number"><span>{{leg_num}}</span></div>
-        {{mode}}
+        <li>
+            <div class="step-number"><span>{{leg_num}}</span></div>
+            {{mode}}
+        </li>
     {{/is_transit}}
 
     {{#is_walk}}
         <div class="step-number"><span>{{leg_num}}</span></div>
         {{mode}}
+        <p class="directions">
+            Go to
+            <a title="Show more information about this stop/station" href="stop.html?stop_id=5028&amp;month=12&amp;day=11">SW Sam Jackson Pk &amp; OHSU</a>
+            <span class="stopid">Stop ID&nbsp;5028</span>
+        </p>
+        <div class="normal">
+            <div class="description"></div><!-- end .description -->
+        </div><!-- end .normal/hidden walking directions -->
     {{/is_walk}}
 {{/legs}}
 </ol>
