@@ -20,7 +20,6 @@
     },
     "itineraries": [
       {
-        "leg_num" : 1,
         "alerts": [
           {
             "future": false,
