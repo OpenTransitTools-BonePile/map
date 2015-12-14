@@ -1,4 +1,4 @@
-ott.namespace("ott.utils);
+ott.namespace("ott.utils");
 
 ott.utils.TransitUtils = {
 
