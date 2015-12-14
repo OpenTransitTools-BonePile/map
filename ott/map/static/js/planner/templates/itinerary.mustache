@@ -1,25 +1,5 @@
 <ol class="transit" id="itinerary">
 {{#legs}}
 
-    {{#is_transit}}
-    <li>
-        <div class="step-number"><span>{{leg_num}}</span></div>
-    </li>
-    {{/is_transit}}
-
-    {{#is_walk}}
-    <li>
-        <div class="step-number"><span>{{leg_num}}</span></div>
-        {{mode}}
-        <p class="directions">
-            Go to
-            <a title="Show more information about this stop/station" href="">SW Sam Jackson Pk &amp; OHSU</a>
-            <span class="stopid">Stop ID&nbsp;5028</span>
-        </p>
-        <div class="normal">
-            <div class="description"></div>
-        </div>
-    </li>
-    {{/is_walk}}
 {{/legs}}
 </ol>
