@@ -80,7 +80,7 @@
           {
             "leg_num" : 1,
             "walk_to_stop" : true,
-            "verb" : "Walk",
+            "verb" : "walk",
             "alerts": null,
             "compass_direction": "southwest",
             "date_info": {
