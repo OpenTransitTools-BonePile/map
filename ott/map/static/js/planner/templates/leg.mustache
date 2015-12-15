@@ -33,7 +33,7 @@
                         <li><span class="capitalize">{{relative_direction}}</span> on {{name}}</li>
                     {{/relative_direction}}
                     {{#compass_direction}}
-                        <li><span class="capitalize">{{verb}}</span> {{distance.distance}} {{distance.measure}} {{compass_direction}} from {{name}}</li>
+                        <li><span class="capitalize">{{#i18n}}{{verb}}{{/i18n}}</span> {{distance.distance}} {{distance.measure}} {{compass_direction}} from {{name}}</li>
                     {{/compass_direction}}
                 {{/steps}}
             </ol>
