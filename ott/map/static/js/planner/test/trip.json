@@ -79,6 +79,8 @@
         "legs": [
           {
             "leg_num" : 1,
+            "walk_to_stop" : true,
+            "verb" : "Walk",
             "alerts": null,
             "compass_direction": "southwest",
             "date_info": {
@@ -149,8 +151,8 @@
             },
             "interline": null,
             "mode": "WALK",
-            "is_walk": true,
             "route": null,
+            "has_steps": true,
             "steps": [
               {
                 "compass_direction": "southwest",
@@ -458,7 +460,7 @@
             "transfer": null
           }
         ],
-        "selected": false,
+        "selected": true,
         "transfers": 0,
         "transfers_text": "1 transfer",
         "url": "planner.html?itin_num=1&from=PDX::45.58918,-122.59346&to=Zoo::45.510242,-122.715904&Hour=02&Minute=31&AmPm=pm&maxHours=6&month=12&day=4&year=2015&Walk=1260&Arr=None&min=QUICK&mode=TRANSIT,WALK"
@@ -902,7 +904,7 @@
             "transfer": null
           }
         ],
-        "selected": true,
+        "selected": false,
         "transfers": 0,
         "transfers_text": "2 transfers",
         "url": "planner.html?itin_num=2&from=PDX::45.58918,-122.59346&to=Zoo::45.510242,-122.715904&Hour=02&Minute=31&AmPm=pm&maxHours=6&month=12&day=4&year=2015&Walk=1260&Arr=None&min=QUICK&mode=TRANSIT,WALK"
