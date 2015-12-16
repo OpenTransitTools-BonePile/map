@@ -22,6 +22,12 @@
 
 function processTemplate(json, templates)
 {
+    json._ = function() {
+        return function(t, r) {
+            return r(t+"ing");
+        }
+    };
+
     var partials = {'itinerary':ott.templates.itinerary, 'leg':ott.templates.leg, 'fare':ott.templates.fare, 'tabs':ott.templates.tabs};
     var rendered = Mustache.render(ott.templates.trip, json, partials);
     $('#target').html(rendered);
