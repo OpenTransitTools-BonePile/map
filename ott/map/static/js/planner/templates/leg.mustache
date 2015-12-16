@@ -2,16 +2,16 @@
     <li>
         <div class="step-number"><span>{{leg_num}}</span></div>
         <p class="directions">
-            <a href="http://trimet.org/ride/{{from.stop.schedule}}" title="Show schedule for Portland Int'l Airport MAX Station" class="step-time"><span>{{date_info.start_time}}</span></a>
+            <a href="{{domain}}/ride/{{from.stop.schedule}}" title="Show schedule for Portland Int'l Airport MAX Station" class="step-time"><span>{{date_info.start_time}}</span></a>
             Board
-            <a href="http://trimet.org/schedules/r090.htm" title="Show route map and schedules for this line" class="step-mode">
-            <img src="http://trimet.org/images/triptools/modes.png" width="0" height="1" class="step-max-icon">{{from.name}}</a>
+            <a href="{{domain}}/schedules/r090.htm" title="Show route map and schedules for this line" class="step-mode">
+            <img src="{{domain}}/images/triptools/modes.png" width="0" height="1" class="step-max-icon">{{from.name}}</a>
         </p>
     </li>
     <li>
         <div class="step-number"><span>{{leg_num}}</span></div>
         <p>
-            <a href="http://trimet.org/ride/{{to.stop.schedule}}" title="Show schedule for Washington Park MAX Station" class="step-time"><span>{{date_info.end_time}}</span></a>
+            <a href="{{domain}}/ride/{{to.stop.schedule}}" title="Show schedule for Washington Park MAX Station" class="step-time"><span>{{date_info.end_time}}</span></a>
             Get off at <a href="" title="Show more information about this stop">{{to.name}}</a>
             <span class="stopid">Stop ID&nbsp;{{to.stop.id}}</span>
         </p>
@@ -36,7 +36,7 @@
                 Elevation gain: {{elevation.rise_ft}}<br>
                 Elevation loss: {{elevation.fall_ft}}<br>
                 <span class="elevation_txt">Elevation chart</span><span class="elevation_chart">
-                    <img src="http://maps.trimet.org/images/ui/s.gif" alt="dynamic img (requires javascript)" dheight="20" dwidth="100" dsrc="http://trimet.org/ride/sparkline?points={{elevation.points}}">
+                    <img src="{{maps_domain}}/images/ui/s.gif" alt="dynamic img (requires javascript)" dheight="20" dwidth="100" dsrc="{{domain}}/ride/sparkline?points={{elevation.points}}">
                 </span>
             </span></p>
 
@@ -55,10 +55,10 @@
 
             <div class="maps">
                 <p class="walk-start">Start<br>
-                    <img src="http://maps.trimet.org/images/ui/s.gif" alt="Map of starting point (300x288)" dheight="288" dwidth="300" dsrc="{{from.map_img}}">
+                    <img src="{{maps_domain}}/images/ui/s.gif" alt="Map of starting point (300x288)" dheight="288" dwidth="300" dsrc="{{from.map_img}}">
                 </p>
                 <p class="walk-end">End<br>
-                    <img src="http://maps.trimet.org/images/ui/s.gif" alt="Map of ending point (300x288)" dheight="288" dwidth="300" dsrc="{{to.map_img}}">
+                    <img src="{{maps_domain}}/images/ui/s.gif" alt="Map of ending point (300x288)" dheight="288" dwidth="300" dsrc="{{to.map_img}}">
                 </p>
             </div><!-- end maps -->
         </div><!-- end .description -->
