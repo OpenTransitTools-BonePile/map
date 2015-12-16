@@ -1,5 +1,4 @@
 {
-  "_" : true,
   "adverts": [
     {
       "content": "<p><a href=\"http://catchtheorange.com\" class=\"group\" onclick=\"_gaq.push(['_trackEvent', 'TriMetAds-TripPlanner', 'ClickTo', 'Catch the Orange']);\"><img src=\"http://trimet.org/images/triptools/ads/catchtheo.png\" /><span>The MAX Orange Line celebration starts now. #CatchTheOrange</span></a></p>"
