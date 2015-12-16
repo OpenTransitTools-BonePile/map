@@ -39,7 +39,7 @@ function processTemplate(json, templates)
 {
     json._ = function() {
         return function(t, r) {
-            return r(t+"ing");
+            return r(t+"-ING");
         }
     };
 
