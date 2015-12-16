@@ -1,6 +1,20 @@
 {{#is_transit}}
     <li>
         <div class="step-number"><span>{{leg_num}}</span></div>
+        <p class="directions">
+            <a href="http://trimet.org/ride/{{from.stop.schedule}}" title="Show schedule for Portland Int'l Airport MAX Station" class="step-time"><span>{{date_info.start_time}}</span></a>
+            Board
+            <a href="http://trimet.org/schedules/r090.htm" title="Show route map and schedules for this line" class="step-mode">
+            <img src="http://trimet.org/images/triptools/modes.png" width="0" height="1" class="step-max-icon">{{from.name}}</a>
+        </p>
+    </li>
+    <li>
+        <div class="step-number"><span>{{leg_num}}</span></div>
+        <p>
+            <a href="http://trimet.org/ride/{{to.stop.schedule}}" title="Show schedule for Washington Park MAX Station" class="step-time"><span>{{date_info.end_time}}</span></a>
+            Get off at <a href="" title="Show more information about this stop">{{to.name}}</a>
+            <span class="stopid">Stop ID&nbsp;{{to.stop.id}}</span>
+        </p>
     </li>
 {{/is_transit}}
 

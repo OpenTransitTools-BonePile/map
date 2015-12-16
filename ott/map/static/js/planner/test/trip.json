@@ -224,6 +224,7 @@
           },
           {
             "leg_num" : 2,
+
             "alerts": [
               {
                 "future": false,
