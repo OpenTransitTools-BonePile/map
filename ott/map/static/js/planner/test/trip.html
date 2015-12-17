@@ -55,7 +55,13 @@ function processTemplate(json, templates)
     json.domain = "http://dev.trimet.org";
     json.maps_domain = "http://dev.trimet.org";
 
-    var partials = {'itinerary':ott.templates.itinerary, 'leg':ott.templates.leg, 'fare':ott.templates.fare, 'tabs':ott.templates.tabs};
+    var partials = {
+        'itinerary':ott.templates.itinerary,
+        'leg':ott.templates.leg,
+        'fare':ott.templates.fare,
+        'tabs':ott.templates.tabs,
+        'disclaimer':ott.templates.disclaimer
+    };
     var rendered = Mustache.render(ott.templates.trip, json, partials);
     $('#details').html(rendered);
 }
