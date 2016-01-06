@@ -28,7 +28,6 @@ def do_static_config(config, path='ott.map', prefixes=['', 'm/', 'ws/'], cache_a
         config.add_static_view(p + 'css',       path + ':static/css',       cache_max_age=cache_age)
         config.add_static_view(p + 'images',    path + ':static/images',    cache_max_age=cache_age)
 
-
 def do_mako_config(config):
     # important ... allow .html extension on mako templates
     config.include('pyramid_mako')
@@ -40,8 +39,6 @@ def do_localized_config(config, path='ott.map'):
     config.add_subscriber(path + '.locale.subscribers.add_renderer_globals', 'pyramid.events.BeforeRender')
     config.add_subscriber(path + '.locale.subscribers.add_localizer',        'pyramid.events.NewRequest')
 
-
-
 @subscriber(ApplicationCreated)
 def application_created_subscriber(event):
     ''' what do i do?
@@ -49,7 +46,6 @@ def application_created_subscriber(event):
     '''
     #log.info('Starting pyramid server -- visit me on http://127.0.0.1:8080')
     print event
-
 
 @subscriber(NewRequest)
 def new_request_subscriber(event):
@@ -60,7 +56,6 @@ def new_request_subscriber(event):
     #log.debug("new request called -- request is 'started'")
     request = event.request
     request.BASE_DIR = os.path.dirname(os.path.realpath(__file__))
-
 
 def cmdline():
     ''' as an alternate to pserve, you can run this via bin/python ott/view/pyramid_app 
@@ -85,7 +80,5 @@ def cmdline():
     server.serve_forever()
     get_settings()
 
-
 if __name__ == '__main__':
     cmdline()
-
