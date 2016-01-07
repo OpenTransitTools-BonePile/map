@@ -2,10 +2,7 @@
 map
 ===
 
-.. image:: https://badges.gitter.im/Join%20Chat.svg
-   :alt: Join the chat at https://gitter.im/OpenTransitTools/map
-   :target: https://gitter.im/OpenTransitTools/map?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-
+<a href="https://gitter.im/OpenTransitTools/map?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img source="https://badges.gitter.im/Join%20Chat.svg"/></a>
 
 Interactive Map for OTT / OTP
 
