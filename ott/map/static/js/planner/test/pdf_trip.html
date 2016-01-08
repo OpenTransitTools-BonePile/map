@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+    <!--
+    https://github.com/MrRio/jsPDF
+    Do we even need to do PDFs for itineraries?
+    How would we do it ... how to do a map (snapshot image of the map)????
+
+    How would we render a trip with jsPDF code like this?
+    var doc = new jsPDF();
+    doc.text(20, 20, 'Hello world.');
+    doc.save('Test.pdf');
+    MAYBE: Abstract render of trip, so we could target either jsPDF or Mustache or ????
+    -->
+
+    <title>Map/Mustache Example</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+    <script src="/resources/jquery/jquery.min.js"></script>
+    <script src="/resources/mustache/mustache.min.js"></script>
+    <script src="/js/ott.js"></script>
+    <script src="../templates/ott.planner.templates.js"></script>
+
+
+    <link rel="stylesheet" href="/resources/font-awesome/css/font-awesome.css" type="text/css" media="all"></link>
+    <style>
+        .capitalize {
+            text-transform: capitalize;
+        }
+    </style>
+
+
+    <meta name="viewport" content="width=1040" />
+    <link rel="shortcut icon" href="http://trimet.org/images/favicon.ico" />
+    <link rel="stylesheet" href="http://trimet.org/css/triptools/global.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="http://trimet.org/css/triptools/content.css" type="text/css" media="all" />
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic|PT+Sans+Narrow:700,400' type='text/css'>
+
+    <link rel="stylesheet" href="http://trimet.org/css/triptools/triptools-tp.css" type="text/css" media="all"/>
+
+    <script src="http://trimet.org/scripts/triptools.js"></script>
+    <script src="http://trimet.org/scripts/basic.js"></script>
+    <script src="http://trimet.org/scripts/libs/modernizr-2.5.3.min.js"></script>
+</head>
+
+<body class="standard">
+<section id="main" class="main">
+<div id="details" class="group"></div>
+</section>
+
+<!-- note: red line dot http://www.w3schools.com/icons/fontawesome_icons_webapp.asp -->
+<i class="fa fa-circle" style="color:#D31F43"></i>
+
+
+
+<script type="text/javascript">
+function processTemplate(json, templates)
+{
+    json._ = function() {
+        return function(t, r) {
+            return r(t+"-ING");
+        }
+    };
+
+    json.domain = "http://dev.trimet.org";
+    json.maps_domain = "http://dev.trimet.org";
+
+    var partials = {
+        'itinerary':ott.templates.itinerary,
+        'leg':ott.templates.leg,
+        'fare':ott.templates.fare,
+        'tabs':ott.templates.tabs,
+        'disclaimer':ott.templates.disclaimer
+    };
+    var rendered = Mustache.render(ott.templates.trip, json, partials);
+    $('#details').html(rendered);
+}
+
+function getJson(json_url, template_url)
+{
+    $.get(json_url, function(json)
+    {
+        if(typeof json === "string" || json instanceof String)
+            json = jQuery.parseJSON(json);
+
+        processTemplate(json, template_url);
+    });
+}
+
+getJson('trip.json');
+</script>
+</body>
+</html>
