@@ -50,7 +50,8 @@ ott.leaflet.transit.Stops = {
         marker.on('popupopen', function(e) { THIS.popupOpenCB(e, this);       });
         marker.on('click',     function(e) { THIS.markerClickCB(e, this);     });
         var popupContent = this.getPopupContent(feature);
-        marker.addTo(this.layer).bindPopup(popupContent);
+        var hoverContent = this.getHoverContent(feature);
+        marker.bindLabel(hoverContent, {clickable:true}).addTo(this.layer).bindPopup(popupContent);
         return marker;
     },
 
@@ -101,6 +102,20 @@ ott.leaflet.transit.Stops = {
                            " type "   + feature.properties.type;
         }
         return popupContent;
+    },
+
+    getHoverContent : function(feature, defVal)
+    {
+        var hoverContent = defVal || '';
+        if (feature.properties && feature.properties.hoverContent)
+        {
+            hoverContent = feature.properties.popupContent;
+        }
+        else if (feature.properties && feature.properties.id)
+        {
+            hoverContent = "Stop ID " + feature.properties.id;
+        }
+        return hoverContent;
     },
 
     /** check as to whether we should reload the map */
