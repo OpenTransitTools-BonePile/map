@@ -30,8 +30,8 @@ ott.leaflet.transit.IconUtils = {
 
 ott.leaflet.transit.TransitIcons = {
 
-    startFlagIcon : ott.leaflet.transit.IconUtils.icon20x20('/images/map/marker-flag-start-shadowed.png'),
-    endFlagIcon : ott.leaflet.transit.IconUtils.icon20x20('/images/map/marker-flag-end-shadowed.png'),
+    startFlagIcon : ott.leaflet.transit.IconUtils.caliperIcons('/images/map/marker-flag-start-shadowed.png'),
+    endFlagIcon : ott.leaflet.transit.IconUtils.caliperIcons('/images/map/marker-flag-end-shadowed.png'),
 
     busStopIcon   : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/bus20.png'),
     busStopIconON : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/bus20ON.png'),
