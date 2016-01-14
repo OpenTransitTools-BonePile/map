@@ -18,10 +18,20 @@ ott.leaflet.transit.IconUtils = {
         return this.icon(url, 20, 20, 10, 10, 0, -5);
     },
 
+    /** start and end icons */
+    caliperIcons : function(url)
+    {
+        return this.icon(url, 48, 49, 46, 42, 0, -16);
+    },
+
     CLASS_NAME : "ott.leaflet.transit.IconUtils"
 };
 
+
 ott.leaflet.transit.TransitIcons = {
+
+    startFlagIcon : ott.leaflet.transit.IconUtils.icon20x20('/images/map/marker-flag-start-shadowed.png'),
+    endFlagIcon : ott.leaflet.transit.IconUtils.icon20x20('/images/map/marker-flag-end-shadowed.png'),
 
     busStopIcon   : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/bus20.png'),
     busStopIconON : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/bus20ON.png'),
