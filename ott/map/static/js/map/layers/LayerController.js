@@ -20,7 +20,7 @@ ott.leaflet.layer.LayerControllerStatic = {
 
         // step 1: set object variables
         this.map = map;
-        this.url = url || '/js/leaflet/layers/layers.json';
+        this.url = url || '/js/layers.json';
         this.wmsServer = wmsServer || 'http://maps7.trimet.org/wms';
         this.layerButtonsDiv = layerButtonsDiv || '#layerButtons';
         this.layerOpacityDiv = layerOpacityDiv || this.layerButtonsDiv + "Opacity";

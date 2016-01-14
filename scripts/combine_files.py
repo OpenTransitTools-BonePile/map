@@ -20,11 +20,13 @@ def filter(name, filters, filter_match, rev=False):
             ret_val = True
     return ret_val
 
-def combine(dir, fname='ott.all', ext='js', filters=[], filter_match=True, filter_dirs=False, out_status='w'):
+def combine(dir, fname='ott.all', ext='js', filters=[], filter_match=True, filter_dirs=False, out_status='w', out_dir='ott/map/static/resources/'):
     ''' used to build a single file that includes other .js and .css files
     '''
+    if out_dir is None:
+        out_dir = dir
     out_name = fname + '.' + ext
-    out_file = open(dir + out_name, out_status)
+    out_file = open(out_dir + out_name, out_status)
     print "*** {} ***".format(out_name)
 
     for root, directories, filenames in os.walk(dir):
@@ -100,11 +102,11 @@ def main(argv=None):
     #import pdb; pdb.set_trace()
     all = (argv == None or len(argv) == 1 or "all" in argv)
     if all or "combo" in argv or "c" in argv:
-        combine(dir='ott/map/static/css/', ext='css')
-        combine(dir='ott/map/static/js/',  ext='js', fname='ott.leaflet',    filters=['openlayers', 'config'],  filter_match=False, filter_dirs=True)
-        #combine(dir='ott/map/static/js/',  ext='js', fname='ott.openlayers', filters=['leaflet', 'config'],     filter_match=False, filter_dirs=True)
+        combine(dir='ott/map/static/css/', ext='css', fname='ott.min')
+        combine(dir='ott/map/static/js/',  ext='js',  fname='ott.min', filters=['openlayers', 'config'], filter_match=False, filter_dirs=True)
         combine(dir='ott/map/static/resources/leaflet/', ext='js',  fname='ott.leaflet', filters=['leaflet-src'], filter_match=False, filter_dirs=True)
         combine(dir='ott/map/static/resources/leaflet/', ext='css', fname='ott.leaflet', filters=['leaflet-src'], filter_match=False, filter_dirs=True)
+        #combine(dir='ott/map/static/js/',  ext='js', fname='ott.openlayers', filters=['leaflet', 'config'],     filter_match=False, filter_dirs=True)
 
     if all or "templates" in argv or "t" in argv:
         # planner
