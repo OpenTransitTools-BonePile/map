@@ -1,6 +1,6 @@
-ott.namespace("ott");
+ott.namespace("ott.app");
 
-ott.MapApp = {
+ott.app.MapApp = {
 
     /**
      * @consturctor
@@ -46,6 +46,6 @@ ott.MapApp = {
         this.lc.addLayerButtonCallback('weatherButton', this.weather);
     },
 
-    CLASS_NAME: "ott.MapApp"
+    CLASS_NAME: "ott.app.MapApp"
 };
-ott.MapApp = new ott.Class(ott.MapApp);
+ott.app.MapApp = new ott.Class(ott.app.MapApp);
