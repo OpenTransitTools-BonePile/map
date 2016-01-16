@@ -14,36 +14,11 @@
     <link rel="icon" href="/images/favicon.png">
 
     <link rel="stylesheet" href="/resources/font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="/resources/leaflet/ott.leaflet.css" />
     <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/autocomplete.css">
+    <link rel="stylesheet" href="/resources/ott.leaflet.css" />
+    <link rel="stylesheet" href="/resources/ott.min.css" />
 
-    <style>
-        body {
-        padding: 0;
-        margin: 0;
-        }
-        html, body {
-        height: 90%;
-        }
-        #map {
-        height: 100%;
-        }
-        .navbar-brand {
-        padding-top: 8px;
-        }
-        .navbar-brand > img {
-        display: inline;
-        padding-right: 5px;
-        }
-        .jumbotron {
-        padding: 5px 5px;
-        margin-top: 25px;
-        margin-bottom: 0px;
-        }
-    </style>
-
-    <script src="/resources/leaflet/ott.leaflet.js"></script>
+    <script src="/resources/ott.leaflet.js"></script>
     <script src="/resources/jquery/jquery.min.js"></script>
     <script src="/resources/jquery/jquery-ui.js"></script>
     <script src="/resources/jquery/jquery-ui-autocomplete.js"></script>
@@ -54,38 +29,16 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script src="/js/ott.leaflet.js"></script>
-    <script src="/js/leaflet/config.js"></script>
-    <script src="/js/leaflet/layers/Base.js"></script>
-    <script src="/js/leaflet/transit/TripPlan.js"></script>
+    <script src="/resources/ott.min.js"></script>
+    <script src="/js/config.js"></script>
 
     <script type="text/javascript">
     $(document).ready(function(){
-        //ott.debug = true;
-
         // do bootstrap stuff...
         $('[data-toggle="tooltip"]').tooltip();
         $('.layerButton').draggable({cancel:false});  // drag n drop
 
-        this.map = new ott.leaflet.map.Map(ott.config);
-        this.search = new ott.leaflet.map.Search(this.map.map);
-        this.geo = new ott.leaflet.utils.GeoLocation(this.map.map);
-
-        this.stops = new ott.leaflet.transit.Stops(ott.config, this.map.map);
-        this.routes = new ott.leaflet.transit.Routes(this.map.map);
-
-        this.pr = new ott.leaflet.layer.PointLayer(this.map.map,   'type:10 OR type:17', 'pr');
-        this.tc = new ott.leaflet.layer.PointLayer(this.map.map,   'type:14', 'tc');
-        this.fare = new ott.leaflet.layer.PointLayer(this.map.map, 'type:16', 'fare');
-        this.tvm  = new ott.leaflet.layer.PointLayer(this.map.map, 'type:26', 'tvm');
-
-        this.lc = new ott.leaflet.layer.LayerController(this.map.map);
-
-        this.weather = ott.leaflet.layer.WmsLayerStatic.makeWeatherLayer(this.map.map);
-        this.lc.addLayer(this.weather);
-        this.lc.addLayerButtonCallback('weatherButton', this.weather);
-
-        this.tripplan = new ott.leaflet.transit.TripPlan(this.map.map);
+        ctl = new ott.app.MapApp();
     });
     </script>
 </head>
@@ -151,7 +104,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
