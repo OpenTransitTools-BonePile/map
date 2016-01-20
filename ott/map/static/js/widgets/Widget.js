@@ -42,13 +42,13 @@ ott.widgets.Widget = {
     {
         if(this.refreshData())
         {
-            inAjaxCall = true;
-            this_ = this;
-            responseMethod = responseMethod.bind(this);
+            this.inAjaxCall = true;
             if(parameters)
                 url = url + L.Util.getParamString(parameters)
-
             ott.log.debug(url);
+
+            var this_ = this;
+            responseMethod = responseMethod.bind(this);
             $.ajax({
                 url: url,
                 datatype: 'json',
