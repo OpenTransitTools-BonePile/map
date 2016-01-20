@@ -1,12 +1,12 @@
 ott.namespace("ott.widgets");
 
 
-var WIDGETS_SINGLETON = [];
+ott.widgets.WIDGETS_SINGLETON = [];
 
 ott.widgets.Widget = {
 
     map : null,
-    widgets : WIDGETS_SINGLETON,
+    widgets : ott.widgets.WIDGETS_SINGLETON,
     inAjaxCall : false,
 
     /**
