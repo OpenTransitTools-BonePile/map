@@ -32,45 +32,12 @@
     <![endif]-->
 
     <script src="/resources/ott.min.js"></script>
+    <script src="/js/widgets/Widget.js"></script>
+    <script src="/js/widgets/routes/Routes.js"></script>
     <script src="/js/config.js"></script>
 
     <script type="text/javascript">
-ott.Module = {
-
-    initialize : function(webapp, id, options)
-    {
-    },
-
-    addLayer : function(name, layer) {
-        this.mapLayers[name] = layer;
-    },
-
-    addWidget : function(widget) {
-        this.widgets.push(widget);
-        this.webapp.widgetManager.addWidget(widget);
-    },
-
-    getWidgetManager : function() {
-        return this.webapp.widgetManager;
-    },
-
-    createWidget : function(id, content) {
-        var widget = new otp.widgets.Widget(id, this.webapp.widgetManager);
-        widget.setContent(content);
-        return widget;
-    },
-
-    on : function(eventName, handler) {
-        if(!_.has(this.handlers, eventName)) {
-            this.handlers[eventName] = [];
-        }
-        this.handlers[eventName].push(handler);
-    },
-
-    CLASS_NAME: "ott.Module"
-};
-ott.Module = new ott.Class(ott.Module);
-
+/**
 ott.PlannerModule = {
 
     initialize : function(webapp, id, options)
@@ -99,7 +66,7 @@ ott.PlannerModule = {
 
     CLASS_NAME: "ott.PlannerModule"
 };
-ott.PlannerModule = new ott.Class(ott.Module, ott.PlannerModule);
+**/
 
     $(document).ready(function(){
         // do bootstrap stuff...
@@ -107,9 +74,8 @@ ott.PlannerModule = new ott.Class(ott.Module, ott.PlannerModule);
         $('.layerButton').draggable({cancel:false});  // drag n drop
 
         var ctl = new ott.app.MapApp();
-        var x = new ott.PlannerModule();
 
-        new ott.widgets.routes.Vehicles();
+        new ott.widgets.routes.Routes();
     });
     </script>
 </head>

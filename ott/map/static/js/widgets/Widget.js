@@ -4,8 +4,9 @@ var WIDGETS_SINGLETON = [];
 
 ott.widgets.Widget = {
 
-    map : null,
     widgets : WIDGETS_SINGLETON,
+    map : null,
+    inAjaxCall : false,
 
     /**
      * @consturctor
@@ -35,20 +36,22 @@ ott.widgets.Widget = {
         return true;
     },
 
-    ajaxCall : function(url, responseMethod, parameters)
+    ajaxCall : function(responseMethod, url, parameters)
     {
         if(this.refreshData())
         {
-            var url = this.url;
+            inAjaxCall = true;
+            this_ = this;
+            responseMethod = responseMethod.bind(this);
             if(parameters)
                 url = url + L.Util.getParamString(parameters)
-            ott.log.debug(url);
 
-            responseMethod = responseMethod.bind(this);
+            ott.log.debug(url);
             $.ajax({
                 url: url,
                 datatype: 'json',
-                success: function(data) { responseMethod(data); }
+                success: function(data)  { this_.inAjaxCall = false; responseMethod(data); },
+                error:   function(error) { this_.inAjaxCall = false; ott.log.debug("ERROR ajaxCall " + this_.CLASS_NAME)}
             });
         }
     },
