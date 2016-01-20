@@ -6,21 +6,17 @@ ott.widgets.routes.Routes = {
     url : null,
     routes : null,
     layer : null,
-    targetDiv : null,
-    selectedRoutes : [],
 
     /**
      * @consturctor
      */
-    initialize : function(map, targetDiv, url)
+    initialize : function(map, url)
     {
         ott.log.debug("enter leaflet Routes() constructor");
 
-        targetDiv = targetDiv || '#routes';
         url = url || 'http://maps7.trimet.org/ride_ws/routes';
 
         this.map = map;
-        this.targetDiv = targetDiv;
         this.url = url;
         this.queryServer(this.routeListAjaxHandler);
         ott.log.debug("exit leaflet Routes() constructor");
@@ -99,24 +95,6 @@ ott.widgets.routes.Routes = {
         var retVal = true;
         // TODO length of results and time determine re-query of SOLR data...
         return retVal;
-    },
-
-    queryServer : function(responseMethod, parameters)
-    {
-        if(this.refreshData())
-        {
-            var url = this.url;
-            if(parameters)
-                url = url + L.Util.getParamString(parameters)
-            ott.log.debug(url);
-
-            responseMethod = responseMethod.bind(this);
-            $.ajax({
-                url: url,
-                datatype: 'json',
-                success: function(data) { responseMethod(data); }
-            });
-        }
     },
 
     CLASS_NAME: "ott.widgets.routes.Routes"

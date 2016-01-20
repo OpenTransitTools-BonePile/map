@@ -12,10 +12,10 @@ ott.widgets.Widget = {
      */
     initialize : function(map)
     {
-        console.log("enter widget constructor: " + this.CLASS_NAME);
+        ott.log.debug("enter widget constructor: " + this.CLASS_NAME);
         this.map = map;
         this.widgets.push(this);
-        console.log("exit widget constructor: " + this.CLASS_NAME);
+        ott.log.debug("exit widget constructor: " + this.CLASS_NAME);
     },
 
     clearWidget : function()
@@ -27,6 +27,29 @@ ott.widgets.Widget = {
         for(var i in this.widgets)
         {
             this.widgets[i].clearWidget();
+        }
+    },
+
+    refreshData : function()
+    {
+        return true;
+    },
+
+    ajaxCall : function(url, responseMethod, parameters)
+    {
+        if(this.refreshData())
+        {
+            var url = this.url;
+            if(parameters)
+                url = url + L.Util.getParamString(parameters)
+            ott.log.debug(url);
+
+            responseMethod = responseMethod.bind(this);
+            $.ajax({
+                url: url,
+                datatype: 'json',
+                success: function(data) { responseMethod(data); }
+            });
         }
     },
 
