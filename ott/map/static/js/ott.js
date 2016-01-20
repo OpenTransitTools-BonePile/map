@@ -55,6 +55,11 @@ var ott = {
         {
             if(ott.debug)
                 console.log(msg);
+        },
+
+        error : function(msg)
+        {
+            console.log(msg);
         }
     },
 

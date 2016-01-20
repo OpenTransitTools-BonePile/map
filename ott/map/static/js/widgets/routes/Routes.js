@@ -6,8 +6,8 @@ ott.widgets.routes.Routes = {
     layer   : null,
     url     : null,
     geomUrl : null,
-    routesList : [],
-    geomList   : [],
+    routes  : [],
+    geoms   : [],
 
     /**
      * @consturctor
@@ -32,20 +32,20 @@ ott.widgets.routes.Routes = {
     {
         try
         {
-            var routes = data.routes;
-            if(routes.length > 0)
+            if(data.routes.length > 0)
             {
                 for(var i in data.routes)
                 {
                     var item = data.routes[i];
-                    ott.debug.log(item.name);
                     this.routes.push(item);
+                    ott.log.debug(item.name);
                 }
-                this.renderToDropDownDiv()
+                this.renderToDropDownDiv();
             }
         }
         catch(e)
         {
+            ott.log.error(e);
         }
     },
 
@@ -53,11 +53,11 @@ ott.widgets.routes.Routes = {
     getHtmlOptionList : function()
     {
         var retVal = []
-        for(var i in this.routesList)
+        for(var i in this.routes)
         {
-            var item = this.routesList[i];
+            var item = this.routes[i];
             var opt = '<option value="' + item.route_id +  '">' + item.name + '</option>';
-            retVal.push(item);
+            retVal.push(opt);
         }
         return retVal;
     },
