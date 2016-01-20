@@ -1,5 +1,6 @@
 ott.namespace("ott.widgets.routes");
 
+
 ott.widgets.routes.Routes = {
 
     map     : null,
@@ -8,20 +9,21 @@ ott.widgets.routes.Routes = {
     geomUrl : null,
     routes  : [],
     geoms   : [],
+    listDivName : null,
+
 
     /**
      * @consturctor
      */
-    initialize : function(map, url, geomUrl, vehiclesUrl)
+    initialize : function(map, listDivName, url, geomUrl, vehiclesUrl)
     {
         ott.widgets.Widget.prototype.initialize.apply(this, arguments);
 
-        url = url || 'http://maps7.trimet.org/ride_ws/routes';
-        geomUrl = geomUrl || 'http://maps7.trimet.org/ride_ws/routes';
-        this.url = url;
-        this.geomUrl = geomUrl;
+        this.url = url || 'http://maps7.trimet.org/ride_ws/routes';
+        this.geomUrl = geomUrl || 'http://maps7.trimet.org/ride_ws/routes';
+        this.listDivName = listDivName;
 
-        this.ajaxCall(this.routesAjaxHandler, url);
+        this.ajaxCall(this.routesAjaxHandler, this.url);
     },
 
     /**
@@ -34,13 +36,17 @@ ott.widgets.routes.Routes = {
         {
             if(data.routes.length > 0)
             {
+                // save off the list of routes from the route service
                 for(var i in data.routes)
                 {
                     var item = data.routes[i];
                     this.routes.push(item);
                     ott.log.debug(item.name);
                 }
-                this.renderToDropDownDiv();
+
+                // render route list to the UI
+                if(this.listDivName)
+                    this.renderToListDiv();
             }
         }
         catch(e)
@@ -63,9 +69,9 @@ ott.widgets.routes.Routes = {
     },
 
     /** render list in a div */
-    renderToDropDownDiv : function(div)
+    renderToListDiv : function()
     {
-        var $dropDown = $(div);
+        var $dropDown = this.getDOMObjectById(this.listDivName);
         $dropDown.empty();
 
         // clear out the drop down
@@ -77,6 +83,8 @@ ott.widgets.routes.Routes = {
             ott.log.debug(o);
         }
     },
+
+    ///////////// junk below ////
 
     /**
      * used by route select via url param

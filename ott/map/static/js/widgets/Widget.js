@@ -1,11 +1,12 @@
 ott.namespace("ott.widgets");
 
+
 var WIDGETS_SINGLETON = [];
 
 ott.widgets.Widget = {
 
-    widgets : WIDGETS_SINGLETON,
     map : null,
+    widgets : WIDGETS_SINGLETON,
     inAjaxCall : false,
 
     /**
@@ -36,6 +37,7 @@ ott.widgets.Widget = {
         return true;
     },
 
+    /** uses jQuery to call a service and send the success response to a given method */
     ajaxCall : function(responseMethod, url, parameters)
     {
         if(this.refreshData())
@@ -54,6 +56,19 @@ ott.widgets.Widget = {
                 error:   function(error) { this_.inAjaxCall = false; ott.log.debug("ERROR ajaxCall " + this_.CLASS_NAME)}
             });
         }
+    },
+
+    /** use jQuery to find a DOM object */
+    getDOMObjectById : function(name)
+    {
+        var retVal = null;
+        if(name)
+        {
+            if(name[0] !== '#')
+                name = '#' + name;
+            retVal = $(name);
+        }
+        return retVal;
     },
 
     CLASS_NAME: "ott.widgets.Widget"
