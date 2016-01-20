@@ -12,10 +12,10 @@ ott.widgets.Widget = {
      */
     initialize : function(map)
     {
-        console.log("enter widget constructor: " + CLASS_NAME);
+        console.log("enter widget constructor: " + this.CLASS_NAME);
         this.map = map;
         this.widgets.push(this);
-        console.log("exit widget constructor: " + CLASS_NAME);
+        console.log("exit widget constructor: " + this.CLASS_NAME);
     },
 
     clearWidget : function()

@@ -10,6 +10,7 @@ ott.widgets.routes.Vehicles = {
      */
     initialize : function(map, targetDiv, url)
     {
+        ott.widgets.Widget.prototype.initialize.apply(this, arguments);
     },
 
     /**
@@ -24,4 +25,4 @@ ott.widgets.routes.Vehicles = {
 
     CLASS_NAME: "ott.widgets.routes.Vehicles"
 };
-ott.widgets.routes.Vehicles = new ott.Class(ott.widgets.routes.Vehicles);
+ott.widgets.routes.Vehicles = new ott.Class(ott.widgets.Widget, ott.widgets.routes.Vehicles);
