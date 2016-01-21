@@ -22,7 +22,7 @@ ott.app.MapApp = {
         ott.log.debug("exit leaflet Map() constructor");
     },
 
-    makeSolrPointLayers()
+    makeSolrPointLayers : function()
     {
         this.pr = new ott.leaflet.layer.PointLayer(this.map.map,   'type:10 OR type:17', 'pr');
         this.tc = new ott.leaflet.layer.PointLayer(this.map.map,   'type:14', 'tc');
@@ -30,7 +30,7 @@ ott.app.MapApp = {
         this.tvm  = new ott.leaflet.layer.PointLayer(this.map.map, 'type:26', 'tvm');
     },
 
-    makeSearchAndTransitLayers()
+    makeSearchAndTransitLayers : function()
     {
         this.geo = new ott.leaflet.utils.GeoLocation(this.map.map);
         this.search = new ott.leaflet.map.Search(this.map.map);
@@ -39,7 +39,7 @@ ott.app.MapApp = {
         this.routes = new ott.widgets.routes.Routes(this.map.map, 'routes');
     },
 
-    makeMobilityLayers()
+    makeMobilityLayers : function()
     {
         this.lc = new ott.leaflet.layer.LayerController(this.map.map);
         this.weather = ott.leaflet.layer.WmsLayerStatic.makeWeatherLayer(this.map.map);
