@@ -1,24 +1,29 @@
 /**
- * for firebug lite -- if we don't have a console loggeravailable, then we add those methods here (and then 
- * any logging calls made w/out firebug.js included will go to stup routes
- */
-if(window.console == undefined || window.console.log == undefined)
-{
-    var names = [
-                 "log", "debug", "info", "warn", "error", "assert", "dir", "dirxml",
-                 "group", "groupEnd", "time", "timeEnd", "count", "trace", "profile", "profileEnd"
-    ];
-    window.console = {};
-    for (var i = 0; i < names.length; ++i)
-        window.console[names[i]] = function(){};
-}
-
-/**
  * Namespace: ott (A place for all things ott.)
  * OTT namespace controller / Class wrapper functionality
  * @class
  */
 var ott = {
+
+    debug : false,
+
+    /**
+     * for firebug lite -- if we don't have a console loggeravailable, then we add those methods here (and then
+     * any logging calls made w/out firebug.js included will go to stup routes
+     */
+    setupConsole : function()
+    {
+        if(window.console == undefined || window.console.log == undefined)
+        {
+            var names = [
+                         "log", "debug", "info", "warn", "error", "assert", "dir", "dirxml",
+                         "group", "groupEnd", "time", "timeEnd", "count", "trace", "profile", "profileEnd"
+            ];
+            window.console = {};
+            for (var i = 0; i < names.length; ++i)
+                window.console[names[i]] = function(){};
+        }
+    },
 
     /**
      * Function: namespace
@@ -28,7 +33,7 @@ var ott = {
      * ns      - {String || Array} A string representing a namespace or an array of strings representing multiple namespaces.  E.g. "some.name.space".
      * context - {Object} Optional object to which additional names will be added.  Default is the window object.
      */
-    namespace : function(ns, context) 
+    namespace : function(ns, context)
     {
         ns = (typeof ns == 'string') ? [ns] : ns;
         context = context || window;
@@ -46,8 +51,6 @@ var ott = {
         }
     },
 
-    debug : false,
-
     log :
     {
         debug : function(msg)
@@ -61,7 +64,6 @@ var ott = {
             console.log(msg);
         }
     },
-
 
     /**
      * a blank method (with a log warning).
@@ -150,6 +152,10 @@ var ott = {
 
     CLASS_NAME: "ott"
 };
+
+
+// setup ott console stuff
+ott.setupConsole();
 
 
 // IMPORTANT: ott.Class & ott.extend was 'borrowed' from OpenLayers.Class & OpenLayers.Util.extend.  
