@@ -103,7 +103,7 @@ def main(argv=None):
     all = (argv == None or len(argv) == 1 or "all" in argv)
     if all or "combo" in argv or "c" in argv:
         combine(dir='ott/map/static/css/', ext='css', fname='ott.min')
-        combine(dir='ott/map/static/js/',  ext='js',  fname='ott.min', filters=['openlayers', 'config'], filter_match=False, filter_dirs=True)
+        combine(dir='ott/map/static/js/',  ext='js',  fname='ott.min', filters=['tests', 'openlayers', 'config'], filter_match=False, filter_dirs=True)
         combine(dir='ott/map/static/resources/leaflet/', ext='js',  fname='ott.leaflet', filters=['leaflet-src'], filter_match=False, filter_dirs=True)
         combine(dir='ott/map/static/resources/leaflet/', ext='css', fname='ott.leaflet', filters=['leaflet-src'], filter_match=False, filter_dirs=True)
         #combine(dir='ott/map/static/js/',  ext='js', fname='ott.openlayers', filters=['leaflet', 'config'],     filter_match=False, filter_dirs=True)
