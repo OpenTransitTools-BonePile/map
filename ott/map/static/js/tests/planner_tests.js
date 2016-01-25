@@ -1,3 +1,5 @@
+//QUnit.module( "group a" );
+
 // query
 QUnit.test( "a basic test example", function( assert ) {
     var value = "hello";
