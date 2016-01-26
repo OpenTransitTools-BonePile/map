@@ -1,50 +1,5 @@
 ott.namespace("ott.widgets.routes");
 
-ott.widgets.routes.RouteDetails = {
-
-    routes : null,
-    url    : null,
-
-    /**
-     * @consturctor
-     */
-    initialize : function(routes, url)
-    {
-        this.routes = routes;
-        this.url = url;
-        ott.widgets.WidgetStatic.ajaxCallStatic(this.rsAjaxHandler, this.url, this);
-    },
-
-    /**
-     * store route stops data
-     */
-    rsAjaxHandler : function(data)
-    {
-        try
-        {
-            data = data;
-        }
-        catch(e)
-        {
-            ott.log.error(e);
-        }
-    },
-
-    renderRouteDetails : function(data)
-    {
-        try
-        {
-        }
-        catch(e)
-        {
-            ott.log.error(e);
-        }
-    },
-
-    CLASS_NAME: "ott.widgets.routes.RouteDetails"
-};
-ott.widgets.routes.RouteDetails = new ott.Class(ott.widgets.routes.RouteDetails);
-
 
 ott.widgets.routes.Routes = {
 
@@ -118,10 +73,15 @@ ott.widgets.routes.Routes = {
     /** render list in a div */
     renderToListDiv : function()
     {
+        // step 1: get the html drop down and clear it out
         var $dropDown = this.getDOMObjectById(this.listDivName);
         $dropDown.empty();
 
-        // clear out the drop down
+        // step 2: add a list header
+        var o = "<option selected disabled hidden value=''>Select a line:</option>"
+        $dropDown.append(o);
+
+        // step 3: get the list routes and append them to the list
         var opts = this.getHtmlOptionList();
         for(var i in opts)
         {
@@ -130,7 +90,7 @@ ott.widgets.routes.Routes = {
             ott.log.debug(o);
         }
 
-        // attach the selectRoute callback
+        // step 4: attach the selectRoute callback when an item is selected
         this_ = this;
         $dropDown.on("change", function() {
             // get route id from list
@@ -151,7 +111,7 @@ ott.widgets.routes.Routes = {
         else
         {
             var url = ott.utils.StringUtils.processTemplate(this.rdUrlTemplate, {id:routeId});
-            rd = new ott.widgets.routes.RouteDetails(this.map, this.layer, url);
+            rd = new ott.widgets.routes.RouteDetails(this, url);
             this.routeDetails[routeId] = rd;
         }
     },
