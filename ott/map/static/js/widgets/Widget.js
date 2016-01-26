@@ -42,6 +42,7 @@ ott.widgets.WidgetStatic = {
     {
         var info = this_.CLASS_NAME || "";
         responseMethod = responseMethod.bind(this_);
+        this_.inAjaxCall = true;
         $.ajax({
             url: url,
             datatype: 'json',
@@ -54,7 +55,6 @@ ott.widgets.WidgetStatic = {
     {
         if(this.refreshData())
         {
-            this.inAjaxCall = true;
             if(parameters)
                 url = url + L.Util.getParamString(parameters)
             ott.log.debug(url);

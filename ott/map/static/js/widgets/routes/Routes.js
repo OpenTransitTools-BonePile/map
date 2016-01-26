@@ -2,17 +2,15 @@ ott.namespace("ott.widgets.routes");
 
 ott.widgets.routes.RouteDetails = {
 
-    map      : null,
-    layer    : null,
-    url      : null,
+    routes : null,
+    url    : null,
 
     /**
      * @consturctor
      */
-    initialize : function(map, layer, url)
+    initialize : function(routes, url)
     {
-        this.map = map;
-        this.layer = layer
+        this.routes = routes;
         this.url = url;
         ott.widgets.WidgetStatic.ajaxCallStatic(this.rsAjaxHandler, this.url, this);
     },
