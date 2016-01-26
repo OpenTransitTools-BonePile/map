@@ -1,26 +1,74 @@
 ott.namespace("ott.widgets.routes");
 
+ott.widgets.routes.RouteDetails = {
+
+    map      : null,
+    layer    : null,
+    url      : null,
+
+    /**
+     * @consturctor
+     */
+    initialize : function(map, layer, url)
+    {
+        this.map = map;
+        this.layer = layer
+        this.url = url;
+        this.ajaxCall(this.rsAjaxHandler, this.url);
+    },
+
+    /**
+     * store route stops data
+     */
+    rsAjaxHandler : function(data)
+    {
+        try
+        {
+        }
+        catch(e)
+        {
+            ott.log.error(e);
+        }
+    },
+
+    renderRouteDetails : function(data)
+    {
+        try
+        {
+        }
+        catch(e)
+        {
+            ott.log.error(e);
+        }
+    },
+
+    CLASS_NAME: "ott.widgets.routes.RouteDetails"
+};
+ott.widgets.routes.RouteDetails = new ott.Class(ott.widgets.routes.RouteDetails);
+
 
 ott.widgets.routes.Routes = {
 
-    map     : null,
-    layer   : null,
-    url     : null,
-    geomUrl : null,
-    routes  : [],
-    geoms   : [],
-    listDivName : null,
+    map           : null,
+    layer         : null,
+    url           : null,
+    rsUrlTemplate : null,
+    listDivName   : null,
+
+    routes        : [],
+    routeDetails  : [],
+    selected      : [],
 
 
     /**
      * @consturctor
      */
-    initialize : function(map, listDivName, url, geomUrl, vehiclesUrl)
+    initialize : function(map, listDivName, url, rsUrlTemplate)
     {
         ott.widgets.Widget.prototype.initialize.apply(this, arguments);
 
         this.url = url || 'http://maps7.trimet.org/ride_ws/routes';
-        this.geomUrl = geomUrl || 'http://maps7.trimet.org/ride_ws/routes';
+        this.rsUrlTemplate rsUrlTemplate || 'http://maps7.trimet.org/ride_ws/route_stops?geo&route_id={route_id}';
         this.listDivName = listDivName;
 
         this.ajaxCall(this.routesAjaxHandler, this.url);
@@ -84,29 +132,23 @@ ott.widgets.routes.Routes = {
         }
     },
 
-    ///////////// junk below ////
-
-    /**
-     * used by route select via url param
-     */
+    /** used by route select via url param */
     selectRoute : function(routeId)
     {
-    },
-
-    /**
-     * real-time vehicles for selected routes
-     */
-    showVehicles : function()
-    {
-        for(var i in this.selectedRoutes)
+        var rd = this.RouteDetails[routeId]
+        if(rd)
         {
-        // DO SOMETHING
+            rd.renderRouteDetails();
+        }
+        else
+        {
+            var url = this.rsUrlTemplate;
+            rd = new ott.widgets.routes.RouteDetails(this.map, url);
+            this.RouteDetails[routeId] = rd;
         }
     },
 
-    /**
-     * real-time vehicles for selected routes
-     */
+    /** real-time vehicles for selected routes */
     show : function()
     {
         var defaultParameters = {

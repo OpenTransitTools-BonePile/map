@@ -5,6 +5,15 @@ ott.namespace("ott.utils");
  */
 ott.utils.StringUtils = {
 
+    /**
+     * processTemplate("Template says: ${name} ${verb} you!",{name:"JK", verb:"loves"});
+     *
+     * @see: http://stackoverflow.com/questions/377961/efficient-javascript-string-replacement
+     */
+    processTemplate : function(template, data)
+    {
+        return template.replace(/\${(\w*)}/g,function(m,key){return data.hasOwnProperty(key)?data[key]:"";});
+    },
 
     /**
      * APIFunction - borrowed from OpenLayers.BaseTypes.js 
