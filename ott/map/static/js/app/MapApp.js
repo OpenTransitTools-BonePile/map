@@ -34,8 +34,7 @@ ott.app.MapApp = {
     {
         this.geo = new ott.leaflet.utils.GeoLocation(this.map.map);
         this.search = new ott.leaflet.map.Search(this.map.map);
-        this.stops = new ott.leaflet.transit.Stops(ott.config, this.map.map);
-        //this.routes = new ott.leaflet.transit.Routes(this.map.map);
+        this.stops = new ott.widgets.stops.Stops(ott.config, this.map.map);
         this.routes = new ott.widgets.routes.Routes(this.map.map, 'routes');
     },
 

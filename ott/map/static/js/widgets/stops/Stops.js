@@ -1,7 +1,7 @@
-ott.namespace("ott.leaflet.transit");
+ott.namespace("ott.widgets.stops");
 
 
-ott.leaflet.transit.Stops = {
+ott.widgets.stops.Stops = {
 
     map   : null,
     layer : null,
@@ -200,6 +200,6 @@ ott.leaflet.transit.Stops = {
         this.map.addLayer(this.layer);
     },
 
-    CLASS_NAME: "ott.leaflet.transit.Stops"
+    CLASS_NAME: "ott.widgets.stops.Stops"
 };
-ott.leaflet.transit.Stops = new ott.Class(ott.leaflet.transit.Stops);
+ott.widgets.stops.Stops = new ott.Class(ott.widgets.stops.Stops);
