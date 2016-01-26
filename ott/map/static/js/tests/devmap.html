@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Interactive Map</title>
+    <link rel="icon" href="/images/favicon.png">
+
+    <link rel="stylesheet" href="/resources/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/resources/ott.leaflet.css" />
+    <link rel="stylesheet" href="/resources/ott.min.css" />
+
+    <script src="/resources/ott.leaflet.js"></script>
+    <script src="/resources/jquery/jquery.min.js"></script>
+    <script src="/resources/jquery/jquery-ui.js"></script>
+    <script src="/resources/jquery/jquery-ui-autocomplete.js"></script>
+    <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+    <!--[if lt IE 11]>
+    <script src="/resources/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="/resources/ott.min.js"></script>
+    <script src="/js/widgets/Widget.js"></script>
+    <script src="/js/widgets/routes/Routes.js"></script>
+    <script src="/js/config.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        // do bootstrap stuff...
+        $('[data-toggle="tooltip"]').tooltip();
+        $('.layerButton').draggable({cancel:false});  // drag n drop
+
+        ctl = new ott.app.MapApp();
+    });
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://opentransittools.com/map"><img src="/images/logo.png"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <div class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" id="search" placeholder="search" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <button type="submit" id="pr" data-toggle="tooltip" data-placement="bottom" title="Park & Ride"><img src="/images/ui/pr.png"></button>
+                    <button type="submit" id="tc"><img src="/images/ui/tc.png"></button>
+                    <button type="submit" id="fare"><img src="/images/ui/ticket.png"></button>
+                    <button type="submit" id="tvm"><img  src="/images/ui/tvm.png"></button>
+                    <button type="submit" id="clear"><img  src="/images/ui/clear.png"></button>
+
+                    <div class="nav pull-left">
+                        <div class="dropdown" id="menuLogin">
+                            <button type="submit" id="trip" class="dropdown-toggle" href="#" data-toggle="dropdown"><img src="/images/ui/planner.png"></button>
+                            <div class="dropdown-menu" style="padding:17px;" action="COULD USE THIS FOR SVC URL">
+                                <form class="form" role="form" id="tripForm">
+                                    <input name="from" id="from" type="text" placeholder="From">
+                                    <input name="to"   id="to"   type="text" placeholder="To">
+                                </form>
+                                <button type="button"  id="tripSubmit" class="btn">Submit</button>
+                                <div id="simple-msg"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav pull-left">
+                        <div class="dropdown" id="menuRoutes">
+                            <button type="submit" id="routesButton" class="dropdown-toggle" href="#" data-toggle="dropdown"><img  src="/images/ui/routes.png"></button>
+                            <div class="dropdown-menu" style="padding:17px;">
+                                <form class="form" id="formRoutes">
+                                    <select id="routes" placeholder="routes" class="form-control"></select>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav pull-left">
+                        <div class="dropdown" id="menuLayers">
+                            <button type="submit" id="layers" class="dropdown-toggle" href="#" data-toggle="dropdown"><img  src="/images/ui/layers.png"></button>
+                            <div class="dropdown-menu" style="padding:17px;">
+                                <form class="form" id="formLayers">
+                                    <div class="form-group" id="layerButtons">
+                                        <div class="layerButton"><button type="button" id="weatherButton"><img src="/images/ui/weather.png"></button></div>
+                                    </div>
+                                    <br>
+                                    <input type="range" id="layerButtonsOpacity" name="Layer Opacity" min="0" max="10">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h2>Trip Planner</h2>
+    </div>
+    <div id="map"></div>
+</body>
+</html>
+

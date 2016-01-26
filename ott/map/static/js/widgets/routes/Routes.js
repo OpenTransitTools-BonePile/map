@@ -14,7 +14,7 @@ ott.widgets.routes.RouteDetails = {
         this.map = map;
         this.layer = layer
         this.url = url;
-        this.ajaxCall(this.rsAjaxHandler, this.url);
+        ott.widgets.WidgetStatic.ajaxCallStatic(this.rsAjaxHandler, this.url, this);
     },
 
     /**
@@ -24,6 +24,7 @@ ott.widgets.routes.RouteDetails = {
     {
         try
         {
+            data = data;
         }
         catch(e)
         {
@@ -52,7 +53,7 @@ ott.widgets.routes.Routes = {
     map           : null,
     layer         : null,
     url           : null,
-    rsUrlTemplate : null,
+    rdUrlTemplate : null,
     listDivName   : null,
 
     routes        : [],
@@ -63,12 +64,12 @@ ott.widgets.routes.Routes = {
     /**
      * @consturctor
      */
-    initialize : function(map, listDivName, url, rsUrlTemplate)
+    initialize : function(map, listDivName, url, rdUrlTemplate)
     {
         ott.widgets.Widget.prototype.initialize.apply(this, arguments);
 
         this.url = url || 'http://maps7.trimet.org/ride_ws/routes';
-        this.rsUrlTemplate rsUrlTemplate || 'http://maps7.trimet.org/ride_ws/route_stops?geo&route_id={route_id}';
+        this.rdUrlTemplate = rdUrlTemplate || "http://maps7.trimet.org/ride_ws/route_stops?geo&route_id=${id}";
         this.listDivName = listDivName;
 
         this.ajaxCall(this.routesAjaxHandler, this.url);
@@ -130,21 +131,30 @@ ott.widgets.routes.Routes = {
             $dropDown.append(o);
             ott.log.debug(o);
         }
+
+        // attach the selectRoute callback
+        this_ = this;
+        $dropDown.on("change", function() {
+            // get route id from list
+            var routeId = this.value;
+            this_.selectRoute(routeId);
+        });
+
     },
 
     /** used by route select via url param */
     selectRoute : function(routeId)
     {
-        var rd = this.RouteDetails[routeId]
+        var rd = this.routeDetails[routeId]
         if(rd)
         {
             rd.renderRouteDetails();
         }
         else
         {
-            var url = this.rsUrlTemplate;
-            rd = new ott.widgets.routes.RouteDetails(this.map, url);
-            this.RouteDetails[routeId] = rd;
+            var url = ott.utils.StringUtils.processTemplate(this.rdUrlTemplate, {id:routeId});
+            rd = new ott.widgets.routes.RouteDetails(this.map, this.layer, url);
+            this.routeDetails[routeId] = rd;
         }
     },
 

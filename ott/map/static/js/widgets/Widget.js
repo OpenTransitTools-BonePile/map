@@ -3,7 +3,7 @@ ott.namespace("ott.widgets");
 
 ott.widgets.WIDGETS_SINGLETON = [];
 
-ott.widgets.Widget = {
+ott.widgets.WidgetStatic = {
 
     map : null,
     widgets : ott.widgets.WIDGETS_SINGLETON,
@@ -38,6 +38,18 @@ ott.widgets.Widget = {
     },
 
     /** uses jQuery to call a service and send the success response to a given method */
+    ajaxCallStatic : function(responseMethod, url, this_)
+    {
+        var info = this_.CLASS_NAME || "";
+        responseMethod = responseMethod.bind(this_);
+        $.ajax({
+            url: url,
+            datatype: 'json',
+            success: function(data)  { this_.inAjaxCall = false; responseMethod(data); },
+            error:   function(error) { this_.inAjaxCall = false; ott.log.debug("ERROR ajaxCall " + info)}
+        });
+    },
+
     ajaxCall : function(responseMethod, url, parameters)
     {
         if(this.refreshData())
@@ -46,15 +58,7 @@ ott.widgets.Widget = {
             if(parameters)
                 url = url + L.Util.getParamString(parameters)
             ott.log.debug(url);
-
-            var this_ = this;
-            responseMethod = responseMethod.bind(this);
-            $.ajax({
-                url: url,
-                datatype: 'json',
-                success: function(data)  { this_.inAjaxCall = false; responseMethod(data); },
-                error:   function(error) { this_.inAjaxCall = false; ott.log.debug("ERROR ajaxCall " + this_.CLASS_NAME)}
-            });
+            this.ajaxCallStatic(responseMethod, url, this);
         }
     },
 
@@ -73,4 +77,4 @@ ott.widgets.Widget = {
 
     CLASS_NAME: "ott.widgets.Widget"
 };
-ott.widgets.Widget = new ott.Class(ott.widgets.Widget);
+ott.widgets.Widget = new ott.Class(ott.widgets.WidgetStatic);
