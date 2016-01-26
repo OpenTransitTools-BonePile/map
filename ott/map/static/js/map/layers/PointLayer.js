@@ -30,7 +30,7 @@ ott.leaflet.layer.PointLayer = {
         this.layerId = layerId
         this.buttonDiv = "#" + layerId;
         this.url = url;
-        this.icons = new ott.leaflet.transit.TransitIcons();
+        this.icons = new ott.utils.TransitIcons();
 
         this.queryServer();
 

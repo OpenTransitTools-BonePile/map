@@ -1,6 +1,7 @@
-ott.namespace("ott.leaflet.transit");
+ott.namespace("ott.utils");
 
-ott.leaflet.transit.IconUtils = {
+
+ott.utils.IconUtils = {
 
     icon : function(url, sx, sy, ax, ay, px, py)
     {
@@ -24,39 +25,39 @@ ott.leaflet.transit.IconUtils = {
         return this.icon(url, 48, 49, 46, 42, 0, -16);
     },
 
-    CLASS_NAME : "ott.leaflet.transit.IconUtils"
+    CLASS_NAME : "ott.utils.IconUtils"
 };
 
 
-ott.leaflet.transit.TransitIcons = {
+ott.utils.TransitIcons = {
 
-    startFlagIcon : ott.leaflet.transit.IconUtils.caliperIcons('/images/map/marker-flag-start-shadowed.png'),
-    endFlagIcon : ott.leaflet.transit.IconUtils.caliperIcons('/images/map/marker-flag-end-shadowed.png'),
+    startFlagIcon : ott.utils.IconUtils.caliperIcons('/images/map/marker-flag-start-shadowed.png'),
+    endFlagIcon : ott.utils.IconUtils.caliperIcons('/images/map/marker-flag-end-shadowed.png'),
 
-    busStopIcon   : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/bus20.png'),
-    busStopIconON : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/bus20ON.png'),
-    subwayStopIcon   : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/subway20.png'),
-    subwayStopIconON : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/subway20ON.png'),
-    lightRailStopIcon   : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/rail20.png'),
-    lightRailStopIconON : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/rail20ON.png'),
-    heavyRailStopIcon   : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/cr20.png'),
-    heavyRailStopIconON : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/cr20ON.png'),
-    streetCarStopIcon   : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/streetcar20.png'),
-    streetCarStopIconON : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/streetcar20ON.png'),
-    aerialTramStopIcon      : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/tram20.png'),
-    aerialTramStopIconON    : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/tram20ON.png'),
+    busStopIcon   : ott.utils.IconUtils.icon20x20('/images/map/stop/bus20.png'),
+    busStopIconON : ott.utils.IconUtils.icon20x20('/images/map/stop/bus20ON.png'),
+    subwayStopIcon   : ott.utils.IconUtils.icon20x20('/images/map/stop/subway20.png'),
+    subwayStopIconON : ott.utils.IconUtils.icon20x20('/images/map/stop/subway20ON.png'),
+    lightRailStopIcon   : ott.utils.IconUtils.icon20x20('/images/map/stop/rail20.png'),
+    lightRailStopIconON : ott.utils.IconUtils.icon20x20('/images/map/stop/rail20ON.png'),
+    heavyRailStopIcon   : ott.utils.IconUtils.icon20x20('/images/map/stop/cr20.png'),
+    heavyRailStopIconON : ott.utils.IconUtils.icon20x20('/images/map/stop/cr20ON.png'),
+    streetCarStopIcon   : ott.utils.IconUtils.icon20x20('/images/map/stop/streetcar20.png'),
+    streetCarStopIconON : ott.utils.IconUtils.icon20x20('/images/map/stop/streetcar20ON.png'),
+    aerialTramStopIcon      : ott.utils.IconUtils.icon20x20('/images/map/stop/tram20.png'),
+    aerialTramStopIconON    : ott.utils.IconUtils.icon20x20('/images/map/stop/tram20ON.png'),
 
-    parkAndRideIcon         : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/pr20.png'),
-    parkAndRideIconON       : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/pr20ON.png'),
-    bikeAndRideIcon         : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/bike20.png'),
-    bikeAndRideIconON       : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/bike20ON.png'),
-    transitCenterRideIcon   : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/tc20.png'),
-    transitCenterRideIconON : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/tc20ON.png'),
+    parkAndRideIcon         : ott.utils.IconUtils.icon20x20('/images/map/stop/pr20.png'),
+    parkAndRideIconON       : ott.utils.IconUtils.icon20x20('/images/map/stop/pr20ON.png'),
+    bikeAndRideIcon         : ott.utils.IconUtils.icon20x20('/images/map/stop/bike20.png'),
+    bikeAndRideIconON       : ott.utils.IconUtils.icon20x20('/images/map/stop/bike20ON.png'),
+    transitCenterRideIcon   : ott.utils.IconUtils.icon20x20('/images/map/stop/tc20.png'),
+    transitCenterRideIconON : ott.utils.IconUtils.icon20x20('/images/map/stop/tc20ON.png'),
 
-    fareOutletIcon   : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/fare20.png'),
-    fareOutletIconON : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/fare20ON.png'),
-    tvmOutletIcon    : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/tvm20.png'),
-    tvmOutletIconON  : ott.leaflet.transit.IconUtils.icon20x20('/images/map/stop/tvm20ON.png'),
+    fareOutletIcon   : ott.utils.IconUtils.icon20x20('/images/map/stop/fare20.png'),
+    fareOutletIconON : ott.utils.IconUtils.icon20x20('/images/map/stop/fare20ON.png'),
+    tvmOutletIcon    : ott.utils.IconUtils.icon20x20('/images/map/stop/tvm20.png'),
+    tvmOutletIconON  : ott.utils.IconUtils.icon20x20('/images/map/stop/tvm20ON.png'),
 
     geojsonMarkerOptions : {
         radius: 6,
@@ -149,6 +150,6 @@ ott.leaflet.transit.TransitIcons = {
         return retVal;
     },
 
-    CLASS_NAME : "ott.leaflet.transit.TransitIcons"
+    CLASS_NAME : "ott.utils.TransitIcons"
 };
-ott.leaflet.transit.TransitIcons = new ott.Class(ott.leaflet.transit.TransitIcons);
+ott.utils.TransitIcons = new ott.Class(ott.utils.TransitIcons);

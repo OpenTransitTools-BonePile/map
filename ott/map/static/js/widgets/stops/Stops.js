@@ -27,7 +27,7 @@ ott.widgets.stops.Stops = {
         var THIS = this;
 
         // step 1: style
-        this.style = new ott.leaflet.transit.TransitIcons();
+        this.style = new ott.utils.TransitIcons();
 
         // step 2: callback load data from server
         this.map.on('moveend', function() { THIS.queryServer(); });
