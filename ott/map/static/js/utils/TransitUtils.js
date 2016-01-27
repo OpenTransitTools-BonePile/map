@@ -19,20 +19,124 @@ ott.utils.TransitUtils = {
         return retVal;
     },
 
-
-    /** returns formatted URL string for calling TriMet */
-    getRouteURL : function(id, pid, name, bdate, edate)
+    /**
+     * convert tm ids to gtfs type ids
+     * adapt id's that work with GTFS, ala https://developers.google.com/transit/gtfs/reference?hl=en#routes_fields
+     * NOTE: unlike GTFS, we separate trams into two types: streetcars vs. light_rail
+     */
+    tmModeIdToGtfsId : function(id)
     {
-        var retVal = name;
-        if(id && id < 900)
+        var retVal;
+        switch(id)
         {
-            var t = '<a target="#" href="http://trimet.org/schedules/r${id}.htm" title="TriMet Schedules">'
-            t = t + '#[${public_id};;${public_id}-]${name}';
-            t = t + '</a><br/><br/>';
-            t = t + '#[${bdate};; <b>Route Begin Date: </b>${bdate}<br/>]';
-            t = t + '#[${edate};; <b>Route End Date: </b>${edate}<br/>]';
-            retVal = ott.utils.StringUtils.format(t, {id:this.padRouteID(id), public_id:pid, name:name, bdate:bdate, edate:edate});
-        }
+            case 1:   // trimet bus (1) is gtfs id #3
+            case "1":
+                retVal = 3;
+                break;
+            case 2:   // trimet gondala (2) is id #6
+            case "2":
+                retVal = 6;
+                break;
+            case 3:   // trimet commuter rail (3) is id #2
+            case "3":
+                retVal = 2;
+                break;
+            case 4:  // trimet streetcar mode (4) is mapped to gtfs #11
+            case "4":
+                retVal = 11;
+                break;
+            case 5:   // trimet light rail (5) is gtfs id #0
+            case "5":
+                retVal = 0;
+                break;
+            case  0:
+            case "0":
+            case  6:
+            case "6":
+            case  7:
+            case "7":
+            case  11:
+            case "11":
+                // a trimet mode is unexpectedly mapping to a gtfs mode ... so nullify and warn developer
+                retVal = 11111;
+                ott.error("trimet mode is mapping id's to a gtfs mode -- debug me");
+                break;
+            default:
+                retVal = id;
+                break;
+        };
+        return retVal;
+    },
+
+    /**
+     * id to type name
+     * @see https://developers.google.com/transit/gtfs/reference?hl=en#routes_fields
+     */
+    gtfsIdToTypeName : function(id, defVal)
+    {
+        var retVal = defVal;
+
+        switch(id)
+        {
+            case  0:
+            case "0":
+                retVal = "light_rail";
+                break;
+            case  1:
+            case "1":
+                retVal = "subway";
+                break;
+            case  2:
+            case "2":
+                retVal = "rail";
+                break;
+            case  3:
+            case "3":
+                retVal = "bus";
+                break;
+            case  4:
+            case "4":
+                retVal = "ferry";
+                break;
+            case  5:
+            case "5":
+                retVal = "cable_car";
+                break;
+            case  6:
+            case "6":
+                retVal = "gondola";
+                break;
+            case  7:
+            case "7":
+                retVal = "funicular";
+                break;
+
+            // enhanced set of mode ids
+            case  11:
+            case "11":
+                retVal = "streetcar";
+                break;
+            case  10:
+            case "10":
+                retVal = "park_ride";
+                break;
+            case  14:
+            case "14":
+                retVal = "transit_center";
+                break;
+            case  17:
+            case "17":
+                retVal = "bike_parking";
+                break;
+            case  16:
+            case "16":
+                retVal = "fare_outlet"
+                break;
+            case  26:
+            case "26":
+                retVal = "tvm";
+                break;
+        };
         return retVal;
     },
 
