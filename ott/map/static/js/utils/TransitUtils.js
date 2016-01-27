@@ -29,23 +29,23 @@ ott.utils.TransitUtils = {
         var retVal;
         switch(id)
         {
-            case 1:   // trimet bus (1) is gtfs id #3
+            case  1:   // trimet bus (1) is gtfs id #3
             case "1":
                 retVal = 3;
                 break;
-            case 2:   // trimet gondala (2) is id #6
+            case  2:   // trimet gondala (2) is id #6
             case "2":
                 retVal = 6;
                 break;
-            case 3:   // trimet commuter rail (3) is id #2
+            case  3:   // trimet commuter rail (3) is id #2
             case "3":
                 retVal = 2;
                 break;
-            case 4:  // trimet streetcar mode (4) is mapped to gtfs #11
+            case  4:   // trimet streetcar mode (4) is mapped to gtfs #11
             case "4":
                 retVal = 11;
                 break;
-            case 5:   // trimet light rail (5) is gtfs id #0
+            case  5:   // trimet light rail (5) is gtfs id #0
             case "5":
                 retVal = 0;
                 break;
@@ -126,7 +126,7 @@ ott.utils.TransitUtils = {
                 break;
             case  17:
             case "17":
-                retVal = "bike_parking";
+                retVal = "bike_ride";
                 break;
             case  16:
             case "16":
