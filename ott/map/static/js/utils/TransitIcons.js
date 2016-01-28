@@ -154,3 +154,24 @@ ott.utils.TransitIcons = {
     CLASS_NAME : "ott.utils.TransitIcons"
 };
 ott.utils.TransitIcons = new ott.Class(ott.utils.TransitIcons);
+
+
+/**
+ * trimet translation of id's, etc...
+ */
+ott.utils.TriMetTransitIcons = {
+    initialize : function(config, targetDiv)
+    {
+    },
+
+    /**
+     * these are how trimet orders our styles based on mode type
+     */
+    iconByType : function(id, on)
+    {
+        return this.tvmOutletIcon;
+    },
+
+    CLASS_NAME : "ott.utils.TriMetTransitIcons"
+};
+ott.utils.TriMetTransitIcons = new ott.Class(ott.utils.TransitIcons, ott.utils.TriMetTransitIcons);
