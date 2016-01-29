@@ -1,5 +1,6 @@
 ott.namespace("ott.utils");
 
+
 ott.utils.TransitUtils = {
 
     /** Simple mapping of W/S/U */

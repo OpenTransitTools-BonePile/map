@@ -86,11 +86,11 @@ ott.utils.TransitIcons = {
 
         switch(id)
         {
-            case 1:
-            case "1":
+            case  3:
+            case "3":
                 retVal = on ? this.busStopIconON : this.busStopIcon;
                 break;
-            case 2:
+            case  2:
             case "2":
                 retVal = on ? this.aerialTramStopIconON : this.aerialTramStopIcon;
                 break;
@@ -167,8 +167,9 @@ ott.utils.TriMetTransitIcons = {
     /**
      * these are how trimet orders our styles based on mode type
      */
-    iconByType : function(id, on)
+    iconByType : function(trimet_id, on)
     {
+        var gtfs_id = ott.utils.TransitUtils.tmModeIdToGtfsId(trimet_id);
         return this.tvmOutletIcon;
     },
 
