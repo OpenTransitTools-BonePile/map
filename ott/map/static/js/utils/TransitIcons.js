@@ -29,6 +29,50 @@ ott.utils.IconUtils = {
 };
 
 
+/**
+ * 4 different images may be used for different states
+ * for example, the bus icon might have 3 map icons (normal, hover, grayed out) and a non-leaflet
+ * icon used in popups, etc...
+ */
+ott.utils.ModeIcon = {
+    name : null,
+    normal : null,
+    on  : null,
+    off : null,
+    ui  : null,
+
+    initialize : function(url, name)
+    {
+        this.name = name;
+        this.normal = ott.utils.IconUtils.icon20x20(url + '/normal/' + name + '.png');
+        this.on  = ott.utils.IconUtils.icon20x20(url + '/on/' + name + '.png');
+        this.off = ott.utils.IconUtils.icon20x20(url + '/off/' + name + '.png');
+        this.ui  = url + '/ui/' + name + '.png';
+
+    },
+
+    CLASS_NAME : "ott.utils.ModeIcon"
+};
+
+
+ott.utils.ModeIcons = {
+
+    icons : [],
+
+    initialize : function(url)
+    {
+        url = url || "/images/mode";
+        this.name = name;
+        this.normal = ott.utils.IconUtils.icon20x20(url + '/normal/' + name + '.png');
+        this.on  = ott.utils.IconUtils.icon20x20(url + '/on/' + name + '.png');
+        this.off = ott.utils.IconUtils.icon20x20(url + '/off/' + name + '.png');
+        this.ui  = url + '/ui/' + name + '.png';
+
+    },
+
+    CLASS_NAME : "ott.utils.ModeIcon"
+};
+
 ott.utils.TransitIcons = {
 
     startFlagIcon : ott.utils.IconUtils.caliperIcons('/images/map/marker-flag-start-shadowed.png'),
@@ -169,7 +213,7 @@ ott.utils.TriMetTransitIcons = {
      */
     iconByType : function(trimet_id, on)
     {
-        var gtfs_id = ott.utils.TransitUtils.tmModeIdToGtfsId(trimet_id);
+        var gtfs_id = ott.utils.TriMetUtils.remapModeToGtfsId(trimet_id);
         return this.tvmOutletIcon;
     },
 
