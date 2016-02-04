@@ -36,6 +36,7 @@ ott.utils.IconUtils = {
  */
 ott.utils.ModeIcon = {
     name : null,
+
     normal : null,
     on  : null,
     off : null,
@@ -72,6 +73,7 @@ ott.utils.ModeIcons = {
 
     CLASS_NAME : "ott.utils.ModeIcon"
 };
+
 
 ott.utils.TransitIcons = {
 
@@ -173,7 +175,6 @@ ott.utils.TransitIcons = {
         };
         return retVal;
     },
-
 
     makeMarkerByTypeId : function(id, ll, on)
     {
