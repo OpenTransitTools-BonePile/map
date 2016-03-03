@@ -22,14 +22,14 @@ ott.widgets.routes.Routes = {
         ott.widgets.Widget.prototype.initialize.apply(this, arguments);
 
         this.url = url || 'http://maps7.trimet.org/ride_ws/routes';
-        this.rdUrlTemplate = rdUrlTemplate || "http://maps7.trimet.org/ride_ws/route_stops?geo&route_id=${id}";
+        this.rdUrlTemplate = rdUrlTemplate || "http://maps7.trimet.org/ride_ws/route_stops?show_geo&route_id=${id}";
         this.listDivName = listDivName;
 
         this.ajaxCall(this.routesAjaxHandler, this.url);
     },
 
     /**
-     * store routes data
+     * store routes datametalcowboy.com
      * NOTE: might look at this solution - http://silviomoreto.github.io/bootstrap-select/
      */
     routesAjaxHandler : function(data)
