@@ -29,7 +29,7 @@ ott.widgets.routes.Routes = {
     },
 
     /**
-     * store routes datametalcowboy.com
+     * store routes data
      * NOTE: might look at this solution - http://silviomoreto.github.io/bootstrap-select/
      */
     routesAjaxHandler : function(data)
