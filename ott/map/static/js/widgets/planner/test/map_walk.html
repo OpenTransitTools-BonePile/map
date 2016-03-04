@@ -14,9 +14,8 @@
 
     <script src="/resources/jquery/jquery.min.js"></script>
     <script src="/resources/mustache/mustache.min.js"></script>
-    <script src="/js/ott.js"></script>
+    <script src="/resources/ott.min.js"></script>
     <script src="../templates/ott.planner.templates.js"></script>
-
 
     <link rel="stylesheet" href="/resources/font-awesome/css/font-awesome.css" type="text/css" media="all"></link>
     <style>
@@ -44,25 +43,12 @@
 <div id="details" class="group"></div>
 </section>
 
-<!-- note: red line dot http://www.w3schools.com/icons/fontawesome_icons_webapp.asp -->
-<i class="fa fa-circle" style="color:#D31F43"></i>
-
-
-
 <script type="text/javascript">
 function processTemplate(json, templates)
 {
-    json._ = function() {
-        return function(t, r) {
-            return r(t+"-ING");
-        }
-    };
-
-    json.domain = "http://dev.trimet.org";
-    json.maps_domain = "http://dev.trimet.org";
-
-    var rendered = ott.widgets.planner.Controller.renderTemplates(json);
-    $('#details').html(rendered);
+    var ctl = new ott.widgets.planner.Controller();
+    var trip = ctl.renderTemplates(json);
+    $('#details').html(trip);
 }
 
 function getJson(json_url, template_url)

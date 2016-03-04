@@ -7,6 +7,8 @@ ott.widgets.planner.Controller = {
     params : null,
     itinararies : null,
 
+    partials : null,
+
     /**
      * @consturctor
      * @param {Object} config
@@ -19,6 +21,8 @@ ott.widgets.planner.Controller = {
         {
             this.callPlannerWs(params);
         }
+        var isMap = false;
+        this.partials  = this.configTemplates(isMap);
     },
 
     configTemplates : function(isMap)
@@ -41,18 +45,29 @@ ott.widgets.planner.Controller = {
             'disclaimer':ott.templates.disclaimer
         };
         return partials;
-    }
+    },
 
-    renderTemplates : function(json)
+    /**
+     * adds translation and other elements to the json prior to rendering
+     */
+    _appendJsonSugar : function(json)
     {
+        // translation routine
+        if(json._ == null)
         json._ = function() {
             return function(t, r) {
                 return r(t+"-ING");
             }
         };
 
-        var partials = this.configTemplates();
-        var rendered = Mustache.render(ott.templates.trip, json, partials);
+        if(json.domain == null) json.domain = "http://dev.trimet.org";
+        if(json.domain == null) json.maps_domain = "http://dev.trimet.org";
+    },
+
+    renderTemplates : function(json)
+    {
+        this._appendJsonSugar(json);
+        var rendered = Mustache.render(ott.templates.trip, json, this.partials);
         return rendered;
     },
 

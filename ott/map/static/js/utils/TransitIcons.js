@@ -5,12 +5,17 @@ ott.utils.IconUtils = {
 
     icon : function(url, sx, sy, ax, ay, px, py)
     {
-        var retVal = L.icon({
-            iconUrl     : url,
-            iconSize    : [sx, sy],
-            iconAnchor  : [ax, ay],
-            popupAnchor : [px,  py]
-        });
+        var retVal = null;
+        try {
+            retVal = L.icon({
+                iconUrl     : url,
+                iconSize    : [sx, sy],
+                iconAnchor  : [ax, ay],
+                popupAnchor : [px,  py]
+            });
+
+        } catch(e) {
+        };
         return retVal;
     },
 
