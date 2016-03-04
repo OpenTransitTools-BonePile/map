@@ -1,0 +1,47 @@
+{{#walk_to_stop}}
+    <li>
+        <div class="step-number"><span>{{leg_num}}</span></div>
+        <p class="directions">
+            <span class="capitalize">{{verb}}</span> {{distance.distance}} {{distance.measure}} to
+            <a title="Show more information about this stop/station" href="{{to.stop.info}}">{{to.name}}</a>
+            <span class="stopid">Stop ID&nbsp;{{to.stop.id}}</span>
+        </p>
+
+        <div class="normal"><!-- hidden walking directions and map -->
+            <a class="open" onclick="expandMe(this);" href="#leg_{{leg_num}}"><span title="Show walking directions" class="open-text">Details</span><span class="close-text">Close</span></a>
+            <div class="description">
+                <p class="elevation"><span>
+                Elevation gain: {{elevation.rise_ft}}<br>
+                Elevation loss: {{elevation.fall_ft}}<br>
+                <span class="elevation_txt">Elevation chart</span><span class="elevation_chart">
+                    <img src="{{maps_domain}}/images/ui/s.gif" alt="dynamic img (requires javascript)" dheight="20" dwidth="100" dsrc="{{domain}}/ride/sparkline?points={{elevation.points}}">
+                </span>
+            </span></p>
+
+                {{#has_steps}}
+                    <ol>
+                        {{#steps}}
+                            {{#relative_direction}}
+                                <li><span class="capitalize">{{relative_direction}}</span> on {{name}}</li>
+                            {{/relative_direction}}
+                            {{#compass_direction}}
+                                <li><span class="capitalize">{{#_}}{{verb}}{{/_}}</span> {{distance.distance}} {{distance.measure}} {{compass_direction}} from {{name}}</li>
+                            {{/compass_direction}}
+                        {{/steps}}
+                    </ol>
+                {{/has_steps}}
+                <div class="maps">
+                    <p class="walk-start">Start<br>
+                        <img src="{{maps_domain}}/images/ui/s.gif" alt="Map of starting point (300x288)" dheight="288" dwidth="300" dsrc="{{from.map_img}}">
+                    </p>
+                    <p class="walk-end">End<br>
+                        <img src="{{maps_domain}}/images/ui/s.gif" alt="Map of ending point (300x288)" dheight="288" dwidth="300" dsrc="{{to.map_img}}">
+                    </p>
+                </div><!-- end maps -->
+            </div><!-- end .description -->
+        </div><!-- end .normal/hidden walking directions -->
+    </li>
+{{/walk_to_stop}}
+{{#is_walk_steps}}walk steps{{/is_walk_steps}}
+{{#is_bike_goto}}bike goto{{/is_bike_goto}}
+{{#is_bike_steps}}bike steps{{/is_bike_steps}}

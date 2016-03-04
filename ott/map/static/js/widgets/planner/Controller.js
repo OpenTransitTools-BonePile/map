@@ -1,7 +1,7 @@
-ott.namespace("ott.planner");
+ott.namespace("ott.widgets.planner");
 
 
-ott.planner.Controller = {
+ott.widgets.planner.Controller = {
 
     config : null,
     params : null,
@@ -21,25 +21,41 @@ ott.planner.Controller = {
         }
     },
 
-    /** relies on jQuery's AJAX calls */
-    callPlannerWs : function(params)
+    configTemplates : function(isMap)
     {
-        this.params = params;
-        var url  = params.makePlannerUrl(this.config);
-        var THIS = this;
+        var tleg = ott.templates.transit_leg;
+        var wleg = ott.templates.walking_leg;
+        if(isMap)
+        {
+            // change to map specific legs maybe
+            tleg = ott.templates.transit_leg;
+            wleg = ott.templates.walking_leg;
+        }
 
-        $.ajax({
-            url: url,
-            datatype: 'json',
-            jsonCallback: 'getJson',
-            success: function(data) { THIS.processServerResponse(data); }
-        });
+        var partials = {
+            'itinerary': ott.templates.itinerary,
+            'transit_leg': tleg,
+            'walking_leg': wleg,
+            'fare': ott.templates.fare,
+            'tabs': ott.templates.tabs,
+            'disclaimer':ott.templates.disclaimer
+        };
+        return partials;
+    }
+
+    renderTemplates : function(json)
+    {
+        json._ = function() {
+            return function(t, r) {
+                return r(t+"-ING");
+            }
+        };
+
+        var partials = this.configTemplates();
+        var rendered = Mustache.render(ott.templates.trip, json, partials);
+        return rendered;
     },
 
-    processServerResponse : function(data)
-    {
-    },
-
-    CLASS_NAME: "ott.planner.Controller"
+    CLASS_NAME: "ott.widgets.planner.Controller"
 };
-ott.planner.Controller = new ott.Class(ott.planner.Controller);
+ott.widgets.planner.Controller = new ott.Class(ott.widgets.planner.Controller);
