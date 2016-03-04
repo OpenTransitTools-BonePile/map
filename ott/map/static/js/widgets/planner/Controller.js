@@ -27,19 +27,19 @@ ott.widgets.planner.Controller = {
 
     configTemplates : function(isMap)
     {
-        var tleg = ott.templates.transit_leg;
-        var wleg = ott.templates.walking_leg;
+        var tlegs = ott.templates.transit_legs;
+        var wlegs = ott.templates.walking_legs;
         if(isMap)
         {
             // change to map specific legs maybe
-            tleg = ott.templates.transit_leg;
-            wleg = ott.templates.walking_leg;
+            tlegs = ott.templates.transit_legs;
+            wlegs = ott.templates.walking_legs;
         }
 
         var partials = {
             'itinerary': ott.templates.itinerary,
-            'transit_leg': tleg,
-            'walking_leg': wleg,
+            'transit_legs': tlegs,
+            'walking_legs': wlegs,
             'fare': ott.templates.fare,
             'tabs': ott.templates.tabs,
             'disclaimer':ott.templates.disclaimer
