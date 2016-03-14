@@ -10,13 +10,15 @@
         <div class="normal"><!-- hidden walking directions and map -->
             <a class="open" onclick="expandMe(this);" href="#leg_{{leg_num}}"><span title="Show walking directions" class="open-text">Details</span><span class="close-text">Close</span></a>
             <div class="description">
-                <p class="elevation"><span>
-                Elevation gain: {{elevation.rise_ft}}<br>
+                <p class="elevation">
+                <span>
+                XElevation gain: {{elevation.rise_ft}}<br>
                 Elevation loss: {{elevation.fall_ft}}<br>
                 <span class="elevation_txt">Elevation chart</span><span class="elevation_chart">
                     <img src="{{maps_domain}}/images/ui/s.gif" alt="dynamic img (requires javascript)" dheight="20" dwidth="100" dsrc="{{domain}}/ride/sparkline?points={{elevation.points}}">
                 </span>
-            </span></p>
+                </span>
+                </p>
                 {{#has_steps}}
                     <ol>
                         {{#steps}}
