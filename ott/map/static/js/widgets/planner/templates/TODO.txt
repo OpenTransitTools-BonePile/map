@@ -1,0 +1,4 @@
+move ott.map to ott.ui.maps
+mv templates to otp.ui.templates.planner/etc...
+eventually create the ott.ui project and move this project to to otp.ui.maps
+

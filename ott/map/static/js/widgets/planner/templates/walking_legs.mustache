@@ -12,7 +12,7 @@
             <div class="description">
                 <p class="elevation">
                 <span>
-                XElevation gain: {{elevation.rise_ft}}<br>
+                Elevation gain: {{elevation.rise_ft}}<br>
                 Elevation loss: {{elevation.fall_ft}}<br>
                 <span class="elevation_txt">Elevation chart</span><span class="elevation_chart">
                     <img src="{{maps_domain}}/images/ui/s.gif" alt="dynamic img (requires javascript)" dheight="20" dwidth="100" dsrc="{{domain}}/ride/sparkline?points={{elevation.points}}">
@@ -32,15 +32,10 @@
                     </ol>
                 {{/has_steps}}
                 <div class="maps">
-                    <p class="walk-start">Start<br>
-                        <img src="{{maps_domain}}/images/ui/s.gif" alt="Map of starting point (300x288)" dheight="288" dwidth="300" dsrc="{{from.map_img}}">
-                    </p>
-                    <p class="walk-end">End<br>
-                        <img src="{{maps_domain}}/images/ui/s.gif" alt="Map of ending point (300x288)" dheight="288" dwidth="300" dsrc="{{to.map_img}}">
-                    </p>
-                </div><!-- end maps -->
+
+                </div>
             </div><!-- end .description -->
-        </div><!-- end .normal/hidden walking directions -->
+        </div><!-- end .normal/.hidden walking directions -->
     </li>
 {{/walk_to_stop}}
 {{#is_walk_steps}}walk steps{{/is_walk_steps}}
