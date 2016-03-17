@@ -36,6 +36,13 @@
     <script src="http://trimet.org/scripts/triptools.js"></script>
     <script src="http://trimet.org/scripts/basic.js"></script>
     <script src="http://trimet.org/scripts/libs/modernizr-2.5.3.min.js"></script>
+
+    <script src="/resources/ott.leaflet.js"></script>
+    <script src="/resources/ott.min.js"></script>
+    <script src="/js/widgets/Widget.js"></script>
+    <script src="/js/widgets/routes/Routes.js"></script>
+    <script src="/js/app/MapApp.js"></script>
+    <script src="/js/config.js"></script>
 </head>
 
 <body class="standard">
@@ -43,26 +50,20 @@
 <div id="details" class="group"></div>
 </section>
 
+
 <script type="text/javascript">
-function processTemplate(json, templates)
+function processTemplate(json)
 {
+    if(typeof json === "string" || json instanceof String)
+        json = jQuery.parseJSON(json);
+
     var ctl = new ott.widgets.planner.Controller();
     var trip = ctl.renderTemplates(json);
     $('#details').html(trip);
 }
 
-function getJson(json_url, template_url)
-{
-    $.get(json_url, function(json)
-    {
-        if(typeof json === "string" || json instanceof String)
-            json = jQuery.parseJSON(json);
-
-        processTemplate(json, template_url);
-    });
-}
-
-getJson('trip.json');
+jQuery.get('trip.json', processTemplate);
 </script>
+    <div id="map"></div>
 </body>
 </html>
