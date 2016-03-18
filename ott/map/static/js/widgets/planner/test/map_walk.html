@@ -41,13 +41,13 @@
     <script src="/resources/ott.min.js"></script>
     <script src="/js/widgets/Widget.js"></script>
     <script src="/js/widgets/routes/Routes.js"></script>
-    <script src="/js/app/MapApp.js"></script>
+    <script src="/js/map/Map.js"></script>
     <script src="/js/config.js"></script>
 </head>
 
 <body class="standard">
 <section id="main" class="main">
-<div id="details" class="group"></div>
+    <div id="details" class="group"></div>
 </section>
 
 
@@ -60,6 +60,8 @@ function processTemplate(json)
     var ctl = new ott.widgets.planner.Controller();
     var trip = ctl.renderTemplates(json);
     $('#details').html(trip);
+
+    var map = new ott.ui.map.Map();
 }
 
 jQuery.get('trip.json', processTemplate);

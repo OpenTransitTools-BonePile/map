@@ -38,18 +38,34 @@ ott.ui.map.Map = {
         var defaultBaseLayer = null;
 
         // step 4: make the base layers from config
-        for(var i = 0; i < config.baseLayers.length; i++)
+        if(config.baseLayers)
         {
-            // step a: make a base layer from config
-            var layerConfig = config.baseLayers[i];
+            for(var i = 0; i < config.baseLayers.length; i++)
+            {
+                // step a: make a base layer from config
+                var layerConfig = config.baseLayers[i];
+                var layer = new L.TileLayer(layerConfig.url, layerConfig);
+
+                // step b: add layer to cache
+                this.baseLayers[layerConfig.name] = layer;
+
+                // step c: set default base layer based on position
+                if(i == 0)
+                    defaultBaseLayer = layer;
+            }
+        }
+        else
+        {
+            var layerConfig = {
+                name: 'MapQuest OSM',
+                url: 'http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png',
+                subdomains : ['otile1','otile2','otile3','otile4'],
+                attribution : 'Data, imagery and map information provided by <a target="#" href="https://developer.mapquest.com">MapQuest</a>, <a target="#" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> and contributors, <a target="#" href="http://wiki.openstreetmap.org/wiki/Legal_FAQ#3a._I_would_like_to_use_OpenStreetMap_maps._How_should_I_credit_you.3F">ODbL</a>'
+            };
+
             var layer = new L.TileLayer(layerConfig.url, layerConfig);
-
-            // step b: add layer to cache
             this.baseLayers[layerConfig.name] = layer;
-
-            // step c: set default base layer based on position
-            if(i == 0)
-                defaultBaseLayer = layer;
+            defaultBaseLayer = layer;
         }
 
 

@@ -4,7 +4,7 @@ if(typeof(ott) == "undefined" || ott == null) ott = {};
 // data attributions
 ott.tm_attribution = 'Tiles &copy; <a target="#" href="http://trimet.org/">TriMet</a>; ';
 ott.metro_attribution = 'map data &copy; <a target="#" href="http://oregonmetro.gov/rlis">Oregon Metro</a>';
-ott.osm_attribution = 'OSM BLAH';
+ott.osm_attribution = 'Data, imagery and map information provided by <a target="#" href="https://developer.mapquest.com">MapQuest</a>, <a target="#" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> and contributors, <a target="#" href="http://wiki.openstreetmap.org/wiki/Legal_FAQ#3a._I_would_like_to_use_OpenStreetMap_maps._How_should_I_credit_you.3F">ODbL</a>';
 ott.attributions = [
     ott.tm_attribution,
     ott.osm_attribution,
