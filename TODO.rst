@@ -9,6 +9,8 @@ map
 3. Improve Bootstrap Single Page UI = http://bmcbride.github.io/bootleaf
 
 4. How do we embed small maps, then links to large maps
+   - multiple maps on a single page
+   - hide and show the divs of these maps...
 
 5. Port web page to JH's new design, and get full on text planner working
 
