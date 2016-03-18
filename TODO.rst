@@ -11,3 +11,9 @@ map
 4. How do we embed small maps, then links to large maps
 
 5. Port web page to JH's new design, and get full on text planner working
+
+6. hover changes point style ... think stop images changing on hover
+   http://csessig86.github.io/tabletop_to_leaflet/
+
+7. Dragabble Routes - Leaflet Routing Machine
+   http://www.liedman.net/leaflet-routing-machine/
