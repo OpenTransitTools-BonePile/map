@@ -1,6 +1,6 @@
-ott.namespace("ott.app");
+ott.namespace("ott.ui.app");
 
-ott.app.MapApp = {
+ott.ui.app.MapApp = {
 
     /**
      * @consturctor
@@ -11,7 +11,7 @@ ott.app.MapApp = {
 
         //ott.debug = true;
 
-        this.map = new ott.leaflet.map.Map(ott.config);
+        this.map = new ott.ui.map.Map(ott.config);
 
         this.makeSearchAndTransitLayers();
         this.makeSolrPointLayers();
@@ -46,6 +46,6 @@ ott.app.MapApp = {
         this.lc.addLayerButtonCallback('weatherButton', this.weather);
     },
 
-    CLASS_NAME: "ott.app.MapApp"
+    CLASS_NAME: "ott.ui.app.MapApp"
 };
-ott.app.MapApp = new ott.Class(ott.app.MapApp);
+ott.ui.app.MapApp = new ott.Class(ott.ui.app.MapApp);

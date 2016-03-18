@@ -1,6 +1,6 @@
-ott.namespace("ott.leaflet.map");
+ott.namespace("ott.ui.map");
 
-ott.leaflet.map.Map = {
+ott.ui.map.Map = {
 
     map : null,
     targetDiv : null,
@@ -18,6 +18,7 @@ ott.leaflet.map.Map = {
 
         // step 0: fix up some basics (default image needed for some marker layers, ala timeline)
         L.Icon.Default.imagePath = '/resources/leaflet/images/';
+        config = config || {};
 
         // step 1: map div
         this.targetDiv = targetDiv || 'map';
@@ -107,6 +108,6 @@ ott.leaflet.map.Map = {
         map.setView([45.505, -122.65], 13);
     },
 
-    CLASS_NAME: "ott.leaflet.map.Map"
+    CLASS_NAME: "ott.ui.map.Map"
 };
-ott.leaflet.map.Map = new ott.Class(ott.leaflet.map.Map);
+ott.ui.map.Map = new ott.Class(ott.ui.map.Map);
