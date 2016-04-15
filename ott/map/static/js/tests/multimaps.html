@@ -34,14 +34,48 @@
     <script src="/resources/ott.min.js"></script>
     <script src="/js/config.js"></script>
 
-    <script type="text/javascript">
-    $(document).ready(function(){
 
-    });
-    </script>
+
+    <style type="text/css">
+        html, body { width: 100%; height: 100%; margin: 0; }
+        #map1, #map2 { width: 35%; height: 50%; }
+        #maps { margin-left:auto; margin-right:0; }
+        #text { float: left; }
+    </style>
 </head>
 <body>
-    <div id="map"></div>
+    <div class="text1">
+    HI THERE
+        <br/>
+        BLA
+    </div>
+    <div id="map1"></div>
+    <br/>
+    HI THERE
+    <div id="map2"></div>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var center = [59.336, 5.967];
+        var layer1 = L.tileLayer('http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=norges_grunnkart&zoom={z}&x={x}&y={y}');
+        var layer2 = L.tileLayer('http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=topo2&zoom={z}&x={x}&y={y}', {
+            attribution: '© Kartverket'
+        });
+        var map1 = L.map('map1', {
+            layers: [layer1],
+            center: center,
+            zoom: 14
+        });
+        map1.attributionControl.setPrefix('');
+        var map2 = L.map('map2', {
+            layers: [layer2],
+            center: center,
+            zoom: 14,
+            zoomControl: false
+        });
+        map1.sync(map2);
+        map2.sync(map1);
+    });
+    </script>
 </body>
 </html>
 
