@@ -1,6 +1,7 @@
-ott.namespace("ott.leaflet.transit");
+ott.namespace("ott.widgets.planner");
 
-ott.leaflet.transit.TripPlan = {
+
+ott.widgets.planner.TripPlan = {
 
     map : null,
     url : null,
@@ -17,8 +18,7 @@ ott.leaflet.transit.TripPlan = {
     {
         ott.log.debug("enter leaflet TripPlan() constructor");
 
-        ott.inherit(this, ott.leaflet.layer.BaseStatic);
-        //ott.inherit(this, ott.planner.TripPlanStatic);
+        ott.inherit(this, ott.map.layers.BaseStatic);
 
         url = url || 'http://maps7.trimet.org/ride_ws/plan_trip';
         formDiv = formDiv || '#tripForm';
@@ -31,7 +31,6 @@ ott.leaflet.transit.TripPlan = {
         this.outputDiv = outputDiv;
 
         this.addSubmitPlanCallback(this.formDiv, this.buttonDiv);
-
 
         ott.log.debug("exit leaflet TripPlan() constructor");
     },
@@ -61,7 +60,6 @@ ott.leaflet.transit.TripPlan = {
             e.preventDefault();
         });
 
-
         $(buttonDiv).click(function()
         {
             $(formDiv).submit();
@@ -74,7 +72,6 @@ ott.leaflet.transit.TripPlan = {
                 $(formDiv).submit();
             }
         });
-
     },
 
     /**
@@ -141,7 +138,6 @@ ott.leaflet.transit.TripPlan = {
         }
     },
 
-
-    CLASS_NAME: "ott.leaflet.transit.TripPlan"
+    CLASS_NAME: "ott.widgets.planner.TripPlan"
 };
-ott.leaflet.transit.TripPlan = new ott.Class(ott.leaflet.transit.TripPlan);
+ott.widgets.planner.TripPlan = new ott.Class(ott.widgets.planner.TripPlan);

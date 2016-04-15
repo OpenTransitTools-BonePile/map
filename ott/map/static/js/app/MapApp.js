@@ -17,7 +17,7 @@ ott.app.MapApp = {
         this.makeSolrPointLayers();
         this.makeMobilityLayers();
 
-        this.tripplan = new ott.leaflet.transit.TripPlan(this.map.map);
+        this.tripplan = new ott.widgets.planner.TripPlan(this.map.map);
 
         ott.log.debug("exit leaflet Map() constructor");
     },

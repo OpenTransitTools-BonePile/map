@@ -1,7 +1,7 @@
-ott.namespace("ott.planner");
+ott.namespace("ott.widgets.planner");
 
 
-ott.planner.Params = {
+ott.widgets.planner.Params = {
 
     from : null,
     to   : null,
@@ -20,6 +20,6 @@ ott.planner.Params = {
         return retVal;
     },
 
-    CLASS_NAME: "ott.planner.Params"
+    CLASS_NAME: "ott.widgets.planner.Params"
 };
-ott.planner.Params = new ott.Class(ott.planner.Params);
+ott.widgets.planner.Params = new ott.Class(ott.widgets.planner.Params);
