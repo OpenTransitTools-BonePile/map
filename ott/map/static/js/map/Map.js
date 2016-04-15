@@ -5,6 +5,7 @@ ott.map.Map = {
     map : null,
     targetDiv : null,
     baseLayers : {},
+    defaultBaseLayer : null,
 
     layerControl : null,
     contextMenu  : null,
@@ -12,16 +13,17 @@ ott.map.Map = {
     /**
      * @consturctor
      */
-    initialize : function(config, targetDiv)
+    initialize : function(config, baseLayers, targetDiv)
     {
-        ott.log.debug("enter leaflet Map() constructor");
+        ott.log.debug("enter Map() constructor");
 
         // step 0: fix up some basics (default image needed for some marker layers, ala timeline)
         L.Icon.Default.imagePath = '/resources/leaflet/images/';
         config = config || {};
 
-        // step 1: map div
+        // step 1: map div and baseLayers
         this.targetDiv = targetDiv || 'map';
+        baseLayers = baseLayers || config.baseLayers;
 
         // step 2: map controls
         var interactions = [];
@@ -32,18 +34,16 @@ ott.map.Map = {
         if(config.doFullScreen)
             ;
 
-
         // step 3: create the map
         var THIS = this;
-        var defaultBaseLayer = null;
 
         // step 4: make the base layers from config
-        if(config.baseLayers)
+        if(baseLayers)
         {
-            for(var i = 0; i < config.baseLayers.length; i++)
+            for(var i = 0; i < baseLayers.length; i++)
             {
                 // step a: make a base layer from config
-                var layerConfig = config.baseLayers[i];
+                var layerConfig = baseLayers[i];
                 var layer = new L.TileLayer(layerConfig.url, layerConfig);
 
                 // step b: add layer to cache
@@ -51,7 +51,7 @@ ott.map.Map = {
 
                 // step c: set default base layer based on position
                 if(i == 0)
-                    defaultBaseLayer = layer;
+                    this.defaultBaseLayer = layer;
             }
         }
         else
@@ -65,13 +65,12 @@ ott.map.Map = {
 
             var layer = new L.TileLayer(layerConfig.url, layerConfig);
             this.baseLayers[layerConfig.name] = layer;
-            defaultBaseLayer = layer;
+            this.defaultBaseLayer = layer;
         }
-
 
         // step 5: collect map config
         var mapProps = {
-            layers  : [ defaultBaseLayer ],
+            layers  : [ this.defaultBaseLayer ],
             center : (config.initLatLng || new L.LatLng(45.5, -122.68)),
             zoom : (config.initZoom || 12),
             zoomControl : false,
@@ -88,7 +87,7 @@ ott.map.Map = {
 
         // step 6: make map
         this.map = new L.Map('map', mapProps);
-        this.layer_control = L.control.layers(this.baseLayers).addTo(this.map);
+        this.layerControl = L.control.layers(this.baseLayers).addTo(this.map);
 
         if(this.contextMenu)
             this.contextMenu.setMap(this.map);
@@ -103,7 +102,7 @@ ott.map.Map = {
                 units: "english"
             }).addTo(this.map);
 
-        ott.log.debug("exit leaflet Map() constructor");
+        ott.log.debug("exit Map() constructor");
     },
 
     blah : function(webapp)

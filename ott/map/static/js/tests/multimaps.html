@@ -34,6 +34,22 @@
     <script src="/resources/ott.min.js"></script>
     <script src="/js/config.js"></script>
 
+    <script>
+    $(document).ready(function(){
+        $("#hide1").click(function(){
+            $("#m1").hide();
+        });
+        $("#show1").click(function(){
+            $("#m1").show();
+        });
+        $("#hide2").click(function(){
+            $("#m2").hide();
+        });
+        $("#show2").click(function(){
+            $("#m2").show();
+        });
+    });
+    </script>
 
 
     <style type="text/css">
@@ -44,15 +60,23 @@
     </style>
 </head>
 <body>
-    <div class="text1">
-    HI THERE
-        <br/>
-        BLA
+    <div id="m1">
+        If you click on the "Hide" button, I will disappear.
     </div>
     <div id="map1"></div>
+    <button id="hide1">Hide</button>
+    <button id="show1">Show</button>
+
     <br/>
-    HI THERE
+    <br/>
+
+    <div id="m2">
+        If you click on the "Hide" button, I will disappear.
+    </div>
     <div id="map2"></div>
+    <button id="hide2">Hide</button>
+    <button id="show2">Show</button>
+
     <script type="text/javascript">
     $(document).ready(function(){
         var center = [59.336, 5.967];
