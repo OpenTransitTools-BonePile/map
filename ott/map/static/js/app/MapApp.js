@@ -1,6 +1,6 @@
-ott.namespace("ott.ui.app");
+ott.namespace("ott.app");
 
-ott.ui.app.MapApp = {
+ott.app.MapApp = {
 
     /**
      * @consturctor
@@ -11,7 +11,7 @@ ott.ui.app.MapApp = {
 
         //ott.debug = true;
 
-        this.map = new ott.ui.map.Map(ott.config);
+        this.map = new ott.map.Map(ott.config);
 
         this.makeSearchAndTransitLayers();
         this.makeSolrPointLayers();
@@ -24,10 +24,10 @@ ott.ui.app.MapApp = {
 
     makeSolrPointLayers : function()
     {
-        this.pr = new ott.leaflet.layer.PointLayer(this.map.map,   'type:10 OR type:17', 'pr');
-        this.tc = new ott.leaflet.layer.PointLayer(this.map.map,   'type:14', 'tc');
-        this.fare = new ott.leaflet.layer.PointLayer(this.map.map, 'type:16', 'fare');
-        this.tvm  = new ott.leaflet.layer.PointLayer(this.map.map, 'type:26', 'tvm');
+        this.pr = new ott.map.layers.PointLayer(this.map.map,   'type:10 OR type:17', 'pr');
+        this.tc = new ott.map.layers.PointLayer(this.map.map,   'type:14', 'tc');
+        this.fare = new ott.map.layers.PointLayer(this.map.map, 'type:16', 'fare');
+        this.tvm  = new ott.map.layers.PointLayer(this.map.map, 'type:26', 'tvm');
     },
 
     makeSearchAndTransitLayers : function()
@@ -40,12 +40,12 @@ ott.ui.app.MapApp = {
 
     makeMobilityLayers : function()
     {
-        this.lc = new ott.leaflet.layer.LayerController(this.map.map);
-        this.weather = ott.leaflet.layer.WmsLayerStatic.makeWeatherLayer(this.map.map);
+        this.lc = new ott.map.layers.LayerController(this.map.map);
+        this.weather = ott.map.layers.WmsLayerStatic.makeWeatherLayer(this.map.map);
         this.lc.addLayer(this.weather);
         this.lc.addLayerButtonCallback('weatherButton', this.weather);
     },
 
-    CLASS_NAME: "ott.ui.app.MapApp"
+    CLASS_NAME: "ott.app.MapApp"
 };
-ott.ui.app.MapApp = new ott.Class(ott.ui.app.MapApp);
+ott.app.MapApp = new ott.Class(ott.app.MapApp);

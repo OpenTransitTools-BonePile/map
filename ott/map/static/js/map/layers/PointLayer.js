@@ -1,6 +1,6 @@
-ott.namespace("ott.leaflet.layer");
+ott.namespace("ott.map.layers");
 
-ott.leaflet.layer.PointLayer = {
+ott.map.layers.PointLayer = {
 
     map : null,
     url : null,
@@ -145,6 +145,6 @@ ott.leaflet.layer.PointLayer = {
             this.show();
     },
 
-    CLASS_NAME: "ott.leaflet.layer.PointLayer"
+    CLASS_NAME: "ott.map.layers.PointLayer"
 };
-ott.leaflet.layer.PointLayer = new ott.Class(ott.leaflet.layer.PointLayer);
+ott.map.layers.PointLayer = new ott.Class(ott.map.layers.PointLayer);

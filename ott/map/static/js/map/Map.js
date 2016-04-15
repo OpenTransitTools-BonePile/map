@@ -1,6 +1,6 @@
-ott.namespace("ott.ui.map");
+ott.namespace("ott.map");
 
-ott.ui.map.Map = {
+ott.map.Map = {
 
     map : null,
     targetDiv : null,
@@ -82,7 +82,7 @@ ott.ui.map.Map = {
         if(config.maxZoom) mapProps['maxZoom'] = config.maxZoom;
 
         // step 5b : config menu (part 1 of 2 ... have to add map)
-        this.contextMenu = new ott.leaflet.map.ContextMenu();
+        this.contextMenu = new ott.map.ContextMenu();
         var cmMapCfg = this.contextMenu.getMapConfig();
         mapProps = L.Util.extend(mapProps, cmMapCfg);
 
@@ -124,6 +124,6 @@ ott.ui.map.Map = {
         map.setView([45.505, -122.65], 13);
     },
 
-    CLASS_NAME: "ott.ui.map.Map"
+    CLASS_NAME: "ott.map.Map"
 };
-ott.ui.map.Map = new ott.Class(ott.ui.map.Map);
+ott.map.Map = new ott.Class(ott.map.Map);

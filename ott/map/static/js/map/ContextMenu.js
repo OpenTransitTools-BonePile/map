@@ -1,6 +1,6 @@
-ott.namespace("ott.leaflet.map");
+ott.namespace("ott.map");
 
-ott.leaflet.map.ContextMenu = {
+ott.map.ContextMenu = {
 
     map : null,
 
@@ -78,6 +78,6 @@ ott.leaflet.map.ContextMenu = {
         this.map.zoomOut();
     },
 
-    CLASS_NAME: "ott.leaflet.map.ContextMenu"
+    CLASS_NAME: "ott.map.ContextMenu"
 };
-ott.leaflet.map.ContextMenu = new ott.Class(ott.leaflet.map.ContextMenu);
+ott.map.ContextMenu = new ott.Class(ott.map.ContextMenu);

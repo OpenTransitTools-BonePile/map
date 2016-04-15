@@ -1,6 +1,6 @@
-ott.namespace("ott.leaflet.layer");
+ott.namespace("ott.map.layers");
 
-ott.leaflet.layer.BaseStatic = {
+ott.map.layers.BaseStatic = {
 
     map : null,
     url : null,
@@ -83,6 +83,6 @@ ott.leaflet.layer.BaseStatic = {
         }
     },
 
-    CLASS_NAME: "ott.leaflet.layer.Base"
+    CLASS_NAME: "ott.map.layers.Base"
 };
-ott.leaflet.layer.Base = new ott.Class(ott.leaflet.layer.BaseStatic);
+ott.map.layers.Base = new ott.Class(ott.map.layers.BaseStatic);

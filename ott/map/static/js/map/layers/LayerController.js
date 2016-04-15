@@ -1,6 +1,6 @@
-ott.namespace("ott.leaflet.layer");
+ott.namespace("ott.map.layers");
 
-ott.leaflet.layer.LayerControllerStatic = {
+ott.map.layers.LayerControllerStatic = {
 
     layers : [],
     layerButtonsDiv : null,
@@ -16,7 +16,7 @@ ott.leaflet.layer.LayerControllerStatic = {
         ott.log.debug("enter LayerController constructor");
 
         // step 0: a bit of inheritance
-        ott.inherit(this, ott.leaflet.layer.BaseStatic);
+        ott.inherit(this, ott.map.layers.BaseStatic);
 
         // step 1: set object variables
         this.map = map;
@@ -103,7 +103,7 @@ ott.leaflet.layer.LayerControllerStatic = {
 
             if(layerId && name)
             {
-                var layer = new ott.leaflet.layer.WmsLayer(this.map, layerId, this.wmsServer, layerId, false);
+                var layer = new ott.map.layers.WmsLayer(this.map, layerId, this.wmsServer, layerId, false);
                 this.addUiLayerButton(layerId, layer, name);
                 this.layers.push(layer);
             }
@@ -116,6 +116,6 @@ ott.leaflet.layer.LayerControllerStatic = {
         ott.log.debug("exit LayerController.parseLayersSpec()");
     },
 
-    CLASS_NAME: "ott.leaflet.layer.LayerController"
+    CLASS_NAME: "ott.map.layers.LayerController"
 };
-ott.leaflet.layer.LayerController = new ott.Class(ott.leaflet.layer.LayerControllerStatic);
+ott.map.layers.LayerController = new ott.Class(ott.map.layers.LayerControllerStatic);
