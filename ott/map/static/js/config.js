@@ -92,6 +92,16 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
         doDragRotate : true,
         doFullScreen : true,
 
+        // components 
+        // TODO what about configuring the component ala urls, names, etc...?
+        showTripPlanner : true,
+        showStopsLayer : true,
+        showRoutesLayer : true,
+        showPRLayer : true,
+        showFareOutletLayer : false,
+        showBikeShareLayer : true,
+        showCarShareLayer : false,
+
         /**
          * google analytics params
          * @see: ott.utils.Analytics
