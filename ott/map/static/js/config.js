@@ -13,25 +13,12 @@ ott.attributions = [
 
 if(typeof(ott.params) == "undefined" || ott.params == null)
     ott.params = {
-        /** tile domains */
-        tileDomain : "http://maps.trimet.org",
-        tileDomain : "http://tile{a-d}.trimet.org",
-
-        tileAerialPath : '/tilecache/tilecache.py/1.0.0/hybridOSM/{z}/{x}/{y}',
         aerialAttribution : ott.attributions,
         aerialName : 'TriMet Satellite',
-
-        tileMapPath    : '/tilecache/tilecache.py/1.0.0/currentOSM/{z}/{x}/{y}',
-        mapAttribution    : ott.attributions,
+        mapAttribution : ott.attributions,
         mapName : 'TriMet Map',
-
-        solrService    : "http://maps.trimet.org/solr/select",
-
-        siteName            : "TriMet Call Taker Tools",
-        siteDescription     : "Call Taker Stuff",
-        logoGraphic         : 'images/ott_logo_darkbg_40px.png',
-        agencyStopLinkText  : "Real Time Arrivals",
-        fareDisplayOverride : "$2.50 (A), $1.25 (H), $1.25 (Y)"
+        solrService : "http://maps.trimet.org/solr/select",
+        CLASS_NAME : "ott.params"
     };
 
 if(typeof(ott.config) == "undefined" || ott.config == null)
@@ -105,26 +92,6 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
         doDragRotate : true,
         doFullScreen : true,
 
-
-        /**
-         * map will config the initial map view of the OpenLayers 3.5 map
-         */
-        olMap : {
-            //center  : ott.transform([-122.68, 45.48], 'EPSG:4326', 'EPSG:3857'),
-            zoom    : 11,
-            minZoom : 10,
-            maxZoom : 20,
-            enableRotation : true,
-            rotation : 0
-        },
-
-        legend : {
-            button  : 'L',
-            title   : "I'm a Legend",
-            content : [{'color':'#FF0000', 'text':"<b>Bob</b> Marley"}, {'color':'#165E00', 'text':"<b>Jimmy</b> Cliff"}, {'color':'#FFDD00', 'text':"<b>Toots</b> Hibbert"}],
-            note    : "See more at <a href='http://bobmarley.com' target='#'>Yeah Man!</a>..."
-        },
-
         /**
          * google analytics params
          * @see: ott.utils.Analytics
@@ -146,7 +113,7 @@ if(typeof(ott.config) == "undefined" || ott.config == null)
         geocoder : {
             name         : 'SOLR',
             className    : 'ott.core.SOLRGeocoder',
-            url          : ott,
+            url          : ott.params.solrService,
             addressParam : 'q'
         },
 
